@@ -1,0 +1,11 @@
+﻿<Project>
+  <Import Project="Directory.Version.props" />
+
+  <PropertyGroup>
+    <Product>SmartAdmin for .NET Core 2.0</Product>
+    <RepositoryUrl>https://bitbucket.org/myorange/smartadmin-core-2.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <VersionSuffix Condition="'$(VersionSuffix)'!='' AND '$(BuildNumber)' != ''">$(VersionSuffix)-$(BuildNumber)</VersionSuffix>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>

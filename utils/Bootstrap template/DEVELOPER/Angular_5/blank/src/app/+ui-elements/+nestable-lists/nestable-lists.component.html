@@ -1,0 +1,100 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['UI Elements', 'Nestable Lists']" icon="desktop"
+                        class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+  <!-- widget grid -->
+  <sa-widgets-grid>
+    <!-- row -->
+    <div class="row">
+      <!-- NEW WIDGET START -->
+      <article class="col-sm-12">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget class="well" saSparklineContainer saEasyPieChartContainer>
+          <!-- widget options:
+          usage: <div sa-widget id="wid-id-0" [editbutton]="false">
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+            <h2>My Data </h2>
+          </header>
+          <!-- widget div-->
+          <div>
+            <!-- widget content -->
+            <div class="widget-body">
+              <div class="row">
+                <div class="col-sm-6 col-lg-4">
+                  <h6>Nestable List #1</h6>
+
+                  <sa-nestable-list [items]="demo1"
+                                    (change)="onChange1($event)"
+                                    [options]="{
+                    group: 1
+                  }"></sa-nestable-list>
+
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                  <h6>Nestable List #2</h6>
+                  <sa-nestable-list [items]="demo2"
+                                    (change)="onChange2($event)"
+                                    [options]="{
+                    group: 1
+                  }"></sa-nestable-list>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                  <h6>Nestable List #3 (with drag handle)</h6>
+                  <sa-nestable-list [items]="demo3"
+                                    (change)="onChange3($event)"
+                                    [options]="{
+                    group: 2
+                  }"></sa-nestable-list>
+                </div>
+              </div>
+            </div>
+            <!-- end widget content -->
+          </div>
+          <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+      </article>
+      <!-- WIDGET END -->
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="well well-sm well-light">
+          <p>
+            <strong>Serialised Output (per list)</strong>
+          </p>
+          <p class="alert alert-info">
+            Preview of the lists update DB input.
+          </p>
+          <div class="row">
+            <div class="col-sm-4">
+              <pre>{{ nestable1DemoOutput | json}}</pre>
+            </div>
+            <div class="col-sm-4">
+              <pre>{{ nestable2DemoOutput | json}}</pre>
+            </div>
+            <div class="col-sm-4">
+              <pre>{{ nestable3DemoOutput | json}}</pre>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </sa-widgets-grid>
+  <!-- end widget grid -->
+</div>

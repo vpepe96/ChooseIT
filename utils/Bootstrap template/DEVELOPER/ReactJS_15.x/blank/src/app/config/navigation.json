@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+        "title":"Home",
+        "route":"home",
+        "icon":"fa fa-lg fa-fw fa-home"
+    }
+
+  ]
+}

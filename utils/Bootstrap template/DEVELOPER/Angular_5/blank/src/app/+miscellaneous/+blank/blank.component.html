@@ -1,0 +1,63 @@
+<div id="content">
+
+
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Page Header', 'Subtitle']" icon="home" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+
+  <!--
+      The ID "widget-grid" will start to initialize all widgets below
+      You do not need to use widgets if you dont want to. Simply remove
+      the <section></section> and you can use wells or panels instead
+      -->
+  <!-- widget grid -->
+  <sa-widgets-grid>
+    <!-- row -->
+    <div class="row">
+      <!-- NEW WIDGET START -->
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget>
+          <!-- widget options:
+              usage: <div sa-widget id="wid-id-0" [editbutton]="false">
+              [colorbutton]="false"
+              [editbutton]="false"
+              [togglebutton]="false"
+              [deletebutton]="false"
+              [fullscreenbutton]="false"
+              [custombutton]="false"
+              [collapsed]="true"
+              [sortable]="false"
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+
+            <h2>Widget Title </h2>
+          </header>
+          <!-- widget div-->
+          <div>
+            <!-- widget content -->
+            <div class="widget-body">
+              <!-- this is what the user will see -->
+            </div>
+            <!-- end widget content -->
+          </div>
+          <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+      </article>
+      <!-- WIDGET END -->
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+      <!-- a blank row to get started -->
+      <div class="col-sm-12">
+        <!-- your contents here -->
+      </div>
+    </div>
+    <!-- end row -->
+  </sa-widgets-grid>
+  <!-- end widget grid -->
+</div>

@@ -1,0 +1,55 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Table', 'Ngx Datatable']" icon="table"
+                        class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+
+  <sa-widgets-grid>
+
+
+    <div class="row">
+      <article class="col-sm-12 col-md-12 col-lg-12">
+
+         <div sa-widget [editbutton]="false" [fullscreenbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+            <h2>Sortable, Paged table with filter</h2>
+          </header>
+
+
+            <div>
+              <div class="widget-body no-padding">
+                <paged-table-demo></paged-table-demo>
+              </div>
+            </div>
+         </div>
+
+
+      </article>
+    </div>
+    <div class="row">
+      <article class="col-sm-12 col-md-12 col-lg-12">
+
+         <div sa-widget [editbutton]="false" [fullscreenbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+
+            <h2>Table with expandible Row Details</h2>
+          </header>
+
+
+            <div>
+              <div class="widget-body no-padding">
+                <row-detail-demo></row-detail-demo>
+              </div>
+            </div>
+         </div>
+
+
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>
+

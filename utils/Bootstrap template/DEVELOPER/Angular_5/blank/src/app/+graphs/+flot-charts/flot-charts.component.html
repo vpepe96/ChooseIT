@@ -1,0 +1,151 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+
+  <div class="row">
+    <sa-big-breadcrumbs icon="bar-chart-o" [items]="['Graphs', 'Flot Chart']" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+  <!-- widget grid -->
+  <sa-widgets-grid>
+
+    <!-- row -->
+
+    <div class="row" *ngIf="flotData">
+
+      <article class="col-sm-12 col-md-12 col-lg-12">
+
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Bar Chart</h2>
+          </header>
+
+          <div>
+            <div class="widget-body ">
+              <sa-flot-chart [data]="flotData.barChartData"
+                         [options]="flotExamples.barChartDemoOptions" ></sa-flot-chart>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Sin Chart</h2>
+          </header>
+
+          <div>
+            <div class="widget-body ">
+              <sa-flot-chart [data]="flotData.sinChartData"
+                         [options]="flotExamples.sinChartDemoOptions" ></sa-flot-chart>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Auto Updating Chart</h2>
+          </header>
+
+          <div>
+            <div class="widget-body ">
+              <sa-flot-chart [data]="updatingData"
+                         [options]="flotExamples.autoUpdatingChartDemoOptions" ></sa-flot-chart>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Horizontal Bar Chart</h2>
+          </header>
+
+          <div>
+            <div class="widget-body ">
+              <sa-flot-chart [data]="flotData.horizontalBarChartData"
+                         [options]="flotExamples.horizontalChartDemoOptions" ></sa-flot-chart>
+            </div>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="col-xs-12 col-sm-8 col-md-7 col-lg-7">
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Plot Percentiles</h2>
+          </header>
+
+          <div>
+            <div class="widget-body ">
+              <sa-flot-chart [data]="flotData.fillChartData"
+                         [options]="flotExamples.fillChartDemoOptions" ></sa-flot-chart>
+            </div>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="col-xs-12 col-sm-4 col-md-5 col-lg-5">
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Pie Chart</h2>
+          </header>
+
+          <div>
+            <div class="widget-body ">
+              <sa-flot-chart [data]="flotData.pieChartData"
+                         [options]="flotExamples.pieChartDemoOptions" ></sa-flot-chart>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="col-xs-12">
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Site Stats Chart</h2>
+          </header>
+
+          <div>
+            <div class="widget-body ">
+              <sa-flot-chart [data]="flotData.siteStatsData"
+                         [options]="flotExamples.siteStatsDemoOptions" ></sa-flot-chart>
+            </div>
+          </div>
+        </div>
+
+
+      </article>
+
+
+    </div>
+
+    <!-- end row -->
+
+  </sa-widgets-grid>
+  <!-- end widget grid -->
+
+</div>
+<!-- END MAIN CONTENT -->

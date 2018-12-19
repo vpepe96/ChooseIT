@@ -1,0 +1,516 @@
+@inject IOptions<SmartSettings> Settings
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel">
+<!-- User info -->
+<div class="login-info">
+    <span>
+        <!-- User image size is adjusted inside CSS, it should stay as it -->
+        <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+            <img src="~/img/avatars/sunny.png" alt="me" class="online"/>
+            <span>john.doe</span>
+            <i class="fa fa-angle-down"></i>
+        </a>
+    </span>
+</div>
+<!-- end user info -->
+
+<!-- NAVIGATION : This navigation is also responsive-->
+<nav>
+<!--
+NOTE: Notice the gaps after each icon usage <i></i>..
+Please note that these links work a bit different than
+traditional href="" links. See documentation for details.
+-->
+
+<ul>
+<li is-active-route asp-controller="Home">
+    <a href="#" title="Dashboard">
+        <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="Home" asp-action="Index">
+            <a asp-controller="Home" asp-action="Index" title="Dashboard">
+                <span class="menu-item-parent">Analytics Dashboard</span>
+            </a>
+        </li>
+        <li is-active-route asp-controller="Home" asp-action="DashboardMarketing">
+            <a asp-controller="Home" asp-action="DashboardMarketing" title="Dashboard">
+                <span class="menu-item-parent">Marketing Dashboard</span>
+            </a>
+        </li>
+        <li is-active-route asp-controller="Home" asp-action="SocialWall">
+            <a asp-controller="Home" asp-action="SocialWall" title="Dashboard">
+                <span class="menu-item-parent">Social Wall</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li is-active-route asp-controller="Intel">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-cube txt-color-blue"></i> <span class="menu-item-parent">SmartAdmin Intel</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="Intel" asp-action="AppLayouts">
+            <a asp-controller="Intel" asp-action="AppLayouts" title="Dashboard">
+                <i class="fa fa-lg fa-fw fa-gear"></i> <span class="menu-item-parent">App Layouts</span>
+            </a>
+        </li>
+        <li is-active-route asp-controller="Intel" asp-action="Skins">
+            <a asp-controller="Intel" asp-action="Skins" title="Dashboard">
+                <i class="fa fa-lg fa-fw fa-picture-o"></i> <span class="menu-item-parent">Prebuilt Skins</span>
+            </a>
+        </li>
+        <li is-active-route asp-controller="Intel" asp-action="Variations" asp-show-when="@Settings.Value.Environment.IsDemo()">
+            <a asp-controller="Intel" asp-action="Variations" title="Dashboard">
+                <i class="fa fa-lg fa-fw fa fa-stack-overflow"></i> <span class="menu-item-parent">App Variations</span>
+            </a>
+        </li>
+        <li is-active-route asp-controller="Intel" asp-action="Layouts">
+            <a asp-controller="Intel" asp-action="Layouts"><i class="fa fa-cube"></i> App Settings</a>
+        </li>
+    </ul>
+</li>
+<li is-active-route asp-controller="Home" asp-action="Inbox">
+    <a asp-controller="Home" asp-action="Inbox">
+        <i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Outlook</span> <span class="badge pull-right inbox-badge margin-right-13">14</span>
+    </a>
+</li>
+<li is-active-route asp-controller="Graphs">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Graphs</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="Graphs" asp-action="FlotChart">
+            <a asp-controller="Graphs" asp-action="FlotChart">Flot Chart</a>
+        </li>
+        <li is-active-route asp-controller="Graphs" asp-action="MorrisCharts">
+            <a asp-controller="Graphs" asp-action="MorrisCharts">Morris Charts</a>
+        </li>
+        <li is-active-route asp-controller="Graphs" asp-action="Sparklines">
+            <a asp-controller="Graphs" asp-action="Sparklines">Sparklines</a>
+        </li>
+        <li is-active-route asp-controller="Graphs" asp-action="EasyPieCharts">
+            <a asp-controller="Graphs" asp-action="EasyPieCharts">EasyPieCharts</a>
+        </li>
+        <li is-active-route asp-controller="Graphs" asp-action="Dygraphs">
+            <a asp-controller="Graphs" asp-action="Dygraphs">Dygraphs</a>
+        </li>
+        <li is-active-route asp-controller="Graphs" asp-action="ChartJS">
+            <a asp-controller="Graphs" asp-action="ChartJS">Chart.js</a>
+        </li>
+        <li is-active-route asp-controller="Graphs" asp-action="HighChartTable">
+            <a asp-controller="Graphs" asp-action="HighChartTable">HighchartTable <span class="badge pull-right inbox-badge bg-color-yellow">new</span></a>
+        </li>
+    </ul>
+</li>
+<li is-active-route asp-controller="Tables">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Tables</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="Tables" asp-action="Normal">
+            <a asp-controller="Tables" asp-action="Normal">Normal Tables</a>
+        </li>
+        <li is-active-route asp-controller="Tables" asp-action="DataTables">
+            <a asp-controller="Tables" asp-action="DataTables">Data Tables <span class="badge inbox-badge bg-color-greenLight hidden-mobile">responsive</span></a>
+        </li>
+        <li is-active-route asp-controller="Tables" asp-action="JqGrid">
+            <a asp-controller="Tables" asp-action="JqGrid">Jquery Grid</a>
+        </li>
+    </ul>
+</li>
+<li is-active-route asp-controller="Forms">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Forms</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="Forms" asp-action="SmartElements">
+            <a asp-controller="Forms" asp-action="SmartElements">Smart Form Elements</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="SmartTemplates">
+            <a asp-controller="Forms" asp-action="SmartTemplates">Smart Form Layouts</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="SmartValidation">
+            <a asp-controller="Forms" asp-action="SmartValidation">Smart Form Validation</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="Bootstrap">
+            <a asp-controller="Forms" asp-action="Bootstrap">Bootstrap Form Elements</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="BootstrapValidation">
+            <a asp-controller="Forms" asp-action="BootstrapValidation">Bootstrap Form Validation</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="Plugins">
+            <a asp-controller="Forms" asp-action="Plugins">Form Plugins</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="Wizards">
+            <a asp-controller="Forms" asp-action="Wizards">Wizards</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="Editors">
+            <a asp-controller="Forms" asp-action="Editors">Bootstrap Editors</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="Dropzone">
+            <a asp-controller="Forms" asp-action="Dropzone">Dropzone</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="Cropping">
+            <a asp-controller="Forms" asp-action="Cropping">Image Cropping</a>
+        </li>
+        <li is-active-route asp-controller="Forms" asp-action="CkEditor">
+            <a asp-controller="Forms" asp-action="CkEditor">CK Editor</a>
+        </li>
+    </ul>
+</li>
+<li is-active-route asp-controller="Element">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">UI Elements</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="Element" asp-action="General">
+            <a asp-controller="Element" asp-action="General">General Elements</a>
+        </li>
+        <li is-active-route asp-controller="Element" asp-action="Buttons">
+            <a asp-controller="Element" asp-action="Buttons">Buttons</a>
+        </li>
+        <li asp-controller="Icons">
+            <a href="#">Icons</a>
+            <ul>
+                <li is-active-route asp-controller="Icons" asp-action="FontAwesome">
+                    <a asp-controller="Icons" asp-action="FontAwesome"><i class="fa fa-plane"></i> Font Awesome</a>
+                </li>
+                <li is-active-route asp-controller="Icons" asp-action="GlyphIcons">
+                    <a asp-controller="Icons" asp-action="GlyphIcons"><i class="glyphicon glyphicon-plane"></i> Glyph Icons</a>
+                </li>
+                <li is-active-route asp-controller="Icons" asp-action="Flags">
+                    <a asp-controller="Icons" asp-action="Flags"><i class="fa fa-flag"></i> Flags</a>
+                </li>
+            </ul>
+        </li>
+        <li is-active-route asp-controller="Element" asp-action="Grid">
+            <a asp-controller="Element" asp-action="Grid">Grid</a>
+        </li>
+        <li is-active-route asp-controller="Element" asp-action="TreeView">
+            <a asp-controller="Element" asp-action="TreeView">Tree View</a>
+        </li>
+        <li is-active-route asp-controller="Element" asp-action="Lists">
+            <a asp-controller="Element" asp-action="Lists">Nestable Lists</a>
+        </li>
+        <li is-active-route asp-controller="Element" asp-action="JqueryUI">
+            <a asp-controller="Element" asp-action="JqueryUI">JQuery UI</a>
+        </li>
+        <li is-active-route asp-controller="Element" asp-action="Typography">
+            <a asp-controller="Element" asp-action="Typography">Typography</a>
+        </li>
+        <li is-active-route asp-controller="Element" asp-action="SixLevels">
+            <a href="#">Six Level Menu</a>
+            <ul>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-folder-open"></i> Item #2</a>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-folder-open"></i> Sub #2.1 </a>
+                            <ul>
+                                <li>
+                                    <a href="#"><i class="fa fa-fw fa-file-text"></i> Item #2.1.1</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-fw fa-plus"></i> Expand</a>
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-folder-open"></i> Item #3</a>
+
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-folder-open"></i> 3rd Level </a>
+                            <ul>
+                                <li>
+                                    <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-fw fa-file-text"></i> File</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="inactive"><i class="fa fa-fw fa-folder-open"></i> Item #4 (disabled)</a>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
+</li>
+<li is-active-route asp-controller="Home" asp-action="Widgets">
+    <a asp-controller="Home" asp-action="Widgets">
+        <i class="fa fa-lg fa-fw fa-list-alt"></i> <span class="menu-item-parent">Widgets</span>
+    </a>
+</li>
+<li is-active-route asp-controller="Features">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-cloud">
+            <em>3</em>
+        </i> <span class="menu-item-parent">Cool Features!</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="Features" asp-action="Calendar">
+            <a asp-controller="Features" asp-action="Calendar">
+                <i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent">Calendar</span>
+            </a>
+        </li>
+        <li is-active-route asp-controller="Features" asp-action="GoogleMap">
+            <a asp-controller="Features" asp-action="GoogleMap">
+                <i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">GMap Skins</span><span class="badge bg-color-greenLight pull-right inbox-badge">9</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<li is-active-route asp-controller="AppViews">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-puzzle-piece"></i> <span class="menu-item-parent">App Views</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="AppViews" asp-action="Projects">
+            <a asp-controller="AppViews" asp-action="Projects"><i class="fa fa-file-text-o"></i> Projects</a>
+        </li>
+        <li is-active-route asp-controller="AppViews" asp-action="Blog">
+            <a asp-controller="AppViews" asp-action="Blog"><i class="fa fa-paragraph"></i> Blog</a>
+        </li>
+        <li is-active-route asp-controller="AppViews" asp-action="Gallery">
+            <a asp-controller="AppViews" asp-action="Gallery"><i class="fa fa-picture-o"></i> Gallery</a>
+        </li>
+        <li is-active-route asp-controller="Forum">
+            <a href="#"><i class="fa fa-comments"></i> Forum Layout</a>
+            <ul>
+                <li is-active-route asp-controller="Forum" asp-action="GeneralView">
+                    <a asp-controller="Forum" asp-action="GeneralView">General View</a>
+                </li>
+                <li is-active-route asp-controller="Forum" asp-action="TopicView">
+                    <a asp-controller="Forum" asp-action="TopicView">Topic View</a>
+                </li>
+                <li is-active-route asp-controller="Forum" asp-action="PostView">
+                    <a asp-controller="Forum" asp-action="PostView">Post View</a>
+                </li>
+            </ul>
+        </li>
+        <li is-active-route asp-controller="AppViews" asp-action="Profile">
+            <a asp-controller="AppViews" asp-action="Profile"><i class="fa fa-group"></i> Profile</a>
+        </li>
+        <li is-active-route asp-controller="AppViews" asp-action="TimeLine">
+            <a asp-controller="AppViews" asp-action="TimeLine"><i class="fa fa-clock-o"></i> Timeline</a>
+        </li>
+        <li is-active-route asp-controller="AppViews" asp-action="Search">
+            <a asp-controller="AppViews" asp-action="Search"><i class="fa fa-search"></i> Search Page</a>
+        </li>
+    </ul>
+</li>
+<li is-active-route asp-controller="Commerce">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-shopping-cart"></i> <span class="menu-item-parent">E-Commerce</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="Commerce" asp-action="Orders">
+            <a asp-controller="Commerce" asp-action="Orders">Orders</a>
+        </li>
+        <li is-active-route asp-controller="Commerce" asp-action="ProductsView">
+            <a asp-controller="Commerce" asp-action="ProductsView">Products View</a>
+        </li>
+        <li is-active-route asp-controller="Commerce" asp-action="ProductsDetail">
+            <a asp-controller="Commerce" asp-action="ProductsDetail">Products Detail</a>
+        </li>
+    </ul>
+</li>
+<li is-active-route asp-controller="Misc">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-windows"></i> <span class="menu-item-parent">Miscellaneous</span>
+    </a>
+    <ul>
+        <li is-active-route asp-controller="Misc" asp-action="Pricing">
+            <a asp-controller="Misc" asp-action="Pricing">Pricing Tables</a>
+        </li>
+        <li is-active-route asp-controller="Misc" asp-action="Invoice">
+            <a asp-controller="Misc" asp-action="Invoice">Invoice</a>
+        </li>
+        <li is-active-route asp-controller="Account" asp-action="Login">
+            <a asp-controller="Account" asp-action="Login">Login</a>
+        </li>
+        <li is-active-route asp-controller="Account" asp-action="Register">
+            <a asp-controller="Account" asp-action="Register">Register</a>
+        </li>
+        <li is-active-route asp-controller="Account" asp-action="ForgotPassword">
+            <a asp-controller="Account" asp-action="ForgotPassword">Forgot Password</a>
+        </li>
+        <li is-active-route asp-controller="Misc" asp-action="Lock">
+            <a asp-controller="Misc" asp-action="Lock">Locked Screen</a>
+        </li>
+        <li is-active-route asp-controller="Misc" asp-action="Error404">
+            <a asp-controller="Misc" asp-action="Error404">Error 404</a>
+        </li>
+        <li is-active-route asp-controller="Misc" asp-action="Error500">
+            <a asp-controller="Misc" asp-action="Error500">Error 500</a>
+        </li>
+        <li is-active-route asp-controller="Misc" asp-action="Blank">
+            <a asp-controller="Misc" asp-action="Blank">Blank Page</a>
+        </li>
+    </ul>
+</li>
+<li class="chat-users top-menu-invisible">
+    <a href="#">
+        <i class="fa fa-lg fa-fw fa-comment-o">
+            <em class="bg-color-pink flash animated">!</em>
+        </i> <span class="menu-item-parent">Smart Chat API <sup>beta</sup></span>
+    </a>
+    <ul>
+        <li>
+            <!-- DISPLAY USERS -->
+            <div class="display-users">
+
+                <input class="form-control chat-user-filter" placeholder="Filter" type="text">
+
+                <a href="#" class="usr"
+                   data-chat-id="cha1"
+                   data-chat-fname="Sadi"
+                   data-chat-lname="Orlaf"
+                   data-chat-status="busy"
+                   data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!"
+                   data-chat-alertshow="true"
+                   data-rel="popover-hover"
+                   data-placement="right"
+                   data-html="true"
+                   data-content="
+											&lt;div class=&#39;usr-card&#39;&gt;
+												&lt;img src=&#39;img/avatars/5.png&#39; alt=&#39;Sadi Orlaf&#39;&gt;
+												&lt;div class=&#39;usr-card-content&#39;&gt;
+													&lt;h3&gt;Sadi Orlaf&lt;/h3&gt;
+													&lt;p&gt;Marketing Executive&lt;/p&gt;
+												&lt;/div&gt;
+											&lt;/div&gt;
+										">
+                    <i></i>Sadi Orlaf
+                </a>
+
+                <a href="#" class="usr"
+                   data-chat-id="cha2"
+                   data-chat-fname="Jessica"
+                   data-chat-lname="Dolof"
+                   data-chat-status="online"
+                   data-chat-alertmsg=""
+                   data-chat-alertshow="false"
+                   data-rel="popover-hover"
+                   data-placement="right"
+                   data-html="true"
+                   data-content="
+											&lt;div class=&#39;usr-card&#39;&gt;
+												&lt;img src=&#39;img/avatars/1.png&#39; alt=&#39;Jessica Dolof&#39;&gt;
+												&lt;div class=&#39;usr-card-content&#39;&gt;
+													&lt;h3&gt;Jessica Dolof&lt;/h3&gt;
+													&lt;p&gt;Sales Administrator&lt;/p&gt;
+												&lt;/div&gt;
+											&lt;/div&gt;
+										">
+                    <i></i>Jessica Dolof
+                </a>
+
+                <a href="#" class="usr"
+                   data-chat-id="cha3"
+                   data-chat-fname="Zekarburg"
+                   data-chat-lname="Almandalie"
+                   data-chat-status="online"
+                   data-rel="popover-hover"
+                   data-placement="right"
+                   data-html="true"
+                   data-content="
+											&lt;div class=&#39;usr-card&#39;&gt;
+												&lt;img src=&#39;img/avatars/3.png&#39; alt=&#39;Zekarburg Almandalie&#39;&gt;
+												&lt;div class=&#39;usr-card-content&#39;&gt;
+													&lt;h3&gt;Zekarburg Almandalie&lt;/h3&gt;
+													&lt;p&gt;Sales Admin&lt;/p&gt;
+												&lt;/div&gt;
+											&lt;/div&gt;
+										">
+                    <i></i>Zekarburg Almandalie
+                </a>
+
+                <a href="#" class="usr"
+                   data-chat-id="cha4"
+                   data-chat-fname="Barley"
+                   data-chat-lname="Krazurkth"
+                   data-chat-status="away"
+                   data-rel="popover-hover"
+                   data-placement="right"
+                   data-html="true"
+                   data-content="
+											&lt;div class=&#39;usr-card&#39;&gt;
+												&lt;img src=&#39;img/avatars/4.png&#39; alt=&#39;Barley Krazurkth&#39;&gt;
+												&lt;div class=&#39;usr-card-content&#39;&gt;
+													&lt;h3&gt;Barley Krazurkth&lt;/h3&gt;
+													&lt;p&gt;Sales Director&lt;/p&gt;
+												&lt;/div&gt;
+											&lt;/div&gt;
+										">
+                    <i></i>Barley Krazurkth
+                </a>
+
+                <a href="#" class="usr offline"
+                   data-chat-id="cha5"
+                   data-chat-fname="Farhana"
+                   data-chat-lname="Amrin"
+                   data-chat-status="incognito"
+                   data-rel="popover-hover"
+                   data-placement="right"
+                   data-html="true"
+                   data-content="
+											&lt;div class=&#39;usr-card&#39;&gt;
+												&lt;img src=&#39;img/avatars/female.png&#39; alt=&#39;Farhana Amrin&#39;&gt;
+												&lt;div class=&#39;usr-card-content&#39;&gt;
+													&lt;h3&gt;Farhana Amrin&lt;/h3&gt;
+													&lt;p&gt;Support Admin &lt;small&gt;&lt;i class=&#39;fa fa-music&#39;&gt;&lt;/i&gt; Playing Beethoven Classics&lt;/small&gt;&lt;/p&gt;
+												&lt;/div&gt;
+											&lt;/div&gt;
+										">
+                    <i></i>Farhana Amrin (offline)
+                </a>
+
+                <a href="#" class="usr offline"
+                   data-chat-id="cha6"
+                   data-chat-fname="Lezley"
+                   data-chat-lname="Jacob"
+                   data-chat-status="incognito"
+                   data-rel="popover-hover"
+                   data-placement="right"
+                   data-html="true"
+                   data-content="
+											&lt;div class=&#39;usr-card&#39;&gt;
+												&lt;img src=&#39;img/avatars/male.png&#39; alt=&#39;Lezley Jacob&#39;&gt;
+												&lt;div class=&#39;usr-card-content&#39;&gt;
+													&lt;h3&gt;Lezley Jacob&lt;/h3&gt;
+													&lt;p&gt;Sales Director&lt;/p&gt;
+												&lt;/div&gt;
+											&lt;/div&gt;
+										">
+                    <i></i>Lezley Jacob (offline)
+                </a>
+
+                <a asp-controller="Home" asp-action="Chat" class="btn btn-xs btn-default btn-block sa-chat-learnmore-btn">About the API</a>
+
+            </div>
+            <!-- END DISPLAY USERS -->
+        </li>
+    </ul>
+</li>
+</ul>
+</nav>
+<a asp-controller="Intel" asp-action="Variations" asp-show-when="@Settings.Value.Environment.IsDemo()" class="btn btn-primary nav-demo-btn"><i class="fa fa-info-circle"></i> SmartAdmin Package (187 MB)</a>
+<span class="minifyme" data-action="minifyMenu">
+    <i class="fa fa-arrow-circle-left hit"></i>
+</span>
+</aside>
+<!-- END NAVIGATION -->

@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8E0B2F6D-FD17-41C6-ABED-19C6E7A6911A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{2DAD469D-50C0-486C-8760-6201CD097D21}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		Directory.Version.props = Directory.Version.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{16BFD51A-3D8B-4BF2-925C-0B18A83D42E0}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		CONTRIBUTING.md = CONTRIBUTING.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAdmin.Web", "src\SmartAdmin.Web\SmartAdmin.Web.csproj", "{8067A06B-E8F2-4387-8B4E-B56E50E7575F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAdmin.Seed", "src\SmartAdmin.Seed\SmartAdmin.Seed.csproj", "{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Debug|x64.Build.0 = Debug|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Debug|x86.Build.0 = Debug|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Release|x64.ActiveCfg = Release|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Release|x64.Build.0 = Release|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Release|x86.ActiveCfg = Release|Any CPU
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F}.Release|x86.Build.0 = Release|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Debug|x64.Build.0 = Debug|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Debug|x86.Build.0 = Debug|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Release|x64.ActiveCfg = Release|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Release|x64.Build.0 = Release|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Release|x86.ActiveCfg = Release|Any CPU
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8067A06B-E8F2-4387-8B4E-B56E50E7575F} = {8E0B2F6D-FD17-41C6-ABED-19C6E7A6911A}
+		{D0D4C9B9-8B77-4156-8FDA-057E4531EEEC} = {8E0B2F6D-FD17-41C6-ABED-19C6E7A6911A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28D62427-457E-442E-9555-D77DE7765640}
+	EndGlobalSection
+EndGlobal

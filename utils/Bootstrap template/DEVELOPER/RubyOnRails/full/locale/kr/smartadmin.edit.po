@@ -1,0 +1,333 @@
+# Kanuri translations for smartadmin package.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the smartadmin package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: smartadmin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2016-09-11 23:16+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Kanuri\n"
+"Language: kr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=; plural=;\n"
+"\n"
+
+msgid "3rd Level"
+msgstr "제 3 수준"
+
+msgid "Analytics Dashboard"
+msgstr ""
+
+msgid "App Layouts"
+msgstr ""
+
+msgid "App Settings"
+msgstr ""
+
+msgid "App Views"
+msgstr ""
+
+msgid "Blank Page"
+msgstr "빈 페이지"
+
+msgid "Blog"
+msgstr ""
+
+msgid "Bootstrap Editors"
+msgstr "부트 스트랩 편집자"
+
+msgid "Bootstrap Form Elements"
+msgstr "부트 스트랩 형태 요소"
+
+msgid "Bootstrap Form Validation"
+msgstr ""
+
+msgid "Buttons"
+msgstr "단추"
+
+msgid "CK Editor"
+msgstr "CK 편집기"
+
+msgid "Calendar"
+msgstr "캘린더"
+
+msgid "Chart.js"
+msgstr ""
+
+msgid "Cool Features!"
+msgstr ""
+
+msgid "Dashboard"
+msgstr "대시보드"
+
+msgid "Data Tables"
+msgstr "데이터 테이블"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Documentation"
+msgstr "문서화"
+
+msgid "Dropzone"
+msgstr "DROPZONE"
+
+msgid "Dygraphs"
+msgstr "Dygraphs"
+
+msgid "E-Commerce"
+msgstr ""
+
+msgid "EasyPieCharts"
+msgstr ""
+
+msgid "Error 404"
+msgstr "HTTP 404"
+
+msgid "Error 500"
+msgstr "오류 500"
+
+msgid "Expand"
+msgstr "펼치다"
+
+msgid "File"
+msgstr "파일"
+
+msgid "Find reports and more"
+msgstr "보고서 등을 찾아"
+
+msgid "Flags"
+msgstr ""
+
+msgid "Flot Chart"
+msgstr "FLOT 차트"
+
+msgid "Font Awesome"
+msgstr "최고"
+
+msgid "Forgot Password"
+msgstr ""
+
+msgid "Form Plugins"
+msgstr "플러그인을 형성"
+
+msgid "Forms"
+msgstr "양식"
+
+msgid "Forum Layout"
+msgstr "포럼 레이아웃"
+
+msgid "GMap Skins"
+msgstr "GMAP 스킨"
+
+msgid "Gallery"
+msgstr "갤러리"
+
+msgid "General Elements"
+msgstr "일반 요소"
+
+msgid "General View"
+msgstr ""
+
+msgid "Glyph Icons"
+msgstr "문양 아이콘"
+
+msgid "Graphs"
+msgstr "그래프"
+
+msgid "Grid"
+msgstr "격자"
+
+msgid "HighchartTable"
+msgstr ""
+
+msgid "Icons"
+msgstr "성화상"
+
+msgid "Image Cropping"
+msgstr ""
+
+msgid "Invoice"
+msgstr "청구서"
+
+msgid "Item #2"
+msgstr "항목 # 2"
+
+msgid "Item #2.1.1"
+msgstr "상품 번호 2.1.1"
+
+msgid "Item #3"
+msgstr "상품 # 3"
+
+msgid "Item #4 (disabled)"
+msgstr ""
+
+msgid "JQuery UI"
+msgstr "JQuery와 UI"
+
+msgid "Jquery Grid"
+msgstr ""
+
+msgid "Landing Page"
+msgstr ""
+
+msgid "Locked Screen"
+msgstr "잠금 화면"
+
+msgid "Login"
+msgstr "로그인"
+
+msgid "Miscellaneous"
+msgstr "기타"
+
+msgid "Morris Charts"
+msgstr "모리스 차트"
+
+msgid "Msgs"
+msgstr "캐스트 메시지"
+
+msgid "Nestable Lists"
+msgstr "중첩 가능한 목록"
+
+msgid "Normal Tables"
+msgstr "일반 테이블"
+
+msgid "Orders"
+msgstr ""
+
+msgid "Outlook"
+msgstr ""
+
+msgid "Post View"
+msgstr ""
+
+msgid "Prebuilt Skins"
+msgstr ""
+
+msgid "Pricing Tables"
+msgstr "가격 테이블"
+
+msgid "Products Detail"
+msgstr ""
+
+msgid "Products View"
+msgstr ""
+
+msgid "Profile"
+msgstr "프로필"
+
+msgid "Projects"
+msgstr "프로젝트"
+
+msgid "Recent projects"
+msgstr "최근 프로젝트"
+
+msgid "Register"
+msgstr "등록"
+
+msgid "Search Page"
+msgstr "검색 페이지"
+
+msgid "Six Level Menu"
+msgstr "여섯 레벨 메뉴"
+
+msgid "Smart Chat API"
+msgstr ""
+
+msgid "Smart Form Elements"
+msgstr "스마트 폼 요소"
+
+msgid "Smart Form Layouts"
+msgstr "스마트 폼 레이아웃"
+
+msgid "Smart Form Validation"
+msgstr "스마트 양식 유효성 검사"
+
+msgid "SmartAdmin Intel"
+msgstr "SmartAdmin 인텔"
+
+msgid "Social Wall"
+msgstr ""
+
+msgid "Sparklines"
+msgstr ""
+
+msgid "Sub #2.1"
+msgstr ""
+
+msgid "Tables"
+msgstr "테이블"
+
+msgid "Tasks"
+msgstr "작업"
+
+msgid "Timeline"
+msgstr "시간 표시줄"
+
+msgid "Topic View"
+msgstr ""
+
+msgid "Tree View"
+msgstr "트리보기"
+
+msgid "Typography"
+msgstr "타이포그래피"
+
+msgid "UI Elements"
+msgstr "UI 요소"
+
+msgid "User"
+msgstr ""
+
+msgid "User|Current sign in at"
+msgstr ""
+
+msgid "User|Current sign in ip"
+msgstr ""
+
+msgid "User|Email"
+msgstr ""
+
+msgid "User|Encrypted password"
+msgstr ""
+
+msgid "User|Last sign in at"
+msgstr ""
+
+msgid "User|Last sign in ip"
+msgstr ""
+
+msgid "User|Remember created at"
+msgstr ""
+
+msgid "User|Reset password sent at"
+msgstr ""
+
+msgid "User|Reset password token"
+msgstr ""
+
+msgid "User|Sign in count"
+msgstr ""
+
+msgid "Widgets"
+msgstr "위젯"
+
+msgid "Wizards"
+msgstr "마법사"
+
+msgid "beta"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "notify"
+msgstr ""
+
+msgid "responsive"
+msgstr ""

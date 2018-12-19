@@ -1,0 +1,39 @@
+<div id="content">
+
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Dashboard', 'My Dashboard']" icon="home"
+    class="col-xs-12 col-sm-7 col-md-7 col-lg-4" ></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+
+  </div>
+
+  <sa-widgets-grid>
+
+    <div class="row">
+      <article class="col-sm-12">
+
+        
+        <live-feeds-widget></live-feeds-widget>
+
+      </article>
+    </div>
+
+
+     <div class="row">
+
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <chat-widget></chat-widget>
+
+        <calendar-widget></calendar-widget>
+      </article>
+
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <bird-eye-widget></bird-eye-widget>
+
+       <todo-widget></todo-widget>
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>

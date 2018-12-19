@@ -1,0 +1,169 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Forms', 'Image Editor']" icon="pencil-square-o"
+                        class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+
+
+  <!-- widget grid -->
+
+
+  <sa-widgets-grid>
+
+    <!-- row -->
+    <div class="row">
+
+      <!-- NEW WIDGET START -->
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="alert alert-danger hidden-lg hidden-md hidden-sm">
+          <b>Please note:</b>
+          This plugin is non-responsive
+        </div>
+
+        <!-- Widget ID (each widget will need unique ID)-->
+
+        <div sa-widget [colorbutton]="false" [editbutton]="false" [togglebutton]="false" [deletebutton]="false"
+                   [fullscreenbutton]="false">
+
+
+          <header role="heading">
+            <span class="widget-icon"> <i class="fa fa-file-image-o txt-color-darken"></i> </span>
+
+            <h2 class="hidden-xs hidden-sm">jcrop </h2>
+
+
+          </header>
+
+          <div role="content" class="tabbed-widget-content">
+
+            <div class="widget-body">
+
+              <tabset type="tabs pull-right">
+
+                <tab active="true">
+                  <ng-template tabHeading><i class="fa fa-crop text-success"></i> <span
+                    class="hidden-mobile hidden-tablet">API</span></ng-template>
+
+                  <h4 class="margin-bottom-10">API Interface — real-time API
+                    example</h4>
+
+                  <div class="alert alert-info">
+                    <b>Jcrop 9.0.3 API interface panel</b>
+                    <br/>
+
+                  </div>
+
+                  <image-editor-api-panel></image-editor-api-panel>
+                </tab>
+                <tab>
+                  <ng-template tabHeading><i class="fa fa-crop text-primary"></i> <span
+                    class="hidden-mobile hidden-tablet">Default</span></ng-template>
+
+                  <h4 class="margin-bottom-10">Default Behaviour</h4>
+
+                  <div class="alert alert-info">
+                    <b>This example demonstrates the default behavior of Jcrop.</b>
+                    <br/>
+                    Since no event handlers have been attached it only performs
+                    the cropping behavior.
+                  </div>
+
+                  <image-editor-default-panel></image-editor-default-panel>
+                </tab>
+                <tab>
+                  <ng-template tabHeading><i class="fa fa-crop text-warning"></i> <span
+                    class="hidden-mobile hidden-tablet">Basic</span></ng-template>
+
+                  <h4 class="margin-bottom-10">Basic Handler — basic form
+                    integration</h4>
+
+                  <div class="alert alert-info">
+                    <b>An example with a basic event handler.</b> Here we've tied
+                    several form values together with a simple event handler invocation.
+                    The result is that the form values are updated in real-time as
+                    the selection is changed using Jcrop's <em>onChange</em> handler.
+                  </div>
+                  <image-editor-show-selection-panel></image-editor-show-selection-panel>
+                </tab>
+                <tab>
+                  <ng-template tabHeading><i class="fa fa-crop text-danger"></i> <span class="hidden-mobile hidden-tablet">Aspect Ratio</span>
+                  </ng-template>
+                  <h4 class="margin-bottom-10">Aspect Ratio w/ Preview Pane — nice
+                    visual example</h4>
+
+                  <div class="alert alert-info">
+                    <b>An example implementing a preview pane.</b>
+                    Obviously the most visual demo, the preview pane is accomplished
+                    entirely outside of Jcrop with a simple jQuery-flavored callback.
+                    This type of interface could be useful for creating a thumbnail
+                    or avatar. The onChange event handler is used to update the
+                    view in the preview pane.
+                  </div>
+
+                  <div id="jcrop-demo-with-preview">
+
+                    <image-editor-preview-panel></image-editor-preview-panel>
+
+                  </div>
+
+                </tab>
+                <tab>
+                  <ng-template tabHeading><i class="fa fa-crop txt-color-purple"></i> <span
+                    class="hidden-mobile hidden-tablet">Animations</span></ng-template>
+                  <h4 class="margin-bottom-10">Animation/Transitions —
+                    animation/fading demo</h4>
+
+                  <div class="alert alert-info">
+                    <b>Experimental shader active.</b>
+                    Jcrop now includes a shading mode that facilitates building
+                    better transparent Jcrop instances. The experimental shader is less
+                    robust than Jcrop's default shading method and should only be
+                    used if you require this functionality.
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+
+                      <image-editor-animations-panel></image-editor-animations-panel>
+
+                    </div>
+
+                  </div>
+                </tab>
+                <tab>
+                  <ng-template tabHeading><i class="fa fa-crop txt-color-pink"></i> <span
+                    class="hidden-mobile hidden-tablet">Styling</span></ng-template>
+
+
+                  <h4 class="margin-bottom-10">Styling Example — style Jcrop
+                    dynamically</h4>
+
+
+                  <image-editor-styling-panel></image-editor-styling-panel>
+                </tab>
+              </tabset>
+
+            </div>
+
+          </div>
+
+        </div>
+        <!-- end widget -->
+
+      </article>
+      <!-- WIDGET END -->
+
+    </div>
+
+    <!-- end row -->
+
+  </sa-widgets-grid>
+
+
+  <!-- end widget grid -->
+
+
+</div>

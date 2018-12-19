@@ -1,0 +1,75 @@
+<section class="row">
+  <jcrop [storeId]="storeId" class="col-sm-8" [options]="{
+
+          setSelect: [150, 120, 400, 300]
+
+        }"
+         src="assets/img/superbox/superbox-full-7.jpg" [width]="600" [height]="400"></jcrop>
+  <jcrop-preview [storeId]="storeId" class="col-sm-4 hidden-xs"></jcrop-preview>
+
+</section>
+<section class="card">
+
+  <div class="row" style="
+     padding: 0 .75rem .5rem
+">
+    <fieldset class="col-md-4">
+      <legend>Selection properties</legend>
+      <jcrop-option-toggle option="allowMove" label="Draggable" [storeId]="storeId"></jcrop-option-toggle>
+      <jcrop-option-toggle option="allowResize" label="Resizeable" [storeId]="storeId"></jcrop-option-toggle>
+      <br/>
+      <legend class="hidden-xs">Thumbnail</legend>
+      <jcrop-option-toggle class="hidden-xs" option="showThumbnail" label="Show" [storeId]="storeId"></jcrop-option-toggle>
+    </fieldset>
+    <fieldset class="col-md-4">
+      <legend>Aspect Ratio</legend>
+      <jcrop-option-radio group="aspectRatio" checked="true" [options]="{
+               aspectRatio: 0
+               }" [storeId]="storeId" label="None"></jcrop-option-radio>
+      <jcrop-option-radio group="aspectRatio" [options]="{
+               aspectRatio: 1.4
+               }" [storeId]="storeId" label="Wide"></jcrop-option-radio>
+      <jcrop-option-radio group="aspectRatio" [options]="{
+               aspectRatio: 0.8
+               }" [storeId]="storeId" label="Tall"></jcrop-option-radio>
+
+      <br/>
+
+      <legend>Shading</legend>
+      <jcrop-option-radio group="shading" [options]="{
+               bgColor: 'rgba(0, 0, 0, 0.35)'
+  }" [storeId]="storeId" label="Light"></jcrop-option-radio>
+      <jcrop-option-radio group="shading" checked="true" [options]="{
+               bgColor: 'rgba(0, 0, 0, 0.55)'
+  }" [storeId]="storeId" label="Medium"></jcrop-option-radio>
+      <jcrop-option-radio group="shading" [options]="{
+               bgColor: 'rgba(0, 0, 0, 0.75)'
+  }" [storeId]="storeId" label="Dark"></jcrop-option-radio>
+    </fieldset>
+    <fieldset class="col-md-4">
+      <legend>New Selections</legend>
+      <jcrop-option-radio group="newSelections" [options]="{
+               allowSelect: false
+               }" [storeId]="storeId" label="None"></jcrop-option-radio>
+      <jcrop-option-radio group="newSelections" [checked]="true" [options]="{
+               allowSelect: true
+               }" [storeId]="storeId" label="Single"></jcrop-option-radio>
+      <br/>
+      <legend>Test image</legend>
+      <jcrop-option-radio group="testImage" [options]="{
+               setImage: 'assets/img/superbox/superbox-full-24.jpg',
+  bgOpacity: .6
+  }" [storeId]="storeId" label="Lego"></jcrop-option-radio>
+      <jcrop-option-radio group="testImage" [checked]="true" [options]="{
+               setImage: 'assets/img/superbox/superbox-full-7.jpg',
+  bgOpacity: .6
+  }" [storeId]="storeId" label="Breakdance"></jcrop-option-radio>
+      <jcrop-option-radio group="testImage" [options]="{
+               setImage: 'assets/img/superbox/superbox-full-20.jpg',
+    bgOpacity: .5
+  }" [storeId]="storeId" label="Dragon Fly"></jcrop-option-radio>
+    </fieldset>
+
+  </div>
+</section>
+

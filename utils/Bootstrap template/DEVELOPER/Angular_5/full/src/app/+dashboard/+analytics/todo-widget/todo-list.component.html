@@ -1,0 +1,21 @@
+<div>
+  <h5 class="todo-group-title"><i class="fa fa-{{state.icon}}"></i> {{state.title}} {{items.length}}</h5>
+  <ul class="todo" >
+    <li *ngFor="let todo of items; let i = index"
+        [class.complete]="todo.completedAt"
+       >
+    	<span class="handle"> <label class="checkbox">
+            <input type="checkbox" (click)="toggleTodo(todo)" [checked]="todo.completedAt"
+                   name="checkbox-inline">
+            <i></i> </label> </span>
+
+      <p>
+        <strong>Ticket #{{i + 1}}</strong> - {{todo.title}}
+        <span class="text-muted" *ngIf="todo.description">{{todo.description}}</span>
+        <span class="date">{{todo.createdAt | moment : 'HH:mm YYYY-MM-DD'}} - <a (click)="deleteTodo(todo)" class="text-muted"><i
+          class="fa fa-trash"></i></a></span>
+
+      </p>
+    </li>
+  </ul>
+</div>

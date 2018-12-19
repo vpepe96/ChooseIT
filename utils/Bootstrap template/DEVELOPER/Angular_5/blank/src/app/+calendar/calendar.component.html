@@ -1,0 +1,44 @@
+<div id="content">
+
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Calendar', 'Add Events']" icon="calendar"
+                        class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+
+  <sa-widgets-grid>
+    <div class="row">
+
+      <article class="col-sm-12 col-md-12 col-lg-3">
+
+        <div sa-widget color="blueDark"  [editbutton]="false" [colorbutton]="false" [togglebutton]="false"
+                   [fullscreenbutton]="false" [deletebutton]="false">
+          <header>
+            <h2> Add Events </h2>
+          </header>
+
+          <div>
+            <div class="widget-body">
+
+              <sa-add-event></sa-add-event>
+            </div>
+          </div>
+        </div>
+
+        <div class="well well-sm" id="event-container">
+
+
+          <sa-external-events></sa-external-events>
+
+
+        </div>
+      </article>
+
+
+      <article class="col-sm-12 col-md-12 col-lg-9">
+
+        <calendar-widget></calendar-widget>
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>

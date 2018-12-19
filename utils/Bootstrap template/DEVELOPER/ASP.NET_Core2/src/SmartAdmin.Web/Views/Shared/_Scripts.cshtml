@@ -1,0 +1,157 @@
+<environment include="Development">
+    <!-- NOTE: Enable the bundle for faster loading and optimized caching! -->
+    <!-- <script src="~/js/smartadmin.min.js" asp-append-version="true"></script> -->
+    <!-- Link to ASP.NET CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.js" asp-fallback-src="~/js/libs/jquery-3.2.1.js" asp-fallback-test="window.jQuery" crossorigin="anonymous"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.js" asp-fallback-src="~/js/libs/jquery-ui-1.12.1.js" asp-fallback-test="window.jQuery && window.jQuery.ui" crossorigin="anonymous"></script>
+
+    <!-- Link to ASP.NET CDN's Bootstrap; fall back to local -->
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.js" asp-fallback-src="~/js/bootstrap/bootstrap.js" asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal" crossorigin="anonymous"></script>
+
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/js/app.config.js"></script>
+
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+    <script src="~/js/plugin/jquery-touch/jquery.ui.touch-punch.js"></script>
+
+    <!-- CUSTOM NOTIFICATION -->
+    <script src="~/js/notification/SmartNotification.js"></script>
+
+    <!-- JARVIS WIDGETS -->
+    <script src="~/js/smartwidgets/jarvis.widget.js"></script>
+
+    <!-- JQUERY MASKED INPUT -->
+    <script src="~/js/plugin/masked-input/jquery.maskedinput.js"></script>
+
+    <!-- JQUERY SELECT2 INPUT -->
+    <script src="~/js/plugin/select2/select2.js"></script>
+
+    <!-- JQUERY UI + Bootstrap Slider -->
+    <script src="~/js/plugin/bootstrap-slider/bootstrap-slider.js"></script>
+
+    <!-- Browser MSIE issue fix -->
+    <script src="~/js/plugin/msie-fix/jquery.mb.browser.js"></script>
+
+    <!-- FastClick: For mobile devices -->
+    <script src="~/js/plugin/fastclick/fastclick.js"></script>
+
+    <!-- MAIN APP JS FILE -->
+    <script src="~/js/app.js"></script>
+
+    <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+    <!-- Voice command : plugin -->
+    <script src="~/js/speech/voicecommand.js"></script>
+
+    <!-- SmartChat UI : plugin -->
+    <script src="~/js/smart-chat-ui/smart.chat.ui.js"></script>
+    <script src="~/js/smart-chat-ui/smart.chat.manager.js"></script>
+
+    <!-- PAGE RELATED PLUGIN(S) -->
+    <!-- Full Calendar -->
+    <script src="~/js/plugin/moment/moment.js"></script>
+    <script src="~/js/plugin/fullcalendar/fullcalendar.js"></script>
+
+    <!-- Easy pie charts -->
+    <script src="~/js/plugin/easy-pie-chart/jquery.easy-pie-chart.js"></script>
+
+    <!-- Sparklines -->
+    <script src="~/js/plugin/sparkline/jquery.sparkline.js"></script>
+
+    <!-- ChartJS -->
+    <script src="~/js/plugin/chartjs/chart.js"></script>
+
+    <!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
+    <script src="~/js/plugin/flot/jquery.flot.cust.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.resize.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.fillbetween.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.orderBar.min.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.pie.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.time.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.tooltip.js"></script>
+
+    <!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
+    <script src="~/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+</environment>
+<environment exclude="Development">
+    <!-- NOTE: Enable the bundle for faster loading and optimized caching! -->
+    <!-- <script src="~/js/smartadmin.min.js" asp-append-version="true"></script> -->
+    <!-- Link to ASP.NET CDN's jQuery + jQueryUI; fall back to local -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js" asp-fallback-src="~/js/libs/jquery-3.2.1.min.js" asp-fallback-test="window.jQuery" crossorigin="anonymous"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js" asp-fallback-src="~/js/libs/jquery-ui-1.12.1.min.js" asp-fallback-test="window.jQuery && window.jQuery.ui" crossorigin="anonymous"></script>
+
+    <!-- Link to ASP.NET CDN's Bootstrap; fall back to local -->
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" asp-fallback-src="~/js/bootstrap/bootstrap.min.js" asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal" crossorigin="anonymous"></script>
+
+    <!-- IMPORTANT: APP CONFIG -->
+    <script src="~/js/app.config.min.js"></script>
+
+    <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+    <script src="~/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- CUSTOM NOTIFICATION -->
+    <script src="~/js/notification/SmartNotification.min.js"></script>
+
+    <!-- JARVIS WIDGETS -->
+    <script src="~/js/smartwidgets/jarvis.widget.min.js"></script>
+
+    <!-- JQUERY MASKED INPUT -->
+    <script src="~/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+    <!-- JQUERY SELECT2 INPUT -->
+    <script src="~/js/plugin/select2/select2.min.js"></script>
+
+    <!-- JQUERY UI + Bootstrap Slider -->
+    <script src="~/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+    <!-- Browser MSIE issue fix -->
+    <script src="~/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+    <!-- FastClick: For mobile devices -->
+    <script src="~/js/plugin/fastclick/fastclick.min.js"></script>
+
+    <!-- MAIN APP JS FILE -->
+    <script src="~/js/app.min.js" asp-append-version="true"></script>
+
+    <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+    <!-- Voice command : plugin -->
+    <script src="~/js/speech/voicecommand.min.js"></script>
+
+    <!-- SmartChat UI : plugin -->
+    <script src="~/js/smart-chat-ui/smart.chat.ui.min.js"></script>
+    <script src="~/js/smart-chat-ui/smart.chat.manager.min.js"></script>
+
+    <!-- PAGE RELATED PLUGIN(S) -->
+    <!-- Full Calendar -->
+    <script src="~/js/plugin/moment/moment.min.js"></script>
+    <script src="~/js/plugin/fullcalendar/fullcalendar.min.js"></script>
+
+    <!-- Easy pie charts -->
+    <script src="~/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+    <!-- Sparklines -->
+    <script src="~/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- ChartJS -->
+    <script src="~/js/plugin/chartjs/chart.min.js"></script>
+
+    <!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
+    <script src="~/js/plugin/flot/jquery.flot.cust.min.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.resize.min.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.fillbetween.min.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.orderBar.min.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.pie.min.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.time.min.js"></script>
+    <script src="~/js/plugin/flot/jquery.flot.tooltip.min.js"></script>
+
+    <!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
+    <script src="~/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+</environment>
+
+<!-- JQUERY VALIDATE -->
+@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+<!--[if IE 8]>
+    <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+<![endif]-->

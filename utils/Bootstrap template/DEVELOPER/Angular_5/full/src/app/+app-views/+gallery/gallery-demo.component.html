@@ -1,0 +1,23 @@
+<div id="content">
+  <div class="row hidden-mobile">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <h1 class="page-title txt-color-blueDark">
+        <i class="fa-fw fa fa-picture-o"></i>
+        Gallery <span>&gt;
+			Smart Responsive gallery </span></h1>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-align-right">
+      <div class="page-title">
+        <a (click)="(null)" class="btn btn-default">Upload</a>
+        <a (click)="(null)" class="btn btn-default">Load Library</a>
+      </div>
+    </div>
+  </div>
+  <!-- row -->
+  <div class="row">
+    <!-- SuperBox -->
+      <sa-gallery class="col-sm-12" [pictures]="pictures" (deleteRequest)="onDelete($event)" (editRequest)="onEdit($event)"></sa-gallery>
+    <!-- /SuperBox -->
+  </div>
+  <!-- end row -->
+</div>

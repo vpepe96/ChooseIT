@@ -1,0 +1,17 @@
+<% @selected_locale = selected_locale %>
+<ul class="header-dropdown-list hidden-xs">
+  <li>
+    <%= link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do %>
+      <%= image_tag "blank.gif", class: "flag flag-#{@selected_locale[:flag]}", alt: @selected_locale[:alt_name] %> <span> <%= @selected_locale[:name] %> </span> <i class="fa fa-angle-down"></i>
+  <% end %>
+    <ul class="dropdown-menu pull-right">
+      <% locale_list.each do |locale| %>
+        <li class="<%= 'active' if locale[:locale] == @selected_locale[:locale] %>">
+          <%= link_to home_set_locale_path(locale: locale[:locale]) do %>
+            <%= image_tag "blank.gif", class: "flag flag-#{locale[:flag]}", alt: locale[:alt_name] %> <%= locale[:name] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+</ul>

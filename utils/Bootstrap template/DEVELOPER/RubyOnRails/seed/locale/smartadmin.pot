@@ -1,0 +1,334 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the smartadmin package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: smartadmin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-11 23:54+0200\n"
+"PO-Revision-Date: 2016-09-11 23:54+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+msgid "3rd Level"
+msgstr ""
+
+msgid "Analytics Dashboard"
+msgstr ""
+
+msgid "App Layouts"
+msgstr ""
+
+msgid "App Settings"
+msgstr ""
+
+msgid "App Views"
+msgstr ""
+
+msgid "Blank Page"
+msgstr ""
+
+msgid "Blog"
+msgstr ""
+
+msgid "Bootstrap Editors"
+msgstr ""
+
+msgid "Bootstrap Form Elements"
+msgstr ""
+
+msgid "Bootstrap Form Validation"
+msgstr ""
+
+msgid "Buttons"
+msgstr ""
+
+msgid "CK Editor"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Chart.js"
+msgstr ""
+
+msgid "Cool Features!"
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "Data Tables"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Documentation"
+msgstr ""
+
+msgid "Dropzone"
+msgstr ""
+
+msgid "Dygraphs"
+msgstr ""
+
+msgid "E-Commerce"
+msgstr ""
+
+msgid "EasyPieCharts"
+msgstr ""
+
+msgid "Error 404"
+msgstr ""
+
+msgid "Error 500"
+msgstr ""
+
+msgid "Expand"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Find reports and more"
+msgstr ""
+
+msgid "Flags"
+msgstr ""
+
+msgid "Flot Chart"
+msgstr ""
+
+msgid "Font Awesome"
+msgstr ""
+
+msgid "Forgot Password"
+msgstr ""
+
+msgid "Form Plugins"
+msgstr ""
+
+msgid "Forms"
+msgstr ""
+
+msgid "Forum Layout"
+msgstr ""
+
+msgid "GMap Skins"
+msgstr ""
+
+msgid "Gallery"
+msgstr ""
+
+msgid "General Elements"
+msgstr ""
+
+msgid "General View"
+msgstr ""
+
+msgid "Glyph Icons"
+msgstr ""
+
+msgid "Graphs"
+msgstr ""
+
+msgid "Grid"
+msgstr ""
+
+msgid "HighchartTable"
+msgstr ""
+
+msgid "Icons"
+msgstr ""
+
+msgid "Image Cropping"
+msgstr ""
+
+msgid "Invoice"
+msgstr ""
+
+msgid "Item #2"
+msgstr ""
+
+msgid "Item #2.1.1"
+msgstr ""
+
+msgid "Item #3"
+msgstr ""
+
+msgid "Item #4 (disabled)"
+msgstr ""
+
+msgid "JQuery UI"
+msgstr ""
+
+msgid "Jquery Grid"
+msgstr ""
+
+msgid "Landing Page"
+msgstr ""
+
+msgid "Locked Screen"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Miscellaneous"
+msgstr ""
+
+msgid "Morris Charts"
+msgstr ""
+
+msgid "Msgs"
+msgstr ""
+
+msgid "Nestable Lists"
+msgstr ""
+
+msgid "Normal Tables"
+msgstr ""
+
+msgid "Orders"
+msgstr ""
+
+msgid "Outlook"
+msgstr ""
+
+msgid "Post View"
+msgstr ""
+
+msgid "Prebuilt Skins"
+msgstr ""
+
+msgid "Pricing Tables"
+msgstr ""
+
+msgid "Products Detail"
+msgstr ""
+
+msgid "Products View"
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
+msgid "Projects"
+msgstr ""
+
+msgid "Recent projects"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Search Page"
+msgstr ""
+
+msgid "Six Level Menu"
+msgstr ""
+
+msgid "Smart Chat API"
+msgstr ""
+
+msgid "Smart Form Elements"
+msgstr ""
+
+msgid "Smart Form Layouts"
+msgstr ""
+
+msgid "Smart Form Validation"
+msgstr ""
+
+msgid "SmartAdmin Intel"
+msgstr ""
+
+msgid "Social Wall"
+msgstr ""
+
+msgid "Sparklines"
+msgstr ""
+
+msgid "Sub #2.1"
+msgstr ""
+
+msgid "Tables"
+msgstr ""
+
+msgid "Tasks"
+msgstr ""
+
+msgid "Timeline"
+msgstr ""
+
+msgid "Topic View"
+msgstr ""
+
+msgid "Tree View"
+msgstr ""
+
+msgid "Typography"
+msgstr ""
+
+msgid "UI Elements"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "User|Current sign in at"
+msgstr ""
+
+msgid "User|Current sign in ip"
+msgstr ""
+
+msgid "User|Email"
+msgstr ""
+
+msgid "User|Encrypted password"
+msgstr ""
+
+msgid "User|Last sign in at"
+msgstr ""
+
+msgid "User|Last sign in ip"
+msgstr ""
+
+msgid "User|Remember created at"
+msgstr ""
+
+msgid "User|Reset password sent at"
+msgstr ""
+
+msgid "User|Reset password token"
+msgstr ""
+
+msgid "User|Sign in count"
+msgstr ""
+
+msgid "Widgets"
+msgstr ""
+
+msgid "Wizards"
+msgstr ""
+
+msgid "beta"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "notify"
+msgstr ""
+
+msgid "responsive"
+msgstr ""

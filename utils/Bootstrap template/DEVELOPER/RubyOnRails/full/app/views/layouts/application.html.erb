@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-us" id="<%= yield :html_id %>">
+<head>
+  <meta charset="utf-8">
+
+  <title> SmartAdmin - Ruby on Rails </title>
+  <%= csrf_meta_tags %>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <%= stylesheet_link_tag 'application', media: 'screen' %>
+
+  <!-- FAVICONS -->
+  <%= favicon_link_tag 'favicon/favicon.ico' %>
+  <%= favicon_link_tag 'favicon/favicon.ico', rel: 'icon' %>
+
+  <!-- GOOGLE FONT -->
+  <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700' %>
+
+  <!-- Specifying a Webpage Icon for Web Clip
+     Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+  <%= favicon_link_tag 'splash/sptouch-icon-iphone.png', type: 'image/png', rel: 'apple-touch-icon' %>
+  <%= favicon_link_tag 'splash/touch-icon-ipad.png', type: 'image/png', sizes: '76x76', rel: 'apple-touch-icon' %>
+  <%= favicon_link_tag 'splash/touch-icon-iphone-retina.png', type: 'image/png', sizes: '120x120', rel: 'apple-touch-icon' %>
+  <%= favicon_link_tag 'splash/touch-icon-ipad-retina.png', type: 'image/png', sizes: '152x152', rel: 'apple-touch-icon' %>
+
+  <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Startup image for web apps -->
+  <%= favicon_link_tag 'splash/ipad-landscape.png', type: 'image/png', rel: 'apple-touch-startup-image', media: 'screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)' %>
+  <%= favicon_link_tag 'splash/ipad-portrait.png', type: 'image/png', rel: 'apple-touch-startup-image', media: 'screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)' %>
+  <%= favicon_link_tag 'splash/iphone.png', type: 'image/png', rel: 'apple-touch-startup-image', media: 'screen and (max-device-width: 320px)' %>
+
+  <%= yield :head %>
+</head>
+
+<!--
+
+TABLE OF CONTENTS.
+
+Use search to find needed section.
+
+===================================================================
+
+|  01. #CSS Links                |  all CSS links and file paths  |
+|  02. #FAVICONS                 |  Favicon links and file paths  |
+|  03. #GOOGLE FONT              |  Google font link              |
+|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+|  05. #BODY                     |  body tag                      |
+|  06. #HEADER                   |  header tag                    |
+|  07. #PROJECTS                 |  project lists                 |
+|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+|  09. #MOBILE                   |  mobile view dropdown          |
+|  10. #SEARCH                   |  search field                  |
+|  11. #NAVIGATION               |  left panel & navigation       |
+|  12. #RIGHT PANEL              |  right panel userlist          |
+|  13. #MAIN PANEL               |  main panel                    |
+|  14. #MAIN CONTENT             |  content holder                |
+|  15. #PAGE FOOTER              |  page footer                   |
+|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
+|  17. #PLUGINS                  |  all scripts and plugins       |
+
+===================================================================
+
+-->
+
+<!-- #BODY -->
+<!-- Possible Classes
+
+  * 'smart-style-{SKIN#}'
+  * 'smart-rtl'         - Switch theme mode to RTL
+  * 'menu-on-top'       - Switch to top navigation (no DOM change required)
+  * 'no-menu'			  - Hides the menu completely
+  * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+  * 'fixed-header'      - Fixes the header
+  * 'fixed-navigation'  - Fixes the main menu
+  * 'fixed-ribbon'      - Fixes breadcrumb
+  * 'fixed-page-footer' - Fixes footer
+  * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+-->
+<body class="<%= yield :body_class %>">
+
+<!-- HEADER -->
+<%= render partial: 'layouts/header' unless @lock_screen %>
+<!-- END HEADER -->
+
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<%= render partial: 'layouts/left_panel' if current_user && !@simulate_no_user %>
+<!-- END NAVIGATION -->
+
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <%= yield :ribbon %>
+  <% if notice %>
+    <div class="alert alert-success fade in">
+      <button data-dismiss="alert" class="close">
+        ×
+      </button>
+      <i class="fa-fw fa fa-check"></i>
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-warning fade in">
+      <button data-dismiss="alert" class="close">
+        ×
+      </button>
+      <i class="fa-fw fa fa-warning"></i>
+      <%= alert %>
+    </div>
+  <% end %>
+  <%= yield %>
+</div>
+<!-- END MAIN PANEL -->
+
+<!-- PAGE FOOTER -->
+<%= render partial: 'layouts/footer' if current_user && !@simulate_no_user %>
+<!-- END PAGE FOOTER -->
+
+<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+Note: These tiles are completely responsive,
+you can add as many as you like
+-->
+<%= render partial: 'layouts/tiles' if current_user && !@simulate_no_user %>
+<!-- END SHORTCUT AREA -->
+
+<!--================================================== -->
+
+<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+<%= javascript_include_tag 'plugin/pace/pace', 'data-pace-options' => '{ "restartOnRequestAfter": true }' %>
+
+<%= javascript_include_tag 'application' %>
+
+<% if current_user && !@simulate_no_user %>
+  <!-- Demo purpose only -->
+  <%= javascript_include_tag 'demo' %>
+<% end %>
+
+
+
+<!--[if IE 8]>
+
+<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+<![endif]-->
+
+<%= yield(:scripts).present? ? yield(:scripts) : render(partial: 'layouts/scripts') %>
+
+<!-- Your GOOGLE ANALYTICS CODE Below -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+
+</html>

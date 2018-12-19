@@ -1,0 +1,94 @@
+<!-- MAIN CONTENT -->
+<div id="content"  >
+
+  <div class="row">
+    <sa-big-breadcrumbs icon="bar-chart-o" [items]="['Graphs', 'Chart.js']" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+  <!-- widget grid -->
+  <sa-widgets-grid>
+
+    <div class="row"  *ngIf="chartjsData">
+      <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Line Chart</h2>
+          </header>
+          <div>
+            <div class="widget-body">
+              <sa-chart-js type="line" [data]="chartjsData['line-chart']"></sa-chart-js>
+            </div>
+          </div>
+        </div>
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Radar Chart</h2>
+          </header>
+          <div>
+            <div class="widget-body">
+              <sa-chart-js type="radar" [data]="chartjsData['radar-chart']"></sa-chart-js>
+            </div>
+          </div>
+        </div>
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Polar Chart</h2>
+          </header>
+          <div>
+            <div class="widget-body">
+              <sa-chart-js type="polarArea" [data]="chartjsData['polar-chart']"></sa-chart-js>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Bar Chart</h2>
+          </header>
+          <div>
+            <div class="widget-body">
+              <sa-chart-js type="bar" [data]="chartjsData['bar-chart']"></sa-chart-js>
+            </div>
+          </div>
+        </div>
+
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Doughnut Chart</h2>
+          </header>
+          <div>
+            <div class="widget-body">
+              <sa-chart-js type="doughnut" [data]="chartjsData['doughnut-chart']"></sa-chart-js>
+            </div>
+          </div>
+        </div>
+
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Pie Chart</h2>
+          </header>
+          <div>
+            <div class="widget-body">
+              <sa-chart-js type="pie" [data]="chartjsData['pie-chart']"></sa-chart-js>
+            </div>
+          </div>
+        </div>
+
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>

@@ -1,0 +1,50 @@
+<form id="buttonGroupForm" (ngSubmit)="onSubmit()"
+      novalidate="novalidate" [saBootstrapValidator]="validatorOptions" class="form-horizontal">
+
+  <fieldset>
+    <legend>
+      Default Form Elements
+    </legend>
+    <div class="form-group">
+      <label class="col-lg-3 control-label">Gender</label>
+      <div class="col-lg-9">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default" [saToggleActive]="model.gender == 'male'">
+            <input type="radio" name="gender" [(ngModel)]="model.gender" value="male"/>
+            Male </label>
+          <label class="btn btn-default" [saToggleActive]="model.gender == 'female'">
+            <input type="radio" name="gender" [(ngModel)]="model.gender" value="female"/>
+            Female </label>
+          <label class="btn btn-default" [saToggleActive]="model.gender == 'other'">
+            <input type="radio" name="gender" [(ngModel)]="model.gender" value="other"/>
+            Other </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="form-group">
+      <label class="col-lg-3 control-label">Languages</label>
+      <div class="col-lg-9">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default" [saToggleActive]="lang.selected" *ngFor="let lang of model.languages">
+            <input type="checkbox" name="languages"  [(ngModel)]="lang.selected"/>
+            {{lang.value}}</label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="form-actions">
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-default" type="submit">
+          <i class="fa fa-eye"></i>
+          Validate
+        </button>
+      </div>
+    </div>
+  </div>
+
+</form>

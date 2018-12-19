@@ -1,0 +1,956 @@
+<% content_for :ribbon do %>
+<!-- RIBBON -->
+<div id="ribbon">
+
+  <span class="ribbon-button-alignment">
+    <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
+      <i class="fa fa-refresh"></i>
+    </span>
+  </span>
+
+  <!-- breadcrumb -->
+  <ol class="breadcrumb">
+    <li>Home</li><li>UI Elements</li><li>Icons</li><li>Flags</li>
+  </ol>
+  <!-- end breadcrumb -->
+
+  <!-- You can also add more buttons to the
+  ribbon for further usability
+
+  Example below:
+
+  <span class="ribbon-button-alignment pull-right">
+  <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+  <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+  <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+  </span> -->
+
+</div>
+<!-- END RIBBON -->
+<% end %>
+
+<!-- MAIN CONTENT -->
+<div id="content">
+  <!-- row -->
+  <div class="row">
+
+    <!-- col -->
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+      <h1 class="page-title txt-color-blueDark"><i class="fa fa-desktop fa-fw "></i>
+        UI Elements
+        <span>&gt;
+         Icons &gt; Flags
+        </span>
+      </h1>
+    </div>
+    <!-- end col -->
+
+    <!-- right side of the page with the sparkline graphs -->
+    <!-- col -->
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+      <!-- sparks -->
+      <ul id="sparks">
+        <li class="sparks-info">
+          <h5> My Income <span class="txt-color-blue">$47,171</span></h5>
+          <div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
+            1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
+          </div>
+        </li>
+        <li class="sparks-info">
+          <h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
+          <div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
+            110,150,300,130,400,240,220,310,220,300, 270, 210
+          </div>
+        </li>
+        <li class="sparks-info">
+          <h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
+          <div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
+            110,150,300,130,400,240,220,310,220,300, 270, 210
+          </div>
+        </li>
+      </ul>
+      <!-- end sparks -->
+    </div>
+    <!-- end col -->
+
+  </div>
+  <!-- end row -->
+
+  <!--
+    The ID "widget-grid" will start to initialize all widgets below
+    You do not need to use widgets if you dont want to. Simply remove
+    the <section></section> and you can use wells or panels instead
+    -->
+
+  <!-- widget grid -->
+  <section id="widget-grid" class="">
+
+    <!-- row -->
+    <div class="row">
+
+      <!-- NEW WIDGET START -->
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div class="jarviswidget" id="wid-id-0">
+          <!-- widget options:
+            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+            data-widget-colorbutton="false"
+            data-widget-editbutton="false"
+            data-widget-togglebutton="false"
+            data-widget-deletebutton="false"
+            data-widget-fullscreenbutton="false"
+            data-widget-custombutton="false"
+            data-widget-collapsed="true"
+            data-widget-sortable="false"
+
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+            <h2>World Flag </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+            <!-- widget edit box -->
+            <div class="jarviswidget-editbox">
+              <!-- This area used as dropdown edit box -->
+              <input class="form-control" type="text">
+            </div>
+            <!-- end widget edit box -->
+
+            <!-- widget content -->
+            <div class="widget-body">
+              <div class="alert alert-info">
+                  <i class="fa fa-exclamation"></i> Please note: flag images has a base class for image <code>
+                    flag flag-*</code>. A full example of this in use will be as follows: <code> img class="flag flag-us" src="img/blank.gif"</code>
+                </div>
+          <h2>Africa</h2>
+          <div class="row">
+
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-dz', alt: 'Algeria' %> Algeria
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ao', alt: 'Angola' %> Angola
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bj', alt: 'Benin' %> Benin
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bw', alt: 'Botswana' %> Botswana
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bf', alt: 'Burkina Faso' %> Burkina Faso
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bi', alt: 'Burundi' %> Burundi
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cm', alt: 'Cameroon' %> Cameroon
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cv', alt: 'Cape Verde' %> Cape Verde
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cf', alt: 'Central African Republic' %> Central African Republic
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-td', alt: 'Chad' %> Chad
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-km', alt: 'Comoros' %> Comoros
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cg', alt: 'Congo' %> Congo
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cd', alt: 'Congo, The Democratic Republic of the' %> Congo, The Democratic Republic of the
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ci', alt: "Côte d'Ivoire" %> Côte d'Ivoire
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-dj', alt: 'Djibouti' %> Djibouti
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-eg', alt: 'Egypt' %> Egypt
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gq', alt: 'Equatorial Guinea' %> Equatorial Guinea
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-er', alt: 'Eritrea' %> Eritrea
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-et', alt: 'Ethiopia' %> Ethiopia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ga', alt: 'Gabon' %> Gabon
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gm', alt: 'Gambia' %> Gambia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gh', alt: 'Ghana' %> Ghana
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gn', alt: 'Guinea' %> Guinea
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gw', alt: 'Guinea-Bissau' %> Guinea-Bissau
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ke', alt: 'Kenya' %> Kenya
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ls', alt: 'Lesotho' %> Lesotho
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-lr', alt: 'Liberia' %> Liberia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ly', alt: 'Libya' %> Libya
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mg', alt: 'Madagascar' %> Madagascar
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mw', alt: 'Malawi' %> Malawi
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ml', alt: 'Mali' %> Mali
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mr', alt: 'Mauritania' %> Mauritania
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mu', alt: 'Mauritius' %> Mauritius
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-yt', alt: 'Mayotte' %> Mayotte
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ma', alt: 'Morocco' %> Morocco
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mz', alt: 'Mozambique' %> Mozambique
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-na', alt: 'Namibia' %> Namibia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ne', alt: 'Niger' %> Niger
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ng', alt: 'Nigeria' %> Nigeria
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-rw', alt: 'Rwanda' %> Rwanda
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-re', alt: 'Réunion' %> Réunion
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sh', alt: 'Saint Helena' %> Saint Helena
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-st', alt: 'Sao Tome and Principe' %> Sao Tome and Principe
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sn', alt: 'Senegal' %> Senegal
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sc', alt: 'Seychelles' %> Seychelles
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sl', alt: 'Sierra Leone' %> Sierra Leone
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-so', alt: 'Somalia' %> Somalia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-za', alt: 'South Africa' %> South Africa
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ss', alt: 'South Sudan' %> South Sudan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sd', alt: 'Sudan' %> Sudan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sz', alt: 'Swaziland' %> Swaziland
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tz', alt: 'Tanzania' %> Tanzania
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tg', alt: 'Togo' %> Togo
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tn', alt: 'Tunisia' %> Tunisia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ug', alt: 'Uganda' %> Uganda
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-eh', alt: 'Western Sahara' %> Western Sahara
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-zm', alt: 'Zambia' %> Zambia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-zw', alt: 'Zimbabwe' %> Zimbabwe
+            </div>
+          </div>
+
+          <h2>America</h2>
+          <div class="row">
+
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ai', alt: 'Anguilla' %> Anguilla
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ag', alt: 'Antigua and Barbuda' %> Antigua and Barbuda
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ar', alt: 'Argentina' %> Argentina
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-aw', alt: 'Aruba' %> Aruba
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bs', alt: 'Bahamas' %> Bahamas
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bb', alt: 'Barbados' %> Barbados
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bz', alt: 'Belize' %> Belize
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bm', alt: 'Bermuda' %> Bermuda
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bo', alt: 'Bolivia, Plurinational State of' %> Bolivia, Plurinational State of
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-br', alt: 'Brazil' %> Brazil
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ca', alt: 'Canada' %> Canada
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ky', alt: 'Cayman Islands' %> Cayman Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cl', alt: 'Chile' %> Chile
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-co', alt: 'Colombia' %> Colombia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cr', alt: 'Costa Rica' %> Costa Rica
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cu', alt: 'Cuba' %> Cuba
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cw', alt: 'Curaçao' %> Curaçao
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-dm', alt: 'Dominica' %> Dominica
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-do', alt: 'Dominican Republic' %> Dominican Republic
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ec', alt: 'Ecuador' %> Ecuador
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sv', alt: 'El Salvador' %> El Salvador
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-fk', alt: 'Falkland Islands (Malvinas)' %> Falkland Islands (Malvinas)
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gf', alt: 'French Guiana' %> French Guiana
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gl', alt: 'Greenland' %> Greenland
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gd', alt: 'Grenada' %> Grenada
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gp', alt: 'Guadeloupe' %> Guadeloupe
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gt', alt: 'Guatemala' %> Guatemala
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gy', alt: 'Guyana' %> Guyana
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ht', alt: 'Haiti' %> Haiti
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-hn', alt: 'Honduras' %> Honduras
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-jm', alt: 'Jamaica' %> Jamaica
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mq', alt: 'Martinique' %> Martinique
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mx', alt: 'Mexico' %> Mexico
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ms', alt: 'Montserrat' %> Montserrat
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-an', alt: 'Netherlands Antilles' %> Netherlands Antilles
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ni', alt: 'Nicaragua' %> Nicaragua
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pa', alt: 'Panama' %> Panama
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-py', alt: 'Paraguay' %> Paraguay
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pe', alt: 'Peru' %> Peru
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pr', alt: 'Puerto Rico' %> Puerto Rico
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-kn', alt: 'Saint Kitts and Nevis' %> Saint Kitts and Nevis
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-lc', alt: 'Saint Lucia' %> Saint Lucia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pm', alt: 'Saint Pierre and Miquelon' %> Saint Pierre and Miquelon
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-vc', alt: 'Saint Vincent and the Grenadines' %> Saint Vincent and the Grenadines
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sx', alt: 'Sint Maarten' %> Sint Maarten
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sr', alt: 'Suriname' %> Suriname
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tt', alt: 'Trinidad and Tobago' %> Trinidad and Tobago
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tc', alt: 'Turks and Caicos Islands' %> Turks and Caicos Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-us', alt: 'United States' %> United States
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-uy', alt: 'Uruguay' %> Uruguay
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ve', alt: 'Venezuela, Bolivarian Republic of' %> Venezuela, Bolivarian Republic of
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-vg', alt: 'Virgin Islands, British' %> Virgin Islands, British
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-vi', alt: 'Virgin Islands, U.S.' %> Virgin Islands, U.S.
+            </div>
+          </div>
+
+
+
+
+          <h2>Asia</h2>
+          <div class="row">
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-af', alt: 'Afghanistan' %> Afghanistan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-am', alt: 'Armenia' %> Armenia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-az', alt: 'Azerbaijan' %> Azerbaijan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bh', alt: 'Bahrain' %> Bahrain
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bd', alt: 'Bangladesh' %> Bangladesh
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bt', alt: 'Bhutan' %> Bhutan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bn', alt: 'Brunei Darussalam' %> Brunei Darussalam
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-kh', alt: 'Cambodia' %> Cambodia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cn', alt: 'China' %> China
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cy', alt: 'Cyprus' %> Cyprus
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ge', alt: 'Georgia' %> Georgia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-hk', alt: 'Hong Kong' %> Hong Kong
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-in', alt: 'India' %> India
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-id', alt: 'Indonesia' %> Indonesia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ir', alt: 'Iran, Islamic Republic of' %> Iran, Islamic Republic of
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-iq', alt: 'Iraq' %> Iraq
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-il', alt: 'Israel' %> Israel
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-jp', alt: 'Japan' %> Japan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-jo', alt: 'Jordan' %> Jordan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-kz', alt: 'Kazakhstan' %> Kazakhstan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-kp', alt: "Korea, Democratic People's Republic of" %> Korea, Democratic People's Republic of
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-kr', alt: 'Korea, Republic of' %> Korea, Republic of
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-kw', alt: 'Kuwait' %> Kuwait
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-kg', alt: 'Kyrgyzstan' %> Kyrgyzstan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-la', alt: "Lao People's Democratic Republic" %> Lao People's Democratic Republic
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-lb', alt: 'Lebanon' %> Lebanon
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mo', alt: 'Macao' %> Macao
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-my', alt: 'Malaysia' %> Malaysia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mv', alt: 'Maldives' %> Maldives
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mn', alt: 'Mongolia' %> Mongolia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mm', alt: 'Myanmar' %> Myanmar
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-np', alt: 'Nepal' %> Nepal
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-om', alt: 'Oman' %> Oman
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pk', alt: 'Pakistan' %> Pakistan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ps', alt: 'Palestinian Territory, Occupied' %> Palestinian Territory, Occupied
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ph', alt: 'Philippines' %> Philippines
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-qa', alt: 'Qatar' %> Qatar
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sa', alt: 'Saudi Arabia' %> Saudi Arabia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sg', alt: 'Singapore' %> Singapore
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-lk', alt: 'Sri Lanka' %> Sri Lanka
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sy', alt: 'Syrian Arab Republic' %> Syrian Arab Republic
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tw', alt: 'Taiwan, Province of China' %> Taiwan, Province of China
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tj', alt: 'Tajikistan' %> Tajikistan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-th', alt: 'Thailand' %> Thailand
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tl', alt: 'Timor-Leste' %> Timor-Leste
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tr', alt: 'Turkey' %> Turkey
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tm', alt: 'Turkmenistan' %> Turkmenistan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ae', alt: 'United Arab Emirates' %> United Arab Emirates
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-uz', alt: 'Uzbekistan' %> Uzbekistan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-vn', alt: 'Viet Nam' %> Viet Nam
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ye', alt: 'Yemen' %> Yemen
+            </div>
+          </div>
+
+          <h2>Australia and Oceania</h2>
+          <div class="row">
+
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-as', alt: 'American Samoa' %> American Samoa
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-au', alt: 'Australia' %> Australia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ck', alt: 'Cook Islands' %> Cook Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-fj', alt: 'Fiji' %> Fiji
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pf', alt: 'French Polynesia' %> French Polynesia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gu', alt: 'Guam' %> Guam
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ki', alt: 'Kiribati' %> Kiribati
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mh', alt: 'Marshall Islands' %> Marshall Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-fm', alt: 'Micronesia, Federated States of' %> Micronesia, Federated States of
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-nr', alt: 'Nauru' %> Nauru
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-nc', alt: 'New Caledonia' %> New Caledonia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-nz', alt: 'New Zealand' %> New Zealand
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-nu', alt: 'Niue' %> Niue
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-nf', alt: 'Norfolk Island' %> Norfolk Island
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mp', alt: 'Northern Mariana Islands' %> Northern Mariana Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pw', alt: 'Palau' %> Palau
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pg', alt: 'Papua New Guinea' %> Papua New Guinea
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pn', alt: 'Pitcairn' %> Pitcairn
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ws', alt: 'Samoa' %> Samoa
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sb', alt: 'Solomon Islands' %> Solomon Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tk', alt: 'Tokelau' %> Tokelau
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-to', alt: 'Tonga' %> Tonga
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tv', alt: 'Tuvalu' %> Tuvalu
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-vu', alt: 'Vanuatu' %> Vanuatu
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-wf', alt: 'Wallis and Futuna' %> Wallis and Futuna
+            </div>
+
+          </div>
+
+          <h2>Europe</h2>
+
+          <div class="row">
+
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-al', alt: 'Albania' %> Albania
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ad', alt: 'Andorra' %> Andorra
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-at', alt: 'Austria' %> Austria
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-by', alt: 'Belarus' %> Belarus
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-be', alt: 'Belgium' %> Belgium
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ba', alt: 'Bosnia and Herzegovina' %> Bosnia and Herzegovina
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bg', alt: 'Bulgaria' %> Bulgaria
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-hr', alt: 'Croatia' %> Croatia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-cz', alt: 'Czech Republic' %> Czech Republic
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-dk', alt: 'Denmark' %> Denmark
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ee', alt: 'Estonia' %> Estonia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-fo', alt: 'Faroe Islands' %> Faroe Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-fi', alt: 'Finland' %> Finland
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-fr', alt: 'France' %> France
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-de', alt: 'Germany' %> Germany
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gi', alt: 'Gibraltar' %> Gibraltar
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gr', alt: 'Greece' %> Greece
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-va', alt: 'Holy See (Vatican City State)' %> Holy See (Vatican City State)
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-hu', alt: 'Hungary' %> Hungary
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-is', alt: 'Iceland' %> Iceland
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ie', alt: 'Ireland' %> Ireland
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-it', alt: 'Italy' %> Italy
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-lv', alt: 'Latvia' %> Latvia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-li', alt: 'Liechtenstein' %> Liechtenstein
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-lt', alt: 'Lithuania' %> Lithuania
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-lu', alt: 'Luxembourg' %> Luxembourg
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mk', alt: 'Macedonia, The Former Yugoslav Republic of' %> Macedonia, The Former Yugoslav Republic of
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mt', alt: 'Malta' %> Malta
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-md', alt: 'Moldova, Republic of' %> Moldova, Republic of
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-mc', alt: 'Monaco' %> Monaco
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-me', alt: 'Montenegro' %> Montenegro
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-nl', alt: 'Netherlands' %> Netherlands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-no', alt: 'Norway' %> Norway
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pl', alt: 'Poland' %> Poland
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-pt', alt: 'Portugal' %> Portugal
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ro', alt: 'Romania' %> Romania
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ru', alt: 'Russian Federation' %> Russian Federation
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sm', alt: 'San Marino' %> San Marino
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-rs', alt: 'Serbia' %> Serbia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-sk', alt: 'Slovakia' %> Slovakia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-si', alt: 'Slovenia' %> Slovenia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-es', alt: 'Spain' %> Spain
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-se', alt: 'Sweden' %> Sweden
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ch', alt: 'Switzerland' %> Switzerland
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ua', alt: 'Ukraine' %> Ukraine
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gb', alt: 'United Kingdom' %> United Kingdom
+            </div>
+          </div>
+
+          <h2>Other areas</h2>
+          <div class="row">
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-bv', alt: 'Bouvet Island' %> Bouvet Island
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-io', alt: 'British Indian Ocean Territory' %> British Indian Ocean Territory
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-ic', alt: 'Canary Islands' %> Canary Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-catalonia', alt: 'Catalonia' %> Catalonia
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-england', alt: 'England' %> England
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-eu', alt: 'European Union' %> European Union
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-tf', alt: 'French Southern Territories' %> French Southern Territories
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gg', alt: 'Guernsey' %> Guernsey
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-hm', alt: 'Heard Island and McDonald Islands' %> Heard Island and McDonald Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-im', alt: 'Isle of Man' %> Isle of Man
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-je', alt: 'Jersey' %> Jersey
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-kurdistan', alt: 'Kurdistan' %> Kurdistan
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-scotland', alt: 'Scotland' %> Scotland
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-somaliland', alt: 'Somaliland' %> Somaliland
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-gs', alt: 'South Georgia and the South Sandwich Islands' %> South Georgia and the South Sandwich Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-um', alt: 'United States Minor Outlying Islands' %> United States Minor Outlying Islands
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-wales', alt: 'Wales' %> Wales
+            </div>
+            <div class="col-xs-6 col-md-3 col-sm-4 demo-icon-font">
+              <%= image_tag 'blank.gif', class: 'flag flag-zanzibar', alt: 'Zanzibar' %> Zanzibar
+            </div>
+
+          </div>
+
+
+
+
+
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+      </article>
+      <!-- WIDGET END -->
+
+    </div>
+
+    <!-- end row -->
+
+    <!-- row -->
+
+    <div class="row">
+
+      <!-- a blank row to get started -->
+      <div class="col-sm-12">
+        <!-- your contents here -->
+      </div>
+
+    </div>
+
+    <!-- end row -->
+
+  </section>
+  <!-- end widget grid -->
+
+</div>
+<!-- END MAIN CONTENT -->

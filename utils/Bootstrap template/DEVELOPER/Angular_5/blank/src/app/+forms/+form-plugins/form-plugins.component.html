@@ -1,0 +1,840 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Forms', 'Form Plugins']" icon="pencil-square-o"
+                        class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+
+  <!-- widget grid -->
+  <sa-widgets-grid>
+
+    <!-- row -->
+    <div class="row">
+
+      <!-- NEW COL START -->
+      <article class="col-sm-12">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <x-editable-widget></x-editable-widget>
+        <!-- end widget -->
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+          <!-- widget options:
+          usage: <div sa-widget [editbutton]="false">
+
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+            <h2>Sliders </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body">
+
+              <form>
+
+                <fieldset>
+                  <legend>
+                    Smart Scale Slider
+                  </legend>
+                  <div class="row">
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <input ionSlider type="text" data-min="0" data-max="5000" data-from="1000"
+                               data-to="4000" data-type="double" data-step="1" data-prefix="$" data-prettify="false"
+                               data-hasgrid="true">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <input ionSlider type="text" data-min="10000"  data-max="100000" data-type="double"
+                               data-step="500" data-postfix=" €" data-from="3000" data-to="90000" data-hasgrid="true">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <input ionSlider type="text" data-min="0" data-from="2.3" data-max="10"
+                               data-type="single" data-step="0.1" data-postfix=" mm" data-prettify="false"
+                               data-hasgrid="true">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <input ionSlider type="text" data-min="-50" data-max="50" data-from="5"
+                               data-to="25" data-type="double" data-step="1" data-postfix="°" data-prettify="false"
+                               data-hasgrid="true">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+
+                      <div class="form-group">
+                        <input ionSlider type="text" data-min="0" data-from="0" data-max="10"
+                               data-type="single" data-step="0.1" data-postfix=" mm" data-prettify="false"
+                               data-hasgrid="true">
+                      </div>
+                    </div>
+                  </div>
+
+                </fieldset>
+
+                <fieldset>
+                  <legend>
+                    noUi Slider
+                  </legend>
+                  <div class="row">
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <label>Default</label>
+                        <div [nouiSlider]="{
+                          start: 55,
+                          range: {
+                            min:2,
+                            max: 100
+                          },
+                          connect: 'lower'
+                        }"></div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <label>Range slider (<span class="nouislider-value">{{noUiSliderValue}}</span>)</label>
+                        <div [nouiSlider]="{start: noUiSliderValue,
+                          range: {
+                            min: 0,
+                            max: 1000
+                          },
+                          connect: true,
+                          step: 1
+                        }" (change)="noUiSliderValue = $event"></div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Default Slider (disabled)</label>
+                        <div [nouiSlider]="{
+                          start: 50,
+                          range: {
+                            min: 0,
+                            max: 100
+                          },
+                          connect: 'lower'
+                        }" disabled="disabled"></div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <label>Skips a beat</label>
+                        <div [nouiSlider]="{
+                          start: [55, 130],
+                          range: {
+                            min:0,
+                            max: 300
+                          },
+                          connect: true,
+                          step: 50
+                        }" ></div>
+                      </div>
+
+                    </div>
+                  </div>
+                </fieldset>
+
+              </form>
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+
+        <duallistbox-widget></duallistbox-widget>
+
+      </article>
+      <!-- END COL -->
+
+    </div>
+
+    <!-- end row -->
+
+    <!-- START ROW -->
+
+    <div class="row">
+
+      <!-- NEW COL START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+          <!-- widget options:
+          usage: <div sa-widget [editbutton]="false">
+
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+            <h2>Plugins & Enhancers </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body">
+
+              <form class="">
+
+                <fieldset>
+                  <legend>
+                    Select 2
+                  </legend>
+
+                  <div class="form-group">
+                    <label>Select2 Plugin (select)</label>
+                    <select select2 style="width:100%" class="select2">
+                      <optgroup label="Alaskan/Hawaiian Time Zone">
+                        <option value="AK">Alaska</option>
+                        <option value="HI">Hawaii</option>
+                      </optgroup>
+                      <optgroup label="Pacific Time Zone">
+                        <option value="CA">California</option>
+                        <option value="NV">Nevada</option>
+                        <option value="OR">Oregon</option>
+                        <option value="WA">Washington</option>
+                      </optgroup>
+                      <optgroup label="Mountain Time Zone">
+                        <option value="AZ">Arizona</option>
+                        <option value="CO">Colorado</option>
+                        <option value="ID">Idaho</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="UT">Utah</option>
+                        <option value="WY">Wyoming</option>
+                      </optgroup>
+                      <optgroup label="Central Time Zone">
+                        <option value="AL">Alabama</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TX">Texas</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="WI">Wisconsin</option>
+                      </optgroup>
+                      <optgroup label="Eastern Time Zone">
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="IN">Indiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="OH">Ohio</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WV">West Virginia</option>
+                      </optgroup>
+                    </select>
+
+                    <div class="note">
+                      <strong>Usage:</strong> &lt;select select2 style=&quot;width:100%&quot; class=&quot;select2&quot;
+                      &quot;&gt;...&lt;/select&gt;
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Select2 Plugin (multi-select)</label>
+                    <select select2 multiple style="width:100%" class="select2">
+                      <optgroup label="Alaskan/Hawaiian Time Zone">
+                        <option value="AK">Alaska</option>
+                        <option value="HI">Hawaii</option>
+                      </optgroup>
+                      <optgroup label="Pacific Time Zone">
+                        <option value="CA">California</option>
+                        <option value="NV" selected="selected">Nevada</option>
+                        <option value="OR">Oregon</option>
+                        <option value="WA">Washington</option>
+                      </optgroup>
+                      <optgroup label="Mountain Time Zone">
+                        <option value="AZ">Arizona</option>
+                        <option value="CO">Colorado</option>
+                        <option value="ID">Idaho</option>
+                        <option value="MT" selected="selected">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="UT">Utah</option>
+                        <option value="WY">Wyoming</option>
+                      </optgroup>
+                      <optgroup label="Central Time Zone">
+                        <option value="AL">Alabama</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TX">Texas</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="WI">Wisconsin</option>
+                      </optgroup>
+                      <optgroup label="Eastern Time Zone">
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="IN">Indiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI" selected="selected">Michigan</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="OH">Ohio</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WV">West Virginia</option>
+                      </optgroup>
+                    </select>
+
+                    <div class="note">
+                      <strong>Usage:</strong> &lt;select select2 multiple style=&quot;width:100%&quot; class=&quot;select2&quot;
+                      &gt;...&lt;/select&gt;
+                    </div>
+                  </div>
+
+                </fieldset>
+
+                <fieldset>
+                  <legend>
+                    Date Picker (Jquery UI)
+                  </legend>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label>Select a date (single):</label>
+                        <div class="input-group">
+                          <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker"
+                                 [saUiDatepicker]="{
+                                    dateFormat: 'dd/mm/yy'
+                                 }" >
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                      <label>Select a date (range):</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input class="form-control" id="from"  [saUiDatepicker]="{
+                                    dateFormat: 'dd/mm/yy',
+                                    defaultDate: '+1w',
+                                    changesMonth: true,
+                                    numberOfMonth: 3,
+                                    minRestrict: '#to'
+                                 }"
+                              type="text" placeholder="From">
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input class="form-control" id="to" [saUiDatepicker]="{
+                                    dateFormat: 'dd/mm/yy',
+                                    defaultDate: '+3w',
+                                    changesMonth: true,
+                                    numberOfMonth: 3,
+                                    maxRestrict: '#from'
+                                 }"
+                                 type="text" placeholder="Select a date">
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>
+                    Bootstrap Timepicker
+                  </legend>
+
+                  <div class="row">
+
+                    <div class="col-sm-12">
+                      <div class="row">
+
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label>Timepicker (default):</label>
+                            <div class="input-group">
+                              <input class="form-control" smartTimepicker type="text"
+                                     placeholder="Select time">
+                              <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </fieldset>
+
+                <fieldset>
+                  <legend>
+                    Clockpicker
+                  </legend>
+
+                  <div class="row">
+
+                    <div class="col-sm-12">
+                      <div class="row">
+
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label>Clockpicker:</label>
+                            <div class="input-group">
+                              <input class="form-control" smartClockpicker type="text"
+                                     placeholder="Select time" data-autoclose="true">
+                              <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </fieldset>
+
+                <fieldset>
+                  <legend>
+                    Spinners
+                  </legend>
+
+                  <div class="row">
+
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+
+                      <div class="form-group">
+                        <label>Default</label>
+                        <input class="form-control spinner-left" name="spinner" value="1"
+                               [saUiSpinner]>
+                      </div>
+
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                      <div class="form-group">
+                        <label>Decimal spinner</label>
+                        <input class="form-control" id="spinner-decimal" name="spinner-decimal" value="7.99"
+                               saUiSpinner="decimal">
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                      <div class="form-group">
+                        <label>Increment spinner</label>
+                        <input class="form-control spinner-both" name="spinner-currency" value="5"
+                               saUiSpinner="currency">
+                      </div>
+                    </div>
+                  </div>
+
+                </fieldset>
+
+                <fieldset>
+                  <legend>
+                    Color Pickers
+                  </legend>
+
+                  <div class="row">
+
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                        <label>Color Picker (HEX)</label>
+                        <input class="form-control" saColorpicker type="text" value="#8fff00" />
+                      </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Color Picker (RGBA)</label>
+                        <input class="form-control" [saColorpicker]="{
+                          format: 'rgba'
+                        }" type="text" value="rgba(0,194,255,0.78)" />
+                      </div>
+                    </div>
+                  </div>
+
+                </fieldset>
+
+                <fieldset>
+                  <legend>
+                    Tags
+                  </legend>
+
+                  <div class="row">
+
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label>Type and enter to add tag</label>
+                        <input smartTags class="form-control tagsinput"
+                               value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput">
+                      </div>
+                    </div>
+
+                  </div>
+
+                </fieldset>
+
+                <div class="form-actions">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button class="btn btn-default" type="submit">
+                        Cancel
+                      </button>
+                      <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-save"></i>
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+      </article>
+      <!-- END COL -->
+
+      <!-- NEW COL START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+          <!-- widget options:
+          usage: <div sa-widget [editbutton]="false">
+
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+            <h2>All Masking </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body">
+              <p class="alert alert-info text-align-center">
+                USAGE: &lt;input type=&quot;text&quot; <strong>saMaskedInput=&quot;99/99/9999&quot; saMaskedPlaceholder=
+                &quot;-&quot;&gt;</strong>
+              </p>
+
+              <form>
+
+                <fieldset>
+                  <legend>
+                    Input Masking made easier!
+                  </legend>
+
+                  <div class="form-group">
+                    <label>Date masking</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" saMaskedInput="99/99/9999"
+                             saMaskedPlaceholder="-">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    <p class="note">
+                      Data format **/**/****
+                    </p>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Phone masking</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" saMaskedInput="(999) 999-9999"
+                             saMaskedPlaceholder="X">
+                      <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                    </div>
+                    <p class="note">
+                      Data format (XXX) XXX-XXXX
+                    </p>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Credit card masking</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" saMaskedInput="9999-9999-9999-9999"
+                             saMaskedPlaceholder="*">
+                      <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                    </div>
+                    <p class="note">
+                      Data format ****-****-****-****
+                    </p>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Serial number masking</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" saMaskedInput="***-***-***-***-***-***"
+                             saMaskedPlaceholder="_">
+                      <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
+                    </div>
+                    <p class="note">
+                      Data format ***-***-***-***-***-***
+                    </p>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Tax ID masking</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" saMaskedInput="99-9999999"
+                             saMaskedPlaceholder="X">
+                      <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                    </div>
+                    <p class="note">
+                      Data format 99-9999999
+                    </p>
+                  </div>
+
+                  <div class="form-actions">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button class="btn btn-default" type="submit">
+                          Cancel
+                        </button>
+                        <button class="btn btn-primary" type="submit">
+                          <i class="fa fa-save"></i>
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </fieldset>
+              </form>
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+          <!-- widget options:
+          usage: <div sa-widget [editbutton]="false">
+
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+            <h2>JS Knob </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body">
+
+              <form>
+
+                <fieldset>
+                  <legend>
+                    JS Knob Input
+                  </legend>
+
+                  <div class="knobs-demo">
+
+                    <div>
+                      <input [saKnob]="{
+                              width:120,
+                              height:120,
+                              displayinput:true,
+                              displayprevious:true,
+                              fgColor:'#428BCA'
+                            }" value="35"/>
+                    </div>
+
+                    <div>
+                      <input [saKnob]="{
+                               width:180,
+                               height:180,
+                               cursor:true,
+                               fgColor:'#222222',
+                               thickness:.3
+                             }" value="29">
+                    </div>
+
+                    <div>
+                      <input [saKnob]="{
+                               width:80,
+                               height:80,
+                               fgColor:'#71843F',
+                               angleoffset:-125,
+                               anglearc:250,
+                               thickness:.3
+                             }" value="33">
+                    </div>
+
+                  </div>
+
+                </fieldset>
+                <div class="form-actions">
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button class="btn btn-default" type="submit">
+                        Cancel
+                      </button>
+                      <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-save"></i>
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+      </article>
+      <!-- END COL -->
+
+    </div>
+
+    <!-- END ROW -->
+
+  </sa-widgets-grid>
+  <!-- end widget grid -->
+
+</div>

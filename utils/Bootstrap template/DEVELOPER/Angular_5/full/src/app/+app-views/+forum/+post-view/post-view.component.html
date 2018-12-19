@@ -1,0 +1,156 @@
+<div id="content" data-sparkline-container="" data-easy-pie-chart-container="">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Other Pages', 'Forum Layout']" icon="picture-o" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+
+  <!-- row -->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <table class="table table-striped table-forum">
+          <thead>
+          <tr>
+            <th colspan="2"><a [routerLink]="['../general-view']"> Projects </a> &gt; <a [routerLink]="['app-views/forum-topic-demo']">Business
+              Requirement Docs </a> &gt; Nam quam nunc blandit vel
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <!-- Post -->
+          <tr>
+            <td class="text-center"><a [routerLink]="['/profile']"><img alt="" src="assets/img/flags/us.png"> &#xA0;
+              <strong>John Doe</strong></a></td>
+            <td>on <em>Jan 1, 2014 - 12:00am</em></td>
+          </tr>
+          <tr>
+            <td class="text-center" style="width: 12%;">
+              <div class="push-bit">
+                <a [routerLink]="['/profile']"> <img src="assets/img/avatars/sunny.png" width="50" alt="avatar" class="online"> </a>
+              </div>
+              <small>473 Posts</small>
+            </td>
+            <td>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis
+                pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
+                ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus
+                viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
+              </p><h5>Forecast Pie</h5><span class="sparkline display-inline margin-bottom-10" data-sparkline-type="pie" data-sparkline-offset="90" data-sparkline-piesize="150px"> 33,20,10 </span>
+
+              <p>
+                Fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet
+                a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend
+                tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam
+                lorem ante, dapibus in, viv.
+              </p><em>- John Doe
+              <br>
+              CEO, SmartAdmin</em></td>
+          </tr>
+          <!-- end Post -->
+          <!-- Post -->
+          <tr>
+            <td class="text-center"><a [routerLink]="['/profile']"><img alt="" src="assets/img/flags/es.png"> &#xA0;
+              <strong>Sadi Orlaf</strong></a></td>
+            <td>on <em>Jan 1, 2014 - 12:00am</em></td>
+          </tr>
+          <tr>
+            <td class="text-center" style="width: 12%;">
+              <div class="push-bit">
+                <a [routerLink]="['/profile']"> <img src="assets/img/avatars/5.png" width="50" alt="avatar" class="offline"> </a>
+              </div>
+              <small>473 Posts</small>
+            </td>
+            <td>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis
+                pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
+                ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus
+                viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
+              </p><em>- Sadi Orlaf
+              <br>
+              Executive, SmartAdmin</em>
+
+              <div class="forum-attachment">
+                2 attachment(s) &#x2014; <a href=""> Download all attachments</a>
+                <ul class="list-inline margin-top-10">
+                  <li class="well well-sm padding-5">
+                    <strong>rocketlaunch.jpg</strong>
+                    <br>
+                    400 kb
+                    <br>
+                    <a href=""> Download</a> | <a href=""> View</a>
+                  </li>
+                  <li class="well well-sm padding-5">
+                    <strong>budget.xsl</strong>
+                    <br>
+                    400 kb
+                    <br>
+                    <a href=""> Download</a> | <a href=""> Share</a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- end Post -->
+          <!-- Post -->
+          <tr>
+            <td class="text-center"><a [routerLink]="['/profile']"><img alt="" src="assets/img/flags/us.png"> &#xA0;
+              <strong>Me</strong></a></td>
+            <td><em>Today</em></td>
+          </tr>
+          <tr>
+            <td class="text-center" style="width: 12%;">
+              <div class="push-bit">
+                <a [routerLink]="['/profile']"> <img src="assets/img/avatars/sunny.png" width="50" alt="avatar" class="online"> </a>
+              </div>
+              <small>473 Posts</small>
+            </td>
+            <td>
+              <div id="forumPost" data-smart-summernote-editor="" data-height="180"></div>
+              <button class="btn btn-primary margin-top-10">
+                Post
+              </button>
+              <button class="btn btn-success margin-top-10">
+                Save for later
+              </button>
+            </td>
+          </tr>
+          <!-- end Post -->
+          </tbody>
+        </table>
+        <div class="text-center">
+          <ul class="pagination pagination-sm">
+            <li class="disabled">
+              <a href="">Prev</a>
+            </li>
+            <li class="active">
+              <a href="">1</a>
+            </li>
+            <li>
+              <a href="">2</a>
+            </li>
+            <li>
+              <a href="">3</a>
+            </li>
+            <li>
+              <a href="">...</a>
+            </li>
+            <li>
+              <a href="">99</a>
+            </li>
+            <li>
+              <a href="">Next</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+</div>

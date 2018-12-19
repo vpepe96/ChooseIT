@@ -1,0 +1,30 @@
+<div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+
+  <header>
+    <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+    <h2>Bootstrap Duallist Box  </h2>
+
+  </header>
+
+  <!-- widget div-->
+  <div>
+
+
+    <!-- widget content -->
+    <div class="widget-body">
+
+
+      <duallistbox size="10"
+                   [items]="options"
+                   (itemsChange)="onChange($event)"
+      [nonSelectedFilter]="filter">
+
+      </duallistbox>
+
+    </div>
+    <!-- end widget content -->
+
+  </div>
+  <!-- end widget div -->
+
+</div>

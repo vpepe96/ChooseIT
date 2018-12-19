@@ -1,0 +1,23 @@
+{
+    "name": "smartadmin.seed",
+    "version": "1.9.0",
+    "description": "SmartAdmin for ASP.NET Core 2.0",
+    "main": "wwwroot/js/app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://bitbucket.org/myorange/smartadmin-core-2.git"
+    },
+    "keywords": [
+        "smartadmin",
+        "template",
+        "bootstrap",
+        ".net",
+        "core"
+    ],
+    "author": "MyOrange Inc",
+    "license": "ISC",
+    "homepage": "https://bitbucket.org/myorange/smartadmin-core-2#readme"
+}

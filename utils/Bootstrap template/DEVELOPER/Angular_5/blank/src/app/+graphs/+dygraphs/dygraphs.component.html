@@ -1,0 +1,110 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+
+  <div class="row">
+    <sa-big-breadcrumbs icon="bar-chart-o" [items]="['Graphs', 'Dygraphs']"
+                        class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+  <!-- widget grid -->
+  <sa-widgets-grid>
+
+
+    <div class="row">
+
+      <article class="col-sm-12 col-md-12 col-lg-12">
+
+        <div class="alert alert-info">
+
+          <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+              <h3 class="no-margin">Dygraphs is a fast, flexible open source JavaScript charting
+                library.</h3>
+
+
+              <h5>Features</h5>
+              <ul>
+                <li>Handles <strong>huge data sets</strong>: dygraphs plots millions of points without
+                  getting bogged down.
+                </li>
+                <li><strong>Interactive out of the box</strong>: zoom, pan and mouseover are on by
+                  default.
+                </li>
+                <li>Strong support for <strong>error bars</strong> / confidence intervals.
+                </li>
+                <li><strong>Highly customizable</strong>: using options and custom callbacks, you can
+                  make dygraphs do almost anything.
+                </li>
+                <li>dygraphs is <strong>highly compatible</strong>: it works in all major browsers
+                  (including IE8). You can even <strong>pinch to zoom</strong> on mobile/tablet
+                  devices!
+                </li>
+                <li>There's an <strong>active community</strong> developing and supporting dygraphs.
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+              <h4>Angular 2 Example</h4>
+              <pre class="prettyprint margin-top-10">&lt;sa-dygraph [data]=&quot;getDemoData()&quot; [options]=&quot;{{ '{' }}
+    customBars: true,
+    title: 'Daily Temperatures in New York vs. San Francisco',
+    ylabel: 'Temperature (F)',
+    legend: 'always',
+    showRangeSelector: true
+}&quot; height=&quot;300px&quot;&gt;&lt;/sa-dygraph&gt;</pre>
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>No roll period</h2>
+          </header>
+          <div>
+            <div class="widget-body">
+              <sa-dygraph [data]="getDemoData()" [options]="{
+            customBars: true,
+            title: 'Daily Temperatures in New York vs. San Francisco',
+            legend: 'always',
+            labelsSeparateLines: true
+          }" height="300px"></sa-dygraph>
+            </div>
+          </div>
+        </div>
+
+        <div sa-widget [editbutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>No roll (timestamp)</h2>
+          </header>
+          <div>
+            <div class="widget-body">
+              <p class="alert alert-success">Roll period of 14 timesteps, custom range selector height and plot
+                color.</p>
+
+              <sa-dygraph [data]="getDemoData()" [options]="{
+            rollPeriod: 14,
+            showRoller: false,
+            customBars: true,
+            title: 'Daily Temperatures in New York vs. San Francisco',
+            legend: 'always',
+            showRangeSelector: true,
+            rangeSelectorHeight: 30,
+            rangeSelectorPlotStrokeColor: 'yellow',
+            rangeSelectorPlotFillColor: 'lightyellow'
+          }" height="300px"></sa-dygraph>
+
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </sa-widgets-grid>
+
+</div>

@@ -1,0 +1,217 @@
+<div sa-widget [colorbutton]="false" [editbutton]="false" [custombutton]="false">
+
+  <header>
+    <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+    <h2>x-ediable </h2>
+
+  </header>
+
+  <!-- widget div-->
+  <div>
+
+
+    <!-- widget content -->
+    <div class="widget-body">
+      <div class="widget-body-toolbar">
+
+        <div class="row">
+
+          <div class="col-sm-6">
+            <button id="enable" class="btn btn btn-default"
+                    [(ngModel)]="options.disabled" btnCheckbox
+            >
+              enable / disable
+            </button>
+          </div>
+          <div class="col-sm-6 text-right">
+            <on-off-switch title="Open Inline"
+                           [(model)]="options.inline"
+                           (change)="onChange()"
+            ></on-off-switch>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <table id="user" class="table table-bordered table-striped"
+             style="clear:both">
+        <tbody>
+        <tr>
+          <td style="width:30%">Simple text field</td>
+          <td style="width:35%">
+            <x-editable
+              type="text"
+              originalTitle="Enter username"
+              [mode]="options.mode"
+              [disabled]="options.disabled"
+              [(model)]="model.username"
+              className="editable editable-click">
+            </x-editable>
+
+          </td>
+          <td style="width:35%">
+            {{model.username}}
+          </td>
+        </tr>
+        <tr>
+          <td>Empty text field, required</td>
+          <td>
+            <x-editable
+              type="text"
+              placement="right"
+              [mode]="options.mode"
+              [disabled]="options.disabled"
+              placeholder="Required"
+              originalTitle="Enter your firstname"
+              className="editable editable-click editable-empty"
+              [(model)]="model.firstname"
+            >{{model.firstname}}
+            </x-editable>
+          </td>
+          <td>
+            {{model.firstname}}
+          </td>
+        </tr>
+        <tr>
+          <td>Select, local array, custom display</td>
+          <td>
+            <x-editable
+              type="select"
+              value="model.sex"
+              [source]="genders"
+              originalTitle="Select sex"
+              [mode]="options.mode"
+              [disabled]="options.disabled"
+              [(model)]="model.sex"
+              className="editable editable-click"
+              style="color:rgb(128, 128, 128)">
+            </x-editable>
+          </td>
+          <td>
+            {{model.sex}}
+          </td>
+        </tr>
+        <tr>
+          <td>Select, remote array, no buttons</td>
+          <td>
+            <x-editable
+
+              [mode]="options.mode"
+              [disabled]="options.disabled"
+              type="select"
+              value="model.group"
+              [source]="groups"
+              showbuttons="false"
+              originalTitle="Select group"
+              [(model)]="model.group"
+              className="editable editable-click">
+            </x-editable>
+          </td>
+          <td>
+            {{model.group}}
+          </td>
+        </tr>
+        <tr>
+          <td>Select, error while loading</td>
+          <td>
+            <x-editable
+              [mode]="options.mode"
+              [disabled]="options.disabled"
+              type="select"
+              value="0"
+              source="/status"
+              originalTitle="Select status"
+              className="editable editable-click">Active
+            </x-editable>
+          </td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Combodate (date)</td>
+          <td><x-editable
+            [mode]="options.mode"
+            [disabled]="options.disabled"
+            type="combodate"
+            [(model)]="model.dob"
+            value="1984-05-15"
+            originalTitle="Select Date of birth"
+            viewformat="DD/MM/YYYY"
+            format="YYYY-MM-DD"
+            [template]="'D / MMM / YYYY'"
+            placement="right"
+            pk="1"
+            className="editable editable-click"></x-editable>
+          </td>
+          <td>{{model.dob }}</td>
+        </tr>
+
+        <tr>
+          <td>Combodate (datetime)</td>
+          <td><x-editable
+            [mode]="options.mode"
+            [disabled]="options.disabled"
+            type="combodate"
+            [(model)]="model.event"
+            value="1984-05-15"
+            originalTitle="Setup event date and time"
+            viewformat="MMM D, YYYY, HH:mm"
+            format="YYYY-MM-DD HH:mm"
+            [template]="'D MMM YYYY  HH:mm'"
+            placement="right"
+            pk="1"
+            className="editable editable-empty editable-click"></x-editable>
+          </td>
+          <td>{{model.event}}</td>
+        </tr>
+
+
+        <tr>
+          <td>Textarea, buttons below. Submit by <i>ctrl+enter</i></td>
+          <td>
+            <x-editable
+              [mode]="options.mode"
+              [disabled]="options.disabled"
+              type="textarea"
+              [(model)]="model.comments"
+              originalTitle="Enter comments"
+              placeholder="Your comments here..."
+              className="editable editable-pre-wrapped editable-click"></x-editable>
+          </td>
+          <td>{{model.comments}}</td>
+        </tr>
+
+
+        <tr>
+          <td>Checklist</td>
+          <td>
+            <x-editable
+              [mode]="options.mode"
+              [disabled]="options.disabled"
+              type="checklist"
+              [(model)]="model.fruits"
+              [source]="fruits"
+              value="{{model.fruits}}"
+              originalTitle="Select fruits"
+              className="editable editable-click"></x-editable>
+          </td>
+
+          <td>{{model.fruits}}</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+
+
+
+    </div>
+    <!-- end widget content -->
+
+  </div>
+  <!-- end widget div -->
+
+</div>

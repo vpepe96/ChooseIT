@@ -1,0 +1,333 @@
+# German translations for smartadmin package.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the smartadmin package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: smartadmin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2016-09-11 23:13+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"\n"
+
+msgid "3rd Level"
+msgstr "3rd Level"
+
+msgid "Analytics Dashboard"
+msgstr ""
+
+msgid "App Layouts"
+msgstr ""
+
+msgid "App Settings"
+msgstr ""
+
+msgid "App Views"
+msgstr ""
+
+msgid "Blank Page"
+msgstr "Leere Seite"
+
+msgid "Blog"
+msgstr ""
+
+msgid "Bootstrap Editors"
+msgstr "Bootstrap Redakteure"
+
+msgid "Bootstrap Form Elements"
+msgstr "Bootstrap Form Elemente"
+
+msgid "Bootstrap Form Validation"
+msgstr ""
+
+msgid "Buttons"
+msgstr "Schaltflächen"
+
+msgid "CK Editor"
+msgstr "CK Editor"
+
+msgid "Calendar"
+msgstr "Kalender"
+
+msgid "Chart.js"
+msgstr ""
+
+msgid "Cool Features!"
+msgstr ""
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Data Tables"
+msgstr "Datentabellen"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Documentation"
+msgstr "Dokumentation"
+
+msgid "Dropzone"
+msgstr "Dropzone"
+
+msgid "Dygraphs"
+msgstr "Dygraphs"
+
+msgid "E-Commerce"
+msgstr ""
+
+msgid "EasyPieCharts"
+msgstr ""
+
+msgid "Error 404"
+msgstr "Fehler 404"
+
+msgid "Error 500"
+msgstr "Fehler 500"
+
+msgid "Expand"
+msgstr "Erweitern"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Find reports and more"
+msgstr "Finden Sie Berichte und mehr"
+
+msgid "Flags"
+msgstr ""
+
+msgid "Flot Chart"
+msgstr "Flot-Diagramm"
+
+msgid "Font Awesome"
+msgstr "GROSSARTIG"
+
+msgid "Forgot Password"
+msgstr ""
+
+msgid "Form Plugins"
+msgstr "Formular Plugins"
+
+msgid "Forms"
+msgstr "Formulare"
+
+msgid "Forum Layout"
+msgstr "Forum-Layout"
+
+msgid "GMap Skins"
+msgstr "GMap Skins"
+
+msgid "Gallery"
+msgstr "Galerie"
+
+msgid "General Elements"
+msgstr "Generelle"
+
+msgid "General View"
+msgstr ""
+
+msgid "Glyph Icons"
+msgstr "Glyph Icons"
+
+msgid "Graphs"
+msgstr "Graph"
+
+msgid "Grid"
+msgstr "Stromnetz"
+
+msgid "HighchartTable"
+msgstr ""
+
+msgid "Icons"
+msgstr "Ikone"
+
+msgid "Image Cropping"
+msgstr ""
+
+msgid "Invoice"
+msgstr "Rechnung"
+
+msgid "Item #2"
+msgstr "Punkt 2:"
+
+msgid "Item #2.1.1"
+msgstr "Artikel # 2.1.1"
+
+msgid "Item #3"
+msgstr "POSITION 3"
+
+msgid "Item #4 (disabled)"
+msgstr ""
+
+msgid "JQuery UI"
+msgstr "JQuery UI"
+
+msgid "Jquery Grid"
+msgstr ""
+
+msgid "Landing Page"
+msgstr ""
+
+msgid "Locked Screen"
+msgstr "Gesperrter Bildschirm"
+
+msgid "Login"
+msgstr "Anmelden"
+
+msgid "Miscellaneous"
+msgstr "Sonstiges"
+
+msgid "Morris Charts"
+msgstr "Morris Charts"
+
+msgid "Msgs"
+msgstr "MSG"
+
+msgid "Nestable Lists"
+msgstr "Schachtel-Listen"
+
+msgid "Normal Tables"
+msgstr "Normale Tabellen"
+
+msgid "Orders"
+msgstr ""
+
+msgid "Outlook"
+msgstr ""
+
+msgid "Post View"
+msgstr ""
+
+msgid "Prebuilt Skins"
+msgstr ""
+
+msgid "Pricing Tables"
+msgstr "Preistabellen"
+
+msgid "Products Detail"
+msgstr ""
+
+msgid "Products View"
+msgstr ""
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Projects"
+msgstr "Projekte"
+
+msgid "Recent projects"
+msgstr "Kürzliche Projekte"
+
+msgid "Register"
+msgstr "Anmelden"
+
+msgid "Search Page"
+msgstr "Suchseite"
+
+msgid "Six Level Menu"
+msgstr "Sechs Pegelmenü"
+
+msgid "Smart Chat API"
+msgstr ""
+
+msgid "Smart Form Elements"
+msgstr "Smart Form-Elemente"
+
+msgid "Smart Form Layouts"
+msgstr "Smart Form Layouts"
+
+msgid "Smart Form Validation"
+msgstr "Smart Form Validation"
+
+msgid "SmartAdmin Intel"
+msgstr "SmartAdmin Intel"
+
+msgid "Social Wall"
+msgstr ""
+
+msgid "Sparklines"
+msgstr ""
+
+msgid "Sub #2.1"
+msgstr ""
+
+msgid "Tables"
+msgstr "Tische"
+
+msgid "Tasks"
+msgstr "Aufgaben"
+
+msgid "Timeline"
+msgstr "Zeittafel"
+
+msgid "Topic View"
+msgstr ""
+
+msgid "Tree View"
+msgstr "Baumansicht"
+
+msgid "Typography"
+msgstr "Typografisch"
+
+msgid "UI Elements"
+msgstr "UI-Elemente"
+
+msgid "User"
+msgstr ""
+
+msgid "User|Current sign in at"
+msgstr ""
+
+msgid "User|Current sign in ip"
+msgstr ""
+
+msgid "User|Email"
+msgstr ""
+
+msgid "User|Encrypted password"
+msgstr ""
+
+msgid "User|Last sign in at"
+msgstr ""
+
+msgid "User|Last sign in ip"
+msgstr ""
+
+msgid "User|Remember created at"
+msgstr ""
+
+msgid "User|Reset password sent at"
+msgstr ""
+
+msgid "User|Reset password token"
+msgstr ""
+
+msgid "User|Sign in count"
+msgstr ""
+
+msgid "Widgets"
+msgstr "Widget"
+
+msgid "Wizards"
+msgstr "Assistenten"
+
+msgid "beta"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "notify"
+msgstr ""
+
+msgid "responsive"
+msgstr ""

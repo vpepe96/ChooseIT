@@ -1,0 +1,55 @@
+<section class="row">
+  <jcrop [storeId]="storeId"
+         class="col-sm-9"
+         [options]="{
+           bgColor: 'red',
+           bgOpacity: 0.55
+    }"
+         src="assets/img/superbox/superbox-full-7.jpg"></jcrop>
+
+  <div class="col-sm-3">
+    <fieldset>
+      <legend>Change bgColor</legend>
+      <jcrop-option-radio [storeId]="storeId" group="bgColor" checked="true" [options]="{
+                     bgColor: 'red'
+        }" label="red"></jcrop-option-radio>
+      <jcrop-option-radio [storeId]="storeId" group="bgColor" [options]="{
+                     bgColor: 'blue'
+        }" label="blue"></jcrop-option-radio>
+      <jcrop-option-radio [storeId]="storeId" group="bgColor" [options]="{
+                     bgColor: 'gray'
+        }" label="gray"></jcrop-option-radio>
+      <jcrop-option-radio [storeId]="storeId" group="bgColor" [options]="{
+                     bgColor: 'yellow'
+        }" label="yellow"></jcrop-option-radio>
+      <jcrop-option-radio [storeId]="storeId" group="bgColor" [options]="{
+                     bgColor: 'black'
+        }" label="black"></jcrop-option-radio>
+      <jcrop-option-radio [storeId]="storeId" group="bgColor" [options]="{
+                     bgColor: 'green'
+        }" label="green"></jcrop-option-radio>
+      <jcrop-option-radio [storeId]="storeId" group="bgColor" [options]="{
+                     bgColor: 'white'
+        }" label="white"></jcrop-option-radio>
+      <br/>
+    </fieldset>
+    <fieldset>
+      <legend>Manipulate bgOpacity</legend>
+      <jcrop-option-radio [storeId]="storeId" group="bgOpacity" [options]="{
+                     bgOpacity: .85
+                     }" label="Low"></jcrop-option-radio>
+
+      <jcrop-option-radio [storeId]="storeId" group="bgOpacity" checked="true" [options]="{
+                     bgOpacity: 0.55
+                     }" label="Mid"></jcrop-option-radio>
+      <jcrop-option-radio [storeId]="storeId" group="bgOpacity" [options]="{
+                     bgOpacity: 0.15
+                     }" label="High"></jcrop-option-radio>
+      <jcrop-option-radio [storeId]="storeId" group="bgOpacity" [options]="{
+                     bgOpacity: 0
+                     }" label="Full"></jcrop-option-radio>
+
+      <br/>
+    </fieldset>
+  </div>
+</section>

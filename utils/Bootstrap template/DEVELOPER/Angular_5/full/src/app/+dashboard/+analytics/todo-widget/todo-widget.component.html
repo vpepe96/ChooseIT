@@ -1,0 +1,58 @@
+<div sa-widget [editbutton]="false" color="blue">
+  <header>
+    <span class="widget-icon"> <i class="fa fa-check txt-color-white"></i> </span>
+
+    <h2> ToDo's </h2>
+
+    <div class="widget-toolbar">
+      <button class="btn btn-xs btn-default"
+              [class.active]="newTodo" (click)="toggleAdd()"><i
+        *ngIf="!newTodo" class="fa fa-plus"></i><i
+        *ngIf="newTodo" class="fa fa-times"></i> Add</button>
+
+    </div>
+  </header>
+  <!-- widget div-->
+  <div>
+    <div class="widget-body no-padding smart-form">
+      <!-- content goes here -->
+      <div *ngIf="newTodo">
+        <h5 class="todo-group-title"><i class="fa fa-plus-circle"></i> New Todo</h5>
+
+        <form #newTodoForm="ngForm" class="smart-form">
+          <fieldset>
+            <section>
+              <label class="input">
+                <input type="text" required class="input-lg" [(ngModel)]="newTodo.title" name="title"
+                       placeholder="What needs to be done?">
+              </label>
+            </section>
+            <section>
+              <div class="col-xs-6">
+                <label class="select">
+                  <select class="input-sm" name="state" [(ngModel)]="newTodo.state" >
+                    <option *ngFor="let state of states" [value]="state.name">{{state.name}}</option>
+                  </select> <i></i> </label>
+              </div>
+            </section>
+          </fieldset>
+          <footer>
+            <button [disabled]="!newTodoForm.form.valid" type="button" class="btn btn-primary"
+                    (click)="createTodo()">
+              Add
+            </button>
+            <button type="button" class="btn btn-default" (click)="toggleAdd()">
+              Cancel
+            </button>
+          </footer>
+        </form>
+      </div>
+
+      <todo-list *ngFor="let state of states" [state]="state"></todo-list>
+
+      <!-- end content -->
+    </div>
+
+  </div>
+  <!-- end widget div -->
+</div>

@@ -1,0 +1,417 @@
+### Patch 1.9.1.2
+- Resolved issue with JQ3 and smartnotification
+
+### Patch 1.9.1.1
+- Resolved issues with jquery color
+- Updated npm packages
+
+## Update 1.9.1 (PHP Update)
+- Added PHP 7 compatibility
+- Added DataTables JS upgrade with SmartUI
+- Updated SmartUI
+- Added support for Composer package manager
+- Updated SmartUI and composer package
+- Added Dev setup
+- Added support for jquery 3
+- Updated datatables plugins to latest
+
+## Update 1.9.0.2
+- Fixed Angular 5 e2e test error bug
+- Added sections for Troubleshooting and FAQ for ASP.Net Core 2 
+- Addresses an error users could receive when JavaScript Language Service was enabled for ASP.Net Core 2
+- Fixed jqueryUI bug by updating jqueryUI to latest stable (AJAX, PHP and HTML versions)
+
+## Update 1.9.0.1
+- Added the missing jqueryui file for html_full version
+- Added section about bundling for MVC.Net Core 2
+
+
+## Update 1.9.0.0
+- Added new Dashboard (Marketing)
+- Added support for ASP.NET Core 2.0 Full project 
+- Added support for ASP.NET Core 2.0 Seed project 
+- Added TagHelpers for route highlighting 
+- Added TagHelpers for showing or hiding elements based on active route
+- Added bundles for the core SmartAdmin CSS and JS files 
+- Added Authentication and Identity management to Full and Seed project 
+- Added project specific settings and class mapping for SmartAdmin 
+- Added Layout attribute for easy switching of chosen master layout 
+- Added documentation for the projects and site structure 
+- Added sections for Troubleshooting and FAQ 
+- Added new landing page
+- Added support for jquery v3.2.1
+- Updated HTML, PHP, Ajax, Angular 5 and Core 2 to latest bootstrap stable
+- Updated major plugins to latest for Ajax, HTML, PHP, Angular 5 and Core/MVC
+- Addressed Angular 5 bugs (see below)
+- Fixed issue with https request for fonts
+- Fixed Angular 5 wierd menu behaviour
+- Fixed CSS bug for Angular 5
+- Fixed List page bug for Angular 5
+- Fixed Google maps for Angular 5
+- Fixed Calendar issue for Angular 5
+- Fixed Registration page for Angular 5
+
+## Update 1.8.8.0 (Angular 5x)
+- Upgraded to Angular 5.0.3 (please update your 4.5 to 5.x to auto resolve bugs); we will be dropping support for Angular 4 in next update
+- Updated angular-cli@1.5.4
+- Updated jquery@3.2.1
+- Updated other dependencies
+- Fixed bugs: Widget position, jquery color npm bug, the project builds a little faster now.
+
+
+### Patch 1.8.7.5 (Angular)
+- Fixed package.json with correct moment.js version
+
+### Patch 1.8.7.4 (Angular)
+- Update Angular version
+- Fixed angular bugs during build
+- Now showing fixed dependencies
+
+### Patch 1.8.7.3 (ReactJS)
+- Update to react 15.5
+- Webpack 2.6
+- Freeze dependencies
+- Refactor reflux examples
+- ES6 class components
+- Refactor to eliminate deprecation warnings
+- More plugin updates
+- OVERALL: 35 files changed, 370 lines inserted | 446 lines deleted
+
+### Patch 1.8.7.2
+- Added AOT support
+- Update ngx-bootstrap@2, dygraphs@2.0.0 and other plugins
+- Updated dependencies to latest
+
+### Patch 1.8.7.1
+- Rectified inconsistency between the versions listed in the CHANGELOG.md (0.4.3) in the angular 4 folder and the version in the package.json (0.3.2)
+- Updated ngx-bootstrap, datatables-responsive, default include polyfills
+
+### Update 1.8.7.0
+- Updated to Angular 4.0
+- Updated npm packages and angular dependencies
+- fixed css bugs for IE
+- fixed other bugs and issues
+
+### Patch 1.8.6.3
+- Fixed some angularJS 2.x glitches
+- Added support for angular-cli for AngularJS 2.x
+
+### Patch 1.8.6.2
+- Fixed npm build issues for AngularJS 2.x
+- Resolved bugs and conflicts for AngularJS 2.x
+- Added missing pollyfills for ReactJS and AngularJS 2.x
+- Please see the Readme.md file for further instructions
+
+### Patch 1.8.6.1
+- Fixed bugs that caused error during reactJS npm install.
+
+### Patch 1.8.6.0
+- navigation items inside config  
+- voice control redux
+- webpack new loaders syntax
+- migration to webpack 2 
+- lazy loading
+- react 15.3
+- d3 map widget
+- some major cleanups
+
+### Patch 1.8.5.1
+- *ADDED* Seed Project for Angular 2.0
+- *ADDED* Lite Version for Angular 2.0
+- *FIXED* Issues with Duallist Box (RTL), Dropzone Error, Image Cropping Error for Angular 2.0 Full version
+
+### Update 1.8.5
+*Mainly focused on Angular version Update*
+
+- *New!* AngularJS 2.0 Version (complete rebuild)
+- Updated all plugins for Angular 2.0 Version
+
+
+### Update 1.8.4
+*Mainly focused on .Net version*
+
+- New .NET Core 1.0 Full project
+- New .NET Core 1.0 Seed Project
+- NOTE: JS plugins for .Net Core have NOT been updated in this release
+
+
+### Update 1.8.3 
+*Mainly focused on new version "Ruby on Rails and PHP version update*
+
+We are excited to the new release of Ruby on rails version for SmartAdmin. The demo can be seen here: https://smartadmin-full-version.herokuapp.com/
+
+- CSS fixes
+- Javascript fixes
+
+The new version includes:
+- New RubyOnRails (ruby version 5.0.0.1)
+
+
+PHP Update includes:
+- Php version update
+- Php Plugin updates (updated all jquery plugins and added changes)
+
+
+
+
+
+### Update 1.8.2 
+*Mainly focused on HTML and Ajax version (all plugins updated to its latest)*
+
+**Plugin Updates**
+
+- **Updated** Bootstrap Duallistbox to **v3.0.5**
+- **Updated** Bootstrap-progressbar  to **v0.9.0**
+- **Updated** Bootstrap-tagsinput to **v0.8.0**
+- **Updated** bootstrap-timepicker to **v0.5.2**
+- **Updated** twitter-bootstrap-wizard to **v1.3.2**
+- **Updated** Chartjs to **v2.0.0-beta2**
+- **Updated** datatables.responsive.js (customized) to **latest**
+- **Updated** DataTables Bootstrap 3 integration to **v1.3.1**
+- **Updated** DataTables ColReorder to **v1.3.1**
+- **Updated** jquery.dataTables.js to **v1.10.11**
+- **Updated** Dropzone to **v4.3.0**
+- **Updated** Dygraph to **v1.1.1**
+- **Updated** easyPieChart to **v2.1.7**
+- **Updated** FastClick to **v1.0.6**
+- **Updated** Fuel UX Wizard to **v3.14.1**
+- **Updated** FullCalendar to **v2.6.1**
+- **Updated** ion-rangeslider to **v2.1.2**
+- **Updated** Jcrop to **v2.0.4**
+- **Updated** jQuery Grid **v4.6.0**
+- **Updated** jQuery Form Plugin to **v3.51.0**
+- **Updated** Nestable jQuery to ***latest***
+- **Updated** jQuery UI Touch Punch to **v0.2.3**
+- **Updated** jQuery Validation Plugin to **v1.14.1**
+- **Updated** jQuery Knob to **v1.2.12**
+- **Updated** bootstrap-markdown to **v2.10.0**
+- **Updated** jQuery Masked Input Plugin to **v1.4.1**
+- **Updated** bootstrap-maxlength to **v1.7.0**
+- **Updated** moment.js to **v2.11.2**
+- **Updated** morris.js to **v0.5.1**
+- **Updated** raphael to **v2.1.4**
+- **Updated** bootstrap-multiselect.js to **v0.9.13**
+- **Updated** jquery.nouislider.js to **v8.3.0**
+- **Updated** PaceJs to **v1.0.2**
+- **Updated** Select2 to **v4.0.1**
+- **Updated** jquery.slimscroll.js to **v1.3.8**
+- **Updated** summernote.js to **v1.3.8**
+- **Updated** typeahead.js to **v0.11.1**
+
+**Other updates**
+
+- Updated related SASS and LESS files for all plugins
+- Added missing SASS files
+- Fixed a few CSS issues
+- Fixed Glass theme bug
+- Updated FontAwesome to latest
+- Updated Docs
+
+***Some plugins require DOM changes, please refer to the docs for upgrade instructions!***
+
+Detailed changelog here: http://tinyurl.com/h2f7ppq
+
+### Update 1.8.1
+
+If you are seeing a height issue in the GoogleMaps page, please make sure to have the following directive during the build process: http://bit.ly/1PVGFuA 
+
+*.ReactJS fixes*
+
+- Fixed Mark Down editor issue
+- Fixed lodash conflicts 
+
+*.Net MVC fixes*
+
+- Some CSS fixes
+- Added HighChartTable page
+- Removed Nuget Packages from download package due to possible security warning during download (if anyone should still experience issues with Nuget restore please feel free to contact me on support)
+- Added static content path for webconfig
+
+*AngularJS Fixes:*
+
+- Update dropzone build
+- Updated dropzone to 4.2
+- Fixed dropdowns issue
+- Fixed todo.setState 
+- Fixed App.config skin issue 
+- Fixed Google map (angular googlemap integration)
+- Amended CSS fix
+- Fixed Lock page issue
+- Improved datepicker directive
+
+### Update 1.8.0 
+
+- SeedProject for HTML version
+- SeedProject for PHP version
+- SeedProject for Ajax version
+- SeedProject for .NetMVC version (will include both MVC5 and MVC6 RC1)
+- SeedProject for AngularJS version
+- SeedProject for ReactJS version 
+- ReactJS full version (beta) 
+- MVC6 RC1 full version 
+- Updated AngualrJS to latest stable 1.4.8 
+- AngularJS: Split code to two layers directives for plugins  (system layer)  and presentation layer   ( routing, pages etc...) - 
+- AngularJS: Added Bower package manager 
+- Various improvements and a new front-end page
+- Add E-commerce pages
+- Add a new dashboard variation (social board) 
+- Update to latest version of Bootstrap
+- Update docs 
+- Add Material design skin (beta)
+- Added HighChartTable
+
+### Update 1.7.0 
+- Complete folder structure changes to the AngularJS version
+- requireJS replaced with custom lazy load system
+- removed all couchPotato stuff: classic style declarations for angular controllers, directives etc
+- replaced grunt with gulp(http://gulpjs.com) is used for building application (can be re-written to grunt, but gulp is - less verbose and faster)
+- removed bower.json (will be added in later)
+- Update to bootstrap 3.3.4 
+- Update the major plugins for the HTML, Ajax, and PHP versions
+
+### Patch 1.5.2 
+
+- Updated copyright information and legal notice 
+- Fix minor bugs in AngularJS version
+
+(please note there was a **small typo** in this patch. For the fix please open ‘smartadmin-production.less’ and ‘smartadmin-plugins.less’ files and edit @import “**3.3/mixins.less**” to @import “**3.3.1/mixins.less**”)
+
+### Patch 1.5.1
+
+- Fixed AngularJS bugs
+- Fixed CSS issues
+- Fixed package.json for Ajax, HTML, ASP.Net, and PHP versions
+- Added app.config.js for AngularJS version
+- Updated PHP_version (html) - fixed chat function
+- Updated Docs
+
+### Update 1.5 - see docs for upgrade instructions
+
+- **NEW! Landing page**
+- Revamped documentation 
+- Updated Bootstrap Library to v 3.3 
+- Complete Modularized AngluarJS structure, getting you more closer to integrate with a backend 
+- Solid Workflow with Yeoman, dependencies (plugins) management with Twitter Bower, tasks automation with Grunt just like Twitter
+- AngularJS: Lazy loading 
+- AngularJS: RequireJS 
+- AngularJS: RESTful API with JSON files 
+- AngularJS: Modularized template structure 
+- AngularJS: Angular Router (with nested routes) 
+- AngularJS: Internationalization (i18n) and Localization (l10n) support. 
+- AngularJS: Directives for all major plugins (80+ directives)
+- Add ASP.NET MVC5 Version of SmartAdmin 
+- Add more app views
+- Add new skin that shows more contrast, skin name: "PixelSmash" 
+- Add new skin that shows a variation of different design techniques, skin name: "Glass" 
+- Added RTL support 
+- Added print friendly CSS for invoice page 
+- Landing page (available in static HTML and .NET versions) 
+- Add a complex and advanced chat system UI (beta) 
+- Updated all key plugins to the latest version
+- Added debug mode for all of our home grown plugins, enabling it by debugState = true through app.config.js 
+- Added smartadmin-skins.less (beta) 
+- Added Chart.js 
+- Added Duellist Box 
+- Add colorblind CSS (experimental) This will cover the following: Deuternopia, Protanopia, Triitanopia, and NoColor 
+- The "smartadmin-production" CSS file was split into two: "smartadmin-production-plugin.css" and "smartadmin-production.css" 
+(This step was necessary as IE cannot read more than 4096 selectors from a single CSS file. This also fixed a lot of CSS related issues that users faced in IE9 for top menu) 
+-  Fixed minor CSS bugs (LESS and SASS files were updated accordingly) 
+- Added the correct color reference for SASS 
+- Updated all PHP SmartUI Classes and fixed all reported issues 
+- Added pagedestroy function, this function sits within the ajax page and called just before a new page is loaded. You can now add destroy calls for any instances and prevent further memory leak. We have also added examples of its use in most of the pages of SmartAdmin 
+- Added deleteMsg param for Jarviswidgets. You can now change the delete message to your selected langauge 
+- Upgraded to Jquery 2.1.1, added JQ map file for offline works 
+- Fixed a major memory leak issue for JarvisWidgets, also the performance of the widgets was increased slightly. 
+- Fixed sound on/off bug for Smart Notification 
+- Fixed ajax error log (it will now display appropriate error messages for all ajax calls) 
+
+
+### Patch 1.4.1  - see docs for upgrade instructions
+
+- Update plugins: pace.js, select2, bootstrap, progressbar, summernote
+- Added SASS Files (in addition to LESS files)
+- Responsive Datatables
+- Google Voice Command implementation
+- JS: Fixed memory leaks for a number of DOM elements
+- JS: Added a new file app.config.js (all app configurations has been moved here for easy access)
+- JS: Restructured app.js for HTML/AJAX/PHP
+?- CSS: Fixed minor CSS bugs 
+- Updated bootstrap core to latest version (3.2)
+
+###Update 1.4 - see docs for upgrade instructions
+
+- Fixed loading cog for AJAX pages
+- Fixed all IE11 related bugs and compaibility issues 
+- Removed ID #project-context and replaced with class .project-context 
+- Fixed vertical scrolling issue for fixed left navigation 
+- The function "nav_page_height()" has been made redundant
+- Fixed the double scroll bar bug for bootstrap modals 
+- Fixed CSS issue with bg-color pseudo classes that was conflicting with tabs 
+- Resolved compatibility issue with HighCharts 
+- Fixed Fullscreen function for HTML Version
+- Fixed .NET MVC bug for form inputs 
+- Fixed IE11 glitch for checkURL in app.js (AJAX Version)
+- Scrollbar overlay in IE10 - this was happening due to bootstrap's @-ms-viewport { width: device-width; } which was initially intended for Windows 8 Metro. CSS has now been adjusted. IMPORTANT: Please note we have disabled this fix by default, to enable please edit "ie-fix.less" and recompile your CSS.
+- For AJAX version on mobile view, selecting the items from the top #shortcut does not auto hide the menu Solution: we have now added data-attributes which you can use to close the navigation 
+- Dygraphs integration 
+- jQgrid Integration
+- Upgrade to FontAwesome Library 4.1 
+- Upgrade Datatable plugin to v1.10 
+- Add Google Map custom pins with dynamic XML data (see google maps page and pins.xml) 
+- Add flags page (showing all the flags of the world with a easy copy and paste reusable code) 
+- Expand/Collapse table row
+- Added functional data-attributes for Collapse Menu, Reset Widgets, User Logout, Toggle Shortcut, Minify Menu, and Full Screen - Functions 
+- Localize files and assets with Grunt (Tasks include: minify CSS & JS files, compile LESS, concatinate JS files - more tasks can be added as required)  Note: We do not provide any tutorial to setup grunt as there are many videos and tutorials readily available on the internet
+- Bootstrap modal content is now loaded dynamically for the AJAX version
+- Added page footer (options: fixed, static, disable footer)
+- Reduced page rendering time for mobile view by removing layout related javascripts and re-adjusting the CSS
+- Added PHP Version of SmartAdmin
+- Added Horizontal Navigation Option
+- Add AngularJS Version of SmartAdmin
+- Updated and organized LESS files and its structure
+
+###Update 1.3 
+
+- Upgrade to Bootstrap Framework 3.1.1
+- Added Documentation
+- Added 1 additional skin
+- Added pages: Profile page, Forum page, Timeline page, Forgot password page
+- Added Fullscreen function (does not support IE9)
+- Updated app.js to have url with query strings like the google search - available only for the ajax version
+- Added Splash screens and home screen icons for iDevices
+- Slight DOM change was made to <div class="login-info">...</div>. CSS/LESS and CSS skins was updated accordingly. This was done to truncate long user names
+- Added additional Bootstrap form elements (see the new section "Flexible Input fields with icons" inside the Bootstrap Form Elements page)
+- Added logout message localization handler using data-attribute
+- Define file path variable for sound files
+- Fixed various CSS bugs and memory leaks
+- Added PHP Version (beta release)
+
+###Update 1.2 
+
+- Added non-ajax version for SmartAdmin
+- Updated jarvis.widget to work with non-ajax page view (Jarvis widget now includes onSave and OnLoad hooks to be saved into the database) 
+- app.js has been significantly reworked - users can switch on / off plugins and features more easily
+- LESS files are now more modular, new variables are added for better control
+- Update Select2 to latest version (3.4.5)
+- All ajaxed pages now scroll to top when loading a new page
+- Nav menu clicks now updates title
+- Added new custom plugin "SmartClick" - this will counter the 300ms delay click in iDevices (this is turned off by default - see app.js to turn it on)
+- Fixed CSS issue with X-editable date popup
+- Fixed Android mobile menu bug
+- Typo in main.less file that resulted certain @media width content to not adjust properly on iPad view
+- Function for drawing breadcrumb was running for all ajax calls - this now checks the container and runs the function when appropriate
+- Removed CSS3 wobble animation from menu items to save memory on touch devices
+- Removed animation from menu slide in / out to save mobile memory
+- Added the 3 missing images to the image library (also deleted reference to images in CSS that were not being used) 
+
+###Update 1.1 
+
+- SmartAdmin theme is now *built with LESS* - previous CSS files are deprecated!
+- *Added 2 new Skins* - Dark Elegance and Ultra White (see the settings panel - cog icon top right corner )
+- Improved repainting for touch devices 
+- Fixed ajax bug and all IE 9 related issues (IE users will need to close the WrapBootstrap iFrame when viewing the demo)
+- Ajax scripts now load faster
+
+###Update 1.0
+
+- Initial release

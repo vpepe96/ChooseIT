@@ -1,0 +1,333 @@
+# Japanese translations for smartadmin package.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the smartadmin package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: smartadmin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2016-09-11 23:17+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"\n"
+
+msgid "3rd Level"
+msgstr "3 º Nível"
+
+msgid "Analytics Dashboard"
+msgstr ""
+
+msgid "App Layouts"
+msgstr ""
+
+msgid "App Settings"
+msgstr ""
+
+msgid "App Views"
+msgstr "アプリケーション・ビュー"
+
+msgid "Blank Page"
+msgstr "空白ページ"
+
+msgid "Blog"
+msgstr ""
+
+msgid "Bootstrap Editors"
+msgstr "ブートストラップ編集者"
+
+msgid "Bootstrap Form Elements"
+msgstr "ブートストラップフォーム要素"
+
+msgid "Bootstrap Form Validation"
+msgstr "ブートストラップフォームバリデーション"
+
+msgid "Buttons"
+msgstr "ボタン"
+
+msgid "CK Editor"
+msgstr "CKエディタ"
+
+msgid "Calendar"
+msgstr "カレンダー"
+
+msgid "Chart.js"
+msgstr ""
+
+msgid "Cool Features!"
+msgstr ""
+
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+msgid "Data Tables"
+msgstr "データテーブル"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Documentation"
+msgstr "ドキュメンテーション"
+
+msgid "Dropzone"
+msgstr "ドロップゾーン"
+
+msgid "Dygraphs"
+msgstr "Dygraphs"
+
+msgid "E-Commerce"
+msgstr "Eコマース"
+
+msgid "EasyPieCharts"
+msgstr ""
+
+msgid "Error 404"
+msgstr "エラー404"
+
+msgid "Error 500"
+msgstr "エラー500"
+
+msgid "Expand"
+msgstr "拡大する"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Find reports and more"
+msgstr "レポートや詳細を見つける"
+
+msgid "Flags"
+msgstr ""
+
+msgid "Flot Chart"
+msgstr "FLOTチャート"
+
+msgid "Font Awesome"
+msgstr "素晴らしいフォント"
+
+msgid "Forgot Password"
+msgstr ""
+
+msgid "Form Plugins"
+msgstr "フォームプラグイン"
+
+msgid "Forms"
+msgstr "フォーム"
+
+msgid "Forum Layout"
+msgstr "フォーラムレイアウト"
+
+msgid "GMap Skins"
+msgstr "GMapのスキン"
+
+msgid "Gallery"
+msgstr "ギャラリー"
+
+msgid "General Elements"
+msgstr "般的な要素"
+
+msgid "General View"
+msgstr ""
+
+msgid "Glyph Icons"
+msgstr "グリフのアイコン"
+
+msgid "Graphs"
+msgstr "グラフ"
+
+msgid "Grid"
+msgstr "グリッド"
+
+msgid "HighchartTable"
+msgstr ""
+
+msgid "Icons"
+msgstr "アイコン"
+
+msgid "Image Cropping"
+msgstr ""
+
+msgid "Invoice"
+msgstr "インボイス"
+
+msgid "Item #2"
+msgstr "Item #2"
+
+msgid "Item #2.1.1"
+msgstr "Item #2.1.1"
+
+msgid "Item #3"
+msgstr "PONTO TRÊS:"
+
+msgid "Item #4 (disabled)"
+msgstr ""
+
+msgid "JQuery UI"
+msgstr "jQueryのUIの"
+
+msgid "Jquery Grid"
+msgstr ""
+
+msgid "Landing Page"
+msgstr ""
+
+msgid "Locked Screen"
+msgstr "ロックされた画面"
+
+msgid "Login"
+msgstr "ログイン"
+
+msgid "Miscellaneous"
+msgstr "雑多"
+
+msgid "Morris Charts"
+msgstr "モリスチャート"
+
+msgid "Msgs"
+msgstr "メッセージ"
+
+msgid "Nestable Lists"
+msgstr "ネスト可能なリスト"
+
+msgid "Normal Tables"
+msgstr "通常のテーブル"
+
+msgid "Orders"
+msgstr ""
+
+msgid "Outlook"
+msgstr "見通し"
+
+msgid "Post View"
+msgstr ""
+
+msgid "Prebuilt Skins"
+msgstr ""
+
+msgid "Pricing Tables"
+msgstr "価格表"
+
+msgid "Products Detail"
+msgstr ""
+
+msgid "Products View"
+msgstr ""
+
+msgid "Profile"
+msgstr "プロフィール"
+
+msgid "Projects"
+msgstr ""
+
+msgid "Recent projects"
+msgstr "最近のプロジェクト"
+
+msgid "Register"
+msgstr "レジスタ"
+
+msgid "Search Page"
+msgstr "検索ページ"
+
+msgid "Six Level Menu"
+msgstr "シックス·レベルメニュ"
+
+msgid "Smart Chat API"
+msgstr ""
+
+msgid "Smart Form Elements"
+msgstr "スマートフォーム要素"
+
+msgid "Smart Form Layouts"
+msgstr "スマートフォームのレイアウト"
+
+msgid "Smart Form Validation"
+msgstr "スマートフォームのバリデーション"
+
+msgid "SmartAdmin Intel"
+msgstr "SmartAdminインテル"
+
+msgid "Social Wall"
+msgstr ""
+
+msgid "Sparklines"
+msgstr ""
+
+msgid "Sub #2.1"
+msgstr "Sub #2.1"
+
+msgid "Tables"
+msgstr "テーブル"
+
+msgid "Tasks"
+msgstr "タスク"
+
+msgid "Timeline"
+msgstr "タイムライン"
+
+msgid "Topic View"
+msgstr ""
+
+msgid "Tree View"
+msgstr "ツリービュー"
+
+msgid "Typography"
+msgstr "タイポグラフィ"
+
+msgid "UI Elements"
+msgstr "UI要素"
+
+msgid "User"
+msgstr ""
+
+msgid "User|Current sign in at"
+msgstr ""
+
+msgid "User|Current sign in ip"
+msgstr ""
+
+msgid "User|Email"
+msgstr ""
+
+msgid "User|Encrypted password"
+msgstr ""
+
+msgid "User|Last sign in at"
+msgstr ""
+
+msgid "User|Last sign in ip"
+msgstr ""
+
+msgid "User|Remember created at"
+msgstr ""
+
+msgid "User|Reset password sent at"
+msgstr ""
+
+msgid "User|Reset password token"
+msgstr ""
+
+msgid "User|Sign in count"
+msgstr ""
+
+msgid "Widgets"
+msgstr "ウィジェット"
+
+msgid "Wizards"
+msgstr "ウィザーズ"
+
+msgid "beta"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "notify"
+msgstr ""
+
+msgid "responsive"
+msgstr ""

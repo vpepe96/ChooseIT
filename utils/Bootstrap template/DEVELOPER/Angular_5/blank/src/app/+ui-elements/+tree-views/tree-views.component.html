@@ -1,0 +1,115 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['UI Elements', 'Tree View']" icon="desktop" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+  <!-- widget grid -->
+  <sa-widgets-grid>
+    <!-- row -->
+    <div class="row">
+      <!-- NEW WIDGET START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [editbutton]="false" color="orange">
+          <!-- widget options:
+          usage: <div sa-widget id="wid-id-0" [editbutton]="false">
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-lg fa-calendar"></i> </span>
+            <h2>Organizing view </h2>
+          </header>
+          <!-- widget div-->
+          <div>            <!-- widget content -->
+            <div class="widget-body">
+              <div class="widget-body-toolbar bg-color-white">
+                <form class="form-inline" role="form">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-10">
+                      <div class="form-group">
+                        <label class="sr-only">Task title</label>
+                        <input [(ngModel)]="task" name="task" class="form-control input-sm" placeholder="My Task">
+                      </div>
+                      <div class="form-group">
+                        <label class="sr-only">Pick Week</label>
+                        <select [(ngModel)]="week" name="week" class="form-control input-sm">
+                          <option>Week 1</option>
+                          <option>Week 2</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="sr-only">Days</label>
+                        <select [(ngModel)]="day" name="day" class="form-control input-sm">
+
+                          <option [value]="day" *ngFor="let day of days">{{day}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-2 text-align-right">
+                      <button (click)="add()" class="btn btn-warning btn-xs">
+                        <i class="fa fa-plus"></i> Add
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div >
+                <sa-tree-view [items]="demo1" (change)="changeLstener($event)" ></sa-tree-view>
+              </div>
+            </div>
+            <!-- end widget content -->
+          </div>
+          <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+      </article>
+      <!-- WIDGET END -->
+      <!-- NEW WIDGET START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [editbutton]="false" color="blue">
+          <!-- widget options:
+          usage: <div sa-widget id="wid-id-0" [editbutton]="false">
+          [colorbutton]="false"
+          [editbutton]="false"
+          [togglebutton]="false"
+          [deletebutton]="false"
+          [fullscreenbutton]="false"
+          [custombutton]="false"
+          [collapsed]="true"
+          [sortable]="false"
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-sitemap"></i> </span>
+            <h2>Simple View </h2>
+          </header>
+          <!-- widget div-->
+          <div>            <!-- widget content -->
+            <div class="widget-body">
+              <div class="tree smart-form">
+                <sa-tree-view [items]="demo2" (change)="changeLstener($event)"></sa-tree-view>
+              </div>
+            </div>
+            <!-- end widget content -->
+          </div>
+          <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+      </article>
+      <!-- WIDGET END -->
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+    </div>
+    <!-- end row -->
+  </sa-widgets-grid>
+  <!-- end widget grid -->
+</div>

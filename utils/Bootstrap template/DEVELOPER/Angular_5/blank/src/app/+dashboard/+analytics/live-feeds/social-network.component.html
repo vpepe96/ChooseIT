@@ -1,0 +1,36 @@
+<div >
+  <div class="widget-body-toolbar bg-color-white">
+
+    <form class="form-inline" role="form">
+
+      <div class="form-group">
+        <label class="sr-only" for="s123">Show From</label>
+        <input type="email" class="form-control input-sm" id="s123"
+               placeholder="Show From"/>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control input-sm" id="s124"
+               placeholder="To"/>
+      </div>
+
+      <div class="btn-group hidden-phone pull-right">
+        <a class="btn dropdown-toggle btn-xs btn-default"
+           data-toggle="dropdown"><i
+          class="fa fa-cog" ></i> More <span class="caret"> </span> </a><ul class="dropdown-menu pull-right">
+        <li>
+          <a (click)="(null)"><i class="fa fa-file-text-alt" ></i> Export to PDF</a>
+        </li>
+        <li>
+          <a (click)="(null)"><i class="fa fa-question-sign" ></i> Help</a>
+        </li>
+      </ul>
+      </div>
+
+    </form>
+
+  </div>
+  <div class="padding-10">
+    <sa-flot-chart class="chart-large has-legend-unique" [data]="statsData" [options]="statsChartOptions" ></sa-flot-chart>
+  </div>
+
+</div>

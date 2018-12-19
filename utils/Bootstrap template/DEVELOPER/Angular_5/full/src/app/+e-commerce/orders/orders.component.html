@@ -1,0 +1,110 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['E-Commerce', 'Orders']" icon="shopping-cart"
+                        class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+
+    <sa-shopping-cart></sa-shopping-cart>
+  </div>
+  <!--
+      The ID "widget-grid" will start to initialize all widgets below
+      You do not need to use widgets if you dont want to. Simply remove
+      the <section></section> and you can use wells or panels instead
+      -->
+  <!-- widget grid -->
+  <sa-widgets-grid>
+    <!-- row -->
+    <div class="row">
+      <!-- NEW WIDGET START -->
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget class="well">
+          <!-- widget options:
+              usage: <div sa-widget id="wid-id-0" [editbutton]="false">
+              [colorbutton]="false"
+              [editbutton]="false"
+              [togglebutton]="false"
+              [deletebutton]="false"
+              [fullscreenbutton]="false"
+              [custombutton]="false"
+              [collapsed]="true"
+              [sortable]="false"
+          -->
+          <header>
+            <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+
+            <h2>Widget Title </h2>
+          </header>
+          <!-- widget div-->
+          <div>
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+              <sa-datatable
+                [options]="{
+                  ajax: 'assets/api/e-commerce/orders.json',
+                  columns: [
+                    {data: 'orderId'},
+                    {data: 'customerId'},
+                    {data: 'purchase'},
+                    {data: 'delivery'},
+                    {data: 'basePrice'},
+                    {data: 'postalZip'},
+                    {data: 'status'}
+                  ]
+              }"
+                filter="true" paginationLength="true"
+                tableClass="display projects-table table table-striped table-bordered table-hover"
+                width="100%">
+                <thead>
+                <tr>
+                  <th class="hasinput" style="width:10%">
+                    <input type="text" class="form-control" placeholder="Find ID">
+                  </th>
+                  <th class="hasinput" style="width:12%">
+                    <input type="text" class="form-control" placeholder="Filter Cust ID">
+                  </th>
+                  <th class="hasinput icon-addon">
+                    <input id="dateselect_filter" type="text" placeholder="Purchase Date"
+                           class="form-control datepicker" data-dateformat="yy/mm/dd">
+                    <label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15"
+                           rel="tooltip" title="" data-original-title="Purchase Date"></label>
+                  </th>
+                  <th class="hasinput">
+                    <input type="text" class="form-control" placeholder="Delivery Date">
+                  </th>
+                  <th class="hasinput" style="width:12%">
+                    <input type="text" class="form-control" placeholder="Base Price Filter">
+                  </th>
+                  <th class="hasinput" style="width:10%">
+                    <input type="text" class="form-control" placeholder="ZipCode Filter">
+                  </th>
+                  <th class="hasinput" style="width:10%">
+                    <input type="text" class="form-control" placeholder="Status Filter">
+                  </th>
+
+                </tr>
+                <tr>
+                  <th data-class="expand">Order ID</th>
+                  <th>Cust ID / Phn</th>
+                  <th data-hide="phone, tablet">Purchase</th>
+                  <th data-hide="phone, tablet">Delivery</th>
+                  <th data-hide="phone,tablet">Base Price</th>
+                  <th data-hide="phone,tablet">Postal/Zip</th>
+                  <th>Status</th>
+                </tr>
+                </thead>
+
+              </sa-datatable>
+            </div>
+            <!-- end widget content -->
+          </div>
+          <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+      </article>
+      <!-- WIDGET END -->
+    </div>
+    <!-- end row -->
+  </sa-widgets-grid>
+  <!-- end widget grid -->
+</div>

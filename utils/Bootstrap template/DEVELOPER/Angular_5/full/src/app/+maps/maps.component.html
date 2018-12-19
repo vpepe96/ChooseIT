@@ -1,0 +1,49 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Google Map', 'Custom Skins']" icon="map-marker"
+                        class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats class="hidden-3xs"></sa-stats>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-default" [ngClass]="{active: activeStyle == style}" (click)="setStyle(style)"
+              *ngFor="let style of styles">{{style.name}}
+      </button>
+    </div>
+    <hr>
+  </div>
+  <!-- @link: widgetGrid directive  -->
+  <sa-widgets-grid >
+    <!-- row -->
+    <div class="row">
+      <!-- NEW WIDGET START -->
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <!-- @link: jarvisWidget -->
+        <div sa-widget   [editbutton]="false" [deletebutton]="false" [fullscreenbutton]="false" color="white">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-map-marker"></i> </span>
+            <h2>Map demo</h2>
+          </header>
+          <!-- widget div-->
+          <div   >
+            <!-- widget content -->
+            <div class="widget-body no-padding" >
+
+              <div id="map-canvas"  >
+
+              </div>
+            </div>
+            <!-- end widget content data-gmap-src="xml/gmap/pins.xml" -->
+          </div>
+          <!-- end widget div -->
+        </div>
+        <!-- end widget -->
+      </article>
+      <!-- WIDGET END -->
+    </div>
+    <!-- end row -->
+  </sa-widgets-grid>
+  <!-- end widget grid -->
+</div>

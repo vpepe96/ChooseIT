@@ -1,0 +1,37 @@
+<div>
+
+  <div class="widget-body-toolbar bg-color-white smart-form" id="rev-toggles">
+
+    <div class="inline-group">
+
+      <label for="gra-0" class="checkbox">
+        <input type="checkbox" id="gra-0" [(ngModel)]="state.targetsShow" (ngModelChange)="updateData()" />
+        <i></i> Target </label>
+      <label for="gra-1" class="checkbox">
+        <input type="checkbox" id="gra-1" [(ngModel)]="state.actualsShow" (ngModelChange)="updateData()"/>
+        <i></i> Actual </label>
+      <label for="gra-2" class="checkbox">
+        <input type="checkbox" id="gra-2" [(ngModel)]="state.signupsShow" (ngModelChange)="updateData()"/>
+        <i></i> Signups </label>
+    </div>
+
+    <div class="btn-group hidden-phone pull-right">
+      <a class="btn dropdown-toggle btn-xs btn-default" data-toggle="dropdown"><i
+        class="fa fa-cog"></i> More <span class="caret"> </span> </a>
+      <ul class="dropdown-menu pull-right">
+        <li>
+          <a (click)="(null)"><i class="fa fa-file-text-alt"></i>> Export to PDF</a>
+        </li>
+        <li>
+          <a (click)="(null)"><i class="fa fa-question-sign"></i> Help</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="padding-10">
+    <sa-flot-chart class="chart-large has-legend-unique"
+                   [data]="revenueData" [options]="revenueChartOptions"></sa-flot-chart>
+  </div>
+</div>

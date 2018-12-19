@@ -1,0 +1,33 @@
+<section class="row">
+  <div class="col-sm-8">
+    <jcrop [storeId]="storeId"
+           [options]="{
+           showThumbnail: true,
+           thumbnailSize: 200,
+           aspectRatio: 0
+           }"
+           src="assets/img/superbox/superbox-full-10.jpg" width="600" height="400"></jcrop>
+  </div>
+  <div class="col-sm-4">
+    <jcrop-preview [storeId]="storeId"></jcrop-preview>
+
+    <fieldset>
+
+      <br>
+      <legend>Aspect Ratio</legend>
+      <jcrop-option-radio group="aspectRatio" checked="true" [options]="{
+                   aspectRatio: 0
+                   }" [storeId]="storeId" label="None"></jcrop-option-radio>
+      <jcrop-option-radio group="aspectRatio" [options]="{
+                   aspectRatio: 1.4
+                   }" [storeId]="storeId" label="Wide"></jcrop-option-radio>
+      <jcrop-option-radio group="aspectRatio" [options]="{
+                   aspectRatio: 0.8
+                   }" [storeId]="storeId" label="Tall"></jcrop-option-radio>
+
+      <br/>
+    </fieldset>
+
+  </div>
+
+</section>

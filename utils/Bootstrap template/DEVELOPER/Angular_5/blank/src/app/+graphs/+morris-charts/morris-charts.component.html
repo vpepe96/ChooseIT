@@ -1,0 +1,327 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs icon="bar-chart-o" [items]="['Graphs', 'Morris Charts']" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+  <sa-widgets-grid>
+    <div class="row" *ngIf="morrisDemoData">
+
+      <article class="col-sm-12 col-md-12 col-lg-12">
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+            <h2>Sales Graphs</h2>
+          </header>
+          <div>
+            <div class="widget-body no-padding">
+              <sa-morris-graph [data]="morrisDemoData.sales"
+                               type="area"
+                               [options]="{
+                              xkey: 'period',
+                              ykeys: ['iphone', 'ipad', 'itouch'],
+                              labels: ['iPhone', 'iPad', 'iPod Touch'],
+                              pointSize: [2],
+                              hideHover: 'auto'
+                           }"
+              ></sa-morris-graph>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Area Graph</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+              <sa-morris-graph [data]="morrisDemoData['area-demo']"
+                               type="area"
+                               [options]="{
+                              xkey: 'x',
+                              ykeys: ['y', 'z'],
+                              labels: ['Y', 'Z']
+
+              }"></sa-morris-graph>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Bar Graph</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+              <sa-morris-graph [data]="morrisDemoData['bar-demo']"
+                               type="bar"
+                               [options]="{
+                              xkey: 'x',
+                              ykeys: 'y',
+                              labels: 'Y',
+                              barColors: barColorsDemo
+
+              }"></sa-morris-graph>
+
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Normal Bar Graph</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+
+              <sa-morris-graph [data]="morrisDemoData['normal-bar-demo']"
+                               type="bar"
+                               [options]="{
+                              xkey: 'x',
+                              ykeys: ['y', 'z', 'a'],
+                              labels: ['Y', 'Z', 'A']
+
+              }"></sa-morris-graph>
+
+
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Stacked Bar Graph</h2>
+          </header>
+          <div>
+            <div class="widget-body no-padding">
+
+              <sa-morris-graph [data]="morrisDemoData['stacked-bar-demo']"
+                               type="bar"
+                               [options]="{
+                              xkey: 'x',
+                              ykeys: ['y', 'z', 'a'],
+                              labels: ['Y', 'Z', 'A'],
+                              staked: true
+
+              }"></sa-morris-graph>
+
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Year Graph</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+              <sa-morris-graph [data]="morrisDemoData['line-year-demo']"
+                               type="line"
+                               [options]="{
+                              xkey: 'period',
+                              ykeys: ['licensed', 'sorned'],
+                              labels: ['Licensed', 'SORN']
+              }"></sa-morris-graph>
+
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Donut Graph</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+              <sa-morris-graph [data]="morrisDemoData['donut-demo']"
+                               type="donut"
+                               [options]="{
+                              formater: percentageFormat
+              }"></sa-morris-graph>
+
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Time Graph</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+
+              <sa-morris-graph [data]="morrisDemoData['line-time-demo']"
+                               type="line"
+                               [options]="{
+                              xkey: 'period',
+                              ykeys: ['licensed', 'sorned'],
+                              labels: ['Licensed', 'SORN'],
+                              events: ['2011-04', '2011-08']
+              }"></sa-morris-graph>
+
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Line Graph A</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+              <sa-morris-graph [data]="morrisDemoData['line-graph-a-demo']"
+                               type="line"
+                               [options]="{
+                              xkey: 'period',
+                              ykeys: ['a'],
+                              labels: ['Series A'],
+                              units: '%'
+              }"></sa-morris-graph>
+
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Line Graph B</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+              <sa-morris-graph [data]="morrisDemoData['line-graph-b-demo']"
+                               type="line"
+                               [options]="{
+                              xkey: 'period',
+                              ykeys: ['licensed', 'sorned', 'other'],
+                              labels: ['Licensed', 'SORN', 'Other'],
+                              xLabels: 'day',
+                              xLabelFormat: dateFormat
+              }"></sa-morris-graph>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="col-xs-12 col-sm-6">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>No Grid Graph</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+              <sa-morris-graph [data]="morrisDemoData['no-grid-demo']"
+                               type="line"
+                               [options]="{
+                              xkey: 'period',
+                              ykeys: ['licensed', 'sorned'],
+                              labels: ['Licensed', 'SORN'],
+                              grid: false
+              }"></sa-morris-graph>
+
+
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="col-xs-12 col-sm-12">
+
+        <div sa-widget editbutton={false}>
+          <header>
+            <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
+
+            <h2>Line Graph C</h2>
+          </header>
+
+          <div>
+            <div class="widget-body no-padding">
+              <sa-morris-graph [data]="morrisDemoData['line-graph-c-demo']"
+                               type="line"
+                               [options]="{
+                              xkey: 'elapsed',
+                              ykeys: ['value'],
+                              labels: ['value'],
+                              parseTime: false
+              }"></sa-morris-graph>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+
+    </div>
+  </sa-widgets-grid>
+</div>

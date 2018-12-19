@@ -1,0 +1,211 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Table', 'Data Tables']" icon="table"
+                        class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+
+  <sa-widgets-grid>
+
+
+    <div class="row">
+      <article class="col-sm-12">
+
+
+        <div sa-widget [editbutton]="false" color="darken">
+          <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>Standard
+              Data Tables</h2></header>
+          <div>
+            <div class="widget-body no-padding">
+              <sa-datatable
+                [options]="{
+                colReorder: true,
+              ajax: 'assets/api/tables/datatables.standard.json',
+              columns: [ {data: 'id'}, {data: 'name'}, {data: 'phone'}, {data: 'company'}, {data: 'zip'}, {data: 'city'}, {data: 'date'} ] }"
+                paginationLength="true" tableClass="table table-striped table-bordered table-hover"
+                width="100%">
+                <thead>
+                <tr>
+                  <th data-hide="phone">ID</th>
+                  <th data-class="expand"><i
+                    class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i>
+                    Name
+                  </th>
+                  <th data-hide="phone"><i
+                    class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i>
+                    Phone
+                  </th>
+                  <th>Company</th>
+                  <th data-hide="phone,tablet"><i
+                    class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i>
+                    Zip
+                  </th>
+                  <th data-hide="phone,tablet">City</th>
+                  <th data-hide="phone,tablet"><i
+                    class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i>
+                    Date
+                  </th>
+                </tr>
+                </thead>
+              </sa-datatable>
+            </div>
+          </div>
+        </div>
+
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>Column
+              Filters </h2></header>
+          <div>
+            <div class="widget-body no-padding">
+              <sa-datatable
+                [options]="{
+            ajax: 'assets/api/tables/datatables.filters.json',
+            columns: [ {data: 'name'}, {data: 'position'}, {data: 'office'}, {data: 'age'}, {data: 'date'}, {data: 'salary'} ] }
+            "
+                filter="true" tableClass="table table-condenced table-striped table-bordered">
+                <thead>
+                <tr>
+                  <th class="hasinput" [ngStyle]="{width:'17%'}"><input type="text"
+                                                                        class="form-control"
+                                                                        placeholder="Filter Name"/>
+                  </th>
+                  <th class="hasinput" [ngStyle]="{width:'18%'}">
+                    <div class="input-group"><input class="form-control"
+                                                    placeholder="Filter Position"
+                                                    type="text"/> <span
+                      class="input-group-addon"> <span class="onoffswitch"> <input
+                      type="checkbox" name="start_interval" class="onoffswitch-checkbox"
+                      id="st3"/> <label class="onoffswitch-label" for="st3"> <span
+                      class="onoffswitch-inner" data-swchon-text="YES"
+                      data-swchoff-text="NO"></span> <span class="onoffswitch-switch"></span> </label> </span> </span>
+                    </div>
+                  </th>
+                  <th class="hasinput" [ngStyle]="{width:'10%'}"><input type="text"
+                                                                        class="form-control"
+                                                                        placeholder="Filter Office"/>
+                  </th>
+                  <th class="hasinput" [ngStyle]="{width:'17%'}"><input type="text"
+                                                                        class="form-control"
+                                                                        placeholder="Filter Age"/>
+                  </th>
+                  <th class="hasinput icon-addon"><input id="dateselect_filter" type="text"
+                                                         placeholder="Filter Date"
+                                                         class="form-control datepicker"
+                                                         data-dateformat="yy/mm/dd"/>
+                  </th>
+                  <th class="hasinput" [ngStyle]="{width:'16%'}">
+                    <input type="text" class="form-control"
+                           placeholder="Filter Salary"/>
+                  </th>
+                </tr>
+                <tr>
+                  <th data-class="expand">Name</th>
+                  <th>Position</th>
+                  <th data-hide="phone">Office</th>
+                  <th data-hide="phone">Age</th>
+                  <th data-hide="phone,tablet">Start date</th>
+                  <th data-hide="phone,tablet">Salary</th>
+                </tr>
+                </thead>
+              </sa-datatable>
+            </div>
+          </div>
+        </div>
+
+
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>Hide / Show Columns </h2>
+          </header>
+          <div>
+            <div class="widget-body no-padding">
+
+              <sa-datatable [options]="{
+                            ajax: 'assets/api/tables/datatables.standard.json',
+                 columns: [
+                 {data: 'id'},
+                 {data: 'name'},
+                 {data: 'phone'},
+                 {data: 'company'},
+                 {data: 'zip'},
+                 {data: 'city'},
+                 {data: 'date'}
+                 ],
+                 buttons: [
+                 'colvis'
+                 ]
+                 }"
+                            tableClass="table table-striped table-bordered table-hover"
+              >
+                <thead>
+                <tr>
+                  <th data-hide="phone">ID</th>
+                  <th data-class="expand">Name</th>
+                  <th>Phone</th>
+                  <th data-hide="phone">Company</th>
+                  <th data-hide="phone,tablet">Zip</th>
+                  <th data-hide="phone,tablet">City</th>
+                  <th data-hide="phone,tablet">Date</th>
+                </tr>
+                </thead>
+              </sa-datatable>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div sa-widget [editbutton]="false" color="blueDark">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+            <h2>Export to PDF / Excel</h2>
+          </header>
+          <div>
+            <div class="widget-body no-padding">
+
+              <sa-datatable
+                [options]="{
+                  ajax: 'assets/api/tables/datatables.standard.json',
+                columns: [
+                {data: 'id'},
+                {data: 'name'},
+                {data: 'phone'},
+                {data: 'company'},
+                {data: 'zip'},
+                {data: 'city'},
+                {data: 'date'}
+                ],
+                buttons: [
+                'copy', 'excel', 'pdf', 'print'
+                ]
+                }"
+                tableClass="table table-striped table-bordered table-hover"
+              >
+                <thead>
+                <tr>
+                  <th data-hide="mobile-p">ID</th>
+                  <th data-class="expand">Name</th>
+                  <th>Phone</th>
+                  <th data-hide="mobile-p">Company</th>
+                  <th data-hide="mobile-p,tablet-p">Zip</th>
+                  <th data-hide="mobile-p,tablet-p">City</th>
+                  <th data-hide="mobile-p,tablet-p">Date</th>
+                </tr>
+                </thead>
+              </sa-datatable>
+
+            </div>
+          </div>
+        </div>
+
+        <datatables-rest-demo></datatables-rest-demo>
+      </article>
+
+
+    </div>
+
+  </sa-widgets-grid>
+</div>

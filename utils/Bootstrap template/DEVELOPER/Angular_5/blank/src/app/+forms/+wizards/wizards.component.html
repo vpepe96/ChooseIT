@@ -1,0 +1,44 @@
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Forms', 'Wizards']" icon="table" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    <sa-stats></sa-stats>
+  </div>
+
+
+  <!-- widget grid -->
+  <sa-widgets-grid>
+
+    <!-- row -->
+    <div class="row">
+
+      <!-- NEW WIDGET START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <basic-wizard-widget></basic-wizard-widget>
+        <!-- end widget -->
+
+      </article>
+      <!-- WIDGET END -->
+
+      <!-- NEW WIDGET START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+          <fuel-ux-wizard-widget></fuel-ux-wizard-widget>
+        <!-- end widget -->
+
+      </article>
+      <!-- WIDGET END -->
+
+    </div>
+
+    <!-- end row -->
+
+  </sa-widgets-grid>
+
+
+  <!-- end widget grid -->
+
+
+</div>

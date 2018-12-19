@@ -1,0 +1,333 @@
+# Spanish translations for smartadmin package.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the smartadmin package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: smartadmin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2016-09-11 21:31+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"\n"
+
+msgid "3rd Level"
+msgstr "3er Nivel"
+
+msgid "Analytics Dashboard"
+msgstr ""
+
+msgid "App Layouts"
+msgstr ""
+
+msgid "App Settings"
+msgstr ""
+
+msgid "App Views"
+msgstr ""
+
+msgid "Blank Page"
+msgstr "Página vacía"
+
+msgid "Blog"
+msgstr ""
+
+msgid "Bootstrap Editors"
+msgstr "Editores Bootstrap"
+
+msgid "Bootstrap Form Elements"
+msgstr "Bootstrap Elementos de formulario"
+
+msgid "Bootstrap Form Validation"
+msgstr ""
+
+msgid "Buttons"
+msgstr "Botones"
+
+msgid "CK Editor"
+msgstr "Editor"
+
+msgid "Calendar"
+msgstr "Calendario"
+
+msgid "Chart.js"
+msgstr ""
+
+msgid "Cool Features!"
+msgstr ""
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Data Tables"
+msgstr "Tablas de datos"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Documentation"
+msgstr "error: status-error, desc-Internal Server Error"
+
+msgid "Dropzone"
+msgstr "Dropzone"
+
+msgid "Dygraphs"
+msgstr "Dygraphs"
+
+msgid "E-Commerce"
+msgstr ""
+
+msgid "EasyPieCharts"
+msgstr ""
+
+msgid "Error 404"
+msgstr "Error 404"
+
+msgid "Error 500"
+msgstr "Error 500"
+
+msgid "Expand"
+msgstr "Expandir"
+
+msgid "File"
+msgstr "Archivo"
+
+msgid "Find reports and more"
+msgstr "Encuentra informes y más"
+
+msgid "Flags"
+msgstr ""
+
+msgid "Flot Chart"
+msgstr "Gráfico"
+
+msgid "Font Awesome"
+msgstr "IMPRESIONANTE"
+
+msgid "Forgot Password"
+msgstr ""
+
+msgid "Form Plugins"
+msgstr "Formar Plugins"
+
+msgid "Forms"
+msgstr "Formas"
+
+msgid "Forum Layout"
+msgstr "Layout Foro"
+
+msgid "GMap Skins"
+msgstr "GMap Skins"
+
+msgid "Gallery"
+msgstr "Galería"
+
+msgid "General Elements"
+msgstr "Elementos Generales"
+
+msgid "General View"
+msgstr ""
+
+msgid "Glyph Icons"
+msgstr "Glifo Icons"
+
+msgid "Graphs"
+msgstr "Graficos"
+
+msgid "Grid"
+msgstr "Cuadrícula"
+
+msgid "HighchartTable"
+msgstr ""
+
+msgid "Icons"
+msgstr "Icono"
+
+msgid "Image Cropping"
+msgstr ""
+
+msgid "Invoice"
+msgstr "Pago de la"
+
+msgid "Item #2"
+msgstr "Artículo 2"
+
+msgid "Item #2.1.1"
+msgstr "Artículo # 2.1.1"
+
+msgid "Item #3"
+msgstr "Artículo 3:"
+
+msgid "Item #4 (disabled)"
+msgstr ""
+
+msgid "JQuery UI"
+msgstr "JQuery UI"
+
+msgid "Jquery Grid"
+msgstr ""
+
+msgid "Landing Page"
+msgstr ""
+
+msgid "Locked Screen"
+msgstr "Pantalla bloqueada"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Miscellaneous"
+msgstr "Varias"
+
+msgid "Morris Charts"
+msgstr "Gráficos Morris"
+
+msgid "Msgs"
+msgstr "MSG"
+
+msgid "Nestable Lists"
+msgstr "Listas Encajables"
+
+msgid "Normal Tables"
+msgstr "Tablas normales"
+
+msgid "Orders"
+msgstr ""
+
+msgid "Outlook"
+msgstr ""
+
+msgid "Post View"
+msgstr ""
+
+msgid "Prebuilt Skins"
+msgstr ""
+
+msgid "Pricing Tables"
+msgstr "Tablas de Precios"
+
+msgid "Products Detail"
+msgstr ""
+
+msgid "Products View"
+msgstr ""
+
+msgid "Profile"
+msgstr "Perfil"
+
+msgid "Projects"
+msgstr "Proyectos"
+
+msgid "Recent projects"
+msgstr "Proyectos recientes"
+
+msgid "Register"
+msgstr "Registro"
+
+msgid "Search Page"
+msgstr "página de búsqueda"
+
+msgid "Six Level Menu"
+msgstr "Seis Menú Nivel"
+
+msgid "Smart Chat API"
+msgstr ""
+
+msgid "Smart Form Elements"
+msgstr "Elementos Smart Form"
+
+msgid "Smart Form Layouts"
+msgstr "Distribución de formularios inteligentes"
+
+msgid "Smart Form Validation"
+msgstr "Validación Smart Form"
+
+msgid "SmartAdmin Intel"
+msgstr "SmartAdmin Intel"
+
+msgid "Social Wall"
+msgstr ""
+
+msgid "Sparklines"
+msgstr ""
+
+msgid "Sub #2.1"
+msgstr ""
+
+msgid "Tables"
+msgstr "Mesas"
+
+msgid "Tasks"
+msgstr "Tareas"
+
+msgid "Timeline"
+msgstr "Línea cronológica"
+
+msgid "Topic View"
+msgstr ""
+
+msgid "Tree View"
+msgstr "Vista de árbol"
+
+msgid "Typography"
+msgstr "Tipografía"
+
+msgid "UI Elements"
+msgstr "Elementos del UI"
+
+msgid "User"
+msgstr ""
+
+msgid "User|Current sign in at"
+msgstr ""
+
+msgid "User|Current sign in ip"
+msgstr ""
+
+msgid "User|Email"
+msgstr ""
+
+msgid "User|Encrypted password"
+msgstr ""
+
+msgid "User|Last sign in at"
+msgstr ""
+
+msgid "User|Last sign in ip"
+msgstr ""
+
+msgid "User|Remember created at"
+msgstr ""
+
+msgid "User|Reset password sent at"
+msgstr ""
+
+msgid "User|Reset password token"
+msgstr ""
+
+msgid "User|Sign in count"
+msgstr ""
+
+msgid "Widgets"
+msgstr "Reproductores"
+
+msgid "Wizards"
+msgstr "Asistentes"
+
+msgid "beta"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "notify"
+msgstr ""
+
+msgid "responsive"
+msgstr ""

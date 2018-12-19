@@ -1,0 +1,333 @@
+# Chinese translations for smartadmin package.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the smartadmin package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: smartadmin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2016-09-11 23:17+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Chinese\n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"\n"
+
+msgid "3rd Level"
+msgstr "第三层"
+
+msgid "Analytics Dashboard"
+msgstr ""
+
+msgid "App Layouts"
+msgstr ""
+
+msgid "App Settings"
+msgstr ""
+
+msgid "App Views"
+msgstr "应用程序浏览"
+
+msgid "Blank Page"
+msgstr "空白页"
+
+msgid "Blog"
+msgstr ""
+
+msgid "Bootstrap Editors"
+msgstr "引导编辑"
+
+msgid "Bootstrap Form Elements"
+msgstr "引导表单元素"
+
+msgid "Bootstrap Form Validation"
+msgstr "引导表单验证"
+
+msgid "Buttons"
+msgstr "按钮"
+
+msgid "CK Editor"
+msgstr "CK编辑器"
+
+msgid "Calendar"
+msgstr "日历"
+
+msgid "Chart.js"
+msgstr ""
+
+msgid "Cool Features!"
+msgstr ""
+
+msgid "Dashboard"
+msgstr "仪表板"
+
+msgid "Data Tables"
+msgstr "数据表"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Documentation"
+msgstr "文件"
+
+msgid "Dropzone"
+msgstr "悬浮窗"
+
+msgid "Dygraphs"
+msgstr "Dygraphs"
+
+msgid "E-Commerce"
+msgstr "电子商务"
+
+msgid "EasyPieCharts"
+msgstr ""
+
+msgid "Error 404"
+msgstr "错误404"
+
+msgid "Error 500"
+msgstr "错误500"
+
+msgid "Expand"
+msgstr "扩大"
+
+msgid "File"
+msgstr "文件"
+
+msgid "Find reports and more"
+msgstr "查找报告和更多"
+
+msgid "Flags"
+msgstr ""
+
+msgid "Flot Chart"
+msgstr "海军报图"
+
+msgid "Font Awesome"
+msgstr "字体真棒"
+
+msgid "Forgot Password"
+msgstr ""
+
+msgid "Form Plugins"
+msgstr "表格插件"
+
+msgid "Forms"
+msgstr "形式"
+
+msgid "Forum Layout"
+msgstr "版块布局"
+
+msgid "GMap Skins"
+msgstr "GMAP皮肤"
+
+msgid "Gallery"
+msgstr "画廊"
+
+msgid "General Elements"
+msgstr "一般信息"
+
+msgid "General View"
+msgstr ""
+
+msgid "Glyph Icons"
+msgstr "字形图标"
+
+msgid "Graphs"
+msgstr "图"
+
+msgid "Grid"
+msgstr "格"
+
+msgid "HighchartTable"
+msgstr ""
+
+msgid "Icons"
+msgstr "图标"
+
+msgid "Image Cropping"
+msgstr ""
+
+msgid "Invoice"
+msgstr "发票"
+
+msgid "Item #2"
+msgstr "Item #2"
+
+msgid "Item #2.1.1"
+msgstr "Item #2.1.1"
+
+msgid "Item #3"
+msgstr "项目＃ 3"
+
+msgid "Item #4 (disabled)"
+msgstr ""
+
+msgid "JQuery UI"
+msgstr "JQuery用户界面"
+
+msgid "Jquery Grid"
+msgstr ""
+
+msgid "Landing Page"
+msgstr ""
+
+msgid "Locked Screen"
+msgstr "锁定屏幕"
+
+msgid "Login"
+msgstr "登录"
+
+msgid "Miscellaneous"
+msgstr "杂"
+
+msgid "Morris Charts"
+msgstr "莫里斯图表"
+
+msgid "Msgs"
+msgstr "封邮件"
+
+msgid "Nestable Lists"
+msgstr "嵌套列表"
+
+msgid "Normal Tables"
+msgstr "普通表"
+
+msgid "Orders"
+msgstr ""
+
+msgid "Outlook"
+msgstr "前景"
+
+msgid "Post View"
+msgstr ""
+
+msgid "Prebuilt Skins"
+msgstr ""
+
+msgid "Pricing Tables"
+msgstr "价格表"
+
+msgid "Products Detail"
+msgstr ""
+
+msgid "Products View"
+msgstr ""
+
+msgid "Profile"
+msgstr "简介"
+
+msgid "Projects"
+msgstr ""
+
+msgid "Recent projects"
+msgstr "最近项目"
+
+msgid "Register"
+msgstr "寄存器"
+
+msgid "Search Page"
+msgstr "検索ページ"
+
+msgid "Six Level Menu"
+msgstr "六级菜单"
+
+msgid "Smart Chat API"
+msgstr ""
+
+msgid "Smart Form Elements"
+msgstr "智能表单元素"
+
+msgid "Smart Form Layouts"
+msgstr "智能表布局"
+
+msgid "Smart Form Validation"
+msgstr "智能表单验证"
+
+msgid "SmartAdmin Intel"
+msgstr "SmartAdmin英特尔"
+
+msgid "Social Wall"
+msgstr ""
+
+msgid "Sparklines"
+msgstr ""
+
+msgid "Sub #2.1"
+msgstr "Sub #2.1"
+
+msgid "Tables"
+msgstr "表"
+
+msgid "Tasks"
+msgstr "任务"
+
+msgid "Timeline"
+msgstr "时间线"
+
+msgid "Topic View"
+msgstr ""
+
+msgid "Tree View"
+msgstr "树视图"
+
+msgid "Typography"
+msgstr "活版印刷"
+
+msgid "UI Elements"
+msgstr "UI元素"
+
+msgid "User"
+msgstr ""
+
+msgid "User|Current sign in at"
+msgstr ""
+
+msgid "User|Current sign in ip"
+msgstr ""
+
+msgid "User|Email"
+msgstr ""
+
+msgid "User|Encrypted password"
+msgstr ""
+
+msgid "User|Last sign in at"
+msgstr ""
+
+msgid "User|Last sign in ip"
+msgstr ""
+
+msgid "User|Remember created at"
+msgstr ""
+
+msgid "User|Reset password sent at"
+msgstr ""
+
+msgid "User|Reset password token"
+msgstr ""
+
+msgid "User|Sign in count"
+msgstr ""
+
+msgid "Widgets"
+msgstr "小工具"
+
+msgid "Wizards"
+msgstr "奇才"
+
+msgid "beta"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "notify"
+msgstr ""
+
+msgid "responsive"
+msgstr ""

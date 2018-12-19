@@ -1,0 +1,51 @@
+<div id="content">
+    <div class="row">
+        <sa-big-breadcrumbs [items]="['Home']" icon="home"
+                            class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></sa-big-breadcrumbs>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="well">
+
+                <h1>SmartAdmin Angular 2 <i>blank</i></h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae corporis dignissimos
+                    doloremque eaque eum modi, quia reprehenderit unde voluptatem.</p>
+            </div>
+        </div>
+    </div>
+
+    <sa-widgets-grid>
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <sa-widget>
+                    <!-- widget options:
+                        usage: <sa-widget id="wid-id-0" [editbutton]="false">
+                        [colorbutton]="false"
+                        [editbutton]="false"
+                        [togglebutton]="false"
+                        [deletebutton]="false"
+                        [fullscreenbutton]="false"
+                        [custombutton]="false"
+                        [collapsed]="true"
+                        [sortable]="false"
+                    -->
+                    <header>
+                        <h2><strong>Default</strong> <i>Widget</i></h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet architecto deserunt, eveniet officia officiis rem soluta! Alias id odit qui quis reprehenderit?</p>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </sa-widget>
+            </article>
+        </div>
+    </sa-widgets-grid>
+</div>

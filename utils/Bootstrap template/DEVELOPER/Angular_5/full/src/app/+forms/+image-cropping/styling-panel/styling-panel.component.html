@@ -1,0 +1,30 @@
+<section class="row">
+  <jcrop [storeId]="storeId"
+         class="col-sm-8"
+         [options]="{
+              setSelect: [120, 120, 420, 320]
+           }"
+         src="assets/img/superbox/superbox-full-16.jpg"></jcrop>
+
+  <fieldset class="col-md-4">
+    <legend>Manipulate classes</legend>
+    <jcrop-option-radio [storeId]="storeId" group="containerClass" [checked]="true" [options]="{
+                 containerClass: 'jcrop-dark',
+    bgOpacity: .65,
+    bgColor: 'black'
+
+    }" label="jcrop-dark"></jcrop-option-radio>
+    <jcrop-option-radio [storeId]="storeId" group="containerClass" [options]="{
+                 containerClass: 'jcrop-light',
+    bgOpacity: .35,
+    bgColor: 'white'
+    }" label="jcrop-light"></jcrop-option-radio>
+    <jcrop-option-radio [storeId]="storeId" group="containerClass" [options]="{
+                 containerClass: 'jcrop-normal',
+    bgOpacity: .25,
+    bgColor: 'black'
+    }" label="jcrop-normal"></jcrop-option-radio>
+
+    <br/>
+  </fieldset>
+</section>

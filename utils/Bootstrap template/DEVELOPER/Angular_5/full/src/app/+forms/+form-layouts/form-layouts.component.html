@@ -1,0 +1,309 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+  <div class="row">
+    <sa-big-breadcrumbs [items]="['Forms', 'Form Layouts']" icon="pencil-square-o" class="col-xs-12 col-sm-9 col-md-9 col-lg-9"></sa-big-breadcrumbs>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+      <!-- Button trigger modal -->
+      <a (click)="mdModal.show()" class="btn btn-success btn-lg pull-right header-btn hidden-mobile"><i class="fa fa-circle-arrow-up fa-lg"></i> Launch form modal</a>
+    </div>
+  </div>
+
+
+  <div class="alert alert-block alert-success" dismisser="">
+
+    <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
+
+    <p>
+      You may also check the form validation by clicking on the form action button. Please try and see the results
+      below!
+    </p>
+  </div>
+
+  <!-- widget grid -->
+
+  <sa-widgets-grid>
+
+
+    <!-- START ROW -->
+
+    <div class="row">
+
+      <!-- NEW COL START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [editbutton]="false" [custombutton]="false">
+
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+
+            <h2>Checkout Form </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+              <sa-checkout-form></sa-checkout-form>
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+        <!-- Widget ID (each widget will need unique ID)-->
+
+        <div sa-widget [editbutton]="false" [custombutton]="false">
+
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+
+            <h2>Order Form</h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+              <sa-order-form></sa-order-form>
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [editbutton]="false" [custombutton]="false">
+
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+
+            <h2>Review form </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+              <sa-review-form></sa-review-form>
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+      </article>
+      <!-- END COL -->
+
+      <!-- NEW COL START -->
+      <article class="col-sm-12 col-md-12 col-lg-6">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+
+        <div sa-widget [editbutton]="false" [custombutton]="false">
+
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+
+            <h2>Registration form </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+              <sa-registration-form></sa-registration-form>
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [editbutton]="false" [custombutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+
+            <h2>Comment form </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+              <sa-comment-form></sa-comment-form>
+
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div sa-widget [editbutton]="false" [custombutton]="false">
+          <header>
+            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+
+            <h2>Contacts form </h2>
+
+          </header>
+
+          <!-- widget div-->
+          <div>
+
+
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+              <sa-contact-form></sa-contact-form>
+
+
+            </div>
+            <!-- end widget content -->
+
+          </div>
+          <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+
+      </article>
+      <!-- END COL -->
+
+    </div>
+
+    <!-- END ROW -->
+
+  </sa-widgets-grid>
+
+  <!-- end widget grid -->
+
+
+</div>
+
+
+<div bsModal #mdModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="mdModal.hide()" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title">
+          <img src="assets/img/logo.png" width="150" alt="SmartAdmin">
+        </h4>
+      </div>
+      <div class="modal-body no-padding">
+
+        <form id="login-form" class="smart-form" [saUiValidate]="{
+          rules: {
+            email:{
+              required: true,
+              email: true
+            },
+            password: {
+              required: true
+            }
+          }
+        }">
+
+          <fieldset>
+            <section>
+              <div class="row">
+                <label class="label col col-2">Username</label>
+
+                <div class="col col-10">
+                  <label class="input"> <i class="icon-append fa fa-user"></i>
+                    <input type="email" name="email">
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="row">
+                <label class="label col col-2">Password</label>
+
+                <div class="col col-10">
+                  <label class="input"> <i class="icon-append fa fa-lock"></i>
+                    <input type="password" name="password">
+                  </label>
+
+                  <div class="note">
+                    <a (click)="(null)">Forgot password?</a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="row">
+                <div class="col col-2"></div>
+                <div class="col col-10">
+                  <label class="checkbox">
+                    <input type="checkbox" name="remember" checked="">
+                    <i></i>Keep me logged in</label>
+                </div>
+              </div>
+            </section>
+          </fieldset>
+
+          <footer>
+            <button type="submit" class="btn btn-primary">
+              Sign in
+            </button>
+            <button type="button" class="btn btn-default" (click)="mdModal.hide()">
+              Cancel
+            </button>
+
+          </footer>
+        </form>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

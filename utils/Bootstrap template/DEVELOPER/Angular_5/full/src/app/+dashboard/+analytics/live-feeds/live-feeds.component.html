@@ -1,0 +1,52 @@
+<div sa-widget
+  [sortable]="false"  
+  [togglebutton]="false"
+  [editbutton]="false"
+  [fullscreenbutton]="false"
+  [colorbutton]="false"
+  [deletebutton]="false" saSparklineContainer saEasyPieChartContainer>
+
+  <header>
+                    <span class="widget-icon">
+                        <i class="glyphicon glyphicon-stats txt-color-darken"></i> </span>
+
+    <h2>Live Feeds </h2>
+
+    <ul class="nav nav-tabs pull-right in" id="myTab">
+      <li class="active">
+        <a data-toggle="tab" href="#s1"><i class="fa fa-clock-o" ></i> <span
+          class="hidden-mobile hidden-tablet">Live Stats</span></a>
+      </li>
+
+      <li>
+        <a data-toggle="tab" href="#s2"><i class="fa fa-facebook" ></i> <span
+          class="hidden-mobile hidden-tablet">Social Network</span></a>
+      </li>
+
+      <li>
+        <a data-toggle="tab" href="#s3"><i class="fa fa-dollar" ></i> <span
+          class="hidden-mobile hidden-tablet">Revenue</span></a>
+      </li>
+    </ul>
+
+  </header>
+
+  <div class="no-padding">
+
+    <div class="widget-body">
+
+      <div id="myTabContent" class="tab-content">
+
+        <live-stats-feed class="tab-pane fade active in padding-10 no-padding-bottom" id="s1"></live-stats-feed>
+
+        <social-network-feed class="tab-pane fade" id="s2" ></social-network-feed>
+
+        <revenue-feed class="tab-pane fade" id="s3" ></revenue-feed>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,64 @@
+[
+    {
+        "outputFileName": "wwwroot/css/site.min.css",
+        "inputFiles": [
+            "wwwroot/css/site.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/css/smartadmin.min.css",
+        "inputFiles": [
+            "wwwroot/css/bootstrap.css",
+            "wwwroot/css/font-awesome.css",
+            "wwwroot/css/smartadmin-production-plugins.css",
+            "wwwroot/css/smartadmin-production.css",
+            "wwwroot/css/smartadmin-skins.css",
+            "wwwroot/css/site.css",
+            "wwwroot/css/smartadmin-rtl.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/js/smartadmin.min.js",
+        "inputFiles": [
+            "wwwroot/js/libs/jquery-3.2.1.js",
+            "wwwroot/js/libs/jquery-ui-1.12.1.min.js",
+            "wwwroot/js/bootstrap/bootstrap.js",
+            "wwwroot/js/notification/SmartNotification.js",
+            "wwwroot/js/smartwidgets/jarvis.widget.js",
+            "wwwroot/js/app.config.js",
+            "wwwroot/js/app.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        }
+    },
+    {
+        "outputFileName": "wwwroot/js/site.min.js",
+        "inputFiles": [
+            "wwwroot/js/site.js"
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        }
+    },
+    {
+        "outputFileName": "wwwroot/js/app.min.js",
+        "inputFiles": [
+            "wwwroot/js/app.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/js/demo.min.js",
+        "inputFiles": [
+            "wwwroot/js/demo.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/js/app.config.min.js",
+        "inputFiles": [
+            "wwwroot/js/app.config.js"
+        ]
+    }
+]

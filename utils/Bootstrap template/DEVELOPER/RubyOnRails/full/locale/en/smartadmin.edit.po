@@ -1,0 +1,333 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the smartadmin package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: smartadmin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-11 23:54+0200\n"
+"PO-Revision-Date: 2016-09-11 23:54+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+msgid "3rd Level"
+msgstr "3rd Level"
+
+msgid "Analytics Dashboard"
+msgstr "Analytics Dashboard"
+
+msgid "App Layouts"
+msgstr "App Layouts"
+
+msgid "App Settings"
+msgstr "App Settings"
+
+msgid "App Views"
+msgstr "App Views"
+
+msgid "Blank Page"
+msgstr "Blank Page"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Bootstrap Editors"
+msgstr "Bootstrap Editors"
+
+msgid "Bootstrap Form Elements"
+msgstr "Bootstrap Form Elements"
+
+msgid "Bootstrap Form Validation"
+msgstr "Bootstrap Form Validation"
+
+msgid "Buttons"
+msgstr "Buttons"
+
+msgid "CK Editor"
+msgstr "CK Editor"
+
+msgid "Calendar"
+msgstr "Calendar"
+
+msgid "Chart.js"
+msgstr "Chart.js"
+
+msgid "Cool Features!"
+msgstr "Cool Features!"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Data Tables"
+msgstr "Data Tables"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Documentation"
+msgstr "Documentation"
+
+msgid "Dropzone"
+msgstr "Dropzone"
+
+msgid "Dygraphs"
+msgstr "Dygraphs"
+
+msgid "E-Commerce"
+msgstr "E-Commerce"
+
+msgid "EasyPieCharts"
+msgstr "EasyPieCharts"
+
+msgid "Error 404"
+msgstr "Error 404"
+
+msgid "Error 500"
+msgstr "Error 500"
+
+msgid "Expand"
+msgstr "Expand"
+
+msgid "File"
+msgstr "File"
+
+msgid "Find reports and more"
+msgstr "Find reports and more"
+
+msgid "Flags"
+msgstr "Flags"
+
+msgid "Flot Chart"
+msgstr "Flot Chart"
+
+msgid "Font Awesome"
+msgstr "Font Awesome"
+
+msgid "Forgot Password"
+msgstr "Forgot Password"
+
+msgid "Form Plugins"
+msgstr "Form Plugins"
+
+msgid "Forms"
+msgstr "Forms"
+
+msgid "Forum Layout"
+msgstr "Forum Layout"
+
+msgid "GMap Skins"
+msgstr "GMap Skins"
+
+msgid "Gallery"
+msgstr "Gallery"
+
+msgid "General Elements"
+msgstr "General Elements"
+
+msgid "General View"
+msgstr "General View"
+
+msgid "Glyph Icons"
+msgstr "Glyph Icons"
+
+msgid "Graphs"
+msgstr "Graphs"
+
+msgid "Grid"
+msgstr "Grid"
+
+msgid "HighchartTable"
+msgstr "HighchartTable"
+
+msgid "Icons"
+msgstr "Icons"
+
+msgid "Image Cropping"
+msgstr "Image Cropping"
+
+msgid "Invoice"
+msgstr "Invoice"
+
+msgid "Item #2"
+msgstr "Item #2"
+
+msgid "Item #2.1.1"
+msgstr "Item #2.1.1"
+
+msgid "Item #3"
+msgstr "Item #3"
+
+msgid "Item #4 (disabled)"
+msgstr "Item #4 (disabled)"
+
+msgid "JQuery UI"
+msgstr "JQuery UI"
+
+msgid "Jquery Grid"
+msgstr "Jquery Grid"
+
+msgid "Landing Page"
+msgstr "Landing Page"
+
+msgid "Locked Screen"
+msgstr "Locked Screen"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Miscellaneous"
+msgstr "Miscellaneous"
+
+msgid "Morris Charts"
+msgstr "Morris Charts"
+
+msgid "Msgs"
+msgstr "Msgs"
+
+msgid "Nestable Lists"
+msgstr "Nestable Lists"
+
+msgid "Normal Tables"
+msgstr "Normal Tables"
+
+msgid "Orders"
+msgstr "Orders"
+
+msgid "Outlook"
+msgstr "Outlook"
+
+msgid "Post View"
+msgstr "Post View"
+
+msgid "Prebuilt Skins"
+msgstr "Prebuilt Skins"
+
+msgid "Pricing Tables"
+msgstr "Pricing Tables"
+
+msgid "Products Detail"
+msgstr "Products Detail"
+
+msgid "Products View"
+msgstr "Products View"
+
+msgid "Profile"
+msgstr "Profile"
+
+msgid "Projects"
+msgstr "Projects"
+
+msgid "Recent projects"
+msgstr "Recent projects"
+
+msgid "Register"
+msgstr "Register"
+
+msgid "Search Page"
+msgstr "Search Page"
+
+msgid "Six Level Menu"
+msgstr "Six Level Menu"
+
+msgid "Smart Chat API"
+msgstr "Smart Chat API"
+
+msgid "Smart Form Elements"
+msgstr "Smart Form Elements"
+
+msgid "Smart Form Layouts"
+msgstr "Smart Form Layouts"
+
+msgid "Smart Form Validation"
+msgstr "Smart Form Validation"
+
+msgid "SmartAdmin Intel"
+msgstr "SmartAdmin Intel"
+
+msgid "Social Wall"
+msgstr "Social Wall"
+
+msgid "Sparklines"
+msgstr "Sparklines"
+
+msgid "Sub #2.1"
+msgstr "Sub #2.1"
+
+msgid "Tables"
+msgstr "Tables"
+
+msgid "Tasks"
+msgstr "Tasks"
+
+msgid "Timeline"
+msgstr "Timeline"
+
+msgid "Topic View"
+msgstr "Topic View"
+
+msgid "Tree View"
+msgstr "Tree View"
+
+msgid "Typography"
+msgstr "Typography"
+
+msgid "UI Elements"
+msgstr "UI Elements"
+
+msgid "User"
+msgstr "User"
+
+msgid "User|Current sign in at"
+msgstr "User|Current sign in at"
+
+msgid "User|Current sign in ip"
+msgstr "User|Current sign in ip"
+
+msgid "User|Email"
+msgstr "User|Email"
+
+msgid "User|Encrypted password"
+msgstr "User|Encrypted password"
+
+msgid "User|Last sign in at"
+msgstr "User|Last sign in at"
+
+msgid "User|Last sign in ip"
+msgstr "User|Last sign in ip"
+
+msgid "User|Remember created at"
+msgstr "User|Remember created at"
+
+msgid "User|Reset password sent at"
+msgstr "User|Reset password sent at"
+
+msgid "User|Reset password token"
+msgstr "User|Reset password token"
+
+msgid "User|Sign in count"
+msgstr "User|Sign in count"
+
+msgid "Widgets"
+msgstr "Widgets"
+
+msgid "Wizards"
+msgstr "Wizards"
+
+msgid "beta"
+msgstr "beta"
+
+msgid "new"
+msgstr "new"
+
+msgid "notify"
+msgstr "notify"
+
+msgid "responsive"
+msgstr "responsive"
