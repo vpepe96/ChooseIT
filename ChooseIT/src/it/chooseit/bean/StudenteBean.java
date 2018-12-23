@@ -6,7 +6,7 @@ import java.sql.Date;
 public class StudenteBean extends UtenteBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	
+
 	private String matricola;
 	private String descrizione;
 	
@@ -14,8 +14,8 @@ public class StudenteBean extends UtenteBean implements Serializable{
 		
 	}
 	
-	public StudenteBean(String email, String nome, String cognome, String telefono, String indirizzo, Date data_nascita, String foto_profilo, String matricola, String descrizione) {
-		super(email, nome, cognome, telefono, indirizzo, data_nascita, foto_profilo);
+	public StudenteBean(String email, String nome, String cognome, String telefono, String indirizzo, Date dataNascita, String fotoProfilo, String matricola, String descrizione) {
+		super(email, nome, cognome, telefono, indirizzo, dataNascita, fotoProfilo);
 		this.matricola = matricola;
 		this.descrizione = descrizione;
 	}

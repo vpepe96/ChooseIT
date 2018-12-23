@@ -8,21 +8,21 @@ public class RegistroTirocinioBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int identificativo;
-	private Date data_inizio;
-	private String studente_email;
-	private String tutor_aziendale_email;
-	private String tutor_universitario_email;
+	private Date dataInizio;
+	private String studenteEmail;
+	private String tutorAziendaleEmail;
+	private String tutorUniversitarioEmail;
 	
 	public RegistroTirocinioBean() {
 		
 	}
 	
-	public RegistroTirocinioBean(int identificativo, Date data_inizio, String studente_email, String tutor_aziendale_email, String tutor_universitario_email) {
+	public RegistroTirocinioBean(int identificativo, Date dataInizio, String studenteEmail, String tutorAziendaleEmail, String tutorUniversitarioEmail) {
 		this.identificativo = identificativo;
-		this.data_inizio = data_inizio;
-		this.studente_email = studente_email;
-		this.tutor_aziendale_email = tutor_aziendale_email;
-		this.tutor_universitario_email = tutor_universitario_email;
+		this.dataInizio = dataInizio;
+		this.studenteEmail = studenteEmail;
+		this.tutorAziendaleEmail = tutorAziendaleEmail;
+		this.tutorUniversitarioEmail = tutorUniversitarioEmail;
 	}
 
 	public int getIdentificativo() {
@@ -34,35 +34,35 @@ public class RegistroTirocinioBean implements Serializable{
 	}
 
 	public Date getDataInizio() {
-		return data_inizio;
+		return dataInizio;
 	}
 
-	public void setDataInizio(Date data_inizio) {
-		this.data_inizio = data_inizio;
+	public void setDataInizio(Date dataInizio) {
+		this.dataInizio = dataInizio;
 	}
 
 	public String getStudenteEmail() {
-		return studente_email;
+		return studenteEmail;
 	}
 
-	public void setStudenteEmail(String studente_email) {
-		this.studente_email = studente_email;
+	public void setStudenteEmail(String studenteEmail) {
+		this.studenteEmail = studenteEmail;
 	}
 
 	public String getTutorAziendaleEmail() {
-		return tutor_aziendale_email;
+		return tutorAziendaleEmail;
 	}
 
-	public void setTutorAziendaleEmail(String tutor_aziendale_email) {
-		this.tutor_aziendale_email = tutor_aziendale_email;
+	public void setTutorAziendaleEmail(String tutorAziendaleEmail) {
+		this.tutorAziendaleEmail = tutorAziendaleEmail;
 	}
 
 	public String getTutorUniversitarioEmail() {
-		return tutor_universitario_email;
+		return tutorUniversitarioEmail;
 	}
 
-	public void setTutorUniversitarioEmail(String tutor_universitario_email) {
-		this.tutor_universitario_email = tutor_universitario_email;
+	public void setTutorUniversitarioEmail(String tutorUniversitarioEmail) {
+		this.tutorUniversitarioEmail = tutorUniversitarioEmail;
 	}
 	
 }

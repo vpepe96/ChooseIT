@@ -8,19 +8,19 @@ public class RichiestaTirocinioBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private String studente_email;
-	private Date data_richiesta;
-	private String ragione_sociale_azienda;
-	private String progetto_formativo;
-	private int registro_id;
+	private String studenteEmail;
+	private Date dataRichiesta;
+	private String ragioneSocialeAzienda;
+	private String progettoFormativo;
+	private int registroId;
 	
-	public RichiestaTirocinioBean(int id, String studente_email, Date data_richiesta, String ragione_sociale_azienda, String progetto_formativo, int registro_id) {
+	public RichiestaTirocinioBean(int id, String studenteEmail, Date dataRichiesta, String ragioneSocialeAzienda, String progettoFormativo, int registroId) {
 		this.id = id;
-		this.studente_email = studente_email;
-		this.data_richiesta = data_richiesta;
-		this.ragione_sociale_azienda = ragione_sociale_azienda;
-		this.progetto_formativo = progetto_formativo;
-		this.registro_id = registro_id;
+		this.studenteEmail = studenteEmail;
+		this.dataRichiesta = dataRichiesta;
+		this.ragioneSocialeAzienda = ragioneSocialeAzienda;
+		this.progettoFormativo = progettoFormativo;
+		this.registroId = registroId;
 	}
 
 	public int getId() {
@@ -32,43 +32,43 @@ public class RichiestaTirocinioBean implements Serializable{
 	}
 
 	public String getStudenteEmail() {
-		return studente_email;
+		return studenteEmail;
 	}
 
-	public void setStudenteEmail(String studente_email) {
-		this.studente_email = studente_email;
+	public void setStudenteEmail(String studenteEmail) {
+		this.studenteEmail = studenteEmail;
 	}
 
 	public Date getDataRichiesta() {
-		return data_richiesta;
+		return dataRichiesta;
 	}
 
-	public void setDataRichiesta(Date data_richiesta) {
-		this.data_richiesta = data_richiesta;
+	public void setDataRichiesta(Date dataRichiesta) {
+		this.dataRichiesta = dataRichiesta;
 	}
 
 	public String getRagioneSocialeAzienda() {
-		return ragione_sociale_azienda;
+		return ragioneSocialeAzienda;
 	}
 
-	public void setRagioneSocialeAzienda(String ragione_sociale_azienda) {
-		this.ragione_sociale_azienda = ragione_sociale_azienda;
+	public void setRagioneSocialeAzienda(String ragioneSocialeAzienda) {
+		this.ragioneSocialeAzienda = ragioneSocialeAzienda;
 	}
 
 	public String getProgettoFormativo() {
-		return progetto_formativo;
+		return progettoFormativo;
 	}
 
-	public void setProgettoFormativo(String progetto_formativo) {
-		this.progetto_formativo = progetto_formativo;
+	public void setProgettoFormativo(String progettoFormativo) {
+		this.progettoFormativo = progettoFormativo;
 	}
 
 	public int getRegistroId() {
-		return registro_id;
+		return registroId;
 	}
 
-	public void setRegistroId(int registro_id) {
-		this.registro_id = registro_id;
+	public void setRegistroId(int registroId) {
+		this.registroId = registroId;
 	}
 	
 }

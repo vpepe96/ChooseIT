@@ -12,21 +12,21 @@ public class UtenteBean implements Serializable{
 	private String cognome;
 	private String telefono;
 	private String indirizzo;
-	private Date data_nascita;
-	private String foto_profilo;
+	private Date dataNascita;
+	private String fotoProfilo;
 	
 	public UtenteBean() {
 		
 	}
 	
-	public UtenteBean(String email, String nome, String cognome, String telefono, String indirizzo, Date data_nascita, String foto_profilo) {
+	public UtenteBean(String email, String nome, String cognome, String telefono, String indirizzo, Date dataNascita, String fotoProfilo) {
 		this.email = email;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.telefono = telefono;
 		this.indirizzo = indirizzo;
-		this.data_nascita = data_nascita;
-		this.foto_profilo = foto_profilo;
+		this.dataNascita = dataNascita;
+		this.fotoProfilo = fotoProfilo;
 	}
 
 	public String getEmail() {
@@ -70,25 +70,25 @@ public class UtenteBean implements Serializable{
 	}
 
 	public Date getDataNascita() {
-		return data_nascita;
+		return dataNascita;
 	}
 
-	public void setDataNascita(Date data_nascita) {
-		this.data_nascita = data_nascita;
+	public void setDataNascita(Date dataNascita) {
+		this.dataNascita = dataNascita;
 	}
 
 	public String getFotoProfilo() {
-		return foto_profilo;
+		return fotoProfilo;
 	}
 
-	public void setFotoProfilo(String foto_profilo) {
-		this.foto_profilo = foto_profilo;
+	public void setFotoProfilo(String fotoProfilo) {
+		this.fotoProfilo = fotoProfilo;
 	}
 
 	@Override
 	public String toString() {
 		return "UtenteBean [email=" + email + ", nome=" + nome + ", cognome=" + cognome + ", telefono=" + telefono
-				+ ", indirizzo=" + indirizzo + ", data_nascita=" + data_nascita + ", foto_profilo=" + foto_profilo
+				+ ", indirizzo=" + indirizzo + ", dataNascita=" + dataNascita + ", fotoProfilo=" + fotoProfilo
 				+ "]";
 	}
 
@@ -106,20 +106,20 @@ public class UtenteBean implements Serializable{
 				return false;
 		} else if (!cognome.equals(other.cognome))
 			return false;
-		if (data_nascita == null) {
-			if (other.data_nascita != null)
+		if (dataNascita == null) {
+			if (other.dataNascita != null)
 				return false;
-		} else if (!data_nascita.equals(other.data_nascita))
+		} else if (!dataNascita.equals(other.dataNascita))
 			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (foto_profilo == null) {
-			if (other.foto_profilo != null)
+		if (fotoProfilo == null) {
+			if (other.fotoProfilo != null)
 				return false;
-		} else if (!foto_profilo.equals(other.foto_profilo))
+		} else if (!fotoProfilo.equals(other.fotoProfilo))
 			return false;
 		if (indirizzo == null) {
 			if (other.indirizzo != null)

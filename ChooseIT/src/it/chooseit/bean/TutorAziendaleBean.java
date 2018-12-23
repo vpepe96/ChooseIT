@@ -7,16 +7,18 @@ public class TutorAziendaleBean extends UtenteBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int azienda_id;
+	private int aziendaId;
 	
 	public TutorAziendaleBean() {
 		
 	}
 	
-	public TutorAziendaleBean(String email, String nome, String cognome, String telefono, String indirizzo, Date data_nascita, String foto_profilo, int azienda_id) {
-		super(email, nome, cognome, telefono, indirizzo, data_nascita, foto_profilo);
-		this.azienda_id = azienda_id;
+	public TutorAziendaleBean(String email, String nome, String cognome, String telefono, String indirizzo, Date dataNascita, String fotoProfilo, int aziendaId) {
+		super(email, nome, cognome, telefono, indirizzo, dataNascita, fotoProfilo);
+		this.aziendaId = aziendaId;
 	}
 	
-	
+	public int getAziendaId() {
+		return aziendaId;
+	}
 }

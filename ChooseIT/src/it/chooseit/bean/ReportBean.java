@@ -7,32 +7,32 @@ public class ReportBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	private int registro_id;
-	private Date data_inserimento;
+	private int registroId;
+	private Date dataInserimento;
 	private String contenuto;
-	private String tutor_aziendale_email;
+	private String tutorAziendaleEmail;
 	
-	public ReportBean(int registro_id, Date data_inserimento, String contenuto, String tutor_aziendale_email) {
-		this.registro_id = registro_id;
-		this.data_inserimento = data_inserimento;
+	public ReportBean(int registroId, Date dataInserimento, String contenuto, String tutorAziendaleEmail) {
+		this.registroId = registroId;
+		this.dataInserimento = dataInserimento;
 		this.contenuto = contenuto;
-		this.tutor_aziendale_email = tutor_aziendale_email;
+		this.tutorAziendaleEmail = tutorAziendaleEmail;
 	}
 
 	public int getRegistroId() {
-		return registro_id;
+		return registroId;
 	}
 
-	public void setRegistroId(int registro_id) {
-		this.registro_id = registro_id;
+	public void setRegistroId(int registroId) {
+		this.registroId = registroId;
 	}
 
 	public Date getDataInserimento() {
-		return data_inserimento;
+		return dataInserimento;
 	}
 
-	public void setDataInserimento(Date data_inserimento) {
-		this.data_inserimento = data_inserimento;
+	public void setDataInserimento(Date dataInserimento) {
+		this.dataInserimento = dataInserimento;
 	}
 
 	public String getContenuto() {
@@ -44,11 +44,11 @@ public class ReportBean implements Serializable{
 	}
 
 	public String getTutorAziendaleEmail() {
-		return tutor_aziendale_email;
+		return tutorAziendaleEmail;
 	}
 
-	public void setTutorAziendaleEmail(String tutor_aziendale_email) {
-		this.tutor_aziendale_email = tutor_aziendale_email;
+	public void setTutorAziendaleEmail(String tutorAziendaleEmail) {
+		this.tutorAziendaleEmail = tutorAziendaleEmail;
 	}
 	
 	

@@ -10,30 +10,30 @@ public class StatoTirocinioBean implements Serializable{
 	public enum StatoRichiesta {NUOVA, INVALIDAZIONE, INCONVALIDA, ACCETTATA, RIFIUTATA};
 	public enum StatoTirocinio {INCORSO, ANNULLATO, TERMINATO};
 	
-	private int registro_id;
-	private Date data_stato;
+	private int registroId;
+	private Date dataStato;
 	private StatoTirocinio tipo;
 	
-	public StatoTirocinioBean(int registro_id, Date data_stato, StatoTirocinio tipo) {
-		this.registro_id = registro_id;
-		this.data_stato = data_stato;
+	public StatoTirocinioBean(int registroId, Date dataStato, StatoTirocinio tipo) {
+		this.registroId = registroId;
+		this.dataStato = dataStato;
 		this.tipo = tipo; 
 	}
 
 	public int getRegistroId() {
-		return registro_id;
+		return registroId;
 	}
 
-	public void setRegistroId(int registro_id) {
-		this.registro_id = registro_id;
+	public void setRegistroId(int registroId) {
+		this.registroId = registroId;
 	}
 
 	public Date getDataStato() {
-		return data_stato;
+		return dataStato;
 	}
 
-	public void setDataStato(Date data_stato) {
-		this.data_stato = data_stato;
+	public void setDataStato(Date dataStato) {
+		this.dataStato = dataStato;
 	}
 
 	public StatoTirocinio getTipo() {

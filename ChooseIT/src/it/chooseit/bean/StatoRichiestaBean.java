@@ -9,22 +9,22 @@ public class StatoRichiestaBean implements Serializable{
 	
 	public enum StatoRichiesta {NUOVA, INVALIDAZIONE, INCONVALIDA, ACCETTATA, RIFIUTATA};
 	
-	private Date data_stato;
+	private Date dataStato;
 	private StatoRichiesta tipo;
-	private int richiesta_id;
+	private int richiestaId;
 	
-	public StatoRichiestaBean(Date data_stato, StatoRichiesta tipo, int richiesta_id) {
-		this.data_stato = data_stato;
+	public StatoRichiestaBean(Date dataStato, StatoRichiesta tipo, int richiestaId) {
+		this.dataStato = dataStato;
 		this.tipo = tipo;
-		this.richiesta_id = richiesta_id;
+		this.richiestaId = richiestaId;
 	}
 
 	public Date getDataStato() {
-		return data_stato;
+		return dataStato;
 	}
 
-	public void setDataStato(Date data_stato) {
-		this.data_stato = data_stato;
+	public void setDataStato(Date dataStato) {
+		this.dataStato = dataStato;
 	}
 
 	public StatoRichiesta getTipo() {
@@ -36,11 +36,11 @@ public class StatoRichiestaBean implements Serializable{
 	}
 
 	public int getRichiestaId() {
-		return richiesta_id;
+		return richiestaId;
 	}
 
-	public void setRichiestaId(int richiesta_id) {
-		this.richiesta_id = richiesta_id;
+	public void setRichiestaId(int richiestaId) {
+		this.richiestaId = richiestaId;
 	}
 		
 }
