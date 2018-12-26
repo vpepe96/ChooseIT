@@ -1,3 +1,4 @@
+<%@page import="it.chooseit.bean.UtenteBean"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -60,51 +61,16 @@
 
 </head>
 
-<!--
+<body>
 
-	TABLE OF CONTENTS.
-	
-	Use search to find needed section.
-	
-	===================================================================
-	
-	|  01. #CSS Links                |  all CSS links and file paths  |
-	|  02. #FAVICONS                 |  Favicon links and file paths  |
-	|  03. #GOOGLE FONT              |  Google font link              |
-	|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
-	|  05. #BODY                     |  body tag                      |
-	|  06. #HEADER                   |  header tag                    |
-	|  07. #PROJECTS                 |  project lists                 |
-	|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
-	|  09. #MOBILE                   |  mobile view dropdown          |
-	|  10. #SEARCH                   |  search field                  |
-	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #RIGHT PANEL              |  right panel userlist          |
-	|  13. #MAIN PANEL               |  main panel                    |
-	|  14. #MAIN CONTENT             |  content holder                |
-	|  15. #PAGE FOOTER              |  page footer                   |
-	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  17. #PLUGINS                  |  all scripts and plugins       |
-	
-	===================================================================
-	
-	-->
-
-<!-- #BODY -->
-<!-- Possible Classes
-
-		* 'smart-style-{SKIN#}'
-		* 'smart-rtl'         - Switch theme mode to RTL
-		* 'menu-on-top'       - Switch to top navigation (no DOM change required)
-		* 'no-menu'			  - Hides the menu completely
-		* 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
-		* 'fixed-header'      - Fixes the header
-		* 'fixed-navigation'  - Fixes the main menu
-		* 'fixed-ribbon'      - Fixes breadcrumb
-		* 'fixed-page-footer' - Fixes footer
-		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
-	-->
-<body class="">
+	<%
+		//Recupero del ruolo: se non esiste, ruolo è "guest"
+		String ruolo = (String) request.getSession().getAttribute("ruolo");
+		if (ruolo == null) {
+			ruolo = "guest";
+			request.getSession().setAttribute("ruolo", ruolo);
+		}
+	%>
 
 	<!-- HEADER -->
 	<header id="header"> </header>
@@ -235,4 +201,18 @@
 	</div>
 	<!-- END PAGE FOOTER -->
 </body>
+
+	<%
+		if(request.getSession().getAttribute("loginOK") != null){
+			boolean loginOK = (boolean) request.getSession().getAttribute("loginOK");
+			request.getSession().removeAttribute("loginOK");
+			if (!loginOK) {
+			%>
+			<script type="text/javascript">
+				alert("ERRORE.\nLe credenziali sono errate.");
+			</script>	
+			<%
+			}
+		}
+	%>
 </html>
