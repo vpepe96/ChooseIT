@@ -1,4 +1,4 @@
 # ChooseIT
 Ingegneria del software - Progetto ChooseIT
 
-By RocketSudios
+By RocketStudios
