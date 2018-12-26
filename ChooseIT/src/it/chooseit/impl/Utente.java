@@ -38,9 +38,10 @@ public class Utente implements UtenteDAO {
 				bean.setEmail(rs.getString("email"));
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
-				bean.setDataNascita(rs.getDate("dataNascita"));
+				bean.setDataNascita(rs.getDate("data_nascita"));
 				bean.setIndirizzo(rs.getString("indirizzo"));
 				bean.setTelefono(rs.getString("telefono"));
+				bean.setFotoProfilo(rs.getString("foto_profilo"));
 				return bean;
 			} else
 				return null;
@@ -92,6 +93,7 @@ public class Utente implements UtenteDAO {
 				bean.setDataNascita(rs.getDate("data_nascita"));
 				bean.setIndirizzo(rs.getString("indirizzo"));
 				bean.setTelefono(rs.getString("telefono"));
+				bean.setFotoProfilo(rs.getString("foto_profilo"));
 				return bean;
 			} else
 				return null;
@@ -126,9 +128,10 @@ public class Utente implements UtenteDAO {
 				bean.setEmail(rs.getString("email"));
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
-				bean.setDataNascita(rs.getDate("dataNascita"));
+				bean.setDataNascita(rs.getDate("data_nascita"));
 				bean.setIndirizzo(rs.getString("indirizzo"));
 				bean.setTelefono(rs.getString("telefono"));
+				bean.setFotoProfilo(rs.getString("foto_profilo"));
 				list.add(bean);
 			}
 
@@ -145,20 +148,97 @@ public class Utente implements UtenteDAO {
 
 	@Override
 	public synchronized void insert(UtenteBean utente, String pwd) throws SQLException {
-		// TODO Auto-generated method stub
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "insert into utente (email, nome, cognome, data_nascita, indirizzo, telefono, pwd, foto_profilo) values (?, ?, ?, ?, ? ,?, ?, ?);";
+
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, utente.getEmail());
+			preparedStatement.setString(2, utente.getNome());
+			preparedStatement.setString(3, utente.getCognome());
+			preparedStatement.setDate(4, utente.getDataNascita());
+			preparedStatement.setString(5, utente.getIndirizzo());
+			preparedStatement.setString(6, utente.getTelefono());
+			preparedStatement.setString(7, pwd);
+			preparedStatement.setString(8, utente.getFotoProfilo());
+			
+			preparedStatement.executeUpdate();
+			
+			connection.commit();
+
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
 	}
 
 	@Override
-	public synchronized void update(String email, UtenteBean utente) throws SQLException {
-		// TODO Auto-generated method stub
+	public synchronized void update(String pwd, UtenteBean utente) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "update utente set Nome = ?, cognome = ?, data_nascita = ?, indirizzo = ?, telefono = ?, pwd = ?, foto_profilo = ? where email = ?;";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, utente.getNome());
+			preparedStatement.setString(2, utente.getCognome());
+			preparedStatement.setDate(3, utente.getDataNascita());
+			preparedStatement.setString(4, utente.getIndirizzo());
+			preparedStatement.setString(5, utente.getTelefono());
+			preparedStatement.setString(6, pwd);
+			preparedStatement.setString(7, utente.getFotoProfilo());
+			preparedStatement.setString(8, utente.getEmail());
+			
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
 	}
 
 	@Override
 	public synchronized void delete(String email) throws SQLException {
-		// TODO Auto-generated method stub
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			String sql = "delete from utente where email = ?;";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, email);
+
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
 	}
 
 	@Override
