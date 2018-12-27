@@ -19,6 +19,7 @@ import it.chooseit.services.DriverManagerConnectionPool;
  */
 public class Studente implements StudenteDAO {
 
+	
 	@Override
 	public synchronized StudenteBean retrieveByKey(String email) throws SQLException {
 		Connection connection = null;

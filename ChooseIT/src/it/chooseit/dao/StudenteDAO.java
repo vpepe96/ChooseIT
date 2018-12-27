@@ -8,6 +8,7 @@ import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
 
 public interface StudenteDAO extends GenericDAO<StudenteBean, String> {
+	
 	/**
 	 * Recupera la lista degli studenti iscritti al sito associati al tutor aziendale.
 	 * @param tutor il tutor aziendale del quale si vogliono recuperare gli studenti associati

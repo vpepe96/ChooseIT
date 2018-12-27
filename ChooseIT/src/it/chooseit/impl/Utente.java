@@ -108,6 +108,7 @@ public class Utente implements UtenteDAO {
 		}
 	}
 
+	
 	public synchronized void insert(UtenteBean utente, String pwd) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
