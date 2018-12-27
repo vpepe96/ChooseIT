@@ -6,14 +6,14 @@ import java.util.Collection;
 /***
  * Definisce l'interfaccia che tutti i DAO dovranno esporre
  * */
-public interface GenericDAO<T> {
+public interface GenericDAO<T,S> {
 	
 	/**
 	 * Restituisce un oggetto di tipo T in base al codice.
 	 * @param key chiave dell'elemento che si vuole ottenere
 	 * @return T oggetto contenente i dati dell'elemento desiderato
 	 * */
-	public T retrieveByKey(Object key) throws SQLException;
+	public T retrieveByKey(S key) throws SQLException;
 	
 	/**
 	 * Restituisce tutti gli elementi di tipo T nel DB.
@@ -39,6 +39,6 @@ public interface GenericDAO<T> {
 	 * @param key codice dell'elemento che si vuole eliminare
 	 * @return boolean true se l'oggetto è stato eliminato, false altrimenti
 	 * */
-	public boolean delete(Object key) throws SQLException;
+	public boolean delete(S key) throws SQLException;
 	
 }
