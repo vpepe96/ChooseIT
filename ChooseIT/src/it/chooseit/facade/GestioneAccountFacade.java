@@ -49,15 +49,15 @@ public class GestioneAccountFacade {
 	public String checkRuolo(UtenteBean utente) {
 		String ruolo = null;
 		UtenteDAO utenteDao = new Utente();
-		
+		/*
 		//Controlla il ruolo dell'utente
 		try {
 			//Il ruolo dell'utente è stato trovato
-			ruolo = utenteDao.checkRuolo(utente.getEmail());
+			//ruolo = utenteDao.checkRuolo(utente.getEmail());
 		} catch (SQLException e) {
 			//Il ruolo dell'utente non è stato trovato
 		}
-		
+		*/
 		return ruolo;
 	}
 }

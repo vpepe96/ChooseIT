@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.UtenteDAO;
@@ -107,46 +108,6 @@ public class Utente implements UtenteDAO {
 		}
 	}
 
-	@Override
-	public synchronized ArrayList<UtenteBean> retrieveAll() throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs = null;
-		ArrayList<UtenteBean> list = new ArrayList<>();
-
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-
-			String sql = "select * from utente;";
-
-			preparedStatement = connection.prepareStatement(sql);
-
-			rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-				UtenteBean bean = new UtenteBean();
-				bean.setEmail(rs.getString("email"));
-				bean.setNome(rs.getString("nome"));
-				bean.setCognome(rs.getString("cognome"));
-				bean.setDataNascita(rs.getDate("data_nascita"));
-				bean.setIndirizzo(rs.getString("indirizzo"));
-				bean.setTelefono(rs.getString("telefono"));
-				bean.setFotoProfilo(rs.getString("foto_profilo"));
-				list.add(bean);
-			}
-
-			return list;
-		} finally {
-			try {
-				if (!connection.isClosed())
-					connection.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-	}
-
-	@Override
 	public synchronized void insert(UtenteBean utente, String pwd) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -181,14 +142,14 @@ public class Utente implements UtenteDAO {
 	}
 
 	@Override
-	public synchronized void update(String pwd, UtenteBean utente) throws SQLException {
+	public synchronized void update(UtenteBean utente) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "update utente set Nome = ?, cognome = ?, data_nascita = ?, indirizzo = ?, telefono = ?, pwd = ?, foto_profilo = ? where email = ?;";
+			String sql = "update utente set nome = ?, cognome = ?, data_nascita = ?, indirizzo = ?, telefono = ?, foto_profilo = ? where email = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
 
@@ -197,7 +158,6 @@ public class Utente implements UtenteDAO {
 			preparedStatement.setDate(3, utente.getDataNascita());
 			preparedStatement.setString(4, utente.getIndirizzo());
 			preparedStatement.setString(5, utente.getTelefono());
-			preparedStatement.setString(6, pwd);
 			preparedStatement.setString(7, utente.getFotoProfilo());
 			preparedStatement.setString(8, utente.getEmail());
 			
@@ -215,7 +175,7 @@ public class Utente implements UtenteDAO {
 	}
 
 	@Override
-	public synchronized void delete(String email) throws SQLException {
+	public synchronized boolean delete(String email) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -228,9 +188,15 @@ public class Utente implements UtenteDAO {
 
 			preparedStatement.setString(1, email);
 
-			preparedStatement.executeUpdate();
-
+			int result = preparedStatement.executeUpdate();
+			
 			connection.commit();
+			
+			if(result == 1) {
+				return true;
+			}else {
+				return false;
+			}
 		} finally {
 			try {
 				if (!connection.isClosed())
@@ -241,7 +207,7 @@ public class Utente implements UtenteDAO {
 		}
 	}
 
-	@Override
+	
 	public synchronized String checkRuolo(String email) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -326,4 +292,52 @@ public class Utente implements UtenteDAO {
 		}
 	}
 
+	@Override
+	public Collection<UtenteBean> retrieveAll(String order) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		Collection<UtenteBean> list = new ArrayList<>();
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			String sql = null;
+			if(order == null || order.equals("")) {
+				sql = "select * from utente;";
+			}else {
+				sql = "select * from utente order by "+order+";";
+			}
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				UtenteBean bean = new UtenteBean();
+				bean.setEmail(rs.getString("email"));
+				bean.setNome(rs.getString("nome"));
+				bean.setCognome(rs.getString("cognome"));
+				bean.setDataNascita(rs.getDate("data_nascita"));
+				bean.setIndirizzo(rs.getString("indirizzo"));
+				bean.setTelefono(rs.getString("telefono"));
+				bean.setFotoProfilo(rs.getString("foto_profilo"));
+				list.add(bean);
+			}
+
+			return list;
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+
+	@Override
+	public void insert(UtenteBean object) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 }
