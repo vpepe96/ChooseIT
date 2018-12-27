@@ -93,31 +93,4 @@ public class StudenteBean extends UtenteBean implements Serializable{
 		this.descrizione = descrizione;
 	}
 
-	@Override
-	public String toString() {
-		return super.toString() + "StudenteBean [matricola=" + matricola + ", descrizione=" + descrizione + "]";
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		StudenteBean other = (StudenteBean) obj;
-		if (descrizione == null) {
-			if (other.descrizione != null)
-				return false;
-		} else if (!descrizione.equals(other.descrizione))
-			return false;
-		if (matricola == null) {
-			if (other.matricola != null)
-				return false;
-		} else if (!matricola.equals(other.matricola))
-			return false;
-		return true;
-	}
-
 }

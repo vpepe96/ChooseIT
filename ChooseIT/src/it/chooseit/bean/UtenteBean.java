@@ -209,59 +209,5 @@ public class UtenteBean implements Serializable{
 	public void setFotoProfilo(String fotoProfilo) {
 		this.fotoProfilo = fotoProfilo;
 	}
-
-	@Override
-	public String toString() {
-		return "UtenteBean [email=" + email + ", nome=" + nome + ", cognome=" + cognome + ", telefono=" + telefono
-				+ ", indirizzo=" + indirizzo + ", dataNascita=" + dataNascita + ", fotoProfilo=" + fotoProfilo
-				+ "]";
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UtenteBean other = (UtenteBean) obj;
-		if (cognome == null) {
-			if (other.cognome != null)
-				return false;
-		} else if (!cognome.equals(other.cognome))
-			return false;
-		if (dataNascita == null) {
-			if (other.dataNascita != null)
-				return false;
-		} else if (!dataNascita.equals(other.dataNascita))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (fotoProfilo == null) {
-			if (other.fotoProfilo != null)
-				return false;
-		} else if (!fotoProfilo.equals(other.fotoProfilo))
-			return false;
-		if (indirizzo == null) {
-			if (other.indirizzo != null)
-				return false;
-		} else if (!indirizzo.equals(other.indirizzo))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (telefono == null) {
-			if (other.telefono != null)
-				return false;
-		} else if (!telefono.equals(other.telefono))
-			return false;
-		return true;
-	}
 	
 }

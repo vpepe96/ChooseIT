@@ -16,7 +16,6 @@ public class StatoTirocinioBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	public enum StatoRichiesta {NUOVA, INVALIDAZIONE, INCONVALIDA, ACCETTATA, RIFIUTATA};
 	public enum StatoTirocinio {INCORSO, ANNULLATO, TERMINATO};
 	
 	/**
