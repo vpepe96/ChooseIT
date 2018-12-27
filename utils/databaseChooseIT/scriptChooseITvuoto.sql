@@ -4,7 +4,7 @@ use ChooseIT;
 
 create table utente(
 email			varchar(50)		not null,
-pwd				varchar(20)		not null,
+pwd				varchar(200)	not null,
 nome			varchar(30)		not null,
 cognome			varchar(30)		not null,
 telefono		varchar(10)		not null,
