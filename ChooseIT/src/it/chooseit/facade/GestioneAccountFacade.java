@@ -2,8 +2,11 @@ package it.chooseit.facade;
 
 import java.sql.SQLException;
 
+import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.UtenteBean;
+import it.chooseit.dao.StudenteDAO;
 import it.chooseit.dao.UtenteDAO;
+import it.chooseit.impl.Studente;
 import it.chooseit.impl.Utente;
 
 /**
@@ -35,8 +38,28 @@ public class GestioneAccountFacade {
 	}
 	
 	
-	public boolean registrazione() {
-		return false;
+	/**
+	 * Permette di registrare un nuovo studente al sito.
+	 * @param studente lo studente da registrare
+	 * @param pwd la password dello studente da registrare
+	 * @return true se la registrazione è andata a buon fine, false altrimenti
+	 */
+	public boolean registrazione(StudenteBean studente, String pwd) {
+		UtenteDAO utenteDao = new Utente();
+		try {
+			utenteDao.insert(studente, pwd);
+		} catch (SQLException e) {
+			return false;
+		}
+		System.out.println("utente inserito");
+		StudenteDAO studenteDao = new Studente();
+		try {
+			studenteDao.insert(studente);
+		} catch (SQLException e) {
+			return false;
+		}
+		System.out.println("studente inserito");
+		return true;
 	}
 	
 	

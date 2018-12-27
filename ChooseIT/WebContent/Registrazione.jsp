@@ -197,7 +197,7 @@
 									<label class="label">Data di Nascita</label> 
 									<label class="input">
 										<i class="icon-append fa fa-lock"></i> 
-										<input type="date" name="dataNascita" id="dataNascita" required="required" pattern="^(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}$">
+										<input type="text" name="dataNascita" id="dataNascita" placeholder="gg/mm/aaaa" required="required" pattern="^(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}$">
 									</label>
 								</section>
 								
@@ -335,7 +335,19 @@
 	inputMatricola.oninvalid= function(event){
 		event.target.setCustomValidity('La matricola deve avere una lunghezza di 10 cifre.');
 	}
-	
-	
 </script>
+
+	<%
+		if(request.getSession().getAttribute("registrazioneOK") != null){
+			boolean registrazioneOK = (boolean) request.getSession().getAttribute("registrazioneOK");
+			request.getSession().removeAttribute("registrazioneOK");
+			if (!registrazioneOK) {
+			%>
+			<script type="text/javascript">
+				alert("ERRORE.\nLa registrazione non è andata a buon fine.");
+			</script>	
+			<%
+			}
+		}
+	%>
 </html>
