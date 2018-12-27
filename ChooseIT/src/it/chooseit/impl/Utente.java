@@ -1,5 +1,7 @@
 package it.chooseit.impl;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +12,7 @@ import java.util.Collection;
 import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.UtenteDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
+import it.chooseit.services.GestorePassword;
 
 /**
  * Implementazione di UtenteDAO, che definisce i metodi per gestire i dati
@@ -61,43 +64,50 @@ public class Utente implements UtenteDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
-
-		/*
-		 * //Genera hash della password SecureRandom random = new SecureRandom(); byte[]
-		 * salt = new byte[16]; random.nextBytes(salt); KeySpec spec = new
-		 * PBEKeySpec(pwd.toCharArray(), salt, 65536, 128); SecretKeyFactory factory =
-		 * null; try { factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1"); }
-		 * catch (NoSuchAlgorithmException e) { System.out.println("NoSuchAlgorithm"); }
-		 * byte[] hash = null;
-		 * 
-		 * try { hash = factory.generateSecret(spec).getEncoded(); } catch
-		 * (InvalidKeySpecException e) { System.out.println("InvalidKeySpec"); }
-		 */
-
-		// Cerca nel database la combinazione email-hash
+		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "select * from utente where email = ? and pwd = ?";
+			String sql = "select * from utente where email = ?";
 
 			preparedStatement = connection.prepareStatement(sql);
 
 			preparedStatement.setString(1, email);
-			preparedStatement.setString(2, pwd);
 
 			rs = preparedStatement.executeQuery();
-			if (rs.next()) {
-				UtenteBean bean = new UtenteBean();
-				bean.setEmail(rs.getString("email"));
-				bean.setNome(rs.getString("nome"));
-				bean.setCognome(rs.getString("cognome"));
-				bean.setDataNascita(rs.getDate("data_nascita"));
-				bean.setIndirizzo(rs.getString("indirizzo"));
-				bean.setTelefono(rs.getString("telefono"));
-				bean.setFotoProfilo(rs.getString("foto_profilo"));
-				return bean;
-			} else
+			String storedPassword = null;
+			boolean pwdOK = false;
+			
+			//Se l'utente è iscritto al sito...
+			if(rs.next()) {
+				storedPassword = rs.getString("pwd");
+			}else //...altrimenti non è iscritto al sito 
 				return null;
+			
+			//Controllo sulla password inserita...
+			try {
+				pwdOK = GestorePassword.validatePassword(pwd, storedPassword);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidKeySpecException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if(pwdOK) {
+			UtenteBean bean = new UtenteBean();
+			bean.setEmail(rs.getString("email"));
+			bean.setNome(rs.getString("nome"));
+			bean.setCognome(rs.getString("cognome"));
+			bean.setDataNascita(rs.getDate("data_nascita"));
+			bean.setIndirizzo(rs.getString("indirizzo"));
+			bean.setTelefono(rs.getString("telefono"));
+			bean.setFotoProfilo(rs.getString("foto_profilo"));
+			return bean;
+			}else {
+				return null;
+			}
 		} finally {
 			try {
 				if (!connection.isClosed())
@@ -115,9 +125,21 @@ public class Utente implements UtenteDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-
+			
+			String pwdSicura = null;
+			try {
+				pwdSicura = GestorePassword.generateStrongPasswordHash(pwd);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidKeySpecException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(pwdSicura);
+			
 			String sql = "insert into utente (email, nome, cognome, data_nascita, indirizzo, telefono, pwd, foto_profilo) values (?, ?, ?, ?, ? ,?, ?, ?);";
-			System.out.println("dopo string");
+			
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, utente.getEmail());
@@ -126,7 +148,7 @@ public class Utente implements UtenteDAO {
 			preparedStatement.setDate(4, utente.getDataNascita());
 			preparedStatement.setString(5, utente.getIndirizzo());
 			preparedStatement.setString(6, utente.getTelefono());
-			preparedStatement.setString(7, pwd);
+			preparedStatement.setString(7, pwdSicura);
 			preparedStatement.setString(8, utente.getFotoProfilo());
 			
 			preparedStatement.executeUpdate();
