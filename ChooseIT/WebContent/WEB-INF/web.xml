@@ -8,4 +8,8 @@
     <servlet-name>ServletLogin</servlet-name>
     <servlet-class>it.chooseit.servlet.ServletLogin</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ServletRegistraione</servlet-name>
+    <servlet-class>it.chooseit.servlet.ServletRegistrazione</servlet-class>
+  </servlet>
 </web-app>

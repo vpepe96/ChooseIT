@@ -93,12 +93,16 @@
 				-->
 
 			<ul>
-				<li class="active open"><a href="#" title="Login"><i
-						class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Login</span></a>
+				<li class="active open">
+					<a href="index.jsp" title="Login">
+						<span class="menu-item-parent">Login</span>
+					</a>
 				</li>
-				<li><a href="Registrazione.jsp"><i
-						class="fa fa-lg fa-fw fa-inbox"></i> <span
-						class="menu-item-parent">Registrazione</span></a></li>
+				<li>
+					<a href="Registrazione.jsp">
+						<span class="menu-item-parent">Registrazione</span>
+					</a>
+				</li>
 			</ul>
 		</nav>
 
@@ -147,19 +151,18 @@
 							<fieldset>
 
 								<section>
-									<label class="label">E-mail</label> <label class="input">
-										<i class="icon-append fa fa-user"></i> <input type="email"
-										name="email"> <b class="tooltip tooltip-top-right"><i
-											class="fa fa-user txt-color-teal"></i> Inserire l'indirizzo
-											email</b>
+									<label class="label">E-mail</label> 
+									<label class="input">
+										<i class="icon-append fa fa-user"></i> 
+										<input type="email" name="email" required="required">
 									</label>
 								</section>
 
 								<section>
-									<label class="label">Password</label> <label class="input">
-										<i class="icon-append fa fa-lock"></i> <input type="password"
-										name="password"> <b class="tooltip tooltip-top-right"><i
-											class="fa fa-lock txt-color-teal"></i> Inserire la password</b>
+									<label class="label">Password</label> 
+									<label class="input">
+										<i class="icon-append fa fa-lock"></i> 
+										<input type="password" name="password" required="required">
 									</label>
 									<div class="note">
 										<a href="forgotpassword.html">Password dimenticata?</a>
