@@ -180,7 +180,7 @@
 									<!-- widget content -->
 									<div class="widget-body no-padding">
 				
-										<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+										<table id="dt_basic" class="table table-striped table-bordered table-hover" style="width: 100%;">
 											<thead>			                
 												<tr>
 													<th data-hide="phone">ID</th>
