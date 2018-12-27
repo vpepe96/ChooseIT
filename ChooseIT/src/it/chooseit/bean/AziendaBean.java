@@ -49,7 +49,7 @@ public class AziendaBean implements Serializable {
 		this.sedeOperativa = sedeOperativa;
 		this.sedeLegale = sedeLegale;
 	}
-
+	
 	/*
     |--------------------------------------------------------------------------
     | Interfaccia pubblica
