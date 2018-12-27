@@ -1,13 +1,32 @@
 package it.chooseit.bean;
 
+/**
+ * Un oggetto PresidenteBean rappresenta il Presidente dell'Università degli Studi di Salerno, iscritto alla piattaforma ChooseIT.
+ * Un oggetto SegreteriaBean è anche {@inheritDoc}
+ * 
+ * @author RocketStudios
+ */
+
 import java.io.Serializable;
+import java.sql.Date;
 
 public class PresidenteBean extends UtenteBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public PresidenteBean() {
-		
+	/**
+	 * Costruttore di PresidenteBean
+	 * 
+	 * @param email email del presidente
+	 * @param nome nome del presidente
+	 * @param cognome cognome del presidente
+	 * @param telefono numero telefonico del presidente
+	 * @param indirizzo indirizzo di residenza del presidente
+	 * @param dataNascita data di nascita del presidente
+	 * @param fotoProfilo path della foto del profilo personale del presidente
+	 */
+	public PresidenteBean(String email, String nome, String cognome, String telefono, String indirizzo, Date dataNascita, String fotoProfilo) {
+		super(email, nome, cognome, telefono, indirizzo, dataNascita, fotoProfilo);
 	}
 
 }

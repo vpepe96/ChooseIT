@@ -3,8 +3,8 @@ package it.chooseit.bean;
 /**
  * Un oggetto StatoRichiestaBean rappresenta lo stato di una richiesta di tirocinio.
  * Uno stato ha una data, che viene rappresentata con la variabile d'istanza dataStato, ha un tipo, che viene rappresentato
- * con la variabile d'istanza tipo e l'identificativo della richiesta di tirocinio,
- * che viene rappresentato con la variabile d'istanza richiestaId.
+ * con la variabile d'istanza tipo e l'identificativo della richiesta di tirocinio, che viene rappresentato con la 
+ * variabile d'istanza richiestaTirocinio.
  * 
  * @author RocketStudios
  */
@@ -22,26 +22,28 @@ public class StatoRichiestaBean implements Serializable{
 	 * Rappresenta la data in cui la richiesta ha assunto quello stato.
 	 */
 	private Date dataStato;
+	
 	/**
 	 * Rappresenta il tipo della richiesta di tirocinio.
 	 */
 	private StatoRichiesta tipo;
+	
 	/**
-	 * Rappresenta l'identificativo della richiesta di tirocinio.
+	 * Rappresenta la richiesta di tirocinio.
 	 */
-	private int richiestaId;
+	private RichiestaTirocinioBean richiestaTirocinio;
 	
 	/**
 	 * Costruttore di StatoRichiestaBean.
 	 * 
 	 * @param dataStato data in cui la richiesta ha assunto lo stato specificato.
 	 * @param tipo tipo assegnato ad una richiesta di tirocinio.
-	 * @param richiestaId identificativo della richiesta di tirocinio.
+	 * @param richiestaTirocinio richiesta di tirocinio.
 	 */
-	public StatoRichiestaBean(Date dataStato, StatoRichiesta tipo, int richiestaId) {
+	public StatoRichiestaBean(Date dataStato, StatoRichiesta tipo, RichiestaTirocinioBean richiestaTirocinio) {
 		this.dataStato = dataStato;
 		this.tipo = tipo;
-		this.richiestaId = richiestaId;
+		this.richiestaTirocinio = richiestaTirocinio;
 	}
 
 	/*
@@ -89,22 +91,22 @@ public class StatoRichiestaBean implements Serializable{
 	}
 
 	/**
-	 * Restituisce l'identificativo della richiesta di tirocinio.
+	 * Restituisce la richiesta di tirocinio.
 	 * 
-	 * @return richiestaId identificativo della richiesta di tirocinio.
+	 * @return richiesta di tirocinio.
 	 */
-	public int getRichiestaId() {
-		return richiestaId;
+	public RichiestaTirocinioBean getRichiestaTirocinio() {
+		return richiestaTirocinio;
 	}
 
 	/**
-	 * Setta un nuovo identificativo per la richiesta di tirocinio.
+	 * Setta una nuova richiesta di tirocinio.
 	 * 
 	 * Pre: richiestaId != null.
-	 * @param richiestaId nuovo identificativo della richiesta di tirocinio.
+	 * @param richiestaTirocinio nuova richiesta di tirocinio.
 	 */
-	public void setRichiestaId(int richiestaId) {
-		this.richiestaId = richiestaId;
+	public void setRichiestaId(RichiestaTirocinioBean richiestaId) {
+		this.richiestaTirocinio = richiestaTirocinio;
 	}
 		
 }

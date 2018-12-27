@@ -3,7 +3,7 @@ package it.chooseit.bean;
 /**
  * Un oggetto StatoTirocinioBean rappresenta lo stato di un tirocinio. Uno stato ha
  * un identificativo per il registro associato a quel tirocinio, che viene rappresentato con
- * la variabile d'istanza registroId, ha una data, che viene rappresentata con la variabile
+ * la variabile d'istanza registroTirocinio, ha una data, che viene rappresentata con la variabile
  * d'istanza dataStato, ha un tipo, che viene rappresentato con la variabile d'istanza tipo.
  * 
  * @author RocketStudios
@@ -20,13 +20,15 @@ public class StatoTirocinioBean implements Serializable{
 	public enum StatoTirocinio {INCORSO, ANNULLATO, TERMINATO};
 	
 	/**
-	 * Rappresenta l'identificativo del registro di tirocinio.
+	 * Rappresenta il registro di tirocinio.
 	 */
-	private int registroId;
+	private RegistroTirocinioBean registroTirocinio;
+	
 	/**
 	 * Rappresenta la data in cui è stato assegnato lo stato al tirocinio.
 	 */
 	private Date dataStato;
+	
 	/**
 	 * Rappresenta il tipo di stato del tirocinio.
 	 */
@@ -35,12 +37,12 @@ public class StatoTirocinioBean implements Serializable{
 	/**
 	 * Costruttore di StatoTirocinioBean.
 	 * 
-	 * @param registroId identificativo del registro di tirocinio.
+	 * @param registroTirocinio registro di tirocinio.
 	 * @param dataStato data in cui il tirocinio ha assunto uno stato.
 	 * @param tipo tipo di stato assegnato al tirocinio.
 	 */
-	public StatoTirocinioBean(int registroId, Date dataStato, StatoTirocinio tipo) {
-		this.registroId = registroId;
+	public StatoTirocinioBean(RegistroTirocinioBean registroTirocinio, Date dataStato, StatoTirocinio tipo) {
+		this.registroTirocinio = registroTirocinio;
 		this.dataStato = dataStato;
 		this.tipo = tipo; 
 	}
@@ -52,22 +54,22 @@ public class StatoTirocinioBean implements Serializable{
     */
 	
 	/**
-	 * Restituisce l'identificativo del registro associato al tirocinio.
+	 * Restituisce il registro associato al tirocinio.
 	 * 
-	 * @return registroId identificativo del registro di tirocinio.
+	 * @return il registro di tirocinio.
 	 */
-	public int getRegistroId() {
-		return registroId;
+	public RegistroTirocinioBean getRegistroTirocinio() {
+		return registroTirocinio;
 	}
 
 	/**
-	 * Setta un nuovo identificativo per il registro di tirocinio.
+	 * Setta un nuovo registro di tirocinio.
 	 * 
-	 * Pre: registroId != null.
-	 * @param registroId nuovo identificativo del registro di tirocinio.
+	 * Pre: registroTirocinio != null.
+	 * @param registroTirocinio nuovo registro di tirocinio.
 	 */
-	public void setRegistroId(int registroId) {
-		this.registroId = registroId;
+	public void setRegistroTirocinio(RegistroTirocinioBean registroTirocinio) {
+		this.registroTirocinio = registroTirocinio;
 	}
 
 	/**

@@ -4,7 +4,8 @@ package it.chooseit.bean;
  * Un oggetto StatoReportBean rappresenta lo stato di un report caricato in un registro di tirocinio.
  * Uno stato ha una data, che viene rappresentata con la variabile d'istanza dataStato, ha un tipo, che viene rappresentato
  * con la variabile d'istanza tipo, una data per il report, che viene rappresentata con la variabile d'istanza reportData, 
- * e l'identificativo del registro di tirocinio di cui fa parte il report, che viene rappresentato con la variabile d'istanza registroId.
+ * e l'identificativo del registro di tirocinio di cui fa parte il report, che viene rappresentato con la variabile d'istanza 
+ * registroTirocinio.
  * 
  * @author RocketStudios
  */
@@ -22,6 +23,7 @@ public class StatoReportBean implements Serializable {
 	 * Rappresenta la data in cui il report ha assunto quello stato.
 	 */
 	private Date dataStato;
+	
 	/**
 	 * Rappresenta il tipo di stato che ha un report.
 	 */
@@ -30,10 +32,11 @@ public class StatoReportBean implements Serializable {
 	 * Rappresenta la data in cui il report è stato caricato nel registro di tirocinio.
 	 */
 	private Date reportData;
+	
 	/**
 	 * Rappresenta l'identificativo del registro di tirocinio che contiene il report.
 	 */
-	private int registroId;
+	private RegistroTirocinioBean registroTirocinio;
 	
 	/**
 	 * Costruttore di StatoReportBean
@@ -41,13 +44,13 @@ public class StatoReportBean implements Serializable {
 	 * @param dataStato data in cui il report ha assunto lo stato specificato.
 	 * @param tipo tipo di stato assegnato ad un report.
 	 * @param reportData data di inserimento del report.
-	 * @param registroId identificativo del registro di tirocinio che contiene il report.
+	 * @param registroTirocinio iregistro di tirocinio che contiene il report.
 	 */
-	public StatoReportBean(Date dataStato, StatoReport tipo, Date reportData, int registroId) {
+	public StatoReportBean(Date dataStato, StatoReport tipo, Date reportData, RegistroTirocinioBean registroTirocinio) {
 		this.dataStato = dataStato;
 		this.tipo = tipo;
 		this.reportData = reportData;
-		this.registroId = registroId;
+		this.registroTirocinio = registroTirocinio;
 	}
 
 	/*
@@ -114,22 +117,22 @@ public class StatoReportBean implements Serializable {
 	}
 
 	/**
-	 * Resituisce l'identificativo del registro di tirocinio che contiene il report di StatoReportBean.
+	 * Resituisce il registro di tirocinio che contiene il report di StatoReportBean.
 	 * 
-	 * @return registroId identificativo del registro di tirocinio.
+	 * @return registro di tirocinio.
 	 */
-	public int getRegistroId() {
-		return registroId;
+	public RegistroTirocinioBean getRegistroTirocinio() {
+		return registroTirocinio;
 	}
 
 	/**
-	 * Setta un nuovo identificativo per il registro di tirocinio di StatoReportBean.
+	 * Setta un nuovo registro di tirocinio di StatoReportBean.
 	 * 
-	 * Pre: registroId != null.
-	 * @param registroId nuovo identificativo del registro di tirocinio.
+	 * Pre: registroTirocinio != null.
+	 * @param registroTirocinio nuovo registro di tirocinio.
 	 */
-	public void setRegistroId(int registroId) {
-		this.registroId = registroId;
+	public void setRegistroTirocinio(RegistroTirocinioBean registroTirocinio) {
+		this.registroTirocinio = registroTirocinio;
 	}
 	
 }
