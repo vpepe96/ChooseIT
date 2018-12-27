@@ -44,7 +44,7 @@ public class ReportBean implements Serializable{
 	 * @param contenuto descrizione del report
 	 * @param tutorAziendale tutor aziendale associato
 	 */
-	public ReportBean(RegistroTirocinioBean registroId, Date dataInserimento, String contenuto, TutorAziendaleBean tutorAziendaleEmail) {
+	public ReportBean(RegistroTirocinioBean registroTirocinio, Date dataInserimento, String contenuto, TutorAziendaleBean tutorAziendale) {
 		this.registroTirocinio = registroTirocinio;
 		this.dataInserimento = dataInserimento;
 		this.contenuto = contenuto;

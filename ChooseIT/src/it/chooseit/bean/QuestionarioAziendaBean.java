@@ -116,7 +116,7 @@ public class QuestionarioAziendaBean implements Serializable{
 	 * Pre: registro != null
 	 * @param registro nuovo registro di tirocinio associato
 	 */
-	public void setRegistroTirocinio(RegistroTirocinioBean registro) {
+	public void setRegistroTirocinio(RegistroTirocinioBean registroTirocinio) {
 		this.registroTirocinio = registroTirocinio;
 	}
 

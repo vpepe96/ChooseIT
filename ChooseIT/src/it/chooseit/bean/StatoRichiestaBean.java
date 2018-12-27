@@ -105,7 +105,7 @@ public class StatoRichiestaBean implements Serializable{
 	 * Pre: richiestaId != null.
 	 * @param richiestaTirocinio nuova richiesta di tirocinio.
 	 */
-	public void setRichiestaId(RichiestaTirocinioBean richiestaId) {
+	public void setRichiestaId(RichiestaTirocinioBean richiestaTirocinio) {
 		this.richiestaTirocinio = richiestaTirocinio;
 	}
 		
