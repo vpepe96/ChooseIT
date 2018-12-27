@@ -110,24 +110,22 @@ public class Studente implements StudenteDAO {
 	}
 
 	@Override
-	public void insert(StudenteBean studente) throws SQLException {
+	public synchronized void insert(StudenteBean studente) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "insert into studente (email, matricola, descrizione) values (?,?,?);";
+			String sql = "insert into studente (email, matricola, descrizione) values (?, ?, ?);";
 
 			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setString(1, studente.getEmail());
+			preparedStatement.setString(1, studente.getEmail().trim());
 			preparedStatement.setString(2, studente.getMatricola());
 			preparedStatement.setString(3, studente.getDescrizione());
 			
 			preparedStatement.executeUpdate();
-			
-			connection.commit();
 			
 		} finally {
 			try {
@@ -156,7 +154,6 @@ public class Studente implements StudenteDAO {
 			
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (!connection.isClosed())
@@ -168,7 +165,7 @@ public class Studente implements StudenteDAO {
 	}
 
 	@Override
-	public boolean delete(String email) throws SQLException {
+	public synchronized boolean delete(String email) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -180,8 +177,6 @@ public class Studente implements StudenteDAO {
 			preparedStatement = connection.prepareStatement(sql);
 
 			preparedStatement.setString(1, email);
-
-			connection.commit();
 			
 			int result = preparedStatement.executeUpdate();
 			if(result == 1) {
@@ -202,7 +197,7 @@ public class Studente implements StudenteDAO {
 
 
 	@Override
-	public Collection<StudenteBean> getStudentiAssociati(TutorAziendaleBean tutor) throws SQLException {
+	public synchronized Collection<StudenteBean> getStudentiAssociati(TutorAziendaleBean tutor) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
@@ -250,7 +245,7 @@ public class Studente implements StudenteDAO {
 	
 
 	@Override
-	public Collection<StudenteBean> getStudentiAssociati(TutorUniversitarioBean tutor) throws SQLException {
+	public synchronized Collection<StudenteBean> getStudentiAssociati(TutorUniversitarioBean tutor) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;

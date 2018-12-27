@@ -117,8 +117,9 @@ public class Utente implements UtenteDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			String sql = "insert into utente (email, nome, cognome, data_nascita, indirizzo, telefono, pwd, foto_profilo) values (?, ?, ?, ?, ? ,?, ?, ?);";
-
+			System.out.println("dopo string");
 			preparedStatement = connection.prepareStatement(sql);
+			
 			preparedStatement.setString(1, utente.getEmail());
 			preparedStatement.setString(2, utente.getNome());
 			preparedStatement.setString(3, utente.getCognome());
@@ -130,8 +131,6 @@ public class Utente implements UtenteDAO {
 			
 			preparedStatement.executeUpdate();
 			
-			connection.commit();
-
 		} finally {
 			try {
 				if (!connection.isClosed())
@@ -164,7 +163,6 @@ public class Utente implements UtenteDAO {
 			
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (!connection.isClosed())
@@ -190,8 +188,6 @@ public class Utente implements UtenteDAO {
 			preparedStatement.setString(1, email);
 
 			int result = preparedStatement.executeUpdate();
-			
-			connection.commit();
 			
 			if(result == 1) {
 				return true;
@@ -294,7 +290,7 @@ public class Utente implements UtenteDAO {
 	}
 
 	@Override
-	public Collection<UtenteBean> retrieveAll(String order) throws SQLException {
+	public synchronized Collection<UtenteBean> retrieveAll(String order) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
