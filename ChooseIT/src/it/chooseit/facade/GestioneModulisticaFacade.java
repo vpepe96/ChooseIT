@@ -5,6 +5,7 @@ import java.io.File;
 import it.chooseit.bean.AziendaBean;
 import it.chooseit.bean.ReportBean;
 import it.chooseit.bean.RichiestaTirocinioBean;
+import it.chooseit.bean.UtenteBean;
 
 /**
  * Definisce i metodi per gestire le funzionalità relative all' upload e download della modulistica.
@@ -39,6 +40,17 @@ public class GestioneModulisticaFacade {
 	 * @param report informazioni riguardanti il report da caricare
 	 */
 	public static void uploadReport(File file, ReportBean report) {
+		
+	}
+	
+	/**
+	 * Permette di caricare un'immagine relativa ad un'utente.
+	 * PRE: utente != null AND file!=null
+	 * @param file immagine che si desidera caricare. 
+	 * @param utente del quale si desidera aggiornare l'immagine.
+	 */
+	public static void uploadImmagine(UtenteBean utente, File file) {
+		
 		
 	}
 	
@@ -79,6 +91,7 @@ public class GestioneModulisticaFacade {
 		
 		return null;	
 	}
+	
 	
 	
 
