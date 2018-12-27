@@ -23,7 +23,7 @@ public class Utente implements UtenteDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
 
-		try {
+		try { 
 			connection = DriverManagerConnectionPool.getConnection();
 
 			String sql = "select * from utente where email = ?;";

@@ -17,7 +17,7 @@
 	href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen"
 	href="css/font-awesome.min.css">
-
+ 
 <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
 <link rel="stylesheet" type="text/css" media="screen"
 	href="css/smartadmin-production-plugins.min.css">
