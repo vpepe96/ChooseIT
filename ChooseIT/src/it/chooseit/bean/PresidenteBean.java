@@ -2,7 +2,7 @@ package it.chooseit.bean;
 
 /**
  * Un oggetto PresidenteBean rappresenta il Presidente dell'Università degli Studi di Salerno, iscritto alla piattaforma ChooseIT.
- * Un oggetto SegreteriaBean è anche {@inheritDoc}
+ * Un oggetto PresidenteBean è anche {@inheritDoc}.
  * 
  * @author RocketStudios
  */

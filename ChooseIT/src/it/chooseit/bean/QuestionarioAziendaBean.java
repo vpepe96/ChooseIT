@@ -1,11 +1,13 @@
 package it.chooseit.bean;
 
 /**
- * Un oggetto QuestionarioAziendaBean rappresenta un questionario valutativo che viene compilato da un tirocinante in riferimento ad un tutor aziendale.
- * Un questionario azienda ha un collegamento al registro di tirocinio, che viene rappresentato con la variabile d'istanza registroTirocinio, le risposte alle domande 
- * relatite al progetto di tirocinio, che vengono rappresentate con le variabili d'istanza pdt1, pdt2, pdt3, pdt4 e pdt5, le risposte alle domande relative 
- * all'ente ospitante, che vengono rappresentate con le variabili d'istanza eo1, eo2, eo3, eo4 e eo5, e le risposte delle domande relative alle strutture universitarie 
- * addette alla gestione dei tirocini, che vengono rappresentate con le varibili d'istanza su1, su2 e su3.
+ * Un oggetto QuestionarioAziendaBean rappresenta un questionario valutativo che viene compilato da un tirocinante 
+ * in riferimento ad un tutor aziendale.
+ * Un questionario azienda ha un collegamento al registro di tirocinio, rappresentato con la variabile d'istanza 
+ * registroTirocinio, le risposte alle domande relatite al progetto di tirocinio, rappresentate con le variabili 
+ * d'istanza pdt1, pdt2, pdt3, pdt4 e pdt5, le risposte alle domande relative all'ente ospitante, rappresentate 
+ * con le variabili d'istanza eo1, eo2, eo3, eo4 e eo5, e le risposte delle domande relative alle strutture 
+ * universitarie addette alla gestione dei tirocini, che vengono rappresentate con le varibili d'istanza su1, su2 e su3.
  *  
  * @author RocketStudios
  */

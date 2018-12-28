@@ -2,7 +2,7 @@ package it.chooseit.bean;
 
 /**
  * Un oggetto SegreteriaBean rappresenta un segretario/a dell'Università degli Studi di Salerno, iscritto alla piattaforma ChooseIT.
- * Un oggetto SegreteriaBean è anche {@inheritDoc}
+ * Un oggetto SegreteriaBean è anche {@inheritDoc}.
  * 
  * @author RocketStudios
  */

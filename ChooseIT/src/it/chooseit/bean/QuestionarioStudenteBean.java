@@ -1,11 +1,13 @@
 package it.chooseit.bean;
 
 /**
- * Un oggetto QuestionarioStudenteBean rappresenta un questionario valutativo che viene compilato da un tutor aziendale in riferimento ad un tirocinante.
- * Un questionario studente ha un collegamento al registro di tirocinio, che viene rappresentato con la variabile d'istanza registroTirocinio, delle domande relatite 
- * al progetto di tirocinio, che vengono rappresentate con le variabili d'istanza pdt1, pdt2, pdt3 e pdt4, delle domande relative al tirocinante, 
- * che vengono rappresentate con le variabili d'istanza t1, t2, t3 e t4, e delle domande relative alle strutture universitarie addette alla gestione dei
- * tirocini, che vengono rappresentate con le varibili d'istanza su1, su2 e su3.
+ * Un oggetto QuestionarioStudenteBean rappresenta un questionario valutativo che viene compilato da un tutor aziendale 
+ * in riferimento ad un tirocinante.
+ * Un questionario studente ha un collegamento al registro di tirocinio, rappresentato con la variabile d'istanza 
+ * registroTirocinio, delle domande relatite al progetto di tirocinio, rappresentate con le variabili d'istanza pdt1, pdt2,
+ * pdt3 e pdt4, delle domande relative al tirocinante, rappresentate con le variabili d'istanza t1, t2, t3 e t4, e delle 
+ * domande relative alle strutture universitarie addette alla gestione deintirocini, che vengono rappresentate con le 
+ * varibilind'istanza su1, su2 e su3.
  *  
  * @author RocketStudios
  */

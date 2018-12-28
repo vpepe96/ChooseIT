@@ -4,7 +4,9 @@ package it.chooseit.bean;
  * Un oggetto TutorAziendaleBean rappresenta un tutor di un'azienda convenzionata presso l'Università degli Studi di Salerno,
  * iscritto alla piattaforma ChooseIT. 
  * Un oggetto TutorAziendaleBean è anche * {@inheritDoc}. 
- * Inoltre, ha un riferimento all'azienda in cui ricopre il ruolo di tutor, rappresentato dalla variabile d'istanza azienda.
+ * Inoltre, ha un riferimento all'azienda in cui ricopre il ruolo di tutor, rappresentato dalla variabile d'istanza azienda,
+ * una lista di report, collegati ad un registro di tirocinio, che deve firmare, rappresentata dalla variabile d'istanza
+ * reports, e una lista di tirocini a cui è stato assegnato, rappresentata dalla varbiale d'istanza registriTirocinio.
  *
  * @author RocketStudios
  */

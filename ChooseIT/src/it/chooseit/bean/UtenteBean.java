@@ -3,8 +3,8 @@ package it.chooseit.bean;
 /**
  * Un oggetto UtenteBean rappresenta un utente loggato al sistema ChooseIT.
  * Un utente ha una email, un nome, un cognome, un numero di telefono, un indirizzo,
- * una data di nascita e una foto del profilo. Ogni campo è rappresentato con la propria
- * variabile di istanza.
+ * una data di nascita e una foto del profilo. 
+ * Ogni campo è rappresentato con la propria variabile di istanza.
  * 
  * @author RocketStudios
  */

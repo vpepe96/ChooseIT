@@ -2,9 +2,10 @@ package it.chooseit.bean;
 
 /**
  * Un oggetto ReportBean rappresenta report generico sull'attività lavorativa odierna svolta da un tirocinante presso un'azienda.
- * Un report ha un collegamento al registro di tirocinio, che viene rappresentato con la variabile d'istanza registroTirocinio, una data d'inserimento,
- * che viene rappresentata con la variabile d'istanza dataInserimento, un file, che viene rappresentato con la variabile d'istanza 
- * path, e un tutor aziendale, che viene rappresentata con la variabile d'istanza tutorAziendale.
+ * Un report ha un collegamento al registro di tirocinio, rappresentato con la variabile d'istanza registroTirocinio, una data 
+ * d'inserimento, rappresentata con la variabile d'istanza dataInserimento, un file, rappresentato con la variabile d'istanza 
+ * path, un tutor aziendale, rappresentato con la variabile d'istanza tutorAziendale, e una lista di stati, rappresentata con
+ * la variabile d'istanza statiReport.
  *  
  * @author RocketStudios
  */

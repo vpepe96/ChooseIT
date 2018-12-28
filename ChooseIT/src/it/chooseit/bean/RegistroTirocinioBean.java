@@ -1,12 +1,15 @@
 package it.chooseit.bean;
 
 /**
- * Un oggetto RegistroTirocinioBean rappresenta il registro di tirocinio relativo ad un tirocinio di uno studente presso un'azienda.
- * Un registro di tirocinio ha un identificativo univoco, rappresentato con la variabile d'istanza identificativo, una data d'inizio,
- * rappresentata con la variabile d'istanza dataInizio, lo studente, rappresentato con la variabile d'istanza studente, un tutor 
- * aziendale, rappresentato con la variabile d'istanza tutorAziendale, un tutor universitario, rappresentato con la variabile 
- * d'istanza tutorUniversitario, una richiesta di tirocinio, rappresentata con la variabile d'istanza richiestaTirocinio, e una
- * lista di report, rappresentata con la variabile d'istanza reports.
+ * Un oggetto RegistroTirocinioBean rappresenta il registro di tirocinio relativo ad un tirocinio di uno studente presso 
+ * un'azienda.
+ * Un registro di tirocinio ha un identificativo univoco, rappresentato con la variabile d'istanza identificativo, una 
+ * data d'inizio, rappresentata con la variabile d'istanza dataInizio, uno studente, rappresentato con la variabile d'istanza 
+ * studente, un tutor aziendale, rappresentato con la variabile d'istanza tutorAziendale, un tutor universitario, rappresentato
+ * con la variabile d'istanza tutorUniversitario, una richiesta di tirocinio, rappresentata con la variabile d'istanza 
+ * richiestaTirocinio, una lista di report, rappresentata con la variabile d'istanza reports, una lista di stati, rappresentati
+ * con la varibile d'istanza statiTirocinio, un questionario sull'azienda, rappresentato con la variabile d'istanza
+ * questionarioAzienda, e un questionario sullo studente, rappresentato con la variabile d'istanza questionarioStudente.
  *  
  * @author RocketStudios
  */

@@ -4,6 +4,7 @@ package it.chooseit.bean;
  * Un oggetto TutorUniveristarioBean rappresenta un tutor universitario dell'Università degli Studi di Salerno
  * iscritto alla piattaforma ChooseIT. 
  * Un oggetto TutorUniversitarioBean è anche {@inheritDoc}.
+ * Inoltre, una lista di tirocini a cui è stato assegnato, rappresentata dalla varbiale d'istanza registriTirocinio. 
  *
  * @author RocketStudios
  */

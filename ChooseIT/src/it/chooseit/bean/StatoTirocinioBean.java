@@ -2,9 +2,9 @@ package it.chooseit.bean;
 
 /**
  * Un oggetto StatoTirocinioBean rappresenta lo stato di un tirocinio. Uno stato ha
- * un identificativo per il registro associato a quel tirocinio, che viene rappresentato con
- * la variabile d'istanza registroTirocinio, ha una data, che viene rappresentata con la variabile
- * d'istanza dataStato, ha un tipo, che viene rappresentato con la variabile d'istanza tipo.
+ * un identificativo per il registro associato a quel tirocinio, rappresentato con
+ * la variabile d'istanza registroTirocinio, ha una data, rappresentata con la variabile
+ * d'istanza dataStato, ha un tipo, rappresentato con la variabile d'istanza tipo.
  * 
  * @author RocketStudios
  */

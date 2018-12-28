@@ -1,13 +1,15 @@
 package it.chooseit.bean;
 
 /**
- * Un oggetto RichiestaTirocinioBean rappresenta la richiesta di tirocinio, fatta da uno studente, per iniziare un tirocinio presso un'azienda.
- * Una richiesta di tirocinio ha un identificativo univoco, che viene rappresentato con la variabile d'istanza id, lo studente che 
- * effettua la richiesta di tirocinio, che viene rappresentata con la variabile d'istanza studente, la data di effettuazione della richiesta,
- * che viene rappresentata con la variabile d'istanza dataRichiesta, un collegamento dell'azienda dove lo studente vorrebbe svolgere il tirocinio,
- * che viene rappresentata con la variabile d'istanza azienda, il path del progetto formativo che lo studente compila e carica, 
- * che viene rappresentata con la variabile d'istanza progettoFormativo, e un collegamento al registro di tirocinio, che viene rappresentato con la 
- * variabile d'istanza registroTirocinio.
+ * Un oggetto RichiestaTirocinioBean rappresenta la richiesta di tirocinio, fatta da uno studente, per iniziare un tirocinio 
+ * presso un'azienda.
+ * Una richiesta di tirocinio ha un identificativo univoco, rappresentato con la variabile d'istanza id, uno studente che
+ * effettua la richiesta di tirocinio, rappresentato con la variabile d'istanza studente, la data di effettuazione della
+ * richiesta, rappresentata con la variabile d'istanza dataRichiesta, un collegamento all'azienda dove lo studente vorrebbe 
+ * svolgere il tirocinio, rappresentato con la variabile d'istanza azienda, il path del progetto formativo che lo studente 
+ * compila e carica, rappresentato con la variabile d'istanza progettoFormativo, un collegamento al registro di tirocinio, 
+ * che viene rappresentato con la variabile d'istanza registroTirocinio, e una lista di stati, rappresentata con la variabile
+ * d'istanza statiRichiesta.
  *  
  * @author RocketStudios
  */

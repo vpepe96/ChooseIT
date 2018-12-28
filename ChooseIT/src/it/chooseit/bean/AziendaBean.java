@@ -5,7 +5,7 @@ package it.chooseit.bean;
  * Un'azienda ha un nome, rappresentato con la variabile d'istanza ragioneSociale, un progetto formativo, rappresentato con la 
  * variabile d'istanza progettoFormativo, una sede operativa, rappresentata con la variabile d'istanza sedeOperativa, una sede 
  * legale, rappresentata con la variabile d'istanza sedeLegale, una lista di tutor, rappresentata con la variabile d'istanza
- * tutorAziendali, e una lista di richieste di tirocinio, rappresentata con la variabile d'istanza richiesteTirocinio
+ * tutorAziendali, e una lista di richieste di tirocinio, rappresentata con la variabile d'istanza richiesteTirocinio.
  * 
  * @author RocketStudios
  */

@@ -2,8 +2,8 @@ package it.chooseit.bean;
 
 /**
  * Un oggetto StatoRichiestaBean rappresenta lo stato di una richiesta di tirocinio.
- * Uno stato ha una data, che viene rappresentata con la variabile d'istanza dataStato, ha un tipo, che viene rappresentato
- * con la variabile d'istanza tipo e l'identificativo della richiesta di tirocinio, che viene rappresentato con la 
+ * Uno stato ha una data, rappresentata con la variabile d'istanza dataStato, ha un tipo, rappresentato
+ * con la variabile d'istanza tipo e l'identificativo della richiesta di tirocinio, rappresentato con la 
  * variabile d'istanza richiestaTirocinio.
  * 
  * @author RocketStudios

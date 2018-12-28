@@ -2,10 +2,9 @@ package it.chooseit.bean;
 
 /**
  * Un oggetto StatoReportBean rappresenta lo stato di un report caricato in un registro di tirocinio.
- * Uno stato ha una data, che viene rappresentata con la variabile d'istanza dataStato, ha un tipo, che viene rappresentato
- * con la variabile d'istanza tipo, una data per il report, che viene rappresentata con la variabile d'istanza reportData, 
- * e l'identificativo del registro di tirocinio di cui fa parte il report, che viene rappresentato con la variabile d'istanza 
- * registroTirocinio.
+ * Uno stato ha una data, rappresentata con la variabile d'istanza dataStato, ha un tipo, rappresentato
+ * con la variabile d'istanza tipo, una data per il report,rappresentata con la variabile d'istanza reportData, 
+ * e l'identificativo del registro di tirocinio di cui fa parte il report, con la variabile d'istanza registroTirocinio.
  * 
  * @author RocketStudios
  */

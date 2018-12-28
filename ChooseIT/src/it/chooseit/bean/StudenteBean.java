@@ -2,11 +2,12 @@ package it.chooseit.bean;
 
 /**
  * Un oggetto StudenteBean rappresenta uno studente dell'Università degli Studi di Salerno,
- * iscritto alla piattaforma ChooseIT. Un oggetto StudenteBean è anche un oggetto UtenteBean, infatti
- * {@inheritDoc}. Inoltre, ha una matricola, rappresentata dalla variabile d'istanza matricola,
- * una descrizione del proprio profilo personale, rappresentata dalla variabile d'istanza descrizione,
- * una lista di registri di tirocinio, rappresentata dalla variabile d'isanza registriTirocinio, e una
- * lista di richieste di tirocinio, rappresentata dalla variabile d'istanza richiesteTirocinio.
+ * iscritto alla piattaforma ChooseIT. 
+ * Un oggetto StudenteBean è anche {@inheritDoc}. 
+ * Inoltre, ha una matricola, rappresentata dalla variabile d'istanza matricola, una descrizione del 
+ * proprio profilo personale, rappresentata dalla variabile d'istanza descrizione,una lista di registri 
+ * di tirocinio, rappresentata dalla variabile d'isanza registriTirocinio, e una lista di richieste di 
+ * tirocinio, rappresentata dalla variabile d'istanza richiesteTirocinio.
  *
  * @author RocketStudios
  */
