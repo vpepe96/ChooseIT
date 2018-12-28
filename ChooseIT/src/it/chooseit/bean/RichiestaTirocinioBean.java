@@ -14,6 +14,9 @@ package it.chooseit.bean;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+
+import it.chooseit.bean.StatoRichiestaBean.StatoRichiesta;
 
 public class RichiestaTirocinioBean implements Serializable{
 
@@ -50,6 +53,11 @@ public class RichiestaTirocinioBean implements Serializable{
 	private RegistroTirocinioBean registroTirocinio;
 	
 	/**
+	 * Rappresenta la lista di stati che assume la richiesta di tirocinio
+	 */
+	private ArrayList<StatoRichiestaBean> statiRichiesta;
+	
+	/**
 	 * Costruttore di RichiestaTirocinioBean
 	 * 
 	 * @param id identificativo della richiesta di tirocinio
@@ -58,14 +66,16 @@ public class RichiestaTirocinioBean implements Serializable{
 	 * @param azienda azienda selezionata
 	 * @param progettoFormativo path del progetto formativo compilato per la richiesta
 	 * @param registroTirocinio registro di tirocinio associato
+	 * @param statiRichiesta lista dei stati della richiesta di tirocinio 
 	 */
-	public RichiestaTirocinioBean(int id, StudenteBean studente, Date dataRichiesta, AziendaBean azienda, String progettoFormativo, RegistroTirocinioBean registroTirocinio) {
+	public RichiestaTirocinioBean(int id, StudenteBean studente, Date dataRichiesta, AziendaBean azienda, String progettoFormativo, RegistroTirocinioBean registroTirocinio, ArrayList<StatoRichiestaBean> statiRichiesta) {
 		this.id = id;
 		this.studente = studente;
 		this.dataRichiesta = dataRichiesta;
 		this.azienda = azienda;
 		this.progettoFormativo = progettoFormativo;
 		this.registroTirocinio = registroTirocinio;
+		this.statiRichiesta = statiRichiesta;
 	}
 
 	/*
@@ -186,6 +196,67 @@ public class RichiestaTirocinioBean implements Serializable{
 	 */
 	public void setRegistroTirocinio(RegistroTirocinioBean registroTirocinio) {
 		this.registroTirocinio = registroTirocinio;
+	}
+	
+	/**
+	 * Restituisce la lista degli stati della richiesta di tirocinio
+	 * 
+	 * @return lista degli stati della richiesta
+	 */
+	public ArrayList<StatoRichiestaBean> getStatiRichiesta() {
+		return statiRichiesta;
+	}
+
+	/**
+	 * Setta una nuova lista degli stati della richiesta di tirocinio
+	 *
+	 * @param statiRichiesta nuova lista degli stati della richiesta di tirocinio
+	 */
+	public void setStatiRichiesta(ArrayList<StatoRichiestaBean> statiRichiesta) {
+		this.statiRichiesta = statiRichiesta;
+	}
+	
+	/**
+	 * Restituisce lo stato con il tipo specificato
+	 * 
+	 * Pre: tipo != null && statiRichiesta[0] <= tipo <= statiRichiesta[N-1]
+	 * @param tipo tipo di stato della richiesta di tirocinio
+	 * @return stato della richiesta di tirocinio con tipo specificato
+	 */
+	public StatoRichiestaBean getStatoRichiesta(StatoRichiesta tipo) {
+		
+		for(StatoRichiestaBean s: statiRichiesta) {
+			if(s.getTipo().equals(tipo))
+				return s;
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Aggiunge uno stato alla lista di stati della richiesta di tirocinio
+	 * 
+	 * @param statoRichiesta stato della richiesta di tirocinio da aggiungere
+	 */
+	public void addStatoRichiesta(StatoRichiestaBean statoRichiesta) {
+		statiRichiesta.add(statoRichiesta);
+	}
+	
+	/**
+	 * Sostituisce lo stato della richiesta di tirocinio con data specificata con un nuovo stato 
+	 * 
+	 * Pre: data != null && statiRichiesta[0] <= data <= statiRichiesta[N-1] 
+	 * @param data data di assunzione dello stato della richiesta di tirocinio
+	 * @param statoRichiesta nuovo stato della richiesta di tirocinio
+	 */
+	public void setStatoRichiesta(Date data, StatoRichiestaBean statoRichiesta) {
+		int i = 0;
+		
+		for(StatoRichiestaBean s: statiRichiesta) {
+			if(s.getDataStato().equals(data)) 
+				statiRichiesta.set(i, statoRichiesta);
+			i++;
+		}
 	}
 	
 }

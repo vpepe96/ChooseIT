@@ -3,14 +3,17 @@ package it.chooseit.bean;
 /**
  * Un oggetto ReportBean rappresenta report generico sull'attività lavorativa odierna svolta da un tirocinante presso un'azienda.
  * Un report ha un collegamento al registro di tirocinio, che viene rappresentato con la variabile d'istanza registroTirocinio, una data d'inserimento,
- * che viene rappresentata con la variabile d'istanza dataInserimento, una descrizione, che viene rappresentata con la variabile d'istanza 
- * contenuto, e un tutor aziendale, che viene rappresentata con la variabile d'istanza tutorAziendale.
+ * che viene rappresentata con la variabile d'istanza dataInserimento, un file, che viene rappresentato con la variabile d'istanza 
+ * path, e un tutor aziendale, che viene rappresentata con la variabile d'istanza tutorAziendale.
  *  
  * @author RocketStudios
  */
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+
+import it.chooseit.bean.StatoReportBean.StatoReport;
 
 public class ReportBean implements Serializable{
 	
@@ -27,9 +30,9 @@ public class ReportBean implements Serializable{
 	private Date dataInserimento;
 	
 	/**
-	 * Rappresenta la descrizione del report
+	 * Rappresenta il path del file del report
 	 */
-	private String contenuto;
+	private String path;
 	
 	/**
 	 * Rappresenta il tutor aziendale associato al registro di tirocinio che contiene il report
@@ -37,18 +40,25 @@ public class ReportBean implements Serializable{
 	private TutorAziendaleBean tutorAziendale;
 	
 	/**
+	 * Rappresenta la lista degli stati del report
+	 */
+	private ArrayList<StatoReportBean> statiReport;
+	
+	/**
 	 * Costruttore di ReportBean
 	 * 
 	 * @param registroTirocinio registro di tirocinio che contiene il report
 	 * @param dataInserimento data d'inserimento del report
-	 * @param contenuto descrizione del report
-	 * @param tutorAziendale tutor aziendale associato
+	 * @param path path per il file del report
+	 * @param tutorAziendale tutor aziendale associato al report
+	 * @param statiReport lista degli stati del report
 	 */
-	public ReportBean(RegistroTirocinioBean registroTirocinio, Date dataInserimento, String contenuto, TutorAziendaleBean tutorAziendale) {
+	public ReportBean(RegistroTirocinioBean registroTirocinio, Date dataInserimento, String path, TutorAziendaleBean tutorAziendale, ArrayList<StatoReportBean> statiReport) {
 		this.registroTirocinio = registroTirocinio;
 		this.dataInserimento = dataInserimento;
-		this.contenuto = contenuto;
+		this.path = path;
 		this.tutorAziendale = tutorAziendale;
+		this.statiReport = statiReport;
 	}
 
 	/*
@@ -96,22 +106,22 @@ public class ReportBean implements Serializable{
 	}
 
 	/**
-	 * Restituisce la descrizione di ReportBean
+	 * Restituisce il path per il file di ReportBean
 	 * 
 	 * @return descrizione del report
 	 */
-	public String getContenuto() {
-		return contenuto;
+	public String getPath() {
+		return path;
 	}
 
 	/**
-	 * Setta una nuova data descrizione di ReportBean
+	 * Setta un nuovo path per il file di ReportBean
 	 * 
-	 * Pre: contenuto != null
-	 * @param contenuto nuova descrizione del report
+	 * Pre: path != null
+	 * @param path nuovo path del file del report
 	 */
-	public void setContenuto(String contenuto) {
-		this.contenuto = contenuto;
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	/**
@@ -133,4 +143,66 @@ public class ReportBean implements Serializable{
 		this.tutorAziendale = tutorAziendale;
 	}
 	
+	/**
+	 * Restituisce la lista degli stati del report
+	 * 
+	 * @return lista degli stati del report
+	 */
+	public ArrayList<StatoReportBean> getStatiReport() {
+		return statiReport;
+	}
+
+	/**
+	 * Setta una nuova lista degli stati del report
+	 *
+	 * @param statiReport nuova lista degli stati del report
+	 */
+	public void setStatiReport(ArrayList<StatoReportBean> statiReport) {
+		this.statiReport = statiReport;
+	}
+	
+	/**
+	 * Restituisce lo stato con il tipo specificato
+	 * 
+	 * Pre: tipo != null && statiReport[0] <= tipo <= statiReport[N-1]
+	 * @param tipo tipo di stato del report
+	 * @return stato del report con tipo specificato
+	 */
+	public StatoReportBean getStatoReport(StatoReport tipo) {
+		
+		for(StatoReportBean s: statiReport) {
+			if(s.getTipo().equals(tipo))
+				return s;
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Aggiunge uno stato alla lista di stati del report
+	 * 
+	 * @param statoReport stato del report da aggiungere
+	 */
+	public void addStatoReport(StatoReportBean statoReport) {
+		statiReport.add(statoReport);
+	}
+	
+	/**
+	 * Sostituisce lo stato del report con data specificata con un nuovo stato 
+	 * 
+	 * Pre: data != null && statiReport[0] <= data <= statiReport[N-1] 
+	 * @param data data di assunzione dello stato del report
+	 * @param statoReport nuovo stato del report
+	 */
+	public void setStatoReport(Date data, StatoReportBean statoReport) {
+		int i = 0;
+		
+		for(StatoReportBean s: statiReport) {
+			if(s.getDataStato().equals(data)) 
+				statiReport.set(i, statoReport);
+			i++;
+		}
+	}
+	
 }
+

@@ -64,7 +64,7 @@ public class StatoReportBean implements Serializable {
 	 * 
 	 * @return dataStato data dell'assegnamento dello stato.
 	 */
-	public Date getDataSato() {
+	public Date getDataStato() {
 		return dataStato;
 	}
 	
