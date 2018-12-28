@@ -18,8 +18,9 @@ public class GestioneModulisticaFacade {
 	 * @param file Progetto Formativo da associare all'azienda 
 	 * @param azienda azienda a cui associare il file 
 	 */
-	public static void uploadProgettoFormativo(File file, AziendaBean azienda) {
+	public static String  uploadProgettoFormativo(File file, AziendaBean azienda) {
 		
+		return null;
 	}
 	
 	
@@ -29,8 +30,9 @@ public class GestioneModulisticaFacade {
 	 * @param file richiesta di tirocinio inviata dallo studente. 
 	 * @param richiesta dati relativi alla richiesta. 
 	 */
-	public static void uploadRichiestaTirocinio(File file, RichiestaTirocinioBean richiesta) {
+	public static String uploadRichiestaTirocinio(File file, RichiestaTirocinioBean richiesta) {
 		
+		return null;
 	}
 	
 	/**
@@ -39,8 +41,9 @@ public class GestioneModulisticaFacade {
 	 * @param file Report da caricare all'interno di un registro di tirocinio 
 	 * @param report informazioni riguardanti il report da caricare
 	 */
-	public static void uploadReport(File file, ReportBean report) {
+	public static String uploadReport(File file, ReportBean report) {
 		
+		return null;
 	}
 	
 	/**
@@ -49,9 +52,9 @@ public class GestioneModulisticaFacade {
 	 * @param file immagine che si desidera caricare. 
 	 * @param utente del quale si desidera aggiornare l'immagine.
 	 */
-	public static void uploadImmagine(UtenteBean utente, File file) {
+	public static String uploadImmagine(UtenteBean utente, File file) {
 		
-		
+		return null;
 	}
 	
 	
