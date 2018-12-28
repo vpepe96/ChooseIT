@@ -10,7 +10,9 @@ import java.util.Collection;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
+import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.StudenteDAO;
+import it.chooseit.dao.UtenteDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
 
 /**
@@ -29,26 +31,30 @@ public class Studente implements StudenteDAO {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "select * from utente,studente where utente.email = ? and studente.email = ?;";
+			String sql = "select * from studente where studente.email = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
 
 			preparedStatement.setString(1, email);
-			preparedStatement.setString(2, email);
 
 			rs = preparedStatement.executeQuery();
 
 			StudenteBean bean = new StudenteBean();
 			if (rs.next()) {
 				bean.setEmail(rs.getString("email"));
-				bean.setNome(rs.getString("nome"));
-				bean.setCognome(rs.getString("cognome"));
-				bean.setDataNascita(rs.getDate("data_nascita"));
-				bean.setIndirizzo(rs.getString("indirizzo"));
-				bean.setTelefono(rs.getString("telefono"));
-				bean.setFotoProfilo(rs.getString("foto_profilo"));
 				bean.setMatricola(rs.getString("matricola"));
 				bean.setDescrizione(rs.getString("descrizione"));
+				
+				UtenteDAO utenteDao = new Utente();
+				UtenteBean utente = utenteDao.retrieveByKey(email);
+
+				bean.setNome(utente.getNome());
+				bean.setCognome(utente.getCognome());
+				bean.setDataNascita(utente.getDataNascita());
+				bean.setIndirizzo(utente.getIndirizzo());
+				bean.setTelefono(utente.getTelefono());
+				bean.setFotoProfilo(utente.getFotoProfilo());
+				
 				return bean;
 			} else
 				return null;
@@ -74,9 +80,9 @@ public class Studente implements StudenteDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 			String sql = null;
 			if(order == null || order.equals("")) {
-				sql = "select * from utente,studente where utente.email = studente.email;";
+				sql = "select * from studente;";
 			}else {
-				sql = "select * from utente,studente where utente.email = studente.email order by "+order+";";
+				sql = "select * from studente order by "+order+";";
 			}
 
 			preparedStatement = connection.prepareStatement(sql);
@@ -86,15 +92,11 @@ public class Studente implements StudenteDAO {
 			
 			while (rs.next()) {
 				StudenteBean bean = new StudenteBean();
-				bean.setEmail(rs.getString("email"));
-				bean.setNome(rs.getString("nome"));
-				bean.setCognome(rs.getString("cognome"));
-				bean.setDataNascita(rs.getDate("data_nascita"));
-				bean.setIndirizzo(rs.getString("indirizzo"));
-				bean.setTelefono(rs.getString("telefono"));
-				bean.setFotoProfilo(rs.getString("foto_profilo"));
-				bean.setMatricola(rs.getString("matricola"));
-				bean.setDescrizione(rs.getString("descrizione"));
+				
+				String email = rs.getString("email");
+				
+				bean = retrieveByKey(email);
+				
 				list.add(bean);
 			}
 
@@ -110,35 +112,10 @@ public class Studente implements StudenteDAO {
 	}
 
 	@Override
-	public synchronized void insert(StudenteBean studente) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-
-			String sql = "insert into studente (email, matricola, descrizione) values (?, ?, ?);";
-
-			preparedStatement = connection.prepareStatement(sql);
-			
-			preparedStatement.setString(1, studente.getEmail().trim());
-			preparedStatement.setString(2, studente.getMatricola());
-			preparedStatement.setString(3, studente.getDescrizione());
-			
-			preparedStatement.executeUpdate();
-			
-		} finally {
-			try {
-				if (!connection.isClosed())
-					connection.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-	}
+	public synchronized void insert(StudenteBean studente) throws SQLException {}
 
 	@Override
-	public void update(StudenteBean utente) throws SQLException {
+	public synchronized void update(StudenteBean utente) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -179,9 +156,20 @@ public class Studente implements StudenteDAO {
 			preparedStatement.setString(1, email);
 			
 			int result = preparedStatement.executeUpdate();
+			
+			//se lo studente è stato cancellato...
 			if(result == 1) {
-				return true;
+				//...cancella l'utente
+				UtenteDAO utenteDao = new Utente();
+				if(utenteDao.delete(email)) {
+					//se l'utente è stato cancellato return true
+					return true;
+				}else {
+					//altrimenti return false
+					return false;
+				}
 			}else {
+				//...altrimenti cancellazione non avvenuta
 				return false;
 			}
 
@@ -289,6 +277,39 @@ public class Studente implements StudenteDAO {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
+	}
+
+	@Override
+	public void insert(StudenteBean studente, String pwd) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+
+			//inserimento dell'utente
+			UtenteDAO utenteDao = new Utente();
+			utenteDao.insert(studente, pwd);
+			
+			//inserimento studente
+			String sql = "insert into studente (email, matricola, descrizione) values (?,?,?);";
+			
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, studente.getEmail());
+			preparedStatement.setString(2, studente.getMatricola());
+			preparedStatement.setString(3, studente.getDescrizione());
+			
+			preparedStatement.executeUpdate();
+
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		
 	}
 
 }

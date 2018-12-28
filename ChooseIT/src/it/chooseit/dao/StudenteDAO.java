@@ -25,4 +25,12 @@ public interface StudenteDAO extends GenericDAO<StudenteBean, String> {
 	 * @throws SQLException
 	 */
 	public Collection<StudenteBean> getStudentiAssociati(TutorUniversitarioBean tutor) throws SQLException;
+	
+	/**
+	 * Inserisce uno studente nel database.
+	 * @param studente le informazioni dello studente da inserire
+	 * @param pwd la password dello studente
+	 * @throws SQLException
+	 */
+	public void insert(StudenteBean studente, String pwd) throws SQLException;
 }

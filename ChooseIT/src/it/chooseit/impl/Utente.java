@@ -88,22 +88,16 @@ public class Utente implements UtenteDAO {
 			try {
 				pwdOK = GestorePassword.validatePassword(pwd, storedPassword);
 			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvalidKeySpecException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			if(pwdOK) {
 			UtenteBean bean = new UtenteBean();
-			bean.setEmail(rs.getString("email"));
-			bean.setNome(rs.getString("nome"));
-			bean.setCognome(rs.getString("cognome"));
-			bean.setDataNascita(rs.getDate("data_nascita"));
-			bean.setIndirizzo(rs.getString("indirizzo"));
-			bean.setTelefono(rs.getString("telefono"));
-			bean.setFotoProfilo(rs.getString("foto_profilo"));
+			
+			bean = retrieveByKey(email);
+			
 			return bean;
 			}else {
 				return null;
@@ -118,7 +112,7 @@ public class Utente implements UtenteDAO {
 		}
 	}
 
-	
+	@Override
 	public synchronized void insert(UtenteBean utente, String pwd) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -130,14 +124,11 @@ public class Utente implements UtenteDAO {
 			try {
 				pwdSicura = GestorePassword.generateStrongPasswordHash(pwd);
 			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvalidKeySpecException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(pwdSicura);
-			
+			 
 			String sql = "insert into utente (email, nome, cognome, data_nascita, indirizzo, telefono, pwd, foto_profilo) values (?, ?, ?, ?, ? ,?, ?, ?);";
 			
 			preparedStatement = connection.prepareStatement(sql);
@@ -226,7 +217,7 @@ public class Utente implements UtenteDAO {
 		}
 	}
 
-	
+	// da cancellare
 	public synchronized String checkRuolo(String email) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -333,13 +324,11 @@ public class Utente implements UtenteDAO {
 
 			while (rs.next()) {
 				UtenteBean bean = new UtenteBean();
-				bean.setEmail(rs.getString("email"));
-				bean.setNome(rs.getString("nome"));
-				bean.setCognome(rs.getString("cognome"));
-				bean.setDataNascita(rs.getDate("data_nascita"));
-				bean.setIndirizzo(rs.getString("indirizzo"));
-				bean.setTelefono(rs.getString("telefono"));
-				bean.setFotoProfilo(rs.getString("foto_profilo"));
+				
+				String email = rs.getString("email");
+				
+				bean = retrieveByKey(email);
+				
 				list.add(bean);
 			}
 
@@ -355,8 +344,5 @@ public class Utente implements UtenteDAO {
 	}
 
 	@Override
-	public void insert(UtenteBean object) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
+	public void insert(UtenteBean object) throws SQLException {}
 }

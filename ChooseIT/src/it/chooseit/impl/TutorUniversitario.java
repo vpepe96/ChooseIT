@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import it.chooseit.bean.TutorUniversitarioBean;
+import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.TutorUniversitarioDAO;
+import it.chooseit.dao.UtenteDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
 
 /**
@@ -39,12 +41,17 @@ public class TutorUniversitario implements TutorUniversitarioDAO {
 			if (rs.next()) {
 				TutorUniversitarioBean bean = new TutorUniversitarioBean(null, null, null, null, null, null, null);
 				bean.setEmail(rs.getString("email"));
-				bean.setNome(rs.getString("nome"));
-				bean.setCognome(rs.getString("cognome"));
-				bean.setDataNascita(rs.getDate("data_nascita"));
-				bean.setIndirizzo(rs.getString("indirizzo"));
-				bean.setTelefono(rs.getString("telefono"));
-				bean.setFotoProfilo(rs.getString("foto_profilo"));
+				
+				UtenteDAO utenteDao = new Utente();
+				UtenteBean utente = utenteDao.retrieveByKey(email);
+
+				bean.setNome(utente.getNome());
+				bean.setCognome(utente.getCognome());
+				bean.setDataNascita(utente.getDataNascita());
+				bean.setIndirizzo(utente.getIndirizzo());
+				bean.setTelefono(utente.getTelefono());
+				bean.setFotoProfilo(utente.getFotoProfilo());
+				
 				return bean;
 			} else 
 				return null;
@@ -79,14 +86,12 @@ public class TutorUniversitario implements TutorUniversitarioDAO {
 			rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				TutorUniversitarioBean bean = new TutorUniversitarioBean(null, null, null, null, null, null, null);
-				bean.setEmail(rs.getString("email"));
-				bean.setNome(rs.getString("nome"));
-				bean.setCognome(rs.getString("cognome"));
-				bean.setDataNascita(rs.getDate("data_nascita"));
-				bean.setIndirizzo(rs.getString("indirizzo"));
-				bean.setTelefono(rs.getString("telefono"));
-				bean.setFotoProfilo(rs.getString("foto_profilo"));
+				TutorUniversitarioBean bean;
+				
+				String email = rs.getString("email");
+				
+				bean = retrieveByKey(email);
+				
 				list.add(bean);
 			}
 			
@@ -103,30 +108,27 @@ public class TutorUniversitario implements TutorUniversitarioDAO {
 	}
 
 	@Override
-	public void insert(TutorUniversitarioBean tutor) throws SQLException { }
+	public synchronized void insert(TutorUniversitarioBean tutor) throws SQLException {}
 
-	public synchronized void insert(TutorUniversitarioBean tutor, String pwd) throws SQLException {
+	@Override
+	public synchronized void insert(TutorUniversitarioBean tutor, String pwd) throws SQLException {	
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "insert into tutor_universitario (email, nome, cognome, data_nascita, indirizzo, telefono, pwd, foto_profilo) values (?, ?, ?, ?, ? ,?, ?, ?);";
-
+			//inserimento dell'utente
+			UtenteDAO utenteDao = new Utente();
+			utenteDao.insert(tutor, pwd);
+			
+			//inserimento tutor universitario
+			String sql = "insert into tutor_universitario (email) values (?);";
+			
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, tutor.getEmail());
-			preparedStatement.setString(2, tutor.getNome());
-			preparedStatement.setString(3, tutor.getCognome());
-			preparedStatement.setDate(4, tutor.getDataNascita());
-			preparedStatement.setString(5, tutor.getIndirizzo());
-			preparedStatement.setString(6, tutor.getTelefono());
-			preparedStatement.setString(7, pwd);
-			preparedStatement.setString(8, tutor.getFotoProfilo());
 			
 			preparedStatement.executeUpdate();
-			
-			connection.commit();
 
 		} finally {
 			try {
@@ -136,31 +138,19 @@ public class TutorUniversitario implements TutorUniversitarioDAO {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
+		
 	}
 
 	@Override
 	public synchronized void update(TutorUniversitarioBean tutor) throws SQLException {
 		Connection connection = null;
-		PreparedStatement preparedStatement = null;
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "update tutor_universitario set nome = ?, cognome = ?, data_nascita = ?, indirizzo = ?, telefono = ?, foto_profilo = ? where email = ?;";
-
-			preparedStatement = connection.prepareStatement(sql);
-
-			preparedStatement.setString(1, tutor.getNome());
-			preparedStatement.setString(2, tutor.getCognome());
-			preparedStatement.setDate(3, tutor.getDataNascita());
-			preparedStatement.setString(4, tutor.getIndirizzo());
-			preparedStatement.setString(5, tutor.getTelefono());
-			preparedStatement.setString(7, tutor.getFotoProfilo());
-			preparedStatement.setString(8, tutor.getEmail());
+			UtenteDAO utenteDao = new Utente();
+			utenteDao.update(tutor);
 			
-			preparedStatement.executeUpdate();
-
-			connection.commit();
 		} finally {
 			try {
 				if (!connection.isClosed())
@@ -184,16 +174,25 @@ public class TutorUniversitario implements TutorUniversitarioDAO {
 			preparedStatement = connection.prepareStatement(sql);
 
 			preparedStatement.setString(1, email);
-
+			
 			int result = preparedStatement.executeUpdate();
 			
-			connection.commit();
-			
+			//se il tutor universitario è stato cancellato...
 			if(result == 1) {
-				return true;
+				//...cancella l'utente
+				UtenteDAO utenteDao = new Utente();
+				if(utenteDao.delete(email)) {
+					//se l'utente è stato cancellato return true
+					return true;
+				}else {
+					//altrimenti return false
+					return false;
+				}
 			}else {
+				//...altrimenti cancellazione non avvenuta
 				return false;
 			}
+
 		} finally {
 			try {
 				if (!connection.isClosed())
