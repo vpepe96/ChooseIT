@@ -50,7 +50,7 @@ public class TutorAziendale implements TutorAziendaleDAO {
 				bean.setFotoProfilo(utente.getFotoProfilo());
 				
 				AziendaDAO aziendaDao = new Azienda();
-				AziendaBean azienda = aziendaDao.retrieveByKey(rs.getString("ragione_sociale"));
+				AziendaBean azienda = aziendaDao.retrieveByKey(rs.getString("azienda_id"));
 				
 				bean.setAzienda(azienda);
 				
@@ -124,10 +124,11 @@ public class TutorAziendale implements TutorAziendaleDAO {
 			utenteDao.insert(tutor, pwd);
 			
 			//inserimento tutor aziendale
-			String sql = "insert into tutor_aziendale (email) values (?);";
+			String sql = "insert into tutor_aziendale (email, azienda_id) values (?,?);";
 			
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, tutor.getEmail());
+			preparedStatement.setString(2, tutor.getAzienda().getRagioneSociale());
 			
 			preparedStatement.executeUpdate();
 
