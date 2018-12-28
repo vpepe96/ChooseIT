@@ -10,6 +10,7 @@ import it.chooseit.bean.TutorAziendaleBean;
 
 public interface QuestionarioStudenteDAO extends GenericDAO<QuestionarioStudenteBean,Integer> {
 
+	
 	public Collection<QuestionarioStudenteBean> getQuestionarioPer(TutorAziendaleBean tutor)throws SQLException;
 
 }

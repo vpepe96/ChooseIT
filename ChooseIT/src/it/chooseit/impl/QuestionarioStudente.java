@@ -37,6 +37,7 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 			RegistroTirocinioDAO regDao = new RegistroTirocinio();
 			RegistroTirocinioBean registroBean = regDao.retrieveByKey(id);
 
+			
 			QuestionarioStudenteBean bean = new QuestionarioStudenteBean(null);
 
 			if (rs.next()) {
