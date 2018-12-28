@@ -21,7 +21,7 @@ public class Azienda implements AziendaDAO{
 
 		AziendaBean bean = new AziendaBean(null, null, null, null);
 
-		String selectSQL = "SELECT * FROM " + Azienda.TABLE_NAME + " WHERE ragione_sociale = ?";
+		String selectSQL = "SELECT * FROM " + Azienda.TABLE_NAME + " WHERE ragione_sociale = ?;";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -34,10 +34,10 @@ public class Azienda implements AziendaDAO{
 			ResultSet rs = preparedStatament.executeQuery();
 
 			while(rs.next()) { 
-				bean.setRagioneSociale(rs.getString("Ragione Sociale"));
-				bean.setProgettoFormativo(rs.getString("Progetto Formativo"));
-				bean.setSedeOperativa(rs.getString("Sede Operativa"));
-				bean.setSedeLegale(rs.getString("Sede Legale"));
+				bean.setRagioneSociale(rs.getString("ragione_sociale"));
+				bean.setProgettoFormativo(rs.getString("progetto_formativo"));
+				bean.setSedeOperativa(rs.getString("sede_operativa"));
+				bean.setSedeLegale(rs.getString("sede_legale"));
 			}
 		} finally {
 			try {
@@ -58,7 +58,9 @@ public class Azienda implements AziendaDAO{
 		String selectSQL = "SELECT * FROM " + Azienda.TABLE_NAME;
 
 		if(order != null && !order.equals("")) {
-			selectSQL += " ORDER BY " + order;
+			selectSQL += " ORDER BY " + order +";";
+		}else {
+			selectSQL += ";";
 		}
 
 		try {
@@ -72,10 +74,10 @@ public class Azienda implements AziendaDAO{
 			while(rs.next()) {
 				AziendaBean bean = new AziendaBean(null, null, null, null);
 
-				bean.setRagioneSociale(rs.getString("Ragione Sociale"));
-				bean.setProgettoFormativo(rs.getString("Progetto Formativo"));
-				bean.setSedeOperativa(rs.getString("Sede Operativa"));
-				bean.setSedeLegale(rs.getString("Sede Legale"));
+				bean.setRagioneSociale(rs.getString("ragione_sociale"));
+				bean.setProgettoFormativo(rs.getString("progetto_formativo"));
+				bean.setSedeOperativa(rs.getString("sede_operativa"));
+				bean.setSedeLegale(rs.getString("sede_legale"));
 
 				offerte.add(bean);
 			}
@@ -97,7 +99,7 @@ public class Azienda implements AziendaDAO{
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + Azienda.TABLE_NAME
-				+ " (ragione_sociale,progetto_formativo,sede_operativa,sede_legale) VALUES (?, ?, ?, ?)";
+				+ " (ragione_sociale,progetto_formativo,sede_operativa,sede_legale) VALUES (?, ?, ?, ?);";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -111,7 +113,6 @@ public class Azienda implements AziendaDAO{
 			System.out.println("doSave: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -127,14 +128,14 @@ public class Azienda implements AziendaDAO{
 		PreparedStatement preparedStatement = null;
 		String insertSQL = "UPDATE " + Azienda.TABLE_NAME
 				+ " SET progetto_formativo = ?, sede_operativa=?, sede_legale=?,"
-				+ " WHERE ragioneSociale = ?";
+				+ " WHERE ragione_sociale = ?;";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			preparedStatement = connection.prepareStatement(insertSQL);
 
-			preparedStatement.setString(1,object.getRagioneSociale());
+			preparedStatement.setString(1, object.getRagioneSociale());
 			preparedStatement.setString(2, object.getProgettoFormativo());
 			preparedStatement.setString(3, object.getSedeOperativa());
 			preparedStatement.setString(4, object.getSedeLegale());
@@ -142,7 +143,6 @@ public class Azienda implements AziendaDAO{
 			System.out.println("doUpdate: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -159,7 +159,7 @@ public class Azienda implements AziendaDAO{
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + Azienda.TABLE_NAME + " WHERE ragione_sociale = ?";
+		String deleteSQL = "DELETE FROM " + Azienda.TABLE_NAME + " WHERE ragione_sociale = ?;";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -169,7 +169,6 @@ public class Azienda implements AziendaDAO{
 			System.out.println("doDelete: "+ preparedStatement.toString());
 			result = preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
