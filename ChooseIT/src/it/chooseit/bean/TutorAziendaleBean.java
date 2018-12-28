@@ -52,4 +52,14 @@ public class TutorAziendaleBean extends UtenteBean implements Serializable{
 		return azienda;
 	}
 	
+	/**
+	 * Setta una nuova azienda per il tutor aziendale.
+	 * 
+	 * Pre: azienda != null;
+	 * @param azienda nuova azienda del tutor aziendale.
+	 */
+	public void setAzienda(AziendaBean azienda) {
+		this.azienda = azienda;
+	}
+	
 }
