@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.ReportBean;
+import it.chooseit.bean.StatoReportBean;
 import it.chooseit.dao.ReportDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
 import it.chooseit.services.ReportKey;
@@ -37,12 +38,14 @@ public class Report implements ReportDAO {
 			ResultSet rs = preparedStatament.executeQuery();
 			
 			RegistroTirocinio r=new RegistroTirocinio();
+			StatoReport str = new StatoReport();
 			
 			while(rs.next()) {	
 				bean.setDataInserimento(key.getData());
 				bean.setRegistroTirocinio(key.getRegistro());
-				bean.setContenuto(rs.getString("contenuto"));
+				bean.setPath(rs.getString("contenuto"));
 				bean.setTutorAziendale(key.getRegistro().getTutorAziendale());
+				bean.setStatiReport((ArrayList<StatoReportBean>)str.getStatiReport(bean));
 			}
 		} finally {
 			try {
@@ -77,16 +80,17 @@ public class Report implements ReportDAO {
 			
 			ResultSet rs = preparedStatament.executeQuery();
 			RegistroTirocinio reg=new RegistroTirocinio();
-			//TutorAziendale ta=new TutorAziendale();
+			TutorAziendale ta=new TutorAziendale();
+			StatoReport str = new StatoReport();
 			
 			while(rs.next()) {
 				ReportBean bean = new ReportBean();
 				
 				bean.setDataInserimento(rs.getDate("data_inserimento"));
 				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("registro_id")));
-				bean.setContenuto(rs.getString("contenuto"));
-				//bean.setTutorAziendale(ta.retrieveByKey(rs.getString("tutor_aziendale_email")));
-				
+				bean.setPath(rs.getString("contenuto"));
+				bean.setTutorAziendale(ta.retrieveByKey(rs.getString("tutor_aziendale_email")));
+				bean.setStatiReport((ArrayList<StatoReportBean>)str.getStatiReport(bean));
 				reports.add(bean);
 			}
 		} finally {
@@ -114,9 +118,8 @@ public class Report implements ReportDAO {
 			
 			preparedStatement.setInt(1,object.getRegistroTirocinio().getIdentificativo());
 			preparedStatement.setDate(2, object.getDataInserimento());
-			preparedStatement.setString(3, object.getContenuto());
+			preparedStatement.setString(3, object.getPath());
 			preparedStatement.setString(4, object.getTutorAziendale().getEmail());
-			
 			System.out.println("doSave: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
@@ -144,7 +147,7 @@ public class Report implements ReportDAO {
 			
 			preparedStatement = connection.prepareStatement(insertSQL);
 			
-			preparedStatement.setString(1,object.getContenuto());
+			preparedStatement.setString(1,object.getPath());
 			preparedStatement.setString(2, object.getTutorAziendale().getEmail());
 			preparedStatement.setInt(3, object.getRegistroTirocinio().getIdentificativo());
 			preparedStatement.setDate(4,object.getDataInserimento());
@@ -228,15 +231,15 @@ public class Report implements ReportDAO {
 			
 			ResultSet rs = preparedStatament.executeQuery();
 			RegistroTirocinio reg=new RegistroTirocinio();
-			//TutorAziendale ta=new TutorAziendale();
+			TutorAziendale ta=new TutorAziendale();
 			
 			while(rs.next()) {
 				ReportBean bean = new ReportBean();
 				
 				bean.setDataInserimento(rs.getDate("data_inserimento"));
 				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("registro_id")));
-				bean.setContenuto(rs.getString("contenuto"));
-				//bean.setTutorAziendale(ta.retrieveByKey(rs.getString("tutor_aziendale_email")));
+				bean.setPath(rs.getString("contenuto"));
+				bean.setTutorAziendale(ta.retrieveByKey(rs.getString("tutor_aziendale_email")));
 				
 				reports.add(bean);
 			}
