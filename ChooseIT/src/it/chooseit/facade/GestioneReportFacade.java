@@ -113,7 +113,7 @@ public class GestioneReportFacade {
 		QuestionarioStudenteDAO questionario = new QuestionarioStudente();
 		if (tutor != null) {
 			try {	
-				list = questionario.getQuestionarioPer(tutor);
+				list = questionario.getQuestionarioPerTutorAziendale(tutor);
 			} catch (SQLException E) {
 				return null;
 			}
@@ -135,7 +135,7 @@ public class GestioneReportFacade {
 		QuestionarioAziendaDAO questionario = new QuestionarioAzienda();
 		if (studente != null) {
 			try {
-				list = questionario.getQuestionarioPer(studente);
+				list = questionario.getQuestionarioPerStudente(studente);
 			} catch (SQLException E) {
 				return null;
 			}
