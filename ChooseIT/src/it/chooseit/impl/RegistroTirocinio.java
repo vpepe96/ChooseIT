@@ -281,6 +281,43 @@ public class RegistroTirocinio implements RegistroTirocinioDAO {
 			}
 		}
 	}
+	
+	@Override
+	public Collection<RegistroTirocinioBean> getRegistriDiTutorUniversitario(TutorUniversitarioBean t) throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		ArrayList<RegistroTirocinioBean> list = new ArrayList<>();
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "select * from registro_tirocinio where tutor_universitario_email = ?;";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, t.getEmail());
+			
+			rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				RegistroTirocinioBean bean;
+				
+				bean = retrieveByKey(rs.getInt("identificativo"));
+				
+				list.add(bean);
+			}
+
+			return list;
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 
 	@Override
 	public Collection<RegistroTirocinioBean> getRegistriDiTirociniInCorso() throws SQLException{

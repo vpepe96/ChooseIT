@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
 import it.chooseit.bean.AziendaBean;
+import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.dao.AziendaDAO;
+import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
 
 public class Azienda implements AziendaDAO{
@@ -19,7 +22,7 @@ public class Azienda implements AziendaDAO{
 		Connection connection = null;
 		PreparedStatement preparedStatament = null;
 
-		AziendaBean bean = new AziendaBean(null, null, null, null);
+		AziendaBean bean = new AziendaBean(null, null, null, null, null, null);
 
 		String selectSQL = "SELECT * FROM " + Azienda.TABLE_NAME + " WHERE ragione_sociale = ?;";
 
@@ -38,6 +41,14 @@ public class Azienda implements AziendaDAO{
 				bean.setProgettoFormativo(rs.getString("progetto_formativo"));
 				bean.setSedeOperativa(rs.getString("sede_operativa"));
 				bean.setSedeLegale(rs.getString("sede_legale"));
+				
+				ArrayList<TutorAziendaleBean> tutors;
+				TutorAziendaleDAO tutorAziDao = new TutorAziendale();
+				tutors = (ArrayList<TutorAziendaleBean>) tutorAziDao.getTutorDiAzienda(bean);
+				bean.setTutorAziendali(tutors);
+				
+				//***Aggiungere lista richieste
+				
 			}
 		} finally {
 			try {
@@ -72,13 +83,10 @@ public class Azienda implements AziendaDAO{
 			ResultSet rs = preparedStatament.executeQuery();
 
 			while(rs.next()) {
-				AziendaBean bean = new AziendaBean(null, null, null, null);
-
-				bean.setRagioneSociale(rs.getString("ragione_sociale"));
-				bean.setProgettoFormativo(rs.getString("progetto_formativo"));
-				bean.setSedeOperativa(rs.getString("sede_operativa"));
-				bean.setSedeLegale(rs.getString("sede_legale"));
-
+				String azienda_id = rs.getString("ragione_sociale");
+				
+				AziendaBean bean = retrieveByKey(azienda_id);
+				
 				offerte.add(bean);
 			}
 		} finally {

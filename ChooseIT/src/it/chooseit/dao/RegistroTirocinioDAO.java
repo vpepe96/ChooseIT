@@ -6,6 +6,7 @@ import java.util.Collection;
 import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
+import it.chooseit.bean.TutorUniversitarioBean;
 
 
 public interface RegistroTirocinioDAO extends GenericDAO<RegistroTirocinioBean, Integer> {
@@ -42,5 +43,14 @@ public interface RegistroTirocinioDAO extends GenericDAO<RegistroTirocinioBean, 
 	 * @throws SQLException
 	 */
 	public Collection<RegistroTirocinioBean> getRegistriDiTirociniTerminati() throws SQLException;
+
+
+	/**
+	 * Recupera tutti i registri di tirocinio associati al tutor universitario.
+	 * @param t il tutor universitario del quale si vogliono recuperare i registri di tirocinio
+	 * @return un insieme di registri di tirocinio
+	 * @throws SQLException
+	 */
+	public Collection<RegistroTirocinioBean> getRegistriDiTutorUniversitario(TutorUniversitarioBean t) throws SQLException;
 	
 }

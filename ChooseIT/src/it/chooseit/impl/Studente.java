@@ -7,10 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.bean.UtenteBean;
+import it.chooseit.dao.RegistroTirocinioDAO;
 import it.chooseit.dao.StudenteDAO;
 import it.chooseit.dao.UtenteDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
@@ -45,15 +47,24 @@ public class Studente implements StudenteDAO {
 				bean.setMatricola(rs.getString("matricola"));
 				bean.setDescrizione(rs.getString("descrizione"));
 				
+				//cerca dati utente
 				UtenteDAO utenteDao = new Utente();
 				UtenteBean utente = utenteDao.retrieveByKey(email);
-
+				//setta dati utente
 				bean.setNome(utente.getNome());
 				bean.setCognome(utente.getCognome());
 				bean.setDataNascita(utente.getDataNascita());
 				bean.setIndirizzo(utente.getIndirizzo());
 				bean.setTelefono(utente.getTelefono());
 				bean.setFotoProfilo(utente.getFotoProfilo());
+				
+				//cerca dati registri tirocinio
+				RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiStudente(bean);
+				bean.setRegistriTirocinio(registri);
+				
+				//cerca dati richieste
+				//...da completare...
 				
 				return bean;
 			} else

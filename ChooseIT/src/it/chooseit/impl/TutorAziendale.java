@@ -9,9 +9,13 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import it.chooseit.bean.AziendaBean;
+import it.chooseit.bean.RegistroTirocinioBean;
+import it.chooseit.bean.ReportBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.AziendaDAO;
+import it.chooseit.dao.RegistroTirocinioDAO;
+import it.chooseit.dao.ReportDAO;
 import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.dao.UtenteDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
@@ -36,12 +40,13 @@ public class TutorAziendale implements TutorAziendaleDAO {
 			rs = preparedStatement.executeQuery();
 			
 			if (rs.next()) {
-				TutorAziendaleBean bean = new TutorAziendaleBean(null, null, null, null, null, null, null, null);
+				TutorAziendaleBean bean = new TutorAziendaleBean(null, null, null, null, null, null, null, null, null, null);
 				bean.setEmail(rs.getString("email"));
 				
+				//cerca dati utente
 				UtenteDAO utenteDao = new Utente();
 				UtenteBean utente = utenteDao.retrieveByKey(email);
-
+				//setta dati utente
 				bean.setNome(utente.getNome());
 				bean.setCognome(utente.getCognome());
 				bean.setDataNascita(utente.getDataNascita());
@@ -49,10 +54,24 @@ public class TutorAziendale implements TutorAziendaleDAO {
 				bean.setTelefono(utente.getTelefono());
 				bean.setFotoProfilo(utente.getFotoProfilo());
 				
+				//cerca dati azienda
 				AziendaDAO aziendaDao = new Azienda();
 				AziendaBean azienda = aziendaDao.retrieveByKey(rs.getString("azienda_id"));
-				
+				//setta dati azienda
 				bean.setAzienda(azienda);
+				
+				//cerca dati registri tirocini
+				RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiTutorAziendale(bean);
+				bean.setRegistriTirocinio(registri);
+				
+				//cerca dati report firmati
+				ReportDAO reportDao = new Report();
+				ArrayList<ReportBean> report = new ArrayList<>();
+				for (RegistroTirocinioBean registroBean : registri) {
+					report.addAll(reportDao.getReportFirmati(registroBean));
+				}
+				
 				
 				return bean;
 			} else 
@@ -224,23 +243,10 @@ public class TutorAziendale implements TutorAziendaleDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while (rs.next()) {
-				TutorAziendaleBean bean = new TutorAziendaleBean(null, null, null, null, null, null, null, null);
-				bean.setEmail(rs.getString("email"));
+				TutorAziendaleBean bean = null;
+				String email = rs.getString("email");
 				
-				UtenteDAO utenteDao = new Utente();
-				UtenteBean utente = utenteDao.retrieveByKey(rs.getString("email"));
-
-				bean.setNome(utente.getNome());
-				bean.setCognome(utente.getCognome());
-				bean.setDataNascita(utente.getDataNascita());
-				bean.setIndirizzo(utente.getIndirizzo());
-				bean.setTelefono(utente.getTelefono());
-				bean.setFotoProfilo(utente.getFotoProfilo());
-				
-				AziendaDAO aziendaDao = new Azienda();
-				AziendaBean azienda_tutor = aziendaDao.retrieveByKey(rs.getString("ragione_sociale"));
-				
-				bean.setAzienda(azienda_tutor);
+				bean = retrieveByKey(email);
 
 				tutor.add(bean);
 			}

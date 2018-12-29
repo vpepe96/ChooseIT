@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.bean.UtenteBean;
+import it.chooseit.dao.RegistroTirocinioDAO;
 import it.chooseit.dao.TutorUniversitarioDAO;
 import it.chooseit.dao.UtenteDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
@@ -39,18 +41,24 @@ public class TutorUniversitario implements TutorUniversitarioDAO {
 			rs = preparedStatement.executeQuery();
 			
 			if (rs.next()) {
-				TutorUniversitarioBean bean = new TutorUniversitarioBean(null, null, null, null, null, null, null);
+				TutorUniversitarioBean bean = new TutorUniversitarioBean(null, null, null, null, null, null, null, null);
 				bean.setEmail(rs.getString("email"));
 				
+				//cerca dati utente
 				UtenteDAO utenteDao = new Utente();
 				UtenteBean utente = utenteDao.retrieveByKey(email);
-
+				//setta dati utente
 				bean.setNome(utente.getNome());
 				bean.setCognome(utente.getCognome());
 				bean.setDataNascita(utente.getDataNascita());
 				bean.setIndirizzo(utente.getIndirizzo());
 				bean.setTelefono(utente.getTelefono());
 				bean.setFotoProfilo(utente.getFotoProfilo());
+				
+				//cerca dati registri tirocini
+				RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiTutorUniversitario(bean);
+				bean.setRegistriTirocinio(registri);
 				
 				return bean;
 			} else 
