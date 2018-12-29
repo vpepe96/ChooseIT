@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.chooseit.bean.PresidenteBean;
+import it.chooseit.bean.SegreteriaBean;
+import it.chooseit.bean.StudenteBean;
+import it.chooseit.bean.TutorAziendaleBean;
+import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.bean.UtenteBean;
 import it.chooseit.facade.GestioneAccountFacade;
 
@@ -45,48 +50,69 @@ public class ServletLogin extends HttpServlet {
 		
 		// Controllo se le credenziali inserite sono != null
 		if(email != null && password != null) {
+			
 			//Recupero delle informazioni sull'utente dal database
 			utente = gestore.login(email, password);
 		}
+		
 		//Se utente == null allora le credenziali inserite sono errate
 		if(utente == null) {
+			
 			request.getSession().setAttribute("loginOK", false);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
+			
 		}else {
 			//...altrimenti le credenziali sono giuste
 			
 			// Controllo del ruolo
 			String ruolo = gestore.checkRuolo(utente);
-			request.getSession().setAttribute("ruolo", ruolo);
-			/*
-			// Se l'utente è di tipo 'studente'
-			if(ruolo.equals("studente")){
 			
+			// Se ruolo != null allora prendo le info sull'utente in base al ruolo...
+			if(ruolo != null) {
+				request.getSession().setAttribute("ruolo", ruolo);
+				
+				// Se l'utente è di tipo 'studente'
+				if(ruolo.equals("studente")){
+					StudenteBean studente = (StudenteBean) utente;
+					request.getSession().setAttribute("utente", studente);
+				}
+				
+				// Se l'utente è di tipo 'segreteria'
+				if(ruolo.equals("segreteria")){
+					SegreteriaBean segreteria = (SegreteriaBean) utente;
+					request.getSession().setAttribute("utente", segreteria);
+				}
+				
+				// Se l'utente è di tipo 'presidente'
+				if(ruolo.equals("presidente")){
+					PresidenteBean presidente = (PresidenteBean) utente;
+					request.getSession().setAttribute("utente", presidente);
+				}
+				
+				// Se l'utente è di tipo 'tutorUniversitario'
+				if(ruolo.equals("tutorUniversitario")){
+					TutorUniversitarioBean tutorUniversitario = (TutorUniversitarioBean) utente;
+					request.getSession().setAttribute("utente", tutorUniversitario);
+				}
+				
+				// Se l'utente è di tipo 'tutorAziendale'
+				if(ruolo.equals("tutorAziendale")){
+					TutorAziendaleBean tutorAziendale = (TutorAziendaleBean) utente;
+					request.getSession().setAttribute("utente", tutorAziendale);
+				}
+				
+				request.getSession().setAttribute("ruolo", ruolo);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("AreaPersonale.jsp");
+				dispatcher.forward(request, response);
+				
+			}else {
+				// ...altrimenti c'è un errore nel recupero del ruolo
+				request.getSession().setAttribute("loginOK", false);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+				dispatcher.forward(request, response);
 			}
 			
-			// Se l'utente è di tipo 'segreteria'
-			if(ruolo.equals("segreteria")){
-			
-			}
-			
-			// Se l'utente è di tipo 'presidente'
-			if(ruolo.equals("presidente")){
-			
-			}
-			
-			// Se l'utente è di tipo 'tutorUniversitario'
-			if(ruolo.equals("tutorUniversitario")){
-			
-			}
-			
-			// Se l'utente è di tipo 'tutorAziendale'
-			if(ruolo.equals("tutorAziendale")){
-			
-			}
-			*/
-			RequestDispatcher dispatcher = request.getRequestDispatcher("AreaPersonale.jsp");
-			dispatcher.forward(request, response);
 		}
 		
 	}
