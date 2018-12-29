@@ -47,7 +47,7 @@ public class StatoReport implements StatoReportDAO {
 			Report rep = new Report();
 			
 			while(rs.next()) {
-				StatoReportBean bean = new StatoReportBean(null, null, null, null);
+				StatoReportBean bean = new StatoReportBean();
 				
 				bean.setDataStato(rs.getDate("data_stato"));
 				bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));

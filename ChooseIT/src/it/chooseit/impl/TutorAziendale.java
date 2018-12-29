@@ -40,7 +40,7 @@ public class TutorAziendale implements TutorAziendaleDAO {
 			rs = preparedStatement.executeQuery();
 			
 			if (rs.next()) {
-				TutorAziendaleBean bean = new TutorAziendaleBean(null, null, null, null, null, null, null, null, null, null);
+				TutorAziendaleBean bean = new TutorAziendaleBean();
 				bean.setEmail(rs.getString("email"));
 				
 				//cerca dati utente

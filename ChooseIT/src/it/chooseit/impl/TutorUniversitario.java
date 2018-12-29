@@ -41,7 +41,7 @@ public class TutorUniversitario implements TutorUniversitarioDAO {
 			rs = preparedStatement.executeQuery();
 			
 			if (rs.next()) {
-				TutorUniversitarioBean bean = new TutorUniversitarioBean(null, null, null, null, null, null, null, null);
+				TutorUniversitarioBean bean = new TutorUniversitarioBean();
 				bean.setEmail(rs.getString("email"));
 				
 				//cerca dati utente

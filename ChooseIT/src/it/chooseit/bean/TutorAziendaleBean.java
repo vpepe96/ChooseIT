@@ -61,6 +61,11 @@ public class TutorAziendaleBean extends UtenteBean implements Serializable{
 	}
 	
 	/**
+	 * Costruttore vuoto di TutorAziendaleBean.
+	 */
+	public TutorAziendaleBean() {}
+	
+	/**
 	 * Restituisce l'azienda per cui lavora TutorAziendaleBean.
 	 * 
 	 * @return azienda per cui lavora il tutor aziendale.

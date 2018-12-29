@@ -65,6 +65,10 @@ public class AziendaBean implements Serializable {
 		this.richiesteTirocinio = richiesteTirocinio;
 	}
 
+	/**
+	 * Costruttore vuoto di AziendaBean.
+	 */
+	public AziendaBean() {}
 	/*
     |--------------------------------------------------------------------------
     | Interfaccia pubblica

@@ -53,6 +53,11 @@ public class StatoReportBean implements Serializable {
 		this.registroTirocinio = registroTirocinio;
 	}
 
+
+	/**
+	 * Costruttore vuoto di StatoReportBean.
+	 */
+	public StatoReportBean() {}
 	/*
     |--------------------------------------------------------------------------
     | Interfaccia pubblica

@@ -45,7 +45,7 @@ public class StatoTirocinio implements StatoTirocinioDAO{
 			RegistroTirocinio reg = new RegistroTirocinio();
 			
 			while(rs.next()) {
-				StatoTirocinioBean bean = new StatoTirocinioBean(null, null, null);
+				StatoTirocinioBean bean = new StatoTirocinioBean();
 				
 				bean.setDataStato(rs.getDate("data_stato"));
 				bean.setTipo(convert.convertStatoTirocinio(rs.getString("tipo")));

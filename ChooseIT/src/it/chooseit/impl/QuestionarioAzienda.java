@@ -36,7 +36,7 @@ public class QuestionarioAzienda implements QuestionarioAziendaDAO {
 			RegistroTirocinioDAO regDao = new RegistroTirocinio();
 			RegistroTirocinioBean registroBean = regDao.retrieveByKey(id);
 
-			QuestionarioAziendaBean bean = new QuestionarioAziendaBean(null);
+			QuestionarioAziendaBean bean = new QuestionarioAziendaBean();
 
 			if (rs.next()) {
 				bean.setRegistroTirocinio(registroBean);
@@ -172,7 +172,7 @@ public class QuestionarioAzienda implements QuestionarioAziendaDAO {
 			RegistroTirocinioDAO regDao = new RegistroTirocinio();
 
 			while (rs.next()) {
-				QuestionarioAziendaBean bean = new QuestionarioAziendaBean(null);
+				QuestionarioAziendaBean bean = new QuestionarioAziendaBean();
 
 				// Cerca dati registro tirocinio
 				RegistroTirocinioBean registro = regDao.retrieveByKey(rs.getInt("identificativo"));
@@ -230,7 +230,7 @@ public class QuestionarioAzienda implements QuestionarioAziendaDAO {
 
 			while (rs.next()) {
 
-				QuestionarioAziendaBean bean = new QuestionarioAziendaBean(null);
+				QuestionarioAziendaBean bean = new QuestionarioAziendaBean();
 
 				// Cerca dati registro tirocinio
 				RegistroTirocinioBean registro = regDao.retrieveByKey(rs.getInt("registro_id"));

@@ -28,5 +28,10 @@ public class PresidenteBean extends UtenteBean implements Serializable{
 	public PresidenteBean(String email, String nome, String cognome, String telefono, String indirizzo, Date dataNascita, String fotoProfilo) {
 		super(email, nome, cognome, telefono, indirizzo, dataNascita, fotoProfilo);
 	}
+	
+	/**
+	 * Costruttore vuoto di PresidenteBean.
+	 */
+	public PresidenteBean() {}
 
 }

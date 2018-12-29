@@ -97,6 +97,10 @@ public class QuestionarioAziendaBean implements Serializable{
 		this.registroTirocinio = registroTirocinio;
 	}
 	
+	/**
+	 * Costruttore vuoto di QuestionarioAziendaBean.
+	 */
+	public QuestionarioAziendaBean() {}
 	/*
     |--------------------------------------------------------------------------
     | Interfaccia pubblica

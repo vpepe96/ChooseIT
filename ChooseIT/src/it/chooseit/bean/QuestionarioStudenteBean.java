@@ -86,6 +86,11 @@ public class QuestionarioStudenteBean implements Serializable{
 	public QuestionarioStudenteBean(RegistroTirocinioBean registroTirocinio) {
 		this.registroTirocinio = registroTirocinio;
 	}
+	
+	/**
+	 * Costruttore vuoto di QuestionarioStudenteBean.
+	 */
+	public QuestionarioStudenteBean() {}
 
 	/*
     |--------------------------------------------------------------------------
@@ -101,7 +106,7 @@ public class QuestionarioStudenteBean implements Serializable{
 	public RegistroTirocinioBean getRegistroTirocinio() {
 		return registroTirocinio;
 	}
-
+	
 	/**
 	 * Setta un nuovo registro di tirocinio a cui è associato QuestionarioStudenteBean
 	 * 

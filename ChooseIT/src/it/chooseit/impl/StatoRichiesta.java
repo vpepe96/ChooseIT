@@ -58,7 +58,7 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 			RichiestaTirocinio ric = new RichiestaTirocinio();
 			
 			while(rs.next()) {
-				StatoRichiestaBean bean = new StatoRichiestaBean(null, null, null);
+				StatoRichiestaBean bean = new StatoRichiestaBean();
 				
 				bean.setDataStato(rs.getDate("data_stato"));
 				bean.setTipo(convert.convertStatoRichiesta(rs.getString("tipo")));

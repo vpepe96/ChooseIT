@@ -29,7 +29,7 @@ public class Azienda implements AziendaDAO{
 		Connection connection = null;
 		PreparedStatement preparedStatament = null;
 
-		AziendaBean bean = new AziendaBean(null, null, null, null, null, null);
+		AziendaBean bean = new AziendaBean();
 
 		String selectSQL = "SELECT * FROM " + Azienda.TABLE_NAME + " WHERE ragione_sociale = ?;";
 

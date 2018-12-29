@@ -62,6 +62,11 @@ public class ReportBean implements Serializable{
 		this.statiReport = statiReport;
 	}
 
+
+	/**
+	 * Costruttore vuoto di ReportBean.
+	 */
+	public ReportBean() {}
 	/*
     |--------------------------------------------------------------------------
     | Interfaccia pubblica

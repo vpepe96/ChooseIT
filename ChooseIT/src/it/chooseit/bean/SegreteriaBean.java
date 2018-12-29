@@ -29,4 +29,11 @@ public class SegreteriaBean extends UtenteBean implements Serializable{
 		super(email, nome, cognome, telefono, indirizzo, dataNascita, fotoProfilo);
 	}
 	
+
+	/**
+	 * Costruttore vuoto di SegreteriaBean.
+	 */
+	public SegreteriaBean() {}
+	
+	
 }

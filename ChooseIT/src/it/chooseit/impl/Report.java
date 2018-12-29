@@ -20,7 +20,7 @@ public class Report implements ReportDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatament = null;
 		
-		ReportBean bean = new ReportBean(null, null, null, null);
+		ReportBean bean = new ReportBean();
 		
 		String selectSQL = "SELECT * FROM report WHERE registro_id = ? AND data_inserimento= ?";
 		
@@ -80,7 +80,7 @@ public class Report implements ReportDAO {
 			//TutorAziendale ta=new TutorAziendale();
 			
 			while(rs.next()) {
-				ReportBean bean = new ReportBean(null, null, null, null);
+				ReportBean bean = new ReportBean();
 				
 				bean.setDataInserimento(rs.getDate("data_inserimento"));
 				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("registro_id")));
@@ -231,7 +231,7 @@ public class Report implements ReportDAO {
 			//TutorAziendale ta=new TutorAziendale();
 			
 			while(rs.next()) {
-				ReportBean bean = new ReportBean(null, null, null, null);
+				ReportBean bean = new ReportBean();
 				
 				bean.setDataInserimento(rs.getDate("data_inserimento"));
 				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("registro_id")));

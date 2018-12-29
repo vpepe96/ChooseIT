@@ -115,6 +115,12 @@ public class RegistroTirocinioBean implements Serializable{
 		this.questionarioAzienda = questionarioAzienda;
 		this.questionarioStudente = questionarioStudente;
 	}
+	
+
+	/**
+	 * Costruttore vuoto di RegistroTirocinioBean.
+	 */
+	public RegistroTirocinioBean() {}
 
 	/*
     |--------------------------------------------------------------------------

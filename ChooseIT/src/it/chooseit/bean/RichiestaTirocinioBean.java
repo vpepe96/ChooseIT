@@ -80,6 +80,12 @@ public class RichiestaTirocinioBean implements Serializable{
 		this.statiRichiesta = statiRichiesta;
 	}
 
+
+	/**
+	 * Costruttore vuoto di RichiestaTirocinioBean.
+	 */
+	public RichiestaTirocinioBean() {}
+	
 	/*
     |--------------------------------------------------------------------------
     | Interfaccia pubblica

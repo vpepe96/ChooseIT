@@ -39,9 +39,9 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 			int identificativo = 0;
 			StudenteBean studente = new StudenteBean();
 			Date dataRichiesta = null;
-			AziendaBean azienda = new AziendaBean(null, null, null, null, null, null);
+			AziendaBean azienda = new AziendaBean();
 			String progettoFormativo = null;
-			RegistroTirocinioBean registroTirocinio = new RegistroTirocinioBean(0, null, null, null, null, null, null, null, null, null);
+			RegistroTirocinioBean registroTirocinio = new RegistroTirocinioBean();
 			
 			if (rs.next()) {
 				identificativo = key.intValue();

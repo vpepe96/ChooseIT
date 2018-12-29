@@ -39,6 +39,11 @@ public class TutorUniversitarioBean extends UtenteBean implements Serializable{
 		this.registriTirocinio = registriTirocinio;
 	}
 	
+
+	/**
+	 * Costruttore vuoto di TutorUniversitarioBean.
+	 */
+	public TutorUniversitarioBean() {}
 	/*
     |--------------------------------------------------------------------------
     | Interfaccia pubblica

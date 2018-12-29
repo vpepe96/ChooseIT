@@ -45,6 +45,11 @@ public class StatoRichiestaBean implements Serializable{
 		this.tipo = tipo;
 		this.richiestaTirocinio = richiestaTirocinio;
 	}
+	
+	/**
+	 * Costruttore vuoto di StatoRichiestaBean.
+	 */
+	public StatoRichiestaBean() {}
 
 	/*
     |--------------------------------------------------------------------------

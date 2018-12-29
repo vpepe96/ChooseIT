@@ -46,6 +46,11 @@ public class StatoTirocinioBean implements Serializable{
 		this.tipo = tipo; 
 	}
 
+
+	/**
+	 * Costruttore vuoto di StatoTirocinioBean.
+	 */
+	public StatoTirocinioBean() {}
 	/*
     |--------------------------------------------------------------------------
     | Interfaccia pubblica
