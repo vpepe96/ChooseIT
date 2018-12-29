@@ -35,11 +35,6 @@ public class TutorAziendaleBean extends UtenteBean implements Serializable{
 	private ArrayList<RegistroTirocinioBean> registriTirocinio;
 	
 	/**
-	 * Costruttore vuoto di TutorAziendaleBean,
-	 */
-	public TutorAziendaleBean() { }
-	
-	/**
 	 * Costruttore di TutorAziendaleBean.
 	 * 
 	 * @param email email del tutor.
