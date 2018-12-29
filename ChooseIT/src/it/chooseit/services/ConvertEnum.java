@@ -12,9 +12,6 @@ import it.chooseit.bean.StatoReportBean.StatoReport;
 import it.chooseit.bean.StatoTirocinioBean.StatoTirocinio;
 
 public class ConvertEnum {
-	//public enum StatoRichiesta {NUOVA, INVALIDAZIONE, INCONVALIDA, ACCETTATA, RIFIUTATA};
-	//public enum StatoReport {NUOVO, COMPILATO, VALIDATO, RIFIUTATO};
-	//public enum StatoTirocinio {INCORSO, ANNULLATO, TERMINATO};
 	
 	/**
 	 * Restituisce la variabile enum di StatoRichiesta che corrisponde ad una stringa specificata
@@ -26,23 +23,22 @@ public class ConvertEnum {
 	 */
 	public StatoRichiesta convertStatoRichiesta(String stato) {
 		StatoRichiesta tipo = null;
+		String[] stati = {"NUOVA","INVALIDAZIONE","INCONVALIDA","ACCETTATA","RIFIUTATA"};
 		
-		switch(stato) {	
-			case "NUOVA": tipo = StatoRichiesta.NUOVA; 
-						  break;
-			
-			case "INVALIDAZIONE": tipo = StatoRichiesta.INVALIDAZIONE;
-								  break;
-			
-			case "INCONVALIDA": tipo = StatoRichiesta.INCONVALIDA;
-			  					break;
-			
-			case "ACCETTATA": tipo = StatoRichiesta.INCONVALIDA;
-							  break;
-			
-			case "RIFIUTATA": tipo = StatoRichiesta.INCONVALIDA;
-				  	 		  break;	
-		}
+		if(stato.equalsIgnoreCase(stati[0]))
+			tipo = StatoRichiesta.NUOVA;
+		
+		else if(stato.equalsIgnoreCase(stati[1]))
+			tipo = StatoRichiesta.INVALIDAZIONE;
+		
+		else if(stato.equalsIgnoreCase(stati[2]))
+			tipo = StatoRichiesta.INCONVALIDA;
+		
+		else if(stato.equalsIgnoreCase(stati[3]))
+			tipo = StatoRichiesta.ACCETTATA;
+		
+		else if(stato.equalsIgnoreCase(stati[4]))
+			tipo = StatoRichiesta.RIFIUTATA;
 		
 		return tipo;
 	}
@@ -57,21 +53,20 @@ public class ConvertEnum {
 	 */
 	public StatoReport convertStatoReport(String stato) {
 		StatoReport tipo = null;
+		String[] stati = {"NUOVO","COMPILATO","VALIDATO","RIFIUTATO"};
 		
-		switch(stato) {	
-			case "NUOVO": tipo = StatoReport.NUOVO; 
-						  break;
-			
-			case "COMPILATO": tipo = StatoReport.COMPILATO;
-								  break;
-			
-			case "VALIDATO": tipo = StatoReport.VALIDATO;
-			  					break;
-			
-			case "RIFIUTATO": tipo = StatoReport.RIFIUTATO;
-							  break;
-		}
+		if(stato.equalsIgnoreCase(stati[0]))
+			tipo = StatoReport.NUOVO;
 		
+		else if(stato.equalsIgnoreCase(stati[1]))
+			tipo = StatoReport.COMPILATO;
+		
+		else if(stato.equalsIgnoreCase(stati[2]))
+			tipo = StatoReport.VALIDATO;
+		
+		else if(stato.equalsIgnoreCase(stati[3]))
+			tipo = StatoReport.RIFIUTATO;
+			
 		return tipo;
 	}
 	
@@ -85,18 +80,17 @@ public class ConvertEnum {
 	 */
 	public StatoTirocinio convertStatoTirocinio(String stato) {
 		StatoTirocinio tipo = null;
+		String[] stati = {"INCORSO","ANNULLATO","TERMINATO"};
 		
-		switch(stato) {	
-			case "INCORSO": tipo = StatoTirocinio.INCORSO; 
-						  break;
-			
-			case "ANNULLATO": tipo = StatoTirocinio.ANNULLATO;
-								  break;
-			
-			case "TERMINATO": tipo = StatoTirocinio.TERMINATO;
-			  					break;
-		}
+		if(stato.equalsIgnoreCase(stati[0]))
+			tipo = StatoTirocinio.INCORSO;
 		
+		else if(stato.equalsIgnoreCase(stati[1]))
+			tipo = StatoTirocinio.ANNULLATO;
+		
+		else if(stato.equalsIgnoreCase(stati[2]))
+			tipo = StatoTirocinio.TERMINATO;
+			
 		return tipo;
 	}
 	

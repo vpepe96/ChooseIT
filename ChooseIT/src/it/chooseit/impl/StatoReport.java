@@ -73,7 +73,7 @@ public class StatoReport implements StatoReportDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO stato_report(data_stato,tipo,report_id_reg, report_data) VALUES (?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO stato_report(data_stato,tipo,report_id_reg,report_data) VALUES (?, ?, ?, ?)";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
