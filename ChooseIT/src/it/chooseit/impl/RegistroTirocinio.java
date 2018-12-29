@@ -8,11 +8,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import it.chooseit.bean.QuestionarioAziendaBean;
+import it.chooseit.bean.QuestionarioStudenteBean;
 import it.chooseit.bean.RegistroTirocinioBean;
+import it.chooseit.bean.ReportBean;
+import it.chooseit.bean.RichiestaTirocinioBean;
+import it.chooseit.bean.StatoTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
+import it.chooseit.dao.QuestionarioAziendaDAO;
+import it.chooseit.dao.QuestionarioStudenteDAO;
 import it.chooseit.dao.RegistroTirocinioDAO;
+import it.chooseit.dao.ReportDAO;
+import it.chooseit.dao.RichiestaTirocinioDAO;
+import it.chooseit.dao.StatoTirocinioDAO;
 import it.chooseit.dao.StudenteDAO;
 import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.dao.TutorUniversitarioDAO;
@@ -37,37 +47,53 @@ public class RegistroTirocinio implements RegistroTirocinioDAO {
 
 			ResultSet rs = preparedStatament.executeQuery();
 
-			int identificativo = 0;
-			Date dataInizio = null;
-			StudenteBean studente = new StudenteBean();
-			TutorAziendaleBean tutorAziendale = new TutorAziendaleBean();
-			TutorUniversitarioBean tutorUniversitario = new TutorUniversitarioBean(null, null, null, null, null, null,
-					null);
-
 			if (rs.next()) {
-				identificativo = key.intValue();
-				studente.setEmail(rs.getString("studente_email"));
-				tutorAziendale.setEmail(rs.getString("tutor_aziendale_email"));
-				tutorUniversitario.setEmail(rs.getString("tutor_universitario_email"));
-				dataInizio = rs.getDate("data_inizio");
+				int identificativo = key.intValue();
+				Date dataInizio = rs.getDate("data_inizio");
+
+				// Cerca dati studente
+				StudenteDAO studenteDao = new Studente();
+				StudenteBean studente = studenteDao.retrieveByKey(rs.getString("studente_email"));
+
+				// Cerca dati tutor universitario
+				TutorUniversitarioDAO tutorUniDao = new TutorUniversitario();
+				TutorUniversitarioBean tutorUniversitario = tutorUniDao.retrieveByKey(rs.getString("tutor_universitario_email"));
+
+				// Cerca dati tutor aziendale
+				TutorAziendaleDAO tutorAziDao = new TutorAziendale();
+				TutorAziendaleBean tutorAziendale = tutorAziDao.retrieveByKey(rs.getString("tutor_aziendale_email"));
+				
+				// Cerca dati richiesta tirocinio
+				RichiestaTirocinioDAO richiestaDao = new RichiestaTirocinio();
+				RichiestaTirocinioBean richiesta = richiestaDao.retrieveByKey(identificativo);
+				
+				RegistroTirocinioBean registro = new RegistroTirocinioBean(identificativo, dataInizio, studente, tutorAziendale, tutorUniversitario, richiesta, null, null, null, null);
+
+				// Cerca dati report
+				ReportDAO reportDao = new Report();
+				ArrayList<ReportBean> reports = (ArrayList<ReportBean>) reportDao.getReportRegistro(registro);
+				registro.setReports(reports);
+				
+				// Cerca dati stato tirocinio
+				StatoTirocinioDAO statiTirocinioDao = new StatoTirocinio();
+				ArrayList<StatoTirocinioBean> statiTirocinio = (ArrayList<StatoTirocinioBean>) statiTirocinioDao.getStatiTirocinio(registro);
+				registro.setStatiTirocinio(statiTirocinio);
+				
+				// Cerca dati questionario azienda
+				QuestionarioAziendaDAO qAziendaDao = new QuestionarioAzienda();
+				QuestionarioAziendaBean questionarioAzienda = qAziendaDao.retrieveByKey(key);
+				registro.setQuestionarioAzienda(questionarioAzienda);
+				
+				// Cerca dati questionario studente
+				QuestionarioStudenteDAO qStudenteDao = new QuestionarioStudente();
+				QuestionarioStudenteBean questionarioStudente = qStudenteDao.retrieveByKey(key);
+				registro.setQuestionarioStudente(questionarioStudente);
+
+				return registro;
+			}else {
+				return null;
 			}
 
-			// Cerca dati studente
-			StudenteDAO studenteDao = new Studente();
-			studente = studenteDao.retrieveByKey(studente.getEmail());
-
-			// Cerca dati tutor universitario
-			TutorUniversitarioDAO tutorUniDao = new TutorUniversitario();
-			tutorUniversitario = tutorUniDao.retrieveByKey(tutorUniversitario.getEmail());
-
-			// Carca dati tutor aziendale
-			TutorAziendaleDAO tutorAziDao = new TutorAziendale();
-			tutorAziendale = tutorAziDao.retrieveByKey(tutorAziendale.getEmail());
-			
-
-			RegistroTirocinioBean registro = new RegistroTirocinioBean(identificativo, dataInizio, studente,
-					tutorAziendale, tutorUniversitario);
-			return registro;
 		} finally {
 			try {
 				if (preparedStatament != null)
