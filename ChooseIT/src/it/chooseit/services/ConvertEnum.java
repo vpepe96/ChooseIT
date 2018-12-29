@@ -1,8 +1,9 @@
 package it.chooseit.services;
 
 /**
- * La classe ConvertEnum è un servizio che si rende utile per convertire una stringa nella corrispettiva variabile enum
- * quando si ha a che fare con gli stati delle richieste di tirocinio, dei report e dei tirocini.
+ * La classe ConvertEnum è un servizio che si rende utile per convertire una stringa, indenpendemente dal suo formato, 
+ * nella corrispettiva variabile enum quando si ha a che fare con gli stati delle richieste di tirocinio, dei report 
+ * e dei tirocini.
  * 
  * @author RocketStudios
  */

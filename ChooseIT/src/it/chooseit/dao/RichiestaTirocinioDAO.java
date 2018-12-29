@@ -1,5 +1,9 @@
 package it.chooseit.dao;
 
+/**
+ * 
+ */
+
 import java.sql.SQLException;
 import java.util.Collection;
 
