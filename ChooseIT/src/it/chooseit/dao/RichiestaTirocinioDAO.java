@@ -14,5 +14,5 @@ public interface RichiestaTirocinioDAO extends GenericDAO<RichiestaTirocinioBean
 	 * @return un insieme di richieste di tirocinio
 	 * @throws SQLException
 	 */
-	Collection<RichiestaTirocinioBean> getRichiestePer(AziendaBean azienda) throws SQLException;
+	Collection<RichiestaTirocinioBean> getRichiestePerAzienda(AziendaBean azienda) throws SQLException;
 }

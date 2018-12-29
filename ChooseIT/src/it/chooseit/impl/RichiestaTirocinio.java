@@ -104,7 +104,7 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 	}
 
 	@Override
-	public Collection<RichiestaTirocinioBean> getRichiestePer(AziendaBean azienda) throws SQLException{
+	public Collection<RichiestaTirocinioBean> getRichiestePerAzienda(AziendaBean azienda) throws SQLException{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;

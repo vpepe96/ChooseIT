@@ -56,7 +56,7 @@ public class Azienda implements AziendaDAO{
 				
 				ArrayList<RichiestaTirocinioBean> richieste;
 				RichiestaTirocinioDAO richiestaTiroDao = new RichiestaTirocinio();
-				richieste = (ArrayList<RichiestaTirocinioBean>) richiestaTiroDao.getRichiestePer(bean);
+				richieste = (ArrayList<RichiestaTirocinioBean>) richiestaTiroDao.getRichiestePerAzienda(bean);
 				bean.setRichiesteTirocinio(richieste);
 			}
 		} finally {
