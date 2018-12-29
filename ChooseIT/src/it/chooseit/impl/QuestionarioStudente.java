@@ -93,29 +93,12 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 
 			rs = preparedStatement.executeQuery();
 
-			RegistroTirocinioDAO regDao = new RegistroTirocinio();
-
 			while (rs.next()) {
 
-				QuestionarioStudenteBean bean = new QuestionarioStudenteBean();
+				QuestionarioStudenteBean bean;
 
-				// Cerca dati registro tirocinio
-				RegistroTirocinioBean registro = regDao.retrieveByKey(rs.getInt("registro_id"));
+				bean = retrieveByKey(rs.getInt("registro_id"));
 
-				bean.setRegistroTirocinio(registro);
-				bean.setPdt1(rs.getInt("pdt_1"));
-				bean.setPdt2(rs.getInt("pdt_2"));
-				bean.setPdt3(rs.getInt("pdt_3"));
-				bean.setPdt4(rs.getInt("pdt_4"));
-				
-				bean.setT1(rs.getInt("t_1"));
-				bean.setT2(rs.getInt("t_2"));
-				bean.setT3(rs.getInt("t_3"));
-				bean.setT4(rs.getInt("t_4"));
-			
-				bean.setSu1(rs.getInt("su_1"));
-				bean.setSu2(rs.getInt("su_2"));
-				bean.setSu3(rs.getInt("su_3"));
 				list.add(bean);
 			}
 		} finally {
@@ -214,7 +197,7 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 	}
 
 	@Override
-	public Collection<QuestionarioStudenteBean> getQuestionarioPer(TutorAziendaleBean tutor) throws SQLException {
+	public Collection<QuestionarioStudenteBean> getQuestionarioPerTutorAziendale(TutorAziendaleBean tutor) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
@@ -223,9 +206,9 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "select * from tutor_aziendale, registro_tirocinio, questionario_studente where "
-					+ "studente.email = ? and " + "registro_tirocinio.studente_email = studente.email and"
-					+ "questionario_studente.registro_id = registro_tirocinio.identificativo;";
+			String sql = "select * from tutor_aziendale, registro_tirocinio, questionario_valutativo_studente where "
+					+ "tutor_aziendale.email = ? and registro_tirocinio.tutor_aziendale_email = tutor_aziendale.email and"
+					+ "questionario_valutativo_studente.registro_id = registro_tirocinio.identificativo;";
 
 			preparedStatement = connection.prepareStatement(sql);
 
@@ -233,28 +216,10 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 
 			rs = preparedStatement.executeQuery();
 
-			RegistroTirocinioDAO regDao = new RegistroTirocinio();
-
 			while (rs.next()) {
-				QuestionarioStudenteBean bean = new QuestionarioStudenteBean();
+				QuestionarioStudenteBean bean;
 
-				// Cerca dati registro tirocinio
-				RegistroTirocinioBean registro = regDao.retrieveByKey(rs.getInt("identificativo"));
-
-				bean.setRegistroTirocinio(registro);
-				bean.setPdt1(rs.getInt("pdt_1"));
-				bean.setPdt2(rs.getInt("pdt_2"));
-				bean.setPdt3(rs.getInt("pdt_3"));
-				bean.setPdt4(rs.getInt("pdt_4"));
-				
-				bean.setT1(rs.getInt("t_1"));
-				bean.setT2(rs.getInt("t_2"));
-				bean.setT3(rs.getInt("t_3"));
-				bean.setT4(rs.getInt("t_4"));
-				
-				bean.setSu1(rs.getInt("su_1"));
-				bean.setSu2(rs.getInt("su_2"));
-				bean.setSu3(rs.getInt("su_3"));
+				bean = retrieveByKey(rs.getInt("identificativo"));
 
 				list.add(bean);
 			}

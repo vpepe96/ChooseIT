@@ -9,7 +9,7 @@ import java.util.Collection;
 
 import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.ReportBean;
-import it.chooseit.bean.StatoReportBean;
+import it.chooseit.dao.RegistroTirocinioDAO;
 import it.chooseit.dao.ReportDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
 import it.chooseit.services.ReportKey;
@@ -23,7 +23,7 @@ public class Report implements ReportDAO {
 		
 		ReportBean bean = new ReportBean();
 		
-		String selectSQL = "SELECT * FROM report WHERE registro_id = ? AND data_inserimento= ?";
+		String selectSQL = "SELECT * FROM report WHERE registro_id = ? AND data_inserimento= ?;";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -37,15 +37,19 @@ public class Report implements ReportDAO {
 			
 			ResultSet rs = preparedStatament.executeQuery();
 			
-			RegistroTirocinio r=new RegistroTirocinio();
-			StatoReport str = new StatoReport();
-			
 			while(rs.next()) {	
 				bean.setDataInserimento(key.getData());
 				bean.setRegistroTirocinio(key.getRegistro());
 				bean.setPath(rs.getString("contenuto"));
-				bean.setTutorAziendale(key.getRegistro().getTutorAziendale());
-				bean.setStatiReport((ArrayList<StatoReportBean>)str.getStatiReport(bean));
+				
+				if(rs.getString("tutor_aziendale_email") == null) {
+					bean.setTutorAziendale(null);
+				}else {
+					bean.setTutorAziendale(key.getRegistro().getTutorAziendale());
+				}
+				
+				// settare con StatoReportDAO.getStatiReport(ReportBean bean)
+				bean.setStatiReport(null);
 			}
 		} finally {
 			try {
@@ -69,7 +73,9 @@ public class Report implements ReportDAO {
 		String selectSQL = "SELECT * FROM report";
 		
 		if(order != null && !order.equals("")) {
-			selectSQL += " ORDER BY " + order;
+			selectSQL += " ORDER BY " + order+";";
+		}else {
+			selectSQL += ";";
 		}
 		
 		try {
@@ -79,18 +85,14 @@ public class Report implements ReportDAO {
 			System.out.println("doRetrieveAll:" + preparedStatament.toString());
 			
 			ResultSet rs = preparedStatament.executeQuery();
-			RegistroTirocinio reg=new RegistroTirocinio();
-			TutorAziendale ta=new TutorAziendale();
-			StatoReport str = new StatoReport();
 			
 			while(rs.next()) {
-				ReportBean bean = new ReportBean();
+				ReportBean bean;
+				RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				RegistroTirocinioBean registro = registroDao.retrieveByKey(rs.getInt("registro_id"));
+				ReportKey key = new ReportKey(registro, rs.getDate("data_inserimento"));
 				
-				bean.setDataInserimento(rs.getDate("data_inserimento"));
-				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("registro_id")));
-				bean.setPath(rs.getString("contenuto"));
-				bean.setTutorAziendale(ta.retrieveByKey(rs.getString("tutor_aziendale_email")));
-				bean.setStatiReport((ArrayList<StatoReportBean>)str.getStatiReport(bean));
+				bean = retrieveByKey(key);
 				reports.add(bean);
 			}
 		} finally {
@@ -110,7 +112,7 @@ public class Report implements ReportDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO report (registro_id,data_inserimento, contenuto, tutor_aziendale_email) VALUES (?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO report (registro_id,data_inserimento, contenuto, tutor_aziendale_email) VALUES (?, ?, ?, ?);";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -123,7 +125,6 @@ public class Report implements ReportDAO {
 			System.out.println("doSave: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -140,7 +141,7 @@ public class Report implements ReportDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		String insertSQL = "UPDATE report SET contenuto=?, tutor_aziendale_email=?"
-				+ " WHERE registro_id = ? AND data_inserimento= ?";
+				+ " WHERE registro_id = ? AND data_inserimento= ?;";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -155,7 +156,6 @@ public class Report implements ReportDAO {
 			System.out.println("doUpdate: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -174,7 +174,7 @@ public class Report implements ReportDAO {
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM report WHERE registro_id= ? AND data_inserimento= ?";
+		String deleteSQL = "DELETE FROM report WHERE registro_id= ? AND data_inserimento= ?;";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -184,8 +184,6 @@ public class Report implements ReportDAO {
 
 			System.out.println("doDelete: "+ preparedStatement.toString());
 			result = preparedStatement.executeUpdate();
-
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -198,25 +196,13 @@ public class Report implements ReportDAO {
 	}
 
 	@Override
-	public Collection<ReportBean> getReportFirmati(RegistroTirocinioBean registro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection<ReportBean> getReportNonFirmati(RegistroTirocinioBean registro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection<ReportBean> getReportRegistro(RegistroTirocinioBean registro) throws SQLException {
+	public Collection<ReportBean> getReportFirmati(RegistroTirocinioBean registro) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatament = null;
 		
 		Collection<ReportBean> reports = new ArrayList<ReportBean>();
 		
-		String selectSQL = "SELECT * FROM report WHERE registro_id=?";
+		String selectSQL = "SELECT * FROM report WHERE registro_id=? AND tutor_aziendale_email is not null;";
 		
 		
 		try {
@@ -241,6 +227,100 @@ public class Report implements ReportDAO {
 				bean.setPath(rs.getString("contenuto"));
 				bean.setTutorAziendale(ta.retrieveByKey(rs.getString("tutor_aziendale_email")));
 				
+				reports.add(bean);
+			}
+		} finally {
+			try {
+				if(preparedStatament != null)
+					preparedStatament.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+
+		return reports;
+	}
+
+	@Override
+	public Collection<ReportBean> getReportNonFirmati(RegistroTirocinioBean registro) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatament = null;
+		
+		Collection<ReportBean> reports = new ArrayList<ReportBean>();
+		
+		String selectSQL = "SELECT * FROM report WHERE registro_id=? AND tutor_aziendale_email is null;";
+		
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			preparedStatament = connection.prepareStatement(selectSQL);
+			
+			
+			preparedStatament.setInt(1, registro.getIdentificativo());
+			
+			System.out.println("doRetrieveAll:" + preparedStatament.toString());
+			
+			ResultSet rs = preparedStatament.executeQuery();
+			RegistroTirocinio reg=new RegistroTirocinio();
+			
+			while(rs.next()) {
+				ReportBean bean = new ReportBean();
+				
+				bean.setDataInserimento(rs.getDate("data_inserimento"));
+				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("registro_id")));
+				bean.setPath(rs.getString("contenuto"));
+				bean.setTutorAziendale(null);
+				
+				reports.add(bean);
+			}
+		} finally {
+			try {
+				if(preparedStatament != null)
+					preparedStatament.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+
+		return reports;
+	}
+
+	@Override
+	public Collection<ReportBean> getReportRegistro(RegistroTirocinioBean registro) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatament = null;
+		
+		Collection<ReportBean> reports = new ArrayList<ReportBean>();
+		
+		String selectSQL = "SELECT * FROM report WHERE registro_id=?;";
+		
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			
+			preparedStatament = connection.prepareStatement(selectSQL);
+			
+			
+			preparedStatament.setInt(1, registro.getIdentificativo());
+			
+			System.out.println("doRetrieveAll:" + preparedStatament.toString());
+			
+			ResultSet rs = preparedStatament.executeQuery();
+			RegistroTirocinio reg=new RegistroTirocinio();
+			TutorAziendale ta=new TutorAziendale();
+			
+			while(rs.next()) {
+				ReportBean bean = new ReportBean();
+				
+				bean.setDataInserimento(rs.getDate("data_inserimento"));
+				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("registro_id")));
+				bean.setPath(rs.getString("contenuto"));
+				if(rs.getString("tutor_aziendale_email") != null) {
+					bean.setTutorAziendale(ta.retrieveByKey(rs.getString("tutor_aziendale_email")));
+				}else {
+					bean.setTutorAziendale(null);
+				}
 				reports.add(bean);
 			}
 		} finally {

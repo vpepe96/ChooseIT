@@ -6,14 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import it.chooseit.bean.AziendaBean;
-import it.chooseit.bean.RichiestaTirocinioBean;
-import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.dao.AziendaDAO;
-import it.chooseit.dao.RichiestaTirocinioDAO;
-import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
 
 /**
@@ -49,15 +44,11 @@ public class Azienda implements AziendaDAO{
 				bean.setSedeOperativa(rs.getString("sede_operativa"));
 				bean.setSedeLegale(rs.getString("sede_legale"));
 				
-				ArrayList<TutorAziendaleBean> tutors;
-				TutorAziendaleDAO tutorAziDao = new TutorAziendale();
-				tutors = (ArrayList<TutorAziendaleBean>) tutorAziDao.getTutorDiAzienda(bean);
-				bean.setTutorAziendali(tutors);
+				// da settare con TutorAziendaleDAO.getTutorDiAzienda(AziendaBean bean)
+				bean.setTutorAziendali(null);
 				
-				ArrayList<RichiestaTirocinioBean> richieste;
-				RichiestaTirocinioDAO richiestaTiroDao = new RichiestaTirocinio();
-				richieste = (ArrayList<RichiestaTirocinioBean>) richiestaTiroDao.getRichiestePerAzienda(bean);
-				bean.setRichiesteTirocinio(richieste);
+				// da settare con RichiestaTirocinioDAO.getRichiestaPerAzienda(AziendaBean bean)
+				bean.setRichiesteTirocinio(null);
 			}
 		} finally {
 			try {
@@ -73,7 +64,7 @@ public class Azienda implements AziendaDAO{
 		Connection connection = null;
 		PreparedStatement preparedStatament = null;
 
-		Collection<AziendaBean> offerte = new LinkedList<AziendaBean>();
+		Collection<AziendaBean> offerte = new ArrayList<AziendaBean>();
 
 		String selectSQL = "SELECT * FROM " + Azienda.TABLE_NAME;
 

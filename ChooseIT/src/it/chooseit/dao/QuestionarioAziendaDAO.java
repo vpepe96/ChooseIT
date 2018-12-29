@@ -9,11 +9,11 @@ import it.chooseit.bean.StudenteBean;
 public interface QuestionarioAziendaDAO extends GenericDAO<QuestionarioAziendaBean,Integer> {
 
 	/**
-	 * Recupera una lista di questionari riferiti all'Ente Ospitante.
-	 * @param studente 
-	 * @return una lista di questionari 
+	 * Permette di recuperare un insieme di questionari valutativi sull'azienda associati allo studente.
+	 * @param studente lo studente del quale si vogliono recuperari i questionari
+	 * @return un insieme di questionari per lo studente
 	 * @throws SQLException
 	 */
-	public Collection<QuestionarioAziendaBean> getQuestionarioPer(StudenteBean studente)throws SQLException;
+	public Collection<QuestionarioAziendaBean> getQuestionarioPerStudente(StudenteBean studente) throws SQLException;
 	
 }
