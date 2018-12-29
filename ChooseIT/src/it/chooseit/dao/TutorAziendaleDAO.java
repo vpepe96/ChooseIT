@@ -20,5 +20,4 @@ public interface TutorAziendaleDAO extends GenericDAO<TutorAziendaleBean, String
 	 * @throws SQLException
 	 */
 	public Collection<TutorAziendaleBean> getTutorDiAzienda(AziendaBean azienda) throws SQLException;
-
 }

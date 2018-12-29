@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 import it.chooseit.bean.AziendaBean;
-import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.RichiestaTirocinioBean;
 
 public interface RichiestaTirocinioDAO extends GenericDAO<RichiestaTirocinioBean, Integer> {
@@ -16,6 +15,4 @@ public interface RichiestaTirocinioDAO extends GenericDAO<RichiestaTirocinioBean
 	 * @throws SQLException
 	 */
 	Collection<RichiestaTirocinioBean> getRichiestePer(AziendaBean azienda) throws SQLException;
-	
-
 }

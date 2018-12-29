@@ -9,10 +9,17 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import it.chooseit.bean.AziendaBean;
+import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.dao.AziendaDAO;
+import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
+
+/**
+ * Implementazione di AziendaDAO, che definisce i metodi per gestire i dati
+ * relativi alle aziende.
+ */
 
 public class Azienda implements AziendaDAO{
 
@@ -47,8 +54,10 @@ public class Azienda implements AziendaDAO{
 				tutors = (ArrayList<TutorAziendaleBean>) tutorAziDao.getTutorDiAzienda(bean);
 				bean.setTutorAziendali(tutors);
 				
-				//***Aggiungere lista richieste
-				
+				ArrayList<RichiestaTirocinioBean> richieste;
+				RichiestaTirocinioDAO richiestaTiroDao = new RichiestaTirocinio();
+				richieste = (ArrayList<RichiestaTirocinioBean>) richiestaTiroDao.getRichiestePer(bean);
+				bean.setRichiesteTirocinio(richieste);
 			}
 		} finally {
 			try {
