@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import it.chooseit.bean.AziendaBean;
@@ -102,5 +103,41 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 		return false;
 	}
 
+	@Override
+	public Collection<RichiestaTirocinioBean> getRichiestePer(AziendaBean azienda) throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		ArrayList<RichiestaTirocinioBean> list = new ArrayList<>();
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "select * from richiesta_tirocinio where ragione_sociale_azienda = ?;";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, azienda.getRagioneSociale());
+			
+			rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				RichiestaTirocinioBean bean;
+				
+				bean = retrieveByKey(rs.getInt("id"));
+				
+				list.add(bean);
+			}
+
+			return list;
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 	
 }
