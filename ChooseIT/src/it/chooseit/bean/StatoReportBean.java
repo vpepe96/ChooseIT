@@ -27,10 +27,11 @@ public class StatoReportBean implements Serializable {
 	 * Rappresenta il tipo di stato che ha un report.
 	 */
 	private StatoReport tipo;
+	
 	/**
-	 * Rappresenta la data in cui il report è stato caricato nel registro di tirocinio.
+	 * Rappresenta il report a cui è associato lo stato.
 	 */
-	private Date reportData;
+	private ReportBean report;
 	
 	/**
 	 * Rappresenta l'identificativo del registro di tirocinio che contiene il report.
@@ -45,10 +46,10 @@ public class StatoReportBean implements Serializable {
 	 * @param reportData data di inserimento del report.
 	 * @param registroTirocinio iregistro di tirocinio che contiene il report.
 	 */
-	public StatoReportBean(Date dataStato, StatoReport tipo, Date reportData, RegistroTirocinioBean registroTirocinio) {
+	public StatoReportBean(Date dataStato, StatoReport tipo, ReportBean report, RegistroTirocinioBean registroTirocinio) {
 		this.dataStato = dataStato;
 		this.tipo = tipo;
-		this.reportData = reportData;
+		this.report = report;
 		this.registroTirocinio = registroTirocinio;
 	}
 
@@ -99,20 +100,20 @@ public class StatoReportBean implements Serializable {
 	/**
 	 * Restituisce la data d'inserimento del report dei StatoReportBean.
 	 * 
-	 * @return reportData data d'inserimento del report.
+	 * @return report associato allo stato.
 	 */
-	public Date getReportData() {
-		return reportData;
+	public ReportBean getReport() {
+		return report;
 	}
 
 	/**
-	 * Setta una nuova data di inserimento di un report per StatoReportBean.
+	 * Setta un nuovo registro associato allo stato.
 	 * 
-	 * Pre: reportData != null.
-	 * @param reportData nuova data d'inserimento del report.
+	 * Pre: report != null.
+	 * @param report nuovo report.
 	 */
-	public void setReportData(Date reportData) {
-		this.reportData = reportData;
+	public void setReport(ReportBean report) {
+		this.report = report;
 	}
 
 	/**
