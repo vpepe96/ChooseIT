@@ -14,88 +14,205 @@ public class GestioneModulisticaFacade {
 	
 	/**
 	 * Permette di caricare sul server un progetto Formativo relativo ad un'azienda in fase di inserimento o modifica dell'azienda.
-	 * PRE: file != null AND azienda != null
-	 * @param file Progetto Formativo da associare all'azienda 
-	 * @param azienda azienda a cui associare il file 
+	 * PRE: azienda != null AND relative != null
+	 * @param azienda azienda di cui caricare il file
+	 * @param relative path relativo dove salvare il file 
+	 * @return String path assoluto corretto in cui salvare il file 
 	 */
-	public static String  uploadProgettoFormativo(File file, AziendaBean azienda) {
+	public static String  uploadProgettoFormativo(AziendaBean azienda, String relative) {
+		String path=relative+"\\files\\aziende";
+		File dir=new File(path);
 		
-		return null;
+		if(!dir.exists()) {
+			//se la cartella non esiste la crea e poi procede
+			dir.mkdirs();
+		}
+		
+		String fileName=azienda.getRagioneSociale();
+		path=""+path+File.separator+fileName+".pdf";
+		
+		return path;
 	}
 	
 	
 	/**
-	 * Permette di caricare sul server una richiesta di tirocinio relativa ad uno studente.
-	 * PRE: file != null AND richiesta != null
-	 * @param file richiesta di tirocinio inviata dallo studente. 
-	 * @param richiesta dati relativi alla richiesta. 
+	 * Permette di caricare sul server una Richiesta di Tirocinio relativa ad uno studente.
+	 * PRE: richiesta != null AND relative != null
+	 * @param richiesta richiesta di cui caricare il file
+	 * @param relative path relativo dove salvare il file 
+	 * @return String path assoluto corretto in cui salvare il file 
 	 */
-	public static String uploadRichiestaTirocinio(File file, RichiestaTirocinioBean richiesta) {
+	public static String uploadRichiestaTirocinio(RichiestaTirocinioBean richiesta, String relative) {
+		String path=relative+"\\files\\studenti";
+		File dir=new File(path);
 		
-		return null;
+		if(!dir.exists()) {
+			//se la cartella non esiste la crea e poi procede
+			dir.mkdirs();
+		}
+		
+		//apro la ccrtella relativa allo studente specifico
+		path=""+path+File.separator+richiesta.getStudente().getMatricola();
+		
+		dir=new File(path);
+		
+		if(!dir.exists()) {
+			//se la cartella non esiste la crea e poi procede
+			dir.mkdirs();
+		}
+		
+		String fileName="RichiestaTirocinio.pdf";
+		path=""+path+File.separator+fileName;
+		
+		return path;
 	}
 	
-	/**
-	 * Permette di caricare sul server un Report all'interno di un registro di tirocinio
-	 * PRE: file != null AND report != null
-	 * @param file Report da caricare all'interno di un registro di tirocinio 
-	 * @param report informazioni riguardanti il report da caricare
-	 */
-	public static String uploadReport(File file, ReportBean report) {
-		
-		return null;
-	}
 	
 	/**
-	 * Permette di caricare un'immagine relativa ad un'utente.
-	 * PRE: utente != null AND file!=null
-	 * @param file immagine che si desidera caricare. 
-	 * @param utente del quale si desidera aggiornare l'immagine.
+	 * Permette di caricare sul server un Report relativo ad uno studente.
+	 * PRE: report != null AND report != null
+	 * @param report report di cui caricare il file
+	 * @param relative path relativo dove salvare il file 
+	 * @return String path assoluto corretto in cui salvare il file 
 	 */
-	public static String uploadImmagine(UtenteBean utente, File file) {
+	public static String uploadReport(ReportBean report, String relative) {
 		
-		return null;
+		String path=relative+"\\files\\studenti";
+		File dir=new File(path);
+		
+		if(!dir.exists()) {
+			//se la cartella non esiste la crea e poi procede
+			dir.mkdirs();
+		}
+		
+		//apro la ccrtella relativa allo studente specifico
+		path=""+path+File.separator+report.getRegistroTirocinio().getStudente().getMatricola();
+		
+		dir=new File(path);
+		
+		if(!dir.exists()) {
+			//se la cartella non esiste la crea e poi procede
+			dir.mkdirs();
+		}
+		
+		//dopo aver avuto accesso alla cartella dello studente deve creare, se non esiste, la cartella RegistroTirocinio
+		path=""+path+File.separator+"RegistroTirocinio";
+		dir=new File(path);
+		
+		if(!dir.exists()) {
+			//se la cartella non esiste la crea e poi procede
+			dir.mkdirs();
+		}
+		
+		
+		String fileName=""+report.getDataInserimento().toString()+".pdf";
+		path=""+path+File.separator+fileName;
+		
+		return path;
+	}
+	
+	
+	
+	/**
+	 * Permette di caricare sul server un'immagine relativa ad uno studente.
+	 * PRE: uetnte != null AND relative != null
+	 * @param utente Utente di cui si desidera caricare l'immagine.
+	 * @param relative path relativo dove salvare il file 
+	 * @return String path assoluto corretto in cui salvare il file 
+	 */
+	public static String uploadImmagine(UtenteBean utente, String relative) {
+		String path=relative+"\\files\\img";
+		File dir=new File(path);
+		
+		if(!dir.exists()) {
+			//se la cartella non esiste la crea e poi procede
+			dir.mkdirs();
+		}
+		
+		String fileName=""+modificaEmail(utente.getEmail())+".jpg"; 
+		path=""+path+File.separator+fileName;
+		
+		return path;
 	}
 	
 	
 	/**
 	 * Permette di scaricare dal server un progetto formativo relativo ad un'azienda.
-	 * PRE: azienda != null
+	 * PRE: azienda != null AND relative != null
 	 * @param azienda azienda della quale si desidera scaricare il progetto formativo. 
-	 * @return String path dal quale effettuare il download del file.
+	 * @param relative path relativo dove recuperare il file. 
+	 * @return File Progetto formativo richiesto (se disponibile), null altrimenti.
 	 */
-	public static String downloadProgettoFormativo(AziendaBean azienda) {
+	public static File downloadProgettoFormativo(AziendaBean azienda, String relative) {
+		String filePath=relative+"\\files\\aziende";
+		String fileName=""+azienda.getRagioneSociale();
+		filePath=filePath+File.separator+fileName;
+		
+		System.out.println("Downloading: "+filePath);
+		
+		File f=new File(filePath);
+		
+		if(!f.exists()) {
+			return null;
+		}else {
+			return f;
+		}
 		
 		
-		return null;
 	}
 	
 	
 	/**
-	 * Permette di scaricare dal server una richiesta di tirocinio relativa ad uno studente.
-	 * PRE: richiesta != null
-	 * @param richiesta dati relativi alla richiesta della quale si desidera scaricare la richiesta di tirocinio. 
-	 * @return String path dal quale effettuare il download del file.
+	 * Permette di scaricare dal server una Richiesta di tirocinio relativa ad uno studente.
+	 * PRE: richiesta != null AND relative != null
+	 * @param richiesta richiesta della quale si desidera scaricare il file. 
+	 * @param relative path relativo dove recuperare il file. 
+	 * @return File Richiesta di tirocinio richiesta (se disponibile), null altrimenti.
 	 */
-	public static String downloadRichiestaTirocinio(RichiestaTirocinioBean richiesta) {
+	public static File downloadRichiestaTirocinio(RichiestaTirocinioBean richiesta, String relative) {
+		String path=relative+"\\files\\studenti";
+		path=""+path+File.separator+richiesta.getStudente().getMatricola();
 		
-		return null;
+		String fileName="RichiestaTirocinio.pdf";
+		path=""+path+File.separator+fileName;
+		File f=new File(path);
+		if(!f.exists()) {
+			return null;
+		}else {
+			return f;
+		}
+
 	}
 	
 	
 	/**
-	 * Permette di scaricare dal server un report relativo ad un Registro di tirocinio.
-	 * PRE: report != null
-	 * @param report dati sul report di cui si desidera scricare il file. 
-	 * @return String path dal quale effettuare il download del file.
+	 * Permette di scaricare dal server un Report relativo ad uno studente.
+	 * PRE: azienda != null AND relative != null
+	 * @param report report del quale si desidera ottenere il file. 
+	 * @param relative path relativo dove recuperare il file. 
+	 * @return File Report richiesto (se disponibile), null altrimenti.
 	 */
-	public static String downloadReport(ReportBean report) {
-		
-		
-		return null;	
+	public static File downloadReport(ReportBean report, String relative) {
+		String path=relative+"\\files\\studenti"+File.separator+report.getRegistroTirocinio().getStudente().getMatricola()+File.separator+"RegistroTirocinio";
+		String fileName=""+report.getDataInserimento().toString()+".pdf";
+		path=""+path+File.separator+fileName;
+		System.out.println("Downloading: "+path);
+		File f=new File(path);
+		if(!f.exists()) {
+			return null;
+		}else {
+			return f;
+		}
 	}
 	
 	
 	
+	
+	private static String modificaEmail(String email) {
+		email=email.replace(".", "_");
+		email=email.replace("@","_");
+		System.out.println(email);
+		return email;
+	}
 
 }
