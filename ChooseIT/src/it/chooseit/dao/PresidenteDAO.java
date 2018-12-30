@@ -3,7 +3,6 @@ package it.chooseit.dao;
 import java.sql.SQLException;
 
 import it.chooseit.bean.PresidenteBean;
-import it.chooseit.bean.SegreteriaBean;
 
 public interface PresidenteDAO extends GenericDAO<PresidenteBean, String> {
 

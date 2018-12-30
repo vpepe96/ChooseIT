@@ -7,10 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.bean.UtenteBean;
-import it.chooseit.dao.RegistroTirocinioDAO;
 import it.chooseit.dao.TutorUniversitarioDAO;
 import it.chooseit.dao.UtenteDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
@@ -55,10 +53,10 @@ public class TutorUniversitario implements TutorUniversitarioDAO {
 				bean.setTelefono(utente.getTelefono());
 				bean.setFotoProfilo(utente.getFotoProfilo());
 				
-				//cerca dati registri tirocini
-				RegistroTirocinioDAO registroDao = new RegistroTirocinio();
-				ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiTutorUniversitario(bean);
-				bean.setRegistriTirocinio(registri);
+				//cerca dati registri tirocini - si dovrebbero settare con le istruzioni seguenti
+				//RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				//ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiTutorUniversitario(bean);
+				bean.setRegistriTirocinio(null);
 				
 				return bean;
 			} else 
