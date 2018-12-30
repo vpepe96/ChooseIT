@@ -39,7 +39,6 @@ public class GestioneReportFacade {
 		RegistroTirocinioDAO registro = new RegistroTirocinio();
 		try {
 			list = registro.getRegistriDiTirociniInCorso();
-			list.addAll(registro.getRegistriDiTirociniInCorso());
 			return list;
 		} catch (SQLException e) {
 			return null;
