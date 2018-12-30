@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-			<title> ChooseIT | Navigation Bar </title>
+			<title> ChooseIT | Navigation Bar </title>  
 			<meta name="description" content="">
 			<meta name="author" content="">
 				

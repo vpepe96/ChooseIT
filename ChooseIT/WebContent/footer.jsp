@@ -50,7 +50,7 @@
 	<body>
 	
 		<!-- #PAGE FOOTER -->
-		<div class="page-footer">
+		<div class="page-footer" id="footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
 					<span class="txt-color-white">ChooseIT <span class="hidden-xs"> - Web Application per l'Università degli Studi di Salerno</span> © 2018-2019</span>
