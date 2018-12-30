@@ -7,12 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.bean.UtenteBean;
-import it.chooseit.dao.RegistroTirocinioDAO;
 import it.chooseit.dao.StudenteDAO;
 import it.chooseit.dao.UtenteDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
@@ -58,13 +56,15 @@ public class Studente implements StudenteDAO {
 				bean.setTelefono(utente.getTelefono());
 				bean.setFotoProfilo(utente.getFotoProfilo());
 				
-				//cerca dati registri tirocinio
-				RegistroTirocinioDAO registroDao = new RegistroTirocinio();
-				ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiStudente(bean);
-				bean.setRegistriTirocinio(registri);
+				//cerca dati registri tirocinio - da settare con le istruzioni seguenti
+				//RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				//ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiStudente(bean);
+				bean.setRegistriTirocinio(null);
 				
-				//cerca dati richieste
-				//...da completare...
+				//cerca dati richieste - da settare con le istruzioni seguenti
+				//RichiestaTirocinioDAO richiestaDao = new RichiestaTirocino();
+				//ArrayList<RichiestaTirocinioBean> richiesta = (ArrayList<RichiestaTirocinioBean>) richiestaDao.getRichiestePerStudente(bean);
+				bean.setRichiesteTirocinio(null);
 				
 				return bean;
 			} else
@@ -216,9 +216,9 @@ public class Studente implements StudenteDAO {
 			
 			rs = preparedStatement.executeQuery();
 			
-			
 			while (rs.next()) {
 				StudenteBean bean = new StudenteBean();
+				
 				bean.setEmail(rs.getString("email"));
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
@@ -228,6 +228,17 @@ public class Studente implements StudenteDAO {
 				bean.setFotoProfilo(rs.getString("foto_profilo"));
 				bean.setMatricola(rs.getString("matricola"));
 				bean.setDescrizione(rs.getString("descrizione"));
+				
+				//ricerca dei registri tirocinio associati - si dovrebbe settare con le seguenti istruzioni
+				//RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				//ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiStudente(bean); 
+				bean.setRegistriTirocinio(null);
+				
+				//ricerca le richieste di tirocinio associate - si dovrebbero settare con le seguenti istruzioni
+				//RichiestaTirocinioDAO richiestaDao = new RichiestaTirocinio();
+				//ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) richiestaDao.getRichiestaPerStudente(bean); 
+				bean.setRichiesteTirocinio(null);
+				
 				list.add(bean);
 			}
 
@@ -267,6 +278,7 @@ public class Studente implements StudenteDAO {
 			
 			while (rs.next()) {
 				StudenteBean bean = new StudenteBean();
+				
 				bean.setEmail(rs.getString("email"));
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
@@ -276,6 +288,17 @@ public class Studente implements StudenteDAO {
 				bean.setFotoProfilo(rs.getString("foto_profilo"));
 				bean.setMatricola(rs.getString("matricola"));
 				bean.setDescrizione(rs.getString("descrizione"));
+				
+				//ricerca dei registri tirocinio associati - si dovrebbe settare con le seguenti istruzioni
+				//RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				//ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiStudente(bean); 
+				bean.setRegistriTirocinio(null);
+				
+				//ricerca le richieste di tirocinio associate - si dovrebbero settare con le seguenti istruzioni
+				//RichiestaTirocinioDAO richiestaDao = new RichiestaTirocinio();
+				//ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) richiestaDao.getRichiestaPerStudente(bean); 
+				bean.setRichiesteTirocinio(null);
+				
 				list.add(bean);
 			}
 
