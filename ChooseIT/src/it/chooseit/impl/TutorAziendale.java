@@ -9,13 +9,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import it.chooseit.bean.AziendaBean;
-import it.chooseit.bean.RegistroTirocinioBean;
-import it.chooseit.bean.ReportBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.AziendaDAO;
-import it.chooseit.dao.RegistroTirocinioDAO;
-import it.chooseit.dao.ReportDAO;
 import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.dao.UtenteDAO;
 import it.chooseit.services.DriverManagerConnectionPool;
@@ -60,18 +56,18 @@ public class TutorAziendale implements TutorAziendaleDAO {
 				//setta dati azienda
 				bean.setAzienda(azienda);
 				
-				//cerca dati registri tirocini
-				RegistroTirocinioDAO registroDao = new RegistroTirocinio();
-				ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiTutorAziendale(bean);
-				bean.setRegistriTirocinio(registri);
+				//cerca dati registri tirocini - si dovrebbero settare con le istruzioni seguenti
+				//RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				//ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiTutorAziendale(bean);
+				bean.setRegistriTirocinio(null);
 				
-				//cerca dati report firmati
-				ReportDAO reportDao = new Report();
-				ArrayList<ReportBean> report = new ArrayList<>();
-				for (RegistroTirocinioBean registroBean : registri) {
-					report.addAll(reportDao.getReportFirmati(registroBean));
-				}
-				
+				//cerca dati report firmati - si dovrebbero settare con le istruzioni seguenti
+				//ReportDAO reportDao = new Report();
+				//ArrayList<ReportBean> report = new ArrayList<>();
+				//for (RegistroTirocinioBean registroBean : registri) {
+				//	report.addAll(reportDao.getReportFirmati(registroBean));
+				//}
+				bean.setReports(null);
 				
 				return bean;
 			} else 
