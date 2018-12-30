@@ -1,21 +1,42 @@
 package it.chooseit.facade;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import it.chooseit.bean.PresidenteBean;
-import it.chooseit.bean.SegreteriaBean;
+import it.chooseit.bean.RegistroTirocinioBean;
+import it.chooseit.bean.ReportBean;
+import it.chooseit.bean.RichiestaTirocinioBean;
+import it.chooseit.bean.StatoReportBean;
+import it.chooseit.bean.StatoRichiestaBean;
+import it.chooseit.bean.StatoTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.PresidenteDAO;
+import it.chooseit.dao.QuestionarioAziendaDAO;
+import it.chooseit.dao.QuestionarioStudenteDAO;
+import it.chooseit.dao.RegistroTirocinioDAO;
+import it.chooseit.dao.ReportDAO;
+import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.dao.SegreteriaDAO;
+import it.chooseit.dao.StatoReportDAO;
+import it.chooseit.dao.StatoRichiestaDAO;
+import it.chooseit.dao.StatoTirocinioDAO;
 import it.chooseit.dao.StudenteDAO;
 import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.dao.TutorUniversitarioDAO;
 import it.chooseit.dao.UtenteDAO;
 import it.chooseit.impl.Presidente;
+import it.chooseit.impl.QuestionarioAzienda;
+import it.chooseit.impl.QuestionarioStudente;
+import it.chooseit.impl.RegistroTirocinio;
+import it.chooseit.impl.Report;
+import it.chooseit.impl.RichiestaTirocinio;
 import it.chooseit.impl.Segreteria;
+import it.chooseit.impl.StatoReport;
+import it.chooseit.impl.StatoRichiesta;
+import it.chooseit.impl.StatoTirocinio;
 import it.chooseit.impl.Studente;
 import it.chooseit.impl.TutorAziendale;
 import it.chooseit.impl.TutorUniversitario;
@@ -42,50 +63,216 @@ public class GestioneAccountFacade {
 			//Se le credenziali sono giuste restituisci utenteBean
 			utente = utenteDao.checkLogin(email, pwd);
 			
-			String ruolo = checkRuolo(utente);
-			
-			if(ruolo.equals("studente")) {
-				//recupera le informazioni di studente dal db...
-				StudenteDAO studenteDao = new Studente();
-				StudenteBean studente = studenteDao.retrieveByKey(email);
-				return studente;
+			//Se l'utente != null allora le credenziali sono giuste...
+			if(utente != null) {
+				//...quindi controllo il ruolo
+				String ruolo = checkRuolo(utente);
+				
+				if(ruolo.equals("studente")) {
+					//recupera le informazioni di studente dal db...
+					StudenteDAO studenteDao = new Studente();
+					StudenteBean studente = studenteDao.retrieveByKey(email);
+					studente = getDatiDiStudente(studente);
+					utente = studente;
+				}
+				
+				if(ruolo.equals("segreteria")) {
+					//recupera le informazioni di segreteria dal db...
+					SegreteriaDAO segreteriaDao = new Segreteria();
+					utente = segreteriaDao.retrieveByKey(email);
+				}
+				
+				if(ruolo.equals("presidente")) {
+					//recupera le informazioni di presidente dal db...
+					PresidenteDAO presidenteDao = new Presidente();
+					utente = presidenteDao.retrieveByKey(email);
+				}
+				
+				if(ruolo.equals("tutorAziendale")) {
+					//recupera le informazioni di tutor aziendale dal db...
+					TutorAziendaleDAO tutorAziDao = new TutorAziendale();
+					utente = tutorAziDao.retrieveByKey(email);
+				}
+				
+				if(ruolo.equals("tutorUniversitario")) {
+					//recupera le informazioni di tutor universitario dal db...
+					TutorUniversitarioDAO tutorUniDao = new TutorUniversitario();
+					TutorUniversitarioBean tutor = tutorUniDao.retrieveByKey(email);
+					tutor = getDatiDiTutorUniversitario(tutor);
+					utente = tutor;
+				}
+				
+				return utente;
+				
+			}else {
+				//..altrimenti le credenziali sono errate e return null;
+				return null;
 			}
-			
-			if(ruolo.equals("segreteria")) {
-				//recupera le informazioni di segreteria dal db...
-				SegreteriaDAO segreteriaDao = new Segreteria();
-				SegreteriaBean segreteria = segreteriaDao.retrieveByKey(email);
-				return segreteria;
-			}
-			
-			if(ruolo.equals("presidente")) {
-				//recupera le informazioni di presidente dal db...
-				PresidenteDAO presidenteDao = new Presidente();
-				PresidenteBean presidente = presidenteDao.retrieveByKey(email);
-				return presidente;
-			}
-			
-			if(ruolo.equals("tutorAziendale")) {
-				//recupera le informazioni di tutor aziendale dal db...
-				TutorAziendaleDAO tutorAziDao = new TutorAziendale();
-				TutorAziendaleBean tutorAziendale = tutorAziDao.retrieveByKey(email);
-				return tutorAziendale;
-			}
-			
-			if(ruolo.equals("tutorUniversitario")) {
-				//recupera le informazioni di tutor universitario dal db...
-				TutorUniversitarioDAO tutorUniDao = new TutorUniversitario();
-				TutorUniversitarioBean tutorUniversitario = tutorUniDao.retrieveByKey(email);
-				return tutorUniversitario;
-			}
-			
-			// Se arrivo qui allora il ruolo non è stato trovato
-			return null;
 			
 		} catch (SQLException e) {
-			//...altrimenti l'utente non è stato trovato oppure la pwd è errata
+			//...altrimenti c'è stato un errore di accesso al db e return null
 			return null;
 		}
+	}
+	
+	
+	/**
+	 * Permette di recuperare tutti i dati associati allo studente mancanti dal retrieveByKey (listaRegistri e listaRichieste)
+	 * @param studente lo studente di cui si vogliono recuperare i dati
+	 * @return lo studente con tutti i dati associati 
+	 */
+	public StudenteBean getDatiDiStudente(StudenteBean studente) {
+		
+		try {
+			
+			// prendi dati delle richieste
+			RichiestaTirocinioDAO ricDao = new RichiestaTirocinio();
+			ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) ricDao.getRichiestaPerStudente(studente);
+			studente.setRichiesteTirocinio(richieste);
+			
+			// prendi dati dei registri
+			RegistroTirocinioDAO regDao = new RegistroTirocinio();
+			ArrayList<RegistroTirocinioBean> registri;
+			registri = (ArrayList<RegistroTirocinioBean>) regDao.getRegistriDiStudente(studente);
+			for (RegistroTirocinioBean registroTirocinioBean : registri) {
+				registroTirocinioBean = getDatiDiRegistro(registroTirocinioBean);
+				registroTirocinioBean.setStudente(studente);
+				
+				//aggiungi la richiesta di registro a listaRichieste
+				RichiestaTirocinioBean richiestaTirocinio = registroTirocinioBean.getRichiestaTirocinio();
+				studente.addRichiestaTirocinio(richiestaTirocinio);
+				
+			}
+			studente.setRegistriTirocinio(registri);
+			
+			
+		} catch (SQLException e) {
+			// c'è stato un errore nel reperimento dati dal db, restituisci lo studente con i dati recuperati fin'ora
+			return studente;
+		}
+		return studente;
+	}
+	
+	
+	/**
+	 * Permette di recuperare tutti i dati associati al tutor aziendale mancanti dal retrieveByKey (listaRegistriTirocinio)
+	 * @param tutor il tutor universitario del quale si vogliono recuperare i dati
+	 * @return il tutor universitario con tutti i dati associati
+	 */
+	public TutorAziendaleBean getDatiDiTutorAziendale(TutorAziendaleBean tutor) {
+		
+		RegistroTirocinioDAO regDao = new RegistroTirocinio();
+		ArrayList<RegistroTirocinioBean> registri;
+		
+		ReportDAO repoDao = new Report();
+		ArrayList<ReportBean> reportFirmati = new ArrayList<>();
+		
+		try {
+			// prendi dati dei registri
+			registri = (ArrayList<RegistroTirocinioBean>) regDao.getRegistriDiTutorAziendale(tutor);
+			for (RegistroTirocinioBean registroTirocinioBean : registri) {
+				registroTirocinioBean = getDatiDiRegistro(registroTirocinioBean);
+				
+				//prendi report firmati
+				reportFirmati.add((ReportBean) repoDao.getReportFirmati(registroTirocinioBean));
+				
+			}
+			tutor.setRegistriTirocinio(registri);
+			tutor.setReports(reportFirmati);
+			
+		} catch (SQLException e) {
+			// c'è stato un errore nel reperimento dati dal db, restituisci il tutor aziendale con i dati recuperati fin'ora
+			System.out.println(e.getMessage());
+			return tutor;
+		}
+		return tutor;
+	}
+	
+	
+	/**
+	 * Permette di recuperare tutti i dati associati al tutor universitario mancanti dal retrieveByKey (listaRegistriTirocinio)
+	 * @param tutor il tutor universitario del quale si vogliono recuperare i dati
+	 * @return il tutor universitario con tutti i dati associati
+	 */
+	public TutorUniversitarioBean getDatiDiTutorUniversitario(TutorUniversitarioBean tutor) {
+		
+		RegistroTirocinioDAO regDao = new RegistroTirocinio();
+		ArrayList<RegistroTirocinioBean> registri;
+		
+		try {
+			// prendi dati dei registri
+			registri = (ArrayList<RegistroTirocinioBean>) regDao.getRegistriDiTutorUniversitario(tutor);
+			for (RegistroTirocinioBean registroTirocinioBean : registri) {
+				registroTirocinioBean = getDatiDiRegistro(registroTirocinioBean);
+			}
+			tutor.setRegistriTirocinio(registri);
+			
+		} catch (SQLException e) {
+			// c'è stato un errore nel reperimento dati dal db, restituisci il tutor universitario con i dati recuperati fin'ora
+			System.out.println(e.getMessage());
+			return tutor;
+		}
+		return tutor;
+	}
+	
+	
+	/**
+	 * Permette di recuperare tutti i dati associati al registro di tirocinio mancanti dal retrieveByKey
+	 *  (richiestaTirocinio, listaReports, listaStatiTirocinio, questionarioAzienda, questionarioStudente)
+	 * @param registroTirocinioBean il registro del quale si vogliono recuperare i dati
+	 * @return il registro con tutti i dati associati
+	 * @throws SQLException
+	 */
+	public RegistroTirocinioBean getDatiDiRegistro(RegistroTirocinioBean registroTirocinioBean) throws SQLException {
+		RichiestaTirocinioDAO ricDao = new RichiestaTirocinio();
+		StatoRichiestaDAO sRichiestaDao = new StatoRichiesta();
+		
+		ReportDAO repDao = new Report();
+		StatoReportDAO sRepoDao = new StatoReport();
+
+		StatoTirocinioDAO statoTirocinioDao = new StatoTirocinio();
+
+		QuestionarioAziendaDAO qADao = new QuestionarioAzienda();
+		QuestionarioStudenteDAO qSDao = new QuestionarioStudente();
+		
+		//recupera questionari
+		registroTirocinioBean.setQuestionarioAzienda(qADao.retrieveByKey(registroTirocinioBean.getIdentificativo()));
+		registroTirocinioBean.getQuestionarioAzienda().setRegistroTirocinio(registroTirocinioBean);
+		registroTirocinioBean.setQuestionarioStudente(qSDao.retrieveByKey(registroTirocinioBean.getIdentificativo()));
+		registroTirocinioBean.getQuestionarioStudente().setRegistroTirocinio(registroTirocinioBean);
+		
+		//recupera reports
+		ArrayList<ReportBean> reports = (ArrayList<ReportBean>) repDao.getReportRegistro(registroTirocinioBean);
+		for (ReportBean report : reports) {
+			report.setRegistroTirocinio(registroTirocinioBean);
+			//recupera stati reports
+			ArrayList<StatoReportBean> statiReport = (ArrayList<StatoReportBean>) sRepoDao.getStatiReport(report);
+			for (StatoReportBean statoBean : statiReport) {
+				statoBean.setRegistroTirocinio(registroTirocinioBean);
+				statoBean.setReport(report);
+			}
+			report.setStatiReport(statiReport);
+		}
+		registroTirocinioBean.setReports(reports);
+		
+		//recupera stati tirocinio
+		ArrayList<StatoTirocinioBean> statiTirocinio = (ArrayList<StatoTirocinioBean>) statoTirocinioDao.getStatiTirocinio(registroTirocinioBean); 
+		registroTirocinioBean.setStatiTirocinio(statiTirocinio);
+		for (StatoTirocinioBean statoBean : statiTirocinio) {
+			statoBean.setRegistroTirocinio(registroTirocinioBean);
+		}
+		
+		//recupera richiesta
+		RichiestaTirocinioBean richiesta = ricDao.retrieveByKey(registroTirocinioBean.getIdentificativo());
+		richiesta.setRegistroTirocinio(registroTirocinioBean);
+		ArrayList<StatoRichiestaBean> statiRichieste = (ArrayList<StatoRichiestaBean>) sRichiestaDao.getStatiRichiesta(richiesta);
+		for (StatoRichiestaBean statoRichiestaBean : statiRichieste) {
+			statoRichiestaBean.setRichiestaId(richiesta);
+		}
+		richiesta.setStatiRichiesta(statiRichieste);
+		registroTirocinioBean.setRichiestaTirocinio(richiesta);
+		
+		return registroTirocinioBean;
 	}
 	
 	
@@ -96,19 +283,11 @@ public class GestioneAccountFacade {
 	 * @return true se la registrazione è andata a buon fine, false altrimenti
 	 */
 	public boolean registrazione(StudenteBean studente, String pwd) {
-		UtenteDAO utenteDao = new Utente();
-		try {
-			// Aggiunta utente nel database ...
-			utenteDao.insert(studente, pwd);
-		} catch (SQLException e) {
-			// ... errore nella registrazione
-			return false;
-		}
 
 		StudenteDAO studenteDao = new Studente();
 		try {
 			// Aggiunta studente nel database ...
-			studenteDao.insert(studente);
+			studenteDao.insert(studente,pwd);
 		} catch (SQLException e) {
 			// ... errore nella registrazione
 			return false;
@@ -122,10 +301,11 @@ public class GestioneAccountFacade {
 	 * Permette di controllare il ruolo di un utente.
 	 * PRE: utente != null
 	 * @param utente l'utente di cui si vuole controllare il ruolo
-	 * @return il ruolo dell'utente come String
+	 * @return il ruolo dell'utente come String, null se l'utente non esiste
 	 */
 	public String checkRuolo(UtenteBean utente) {
 		String email = utente.getEmail();
+		String ruolo = null;
 		UtenteDAO utenteDao = new Utente();
 		
 		//Controlla il ruolo dell'utente
@@ -136,42 +316,42 @@ public class GestioneAccountFacade {
 				// Controllo se l'utente è studente
 				StudenteDAO studenteDao = new Studente();
 				if(studenteDao.retrieveByKey(email) != null) {
-					return "studente";
+					ruolo = "studente";
 				}
 				
 				// Controllo se l'utente è segreteria
 				SegreteriaDAO segreteriaDao = new Segreteria();
 				if(segreteriaDao.retrieveByKey(email) != null) {
-					return "segreteria";
+					ruolo = "segreteria";
 				}
 				
 				// Controllo se l'utente è presidente
 				PresidenteDAO presidenteDao = new Presidente();
 				if(presidenteDao.retrieveByKey(email) != null) {
-					return "presidente";
+					ruolo = "presidente";
 				}
 				
 				// Controllo se l'utente è tutor aziendale
 				TutorAziendaleDAO tutorAziDao = new TutorAziendale();
 				if(tutorAziDao.retrieveByKey(email) != null) {
-					return "tutorAziendale";
+					ruolo = "tutorAziendale";
 				}
 				
 				// Controllo se l'utente è tutor universitario
 				TutorUniversitarioDAO tutorUniDao = new TutorUniversitario();
 				if(tutorUniDao.retrieveByKey(email) != null) {
-					return "tutorUniversitario";
+					ruolo = "tutorUniversitario";
 				}
 				
+				return ruolo;
 			}else {
 				//...altrimenti l'utente non esiste (return null)
+				return null;
 			}
 		} catch (SQLException e) {
-			//Il ruolo dell'utente non è stato trovato (return null)
+			//...altrimenti c'è stato un errore di accesso al db e return null
+			return null;
 		}
-		
-		// Se arrivo qui il ruolo non è stato trovato, oppure l'utente non esiste
-		return null;
 	}
 	
 }

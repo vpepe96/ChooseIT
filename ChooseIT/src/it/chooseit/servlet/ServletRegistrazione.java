@@ -1,50 +1,53 @@
 package it.chooseit.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
+import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.bean.StudenteBean;
-import it.chooseit.dao.StudenteDAO;
 import it.chooseit.facade.GestioneAccountFacade;
-import it.chooseit.impl.Studente;
 
 /**
  * Servlet implementation class ServletRegistrazione
  */
 @WebServlet("/ServletRegistrazione")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class ServletRegistrazione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletRegistrazione() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ServletRegistrazione() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String nome = request.getParameter("nome");
@@ -54,18 +57,18 @@ public class ServletRegistrazione extends HttpServlet {
 		String dataNascita = request.getParameter("dataNascita");
 		String matricola = request.getParameter("matricola");
 		String descrizione = request.getParameter("descrizione");
-		//String fotoProfilo = request.getParameter("fotoProfilo");
-		
-		//Parse da String a sql.Date
+
+		// Parse da String a sql.Date
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		java.sql.Date sqlDate = null;
-	    try {
-	        java.util.Date utilDate = format.parse(dataNascita);
-	        sqlDate = new java.sql.Date(utilDate.getTime());
-	    } catch (ParseException e) {
-	        e.printStackTrace();
-	    }
-		
+		try {
+			java.util.Date utilDate = format.parse(dataNascita);
+			sqlDate = new java.sql.Date(utilDate.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		// 1) CREA IL BEAN
 		StudenteBean bean = new StudenteBean();
 		bean.setDataNascita(sqlDate);
 		bean.setEmail(email);
@@ -74,24 +77,44 @@ public class ServletRegistrazione extends HttpServlet {
 		bean.setTelefono(telefono);
 		bean.setMatricola(matricola);
 		bean.setIndirizzo(indirizzo);
-		if(descrizione == null) {
+		if (descrizione == null) {
 			bean.setDescrizione("");
-		}else {
+		} else {
 			bean.setDescrizione(descrizione);
 		}
-		/*if(fotoProfilo == null) {
+
+		// 2)OTTENGO IL PATH DOVE SALVARE
+		String filePath = GestioneModulisticaFacade.uploadImmagine(bean, getServletContext().getRealPath("//"));
+
+		boolean fotoOK = false;
+		// 3)SALVO NEL PATH OTTENUTO
+		if (request.getPart("fotoProfilo") != null && request.getPart("fotoProfilo").getSize() > 0) {
+			if (filePath != null && !filePath.equals("")) {
+				Part part = request.getPart("fotoProfilo");
+				part.write(filePath);
+				fotoOK = true;
+				System.out.println("Salvato in " + filePath);
+			} else {
+				// è andata male
+				System.out.println("Errore nel salvataggio foto profilo");
+			}
+
+		}
+
+		// 4)AGGIORNO IL BEAN AGGIUNGENDO IL PERCORSO APPENA OTTENUTO (filePath) 
+		// (solo se la foto è stata inserità, cioè se fotoOK == true)
+		if (fotoOK) {
+			bean.setFotoProfilo(filePath);
+		} else {
 			bean.setFotoProfilo("");
-		}else {
-			bean.setFotoProfilo(fotoProfilo);
-		}*/
-		bean.setFotoProfilo("");
-		
-		
+		}
+
 		GestioneAccountFacade gestore = new GestioneAccountFacade();
 		boolean registrazioneOK = gestore.registrazione(bean, password);
 		request.getSession().setAttribute("registrazioneOK", registrazioneOK);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Registrazione.jsp");
+
+		String url = response.encodeRedirectURL("/Registrazione.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
 

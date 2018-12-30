@@ -59,7 +59,8 @@ public class ServletLogin extends HttpServlet {
 		if(utente == null) {
 			
 			request.getSession().setAttribute("loginOK", false);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			String url=response.encodeRedirectURL("/index.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 			
 		}else {
@@ -103,13 +104,15 @@ public class ServletLogin extends HttpServlet {
 				}
 				
 				request.getSession().setAttribute("ruolo", ruolo);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("AreaPersonale.jsp");
+				String url=response.encodeRedirectURL("/AreaPersonale.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				
 			}else {
 				// ...altrimenti c'è un errore nel recupero del ruolo
 				request.getSession().setAttribute("loginOK", false);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+				String url=response.encodeRedirectURL("/index.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 			}
 			

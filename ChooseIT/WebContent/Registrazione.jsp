@@ -62,15 +62,6 @@
 
 <body>
 
-	<%
-		//Recupero del ruolo: se non esiste, ruolo è "guest"
-		String ruolo = (String) request.getSession().getAttribute("ruolo");
-		if (ruolo == null) {
-			ruolo = "guest";
-			request.getSession().setAttribute("ruolo", ruolo);
-		}
-	%>
-
 	<!-- HEADER -->
 	<header id="header"> </header>
 	<!-- END HEADER -->
@@ -142,8 +133,12 @@
 			<div class="row">
 				<article class="col-sm-12">
 
+					<%
+						String urlRegistrazione=response.encodeURL("ServletRegistrazione");
+					%>
+					
 					<div class="well no-padding">
-						<form name="registrazione" id="form_reg" action="ServletRegistrazione" method="post"
+						<form name="registrazione" id="form_reg" action="<%=urlRegistrazione%>" method="post" enctype="multipart/form-data"
 							class="smart-form client-form">
 							<header> Registrazione </header>
 
@@ -152,7 +147,7 @@
 								<section>
 									<label class="label">E-mail</label> 
 									<label class="input">
-										<i class="icon-append fa fa-lock"></i> 
+										<i class="icon-append fa fa-user"></i> 
 										<input type="text" name="email" id="email" required="required" pattern="^[A-Za-z0-9.]+@(studenti.unisa.it){1}$">
 									</label>
 								</section>
@@ -180,7 +175,7 @@
 								<section>
 									<label class="label">Cognome</label> 
 									<label class="input">
-										<i class="icon-append fa fa-lock"></i> 
+										<i class="icon-append fa fa-user"></i> 
 										<input type="text" name="cognome" id="cognome" required="required" pattern="^[A-Za-z\s]{3,20}">
 									</label>
 								</section>
@@ -188,7 +183,7 @@
 								<section>
 									<label class="label">Indirizzo</label> 
 									<label class="input">
-										<i class="icon-append fa fa-lock"></i> 
+										<i class="icon-append fa fa-user"></i> 
 										<input type="text" name="indirizzo" id="indirizzo" required="required" pattern="^[A-Za-z0-9,()\s]{3,60}">
 									</label>
 								</section>
@@ -196,7 +191,7 @@
 								<section>
 									<label class="label">Data di Nascita</label> 
 									<label class="input">
-										<i class="icon-append fa fa-lock"></i> 
+										<i class="icon-append fa fa-user"></i> 
 										<input type="text" name="dataNascita" id="dataNascita" placeholder="gg/mm/aaaa" required="required" pattern="^(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}$">
 									</label>
 								</section>
@@ -204,7 +199,7 @@
 								<section>
 									<label class="label">Telefono</label> 
 									<label class="input">
-										<i class="icon-append fa fa-lock"></i> 
+										<i class="icon-append fa fa-user"></i> 
 										<input type="text" name="telefono" id="telefono" required="required" pattern="^[0-9]{10}$">
 									</label>
 								</section>
@@ -212,7 +207,7 @@
 								<section>
 									<label class="label">Matricola</label> 
 									<label class="input">
-										<i class="icon-append fa fa-lock"></i> 
+										<i class="icon-append fa fa-user"></i> 
 										<input type="text" name="matricola" id="matricola" required="required" pattern="^[0-9]{10}$">
 									</label>
 								</section>
@@ -220,7 +215,7 @@
 								<section>
 									<label class="label">Descrizione</label> 
 									<label class="input">
-										<i class="icon-append fa fa-lock"></i> 
+										<i class="fa"></i> 
 										<textarea rows="4" cols="50" maxlength="300" name="descrizione" form="form-reg"></textarea>
 									</label>
 								</section>
@@ -228,7 +223,7 @@
 								<section>
 									<label class="label">Immagine del Profilo</label> 
 									<label class="input">
-										<i class="icon-append fa fa-lock"></i> 
+										<i class="fa"></i> 
 										<input type="file" name="fotoProfilo" id="fotoProfilo" accept=".jpg">
 									</label>
 								</section>
@@ -347,7 +342,14 @@
 				alert("ERRORE.\nLa registrazione non è andata a buon fine.");
 			</script>	
 			<%
+			}else{
+			%>
+			<script type="text/javascript">
+				alert("La registrazione è avvenuta con successo.");
+			</script>	
+			<%
 			}
+			request.getSession().removeAttribute("registrazioneOK");
 		}
 	%>
 </html>

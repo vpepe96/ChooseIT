@@ -63,15 +63,6 @@
 
 <body>
 
-	<%
-		//Recupero del ruolo: se non esiste, ruolo è "guest"
-		String ruolo = (String) request.getSession().getAttribute("ruolo");
-		if (ruolo == null) {
-			ruolo = "guest";
-			request.getSession().setAttribute("ruolo", ruolo);
-		}
-	%>
-
 	<!-- HEADER -->
 	<header id="header"> </header>
 	<!-- END HEADER -->
@@ -142,9 +133,14 @@
 			<!-- row -->
 			<div class="row">
 				<article class="col-sm-12">
+		
+					<%
+						String urlLogin=response.encodeURL("ServletLogin");
+					%>
+
 
 					<div class="well no-padding">
-						<form action="ServletLogin" method="post" id="login-form"
+						<form action="<%=urlLogin%>" method="post" id="login-form"
 							class="smart-form client-form">
 							<header> Login </header>
 
@@ -216,6 +212,7 @@
 			</script>	
 			<%
 			}
+			request.getSession().removeAttribute("loginOK");
 		}
 	%>
 </html>
