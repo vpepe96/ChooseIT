@@ -33,4 +33,20 @@ public interface StudenteDAO extends GenericDAO<StudenteBean, String> {
 	 * @throws SQLException
 	 */
 	public void insert(StudenteBean studente, String pwd) throws SQLException;
+	
+	/**
+	 * Recupera una lista di studenti con richiesta di tirocinio in uno stato specificato 
+	 * @param statoRichiesta stato della richiesta di tirocinio degli studenti
+	 * @return una lista di studenti con una richiesta di tirocinio in uno stato specificato
+	 * @throws SQLException
+	 */
+	public Collection<StudenteBean> getStudentiPerStatoRichiesta(String statoRichiesta) throws SQLException;
+	
+	/**
+	 * Recupera una lista di studenti con tirocinio in uno stato specificato
+	 * @param statoTirocinio stato del tirocinio degli studenti
+	 * @return una lista di studenti con tirocinio in uno stato specificato
+	 * @throws SQLException
+	 */
+	public Collection<StudenteBean> getStudentiPerStatoTirocinio(String statoTirocinio) throws SQLException;
 }

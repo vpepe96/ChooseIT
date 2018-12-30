@@ -13,6 +13,7 @@ import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.StudenteDAO;
 import it.chooseit.dao.UtenteDAO;
+import it.chooseit.services.ConvertEnum;
 import it.chooseit.services.DriverManagerConnectionPool;
 
 /**
@@ -344,6 +345,148 @@ public class Studente implements StudenteDAO {
 			}
 		}
 		
+	}
+
+	@Override
+	public Collection<StudenteBean> getStudentiPerStatoRichiesta(String statoRichiesta) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ConvertEnum convert = new ConvertEnum();
+		String[] stati = {"NUOVA","INVALIDAZIONE","INCONVALIDA","ACCETTATA","RIFIUTATA"};
+		
+		Collection<StudenteBean> studenti = new ArrayList<>();
+		
+		if(convert.convertStatoRichiesta(statoRichiesta).toString().equalsIgnoreCase(stati[0]))
+			statoRichiesta = "nuova";
+		else if(convert.convertStatoRichiesta(statoRichiesta).toString().equalsIgnoreCase(stati[1]))
+			statoRichiesta = "in validazione";
+		else if(convert.convertStatoRichiesta(statoRichiesta).toString().equalsIgnoreCase(stati[2]))
+			statoRichiesta = "in convalida";
+		else if(convert.convertStatoRichiesta(statoRichiesta).toString().equalsIgnoreCase(stati[3]))
+			statoRichiesta = "accettata";
+		else if(convert.convertStatoRichiesta(statoRichiesta).toString().equalsIgnoreCase(stati[4]))
+			statoRichiesta = "rifiutata";
+		else
+			return null;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "SELECT utente.email, utente.nome, utente.cognome, utente.telefono, utente.indirizzo, utente.data_nascita, utente.foto_profilo, studente.matricola, studente.descrizione\r\n" + 
+						 "FROM richiesta_tirocinio JOIN studente ON richiesta_tirocinio.studente_email = studente.email JOIN stato_richiesta ON richiesta_tirocinio.id = stato_richiesta.richiesta_id JOIN utente ON studente.email = utente.email \r\n" + 
+					     "WHERE stato_richiesta.tipo = ?";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, statoRichiesta);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			while (rs.next()) {
+				StudenteBean studente = new StudenteBean();
+				
+				studente.setEmail(rs.getString("email"));
+				studente.setNome(rs.getString("nome"));
+				studente.setCognome(rs.getString("cognome"));
+				studente.setTelefono(rs.getString("telefono"));
+				studente.setIndirizzo(rs.getString("indirizzo"));
+				studente.setDataNascita(rs.getDate("data_nascita"));
+				studente.setFotoProfilo(rs.getString("foto_profilo"));
+				studente.setMatricola(rs.getString("matricola"));
+				studente.setDescrizione(rs.getString("descrizione"));
+				
+				//ricerca dei registri tirocinio associati - si dovrebbe settare con le seguenti istruzioni
+				//RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				//ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiStudente(bean); 
+				studente.setRegistriTirocinio(null);
+				
+				//ricerca le richieste di tirocinio associate - si dovrebbero settare con le seguenti istruzioni
+				//RichiestaTirocinioDAO richiestaDao = new RichiestaTirocinio();
+				//ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) richiestaDao.getRichiestaPerStudente(bean); 
+				studente.setRichiesteTirocinio(null);
+				
+				studenti.add(studente);
+			}
+
+			return studenti;
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+
+	@Override
+	public Collection<StudenteBean> getStudentiPerStatoTirocinio(String statoTirocinio) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ConvertEnum convert = new ConvertEnum();
+		String[] stati = {"INCORSO","ANNULLATO","TERMINATO"};
+		
+		Collection<StudenteBean> studenti = new ArrayList<>();
+		
+		if(convert.convertStatoTirocinio(statoTirocinio).toString().equalsIgnoreCase(stati[0]))
+			statoTirocinio = "in corso";
+		else if(convert.convertStatoTirocinio(statoTirocinio).toString().equalsIgnoreCase(stati[1]))
+			statoTirocinio = "annullato";
+		else if(convert.convertStatoTirocinio(statoTirocinio).toString().equalsIgnoreCase(stati[2]))
+			statoTirocinio = "terminato";
+		else
+			return null;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "SELECT utente.email, utente.nome, utente.cognome, utente.telefono, utente.indirizzo, utente.data_nascita, utente.foto_profilo, studente.matricola, studente.descrizione\r\n" + 
+						 "FROM registro_tirocinio JOIN studente ON registro_tirocinio.studente_email = studente.email JOIN stato_tirocinio ON registro_tirocinio.identificativo = stato_tirocinio.registro_id JOIN utente ON studente.email = utente.email \r\n" + 
+						 "WHERE stato_tirocinio.tipo = ?";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, statoTirocinio);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			while (rs.next()) {
+				StudenteBean studente = new StudenteBean();
+				
+				studente.setEmail(rs.getString("email"));
+				studente.setNome(rs.getString("nome"));
+				studente.setCognome(rs.getString("cognome"));
+				studente.setTelefono(rs.getString("telefono"));
+				studente.setIndirizzo(rs.getString("indirizzo"));
+				studente.setDataNascita(rs.getDate("data_nascita"));
+				studente.setFotoProfilo(rs.getString("foto_profilo"));
+				studente.setMatricola(rs.getString("matricola"));
+				studente.setDescrizione(rs.getString("descrizione"));
+				
+				//ricerca dei registri tirocinio associati - si dovrebbe settare con le seguenti istruzioni
+				//RegistroTirocinioDAO registroDao = new RegistroTirocinio();
+				//ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroDao.getRegistriDiStudente(bean); 
+				studente.setRegistriTirocinio(null);
+				
+				//ricerca le richieste di tirocinio associate - si dovrebbero settare con le seguenti istruzioni
+				//RichiestaTirocinioDAO richiestaDao = new RichiestaTirocinio();
+				//ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) richiestaDao.getRichiestaPerStudente(bean); 
+				studente.setRichiesteTirocinio(null);
+				
+				studenti.add(studente);
+			}
+
+			return studenti;
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
 	}
 
 }
