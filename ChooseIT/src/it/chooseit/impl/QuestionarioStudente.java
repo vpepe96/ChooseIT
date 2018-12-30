@@ -25,7 +25,7 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "select * from questionario_studente where registro_id = ?;";
+			String sql = "select * from questionario_valutativo_studente where registro_id = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
 
@@ -84,9 +84,9 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 			connection = DriverManagerConnectionPool.getConnection();
 			String sql = null;
 			if (order == null || order.equals("")) {
-				sql = "select * from questionario_studente;";
+				sql = "select * from questionario_valutativo_studente;";
 			} else {
-				sql = " select * from questionario_studente order by " + order + ";";
+				sql = " select * from questionario_valutativo_studente order by " + order + ";";
 			}
 
 			preparedStatement = connection.prepareStatement(sql);
@@ -123,7 +123,7 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "insert into questionario_studente (registro_id,pdt_1,pdt_2,pdt_3,pdt_4,t_1,t_2,t_3,t_4,su_1,su_2,su_3) values (?,?,?,?,?,?,?,?,?,?,?,?);";
+			String sql = "insert into questionario__valutativo_studente (registro_id,pdt_1,pdt_2,pdt_3,pdt_4,t_1,t_2,t_3,t_4,su_1,su_2,su_3) values (?,?,?,?,?,?,?,?,?,?,?,?);";
 
 			preparedStatement = connection.prepareStatement(sql);
 
@@ -171,7 +171,7 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "delete from questionario_studente where registro__id = ?;";
+			String sql = "delete from questionario__valutativo_studente where registro__id = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
 
