@@ -26,7 +26,7 @@ public class Utente implements UtenteDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
 
-		try { 
+		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			String sql = "select * from utente where email = ?;";
@@ -64,7 +64,7 @@ public class Utente implements UtenteDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
-		
+
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
@@ -77,14 +77,14 @@ public class Utente implements UtenteDAO {
 			rs = preparedStatement.executeQuery();
 			String storedPassword = null;
 			boolean pwdOK = false;
-			
-			//Se l'utente è iscritto al sito...
-			if(rs.next()) {
+
+			// Se l'utente è iscritto al sito...
+			if (rs.next()) {
 				storedPassword = rs.getString("pwd");
-			}else //...altrimenti non è iscritto al sito 
+			} else // ...altrimenti non è iscritto al sito
 				return null;
-			
-			//Controllo sulla password inserita...
+
+			// Controllo sulla password inserita...
 			try {
 				pwdOK = GestorePassword.validatePassword(pwd, storedPassword);
 			} catch (NoSuchAlgorithmException e) {
@@ -92,14 +92,14 @@ public class Utente implements UtenteDAO {
 			} catch (InvalidKeySpecException e) {
 				e.printStackTrace();
 			}
-			
-			if(pwdOK) {
-			UtenteBean bean = new UtenteBean();
-			
-			bean = retrieveByKey(email);
-			
-			return bean;
-			}else {
+
+			if (pwdOK) {
+				UtenteBean bean = new UtenteBean();
+
+				bean = retrieveByKey(email);
+
+				return bean;
+			} else {
 				return null;
 			}
 		} finally {
@@ -119,7 +119,7 @@ public class Utente implements UtenteDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			String pwdSicura = null;
 			try {
 				pwdSicura = GestorePassword.generateStrongPasswordHash(pwd);
@@ -128,11 +128,11 @@ public class Utente implements UtenteDAO {
 			} catch (InvalidKeySpecException e) {
 				e.printStackTrace();
 			}
-			 
+
 			String sql = "insert into utente (email, nome, cognome, data_nascita, indirizzo, telefono, pwd, foto_profilo) values (?, ?, ?, ?, ? ,?, ?, ?);";
-			
+
 			preparedStatement = connection.prepareStatement(sql);
-			
+
 			preparedStatement.setString(1, utente.getEmail());
 			preparedStatement.setString(2, utente.getNome());
 			preparedStatement.setString(3, utente.getCognome());
@@ -141,9 +141,9 @@ public class Utente implements UtenteDAO {
 			preparedStatement.setString(6, utente.getTelefono());
 			preparedStatement.setString(7, pwdSicura);
 			preparedStatement.setString(8, utente.getFotoProfilo());
-			
+
 			preparedStatement.executeUpdate();
-			
+
 		} finally {
 			try {
 				if (!connection.isClosed())
@@ -173,7 +173,7 @@ public class Utente implements UtenteDAO {
 			preparedStatement.setString(5, utente.getTelefono());
 			preparedStatement.setString(7, utente.getFotoProfilo());
 			preparedStatement.setString(8, utente.getEmail());
-			
+
 			preparedStatement.executeUpdate();
 
 		} finally {
@@ -193,7 +193,7 @@ public class Utente implements UtenteDAO {
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			
+
 			String sql = "delete from utente where email = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
@@ -201,10 +201,10 @@ public class Utente implements UtenteDAO {
 			preparedStatement.setString(1, email);
 
 			int result = preparedStatement.executeUpdate();
-			
-			if(result == 1) {
+
+			if (result == 1) {
 				return true;
-			}else {
+			} else {
 				return false;
 			}
 		} finally {
@@ -217,7 +217,6 @@ public class Utente implements UtenteDAO {
 		}
 	}
 
-
 	@Override
 	public synchronized Collection<UtenteBean> retrieveAll(String order) throws SQLException {
 		Connection connection = null;
@@ -228,10 +227,10 @@ public class Utente implements UtenteDAO {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			String sql = null;
-			if(order == null || order.equals("")) {
+			if (order == null || order.equals("")) {
 				sql = "select * from utente;";
-			}else {
-				sql = "select * from utente order by "+order+";";
+			} else {
+				sql = "select * from utente order by " + order + ";";
 			}
 
 			preparedStatement = connection.prepareStatement(sql);
@@ -240,11 +239,11 @@ public class Utente implements UtenteDAO {
 
 			while (rs.next()) {
 				UtenteBean bean = new UtenteBean();
-				
+
 				String email = rs.getString("email");
-				
+
 				bean = retrieveByKey(email);
-				
+
 				list.add(bean);
 			}
 
@@ -260,5 +259,6 @@ public class Utente implements UtenteDAO {
 	}
 
 	@Override
-	public void insert(UtenteBean object) throws SQLException {}
+	public void insert(UtenteBean object) throws SQLException {
+	}
 }
