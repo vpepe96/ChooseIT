@@ -1,5 +1,7 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Collection"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" import="it.chooseit.bean.*, it.chooseit.impl.*"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -116,209 +118,30 @@
 										<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
 											<thead>			                
 												<tr>
-													<th data-hide="phone">ID</th>
-													<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
-													<th data-hide="phone"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i> Phone</th>
-													<th>Company</th>
-													<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Zip</th>
-													<th data-hide="phone,tablet">City</th>
-													<th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i> Date</th>
-<!-- 													<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th> -->
-<!-- 													<th data-hide="phone"> Progetto formativo</th> -->
-<!-- 													<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Sede Legale</th> -->
-<!-- 													<th data-hide="phone,tablet"> Sede operativa</th> -->
+													<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Nome</th>
+													<th>Progetto formativo</th>
+													<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Sede legale</th>
+													<th data-hide="phone,tablet">Sede operativa</th>
 												</tr>
 											</thead>
 											<tbody>
+												<%
+													Azienda r = new Azienda();
+													Collection<AziendaBean> aziende = r.retrieveAll("ragione_sociale"); 
+
+													Iterator<?> it = aziende.iterator();
+													while(it.hasNext()){
+														AziendaBean azienda = (AziendaBean) it.next();
+												%>
 												<tr>
-													<td>80</td>
-													<td>Adrienne</td>
-													<td>1-771-540-3805</td>
-													<td>Eu Lacus Incorporated</td>
-													<td>2116</td>
-													<td>Lincoln</td>
-													<td>09/13/14</td>
+													<td><%=azienda.getRagioneSociale()%></td>
+													<td><%=azienda.getProgettoFormativo()%></td>
+													<td><%=azienda.getSedeLegale()%></td>
+													<td><%=azienda.getSedeOperativa()%></td>
 												</tr>
-												<tr>
-													<td>81</td>
-													<td>Charity</td>
-													<td>1-749-804-8328</td>
-													<td>Aenean Sed Pede Foundation</td>
-													<td>14470-440</td>
-													<td>Haverfordwest</td>
-													<td>08/01/13</td>
-												</tr>
-												<tr>
-													<td>82</td>
-													<td>Kieran</td>
-													<td>1-333-507-3878</td>
-													<td>Malesuada Ut Sem Corp.</td>
-													<td>W3C 3PM</td>
-													<td>Croydon</td>
-													<td>10/30/13</td>
-												</tr>
-												<tr>
-													<td>83</td>
-													<td>Alika</td>
-													<td>1-544-422-1437</td>
-													<td>Integer Tincidunt Company</td>
-													<td>Xxxx</td>
-													<td>Plymouth</td>
-													<td>12/26/12</td>
-												</tr>
-												<tr>
-													<td>84</td>
-													<td>Shay</td>
-													<td>1-530-583-8669</td>
-													<td>Diam LLP</td>
-													<td>63260</td>
-													<td>College</td>
-													<td>08/20/14</td>
-												</tr>
-												<tr>
-													<td>85</td>
-													<td>Cailin</td>
-													<td>1-415-254-8139</td>
-													<td>Placerat Eget Foundation</td>
-													<td>L3M 4R6</td>
-													<td>Jonqui?re</td>
-													<td>09/12/14</td>
-												</tr>
-												<tr>
-													<td>86</td>
-													<td>Xena</td>
-													<td>1-979-983-1456</td>
-													<td>Tellus Eu Augue Associates</td>
-													<td>09703-746</td>
-													<td>Angleur</td>
-													<td>05/21/13</td>
-												</tr>
-												<tr>
-													<td>87</td>
-													<td>Walker</td>
-													<td>1-380-277-2755</td>
-													<td>Sollicitudin A Malesuada Corporation</td>
-													<td>60019</td>
-													<td>Toronto</td>
-													<td>06/11/14</td>
-												</tr>
-												<tr>
-													<td>88</td>
-													<td>Adena</td>
-													<td>1-756-948-8416</td>
-													<td>Diam Ltd</td>
-													<td>B7T 5X7</td>
-													<td>Stene</td>
-													<td>05/30/14</td>
-												</tr>
-												<tr>
-													<td>89</td>
-													<td>Bradley</td>
-													<td>1-800-808-3688</td>
-													<td>Nunc Quis LLC</td>
-													<td>83932-949</td>
-													<td>Uppingham. Cottesmore</td>
-													<td>11/05/13</td>
-												</tr>
-												<tr>
-													<td>90</td>
-													<td>Yvette</td>
-													<td>1-843-923-0038</td>
-													<td>Eget Metus PC</td>
-													<td>47936</td>
-													<td>Feira de Santana</td>
-													<td>06/27/14</td>
-												</tr>
-												<tr>
-													<td>91</td>
-													<td>Neil</td>
-													<td>1-550-664-4050</td>
-													<td>Aenean Euismod LLP</td>
-													<td>28842</td>
-													<td>Corby</td>
-													<td>07/27/14</td>
-												</tr>
-												<tr>
-													<td>92</td>
-													<td>Hunter</td>
-													<td>1-637-483-4408</td>
-													<td>In Nec Orci LLC</td>
-													<td>49338</td>
-													<td>Cleveland</td>
-													<td>01/15/13</td>
-												</tr>
-												<tr>
-													<td>93</td>
-													<td>Marcia</td>
-													<td>1-512-896-6301</td>
-													<td>Et Risus Industries</td>
-													<td>74123</td>
-													<td>Quinte West</td>
-													<td>09/30/13</td>
-												</tr>
-												<tr>
-													<td>94</td>
-													<td>Lavinia</td>
-													<td>1-222-745-5312</td>
-													<td>Nulla Interdum Curabitur LLC</td>
-													<td>3531</td>
-													<td>Assiniboia</td>
-													<td>01/12/13</td>
-												</tr>
-												<tr>
-													<td>95</td>
-													<td>Cynthia</td>
-													<td>1-392-134-2788</td>
-													<td>Nunc Ut Erat Company</td>
-													<td>I27 5OS</td>
-													<td>Pagazzano</td>
-													<td>05/20/13</td>
-												</tr>
-												<tr>
-													<td>96</td>
-													<td>Lee</td>
-													<td>1-128-816-7274</td>
-													<td>Litora Torquent Per PC</td>
-													<td>11386</td>
-													<td>Mazzano Romano</td>
-													<td>04/18/14</td>
-												</tr>
-												<tr>
-													<td>97</td>
-													<td>Linda</td>
-													<td>1-546-735-8920</td>
-													<td>Dis Parturient Montes Associates</td>
-													<td>64629</td>
-													<td>Ferlach</td>
-													<td>03/29/14</td>
-												</tr>
-												<tr>
-													<td>98</td>
-													<td>Wayne</td>
-													<td>1-744-647-6144</td>
-													<td>In Industries</td>
-													<td>Xxxx</td>
-													<td>Memphis</td>
-													<td>06/11/14</td>
-												</tr>
-												<tr>
-													<td>99</td>
-													<td>Liberty</td>
-													<td>1-841-489-1665</td>
-													<td>Sed Sem Limited</td>
-													<td>27504-649</td>
-													<td>Olivola</td>
-													<td>05/24/14</td>
-												</tr>
-												<tr>
-													<td>100</td>
-													<td>Cathleen</td>
-													<td>1-883-567-6065</td>
-													<td>Eu Corporation</td>
-													<td>4286</td>
-													<td>Rotheux-Rimi?re</td>
-													<td>07/16/13</td>
-												</tr>
+												<%
+													}
+												%>
 											</tbody>
 										</table>
 
