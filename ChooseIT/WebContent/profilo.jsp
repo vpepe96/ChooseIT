@@ -105,7 +105,6 @@
 					UtenteBean profilo= (UtenteBean) session.getAttribute("utente");
 					String matricola="";
 					String descrizione="";
-					System.out.println(""+ruolo);
 					if(ruolo.equals("studente")){
 						StudenteBean stud= (StudenteBean) session.getAttribute("utente");
 						//Me li prendo così in quanto sono gli unici valori che lo studente possiede in più rispetto a un normale Utente
@@ -205,7 +204,7 @@
 															</ul>
 															
 															<br>
-															<a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a>
+															<button class="button" style="vertical-align:middle" onclick="displayForm()"><span>Modifica Profilo</span></button>
 															<br>
 															<br>
 				
@@ -227,7 +226,47 @@
 				
 											</div>
 											<!-- end row -->
-				
+												<form style="display:none" id="form_modifica_profilo" name="form_modifica_profilo" method="post" action=""  class="smart-form client-form" onSubmit="return validaRegistrazioneCliente()">
+													
+													<section>
+														<label class="label">Telefono</label> <label class="input">
+															<i class="icon-append fa fa-user"></i> <input type="text"
+															name="telefono" id="telefono" required="required"
+															pattern="^[0-9]{10}$">
+														</label>
+													</section>
+
+
+													<section>
+														<label class="label">Indirizzo</label> <label class="input">
+															<i class="icon-append fa fa-user"></i> <input type="text"
+															name="indirizzo" id="indirizzo" required="required"
+															pattern="^[A-Za-z0-9,()\s]{3,60}">
+														</label>
+													</section>
+														
+													<%if(ruolo.equals("studente")) {%>
+													<section>
+														<label class="label">Descrizione</label> <label class="input">
+															<i class="fa"></i> <textarea rows="4" cols="50" maxlength="300"
+																name="descrizione" form="form-reg"></textarea>
+														</label>
+													</section>
+	
+													<%
+														}
+													%>
+
+													<section>
+														<label class="label">Immagine del Profilo</label> <label
+															class="input"> <i class="fa"></i> <input type="file"
+															name="fotoProfilo" id="fotoProfilo" accept=".jpg">
+														</label>
+													</section>
+
+
+										</form>
+											
 										</div>
 				
 									</div>
@@ -249,32 +288,21 @@
 
 		<!--================================================== -->
 
+		<script type="text/javascript">
+		function displayForm(){
+				$("#form_modifica_profilo").fadeIn();
+		}
+		
+		</script>
 		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
 
 		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script>
-			if (!window.jQuery) {
-				document.write('<script src="js/libs/jquery-3.2.1.min.js"><\/script>');
-			}
-		</script>
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-		<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="js/libs/jquery-ui.min.js"><\/script>');
-			}
-		</script>
-
-		<!-- IMPORTANT: APP CONFIG -->
-		<script src="js/app.config.js"></script>
-
+		
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
 		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
 
-		<!-- BOOTSTRAP JS -->
-		<script src="js/bootstrap/bootstrap.min.js"></script>
+		
 
 		<!-- CUSTOM NOTIFICATION -->
 		<script src="js/notification/SmartNotification.min.js"></script>
@@ -314,8 +342,7 @@
 
 		
 
-		<!-- MAIN APP JS FILE -->
-		<script src="js/app.min.js"></script>
+		
 
 		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
 		<!-- Voice command : plugin -->
@@ -340,22 +367,7 @@
 
 		</script>
 
-		<!-- Your GOOGLE ANALYTICS CODE Below -->
-		<script>
-			var _gaq = _gaq || [];
-				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-				_gaq.push(['_trackPageview']);
-			
-			(function() {
-				var ga = document.createElement('script');
-				ga.type = 'text/javascript';
-				ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(ga, s);
-			})();
-
-		</script>
+		
 
 	</body>
 
