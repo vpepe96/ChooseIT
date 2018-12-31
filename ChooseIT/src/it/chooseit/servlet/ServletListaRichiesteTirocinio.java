@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.chooseit.bean.RichiestaTirocinioBean;
-import it.chooseit.bean.StatoRichiestaBean;
 import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 import it.chooseit.impl.RichiestaTirocinio;
@@ -35,7 +34,6 @@ public class ServletListaRichiesteTirocinio extends HttpServlet{
 		String email = (String) request.getSession().getAttribute("email");
 		RichiestaTirocinioDAO richiestaTirocinioDao = new RichiestaTirocinio();
 		Collection<RichiestaTirocinioBean> listaRichiesteTirocinio = null;
-		Collection<StatoRichiestaBean> listaStatiRichieste = null;
 		
 		
 		try {
@@ -46,11 +44,8 @@ public class ServletListaRichiesteTirocinio extends HttpServlet{
 		
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
 		listaRichiesteTirocinio = gestore.listaRichiesteTirocinio(ruolo, email);
+		
 		request.getSession().setAttribute("listaRichiesteTirocinio", listaRichiesteTirocinio);
-		if(ruolo.equalsIgnoreCase("Studente")) {
-			listaStatiRichieste = gestore.getStatiRichiestaStudente(listaRichiesteTirocinio);
-			request.getSession().setAttribute("listaStatiRichieste", listaStatiRichieste);
-		}
 		
 		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);

@@ -205,21 +205,6 @@ public class GestionePraticheTirocinioFacade {
 		return richieste;
 	}
 	
-	public Collection<StatoRichiestaBean> getStatiRichiestaStudente(Collection<RichiestaTirocinioBean> richieste){
-		Collection<StatoRichiestaBean> statiRichieste = new ArrayList<StatoRichiestaBean>();
-		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
-		
-		for(RichiestaTirocinioBean ric : richieste) {
-			try {
-				statiRichieste.add(statoRichiestaDao.getStatoRichiesta(ric));
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	
-		return statiRichieste;
-	}
-	
 	public boolean inviaRichiestaTirocinio(RichiestaTirocinioBean richiesta) {
 		RichiestaTirocinioDAO richiestaTirocinio = new RichiestaTirocinio();
 		StatoRichiestaDAO statoRichiesta = new StatoRichiesta();
