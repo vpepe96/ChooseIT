@@ -17,7 +17,7 @@ import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 import it.chooseit.impl.RichiestaTirocinio;
 
-@WebServlet("ServletListaRichiesteTirocinio")
+@WebServlet("/ServletListaRichiesteTirocinio")
 public class ServletListaRichiesteTirocinio extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
