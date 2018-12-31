@@ -1,5 +1,8 @@
 package it.chooseit.facade;
 
+/**
+ * 
+ */
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -203,21 +206,6 @@ public class GestionePraticheTirocinioFacade {
 		}
 		
 		return richieste;
-	}
-	
-	public Collection<StatoRichiestaBean> getStatiRichiestaStudente(Collection<RichiestaTirocinioBean> richieste){
-		Collection<StatoRichiestaBean> statiRichieste = new ArrayList<StatoRichiestaBean>();
-		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
-		
-		for(RichiestaTirocinioBean ric : richieste) {
-			try {
-				statiRichieste.add(statoRichiestaDao.getStatoRichiesta(ric));
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	
-		return statiRichieste;
 	}
 	
 	public boolean inviaRichiestaTirocinio(RichiestaTirocinioBean richiesta) {
