@@ -256,10 +256,16 @@
 													<%
 														}
 													%>
-													
-													
-													
-												</form>
+
+													<section>
+														<label class="label">Immagine del Profilo</label> <label
+															class="input"> <i class="fa"></i> <input type="file"
+															name="fotoProfilo" id="fotoProfilo" accept=".jpg">
+														</label>
+													</section>
+
+
+										</form>
 											
 										</div>
 				
