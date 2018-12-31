@@ -9,7 +9,11 @@
     <servlet-class>it.chooseit.servlet.ServletLogin</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>ServletRegistraione</servlet-name>
+    <servlet-name>ServletRegistrazione</servlet-name>
     <servlet-class>it.chooseit.servlet.ServletRegistrazione</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>ServletLogout</servlet-name>
+    <servlet-class>it.chooseit.servlet.ServletLogout</servlet-class>
   </servlet>
 </web-app>
