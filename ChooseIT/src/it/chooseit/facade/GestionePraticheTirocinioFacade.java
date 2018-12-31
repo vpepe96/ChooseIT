@@ -164,7 +164,6 @@ public class GestionePraticheTirocinioFacade {
 	
 	public Collection<RichiestaTirocinioBean> listaRichiesteTirocinio(String ruoloUtente, String email){
 		Collection<RichiestaTirocinioBean> richieste = new ArrayList<RichiestaTirocinioBean>();
-		Collection<StatoRichiestaBean> statiRichieste = new ArrayList<StatoRichiestaBean>();
 		RichiestaTirocinioDAO richiestaDao = new RichiestaTirocinio();
 		StudenteDAO studenteDao = new Studente();
 		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
@@ -189,10 +188,6 @@ public class GestionePraticheTirocinioFacade {
 		else if(ruoloUtente.equalsIgnoreCase("Studente")) {
 			try {
 				richieste = richiestaDao.getRichiestePerStudente(studenteDao.retrieveByKey(email));
-				for(RichiestaTirocinioBean ric : richieste) {
-					statiRichieste.add(statoRichiestaDao.getStatoRichiesta(ric));
-				}
-				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
@@ -208,6 +203,21 @@ public class GestionePraticheTirocinioFacade {
 		}
 		
 		return richieste;
+	}
+	
+	public Collection<StatoRichiestaBean> getStatiRichiestaStudente(Collection<RichiestaTirocinioBean> richieste){
+		Collection<StatoRichiestaBean> statiRichieste = new ArrayList<StatoRichiestaBean>();
+		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
+		
+		for(RichiestaTirocinioBean ric : richieste) {
+			try {
+				statiRichieste.add(statoRichiestaDao.getStatoRichiesta(ric));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
+		return statiRichieste;
 	}
 	
 	public boolean inviaRichiestaTirocinio(RichiestaTirocinioBean richiesta) {
