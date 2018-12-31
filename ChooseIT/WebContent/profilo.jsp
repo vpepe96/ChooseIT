@@ -101,13 +101,16 @@
 		
 		
 				<%
-					UtenteBean profilo= (UtenteBean) session.getAttribute("utente");
 					
-					if(ruolo=="studente"){
+					UtenteBean profilo= (UtenteBean) session.getAttribute("utente");
+					String matricola="";
+					String descrizione="";
+					System.out.println(""+ruolo);
+					if(ruolo.equals("studente")){
 						StudenteBean stud= (StudenteBean) session.getAttribute("utente");
 						//Me li prendo così in quanto sono gli unici valori che lo studente possiede in più rispetto a un normale Utente
-						String descrizione=stud.getDescrizione();
-						String matricola=stud.getMatricola();
+						descrizione=stud.getDescrizione();
+						matricola=stud.getMatricola();
 					}
 				%>
 
@@ -147,8 +150,12 @@
 				
 														<div class="col-sm-3 profile-pic">
 														
-															<img src=<%=profilo.getFotoProfilo()%> alt="img/avatars/sunny.png">
-															
+														<%if(profilo.getFotoProfilo()!=null && profilo.getFotoProfilo()!="") {%>
+														
+															<img src=<%=profilo.getFotoProfilo()%> alt="Immagine profilo">
+														<%}else{ %>
+															<img src="/img/avatars/sunny-big.png"  alt="Immagine profilo">
+														<%} %>
 														</div>
 														
 														
@@ -156,40 +163,47 @@
 														
 														
 														<div class="col-sm-6">
-															<h1> </h1>
+															<h1><%=profilo.getNome() %> <%=profilo.getCognome() %> </h1>
 				
 															<ul class="list-unstyled">
+																<%if(ruolo=="studente"){ %>
 																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-phone"></i>&nbsp;&nbsp;(<span class="txt-color-darken">313</span>) <span class="txt-color-darken">464</span> - <span class="txt-color-darken">6473</span>
-																	</p>
+																	<p> Matricola: </p>
+																	<p class="text-muted"> <%=matricola %> </p>
+																</li>
+															
+																<%} %>
+															
+															
+																<li>
+																	<p> Telefono: </p>
+																	<p class="text-muted"> <%=profilo.getTelefono() %> </p>
 																</li>
 																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin">ceo@smartadmin.com</a>
-																	</p>
+																	<p>E-mail:</p>
+																	<p class="text-muted"> <a href=<%="mailto:"+profilo.getEmail() %>><%=profilo.getEmail() %></a></p>
+																</li>
+																<br>
+																
+																<li>
+																	<p>Data di nscita:</p>
+																	<p class="text-muted"> <%=profilo.getDataNascita().toString() %></a></p>
 																</li>
 																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-skype"></i>&nbsp;&nbsp;<span class="txt-color-darken">john12</span>
-																	</p>
+																	<p>Indirizzo:</p>
+																	<p class="text-muted"> <%=profilo.getIndirizzo() %></a></p>
 																</li>
+																<br>
+																<%if(ruolo=="studente"){ %>
 																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-calendar"></i>&nbsp;&nbsp;<span class="txt-color-darken">Free after <a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Create an Appointment">4:30 PM</a></span>
-																	</p>
+																	<p> Descrizione: </p>
+																	<p class="text-muted"> <%=descrizione %> </p>
 																</li>
+															
+																<%} %>
+																
 															</ul>
-															<br>
-															<p class="font-md">
-																<i>A little about me...</i>
-															</p>
-															<p>
-				
-																Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-																cumque nihil impedit quo minus id quod maxime placeat facere
-				
-															</p>
+															
 															<br>
 															<a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a>
 															<br>

@@ -63,8 +63,8 @@
 			<!-- Navigation bar -->
 			<div class="topnav">
 				<%
-					String ruolo = "studente";
-					// String ruolo = session.getAttribute("ruolo");
+					
+					String ruolo = (String) session.getAttribute("ruolo");
 					if(!ruolo.equals("segreteria")) {
 				%>
   				<a href="#home">Profilo</a>
