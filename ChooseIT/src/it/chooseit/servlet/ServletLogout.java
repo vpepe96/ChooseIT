@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletLogout
@@ -28,9 +29,13 @@ public class ServletLogout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().removeAttribute("ruolo");
-		request.getSession().removeAttribute("utente");
-		
+		HttpSession session = request.getSession();
+		synchronized (session) {
+			session.removeAttribute("ruolo");
+			session.removeAttribute("utente");
+			session.invalidate();
+		}
+
 		String url = response.encodeRedirectURL("/index.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
