@@ -38,14 +38,15 @@ public class ServletInviaRichiestaTirocinio extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String email = request.getParameter("email");
-		String nome = request.getParameter("nome");
-		String cognome = request.getParameter("cognome");
-		String telefono = request.getParameter("telefono");
-		String indirizzo = request.getParameter("indirizzo");
-		Date dataNascita = convertDate(request.getParameter("dataNascita"));
-		String matricola = request.getParameter("matricola");
-		String descrizione = request.getParameter("descrizione");
+		String email = (String) request.getSession().getAttribute("email");
+		String nome = (String) request.getSession().getAttribute("nome");
+		String cognome = (String) request.getSession().getAttribute("cognome");
+		String telefono = (String) request.getSession().getAttribute("telefono");
+		String indirizzo = (String) request.getSession().getAttribute("indirizzo");
+		Date dataNascita = convertDate((String) request.getSession().getAttribute("dataNascita"));
+		String matricola = (String) request.getSession().getAttribute("matricola");
+		String descrizione = (String) request.getSession().getAttribute("descrizione");
+		
 		Date dataRichiesta = new Date(System.currentTimeMillis());
 		String ragioneSociale = request.getParameter("ragioneSociale");
 		AziendaDAO aziendaDao = new Azienda();
@@ -109,7 +110,7 @@ public class ServletInviaRichiestaTirocinio extends HttpServlet{
 		boolean inviaRichiestaOK = gestore.inviaRichiestaTirocinio(richiestaBean);
 		request.getSession().setAttribute("inviaRichiestaOK", inviaRichiestaOK);
 
-		String url = response.encodeRedirectURL("/InviaRichiestaTirocinio.jsp");
+		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 		

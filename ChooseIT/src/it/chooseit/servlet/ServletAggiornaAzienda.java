@@ -1,6 +1,7 @@
 package it.chooseit.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,16 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import it.chooseit.bean.AziendaBean;
+import it.chooseit.dao.AziendaDAO;
 import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
+import it.chooseit.impl.Azienda;
 
-@WebServlet("/ServletInserisciAzienda")
+@WebServlet("/ServletAggiornaAzienda")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
-public class ServletInserisciAzienda extends HttpServlet {
+public class ServletAggiornaAzienda extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
-	public ServletInserisciAzienda() {
+	public ServletAggiornaAzienda() {
 		super();
 	}
 	
@@ -31,12 +34,17 @@ public class ServletInserisciAzienda extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String ragioneSociale = request.getParameter("ragioneSociale");
+		AziendaDAO aziendaDao = new Azienda();
 		String sedeOperativa = request.getParameter("sedeOperativa");
 		String sedeLegale = request.getParameter("sedeLegale");
 		
 		// 1)CREA IL BEAN AZIENDA
-		AziendaBean aziendaBean = new AziendaBean();
-		aziendaBean.setRagioneSociale(ragioneSociale);
+		AziendaBean aziendaBean = null;
+		try {
+			aziendaBean = aziendaDao.retrieveByKey(ragioneSociale);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		aziendaBean.setSedeOperativa(sedeOperativa);
 		aziendaBean.setSedeLegale(sedeLegale);
 		
@@ -58,8 +66,8 @@ public class ServletInserisciAzienda extends HttpServlet {
 			}
 		}	
 		
-		// 6)AGGIORNO IL BEAN AGGIUNGENDO IL PERCORSO APPENA OTTENUTO (filePath) 
-		// (solo se la richiesta di tirocinio è stata inserita, cioè se progettoFormativoOK == true)
+		// 3)AGGIORNO IL BEAN AGGIUNGENDO IL PERCORSO APPENA OTTENUTO (filePath) 
+		// (solo se il progetto formativo dell'azienda è stata inserito, cioè se progettoFormativoOK == true)
 		if (progettoFormativoOK) {
 			aziendaBean.setProgettoFormativo(filePath);
 		} else {
@@ -67,8 +75,8 @@ public class ServletInserisciAzienda extends HttpServlet {
 		}
 
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		boolean iserisciAziendaOK = gestore.inserisciAzienda(aziendaBean);
-		request.getSession().setAttribute("iserisciAziendaOK", iserisciAziendaOK);
+		boolean aggiornaAziendaOK = gestore.aggiornaAzienda(aziendaBean);
+		request.getSession().setAttribute("aggiornaAziendaOK", aggiornaAziendaOK);
 
 		String url = response.encodeRedirectURL("/ListaAziende.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);

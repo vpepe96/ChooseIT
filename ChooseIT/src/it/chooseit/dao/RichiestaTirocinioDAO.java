@@ -33,7 +33,7 @@ public interface RichiestaTirocinioDAO extends GenericDAO<RichiestaTirocinioBean
 	 * @return un insieme di richieste di tirocinio con lo stesso stato
 	 * @throws SQLException
 	 */
-	Collection<RichiestaTirocinioBean> getRichiestaPerStato(String stato) throws SQLException;
+	Collection<RichiestaTirocinioBean> getRichiestePerStato(String stato) throws SQLException;
 	
 	/**
 	 * Permette di recuperare un insieme di richieste di tirocinio effettuate per studente
@@ -44,5 +44,5 @@ public interface RichiestaTirocinioDAO extends GenericDAO<RichiestaTirocinioBean
 	 * @return un insieme di richieste di tirocinio effettuate da un singolo studente
 	 * @throws SQLException
 	 */
-	Collection<RichiestaTirocinioBean> getRichiestaPerStudente(StudenteBean studente) throws SQLException;
+	Collection<RichiestaTirocinioBean> getRichiestePerStudente(StudenteBean studente) throws SQLException;
 }

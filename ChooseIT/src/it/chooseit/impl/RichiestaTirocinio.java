@@ -256,7 +256,7 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 	}
 
 	@Override
-	public Collection<RichiestaTirocinioBean> getRichiestaPerStato(String stato) throws SQLException {
+	public Collection<RichiestaTirocinioBean> getRichiestePerStato(String stato) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -304,7 +304,7 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 	}
 
 	@Override
-	public Collection<RichiestaTirocinioBean> getRichiestaPerStudente(StudenteBean studente) throws SQLException {
+	public Collection<RichiestaTirocinioBean> getRichiestePerStudente(StudenteBean studente) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		

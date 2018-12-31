@@ -127,7 +127,7 @@ public class GestioneAccountFacade {
 			
 			// prendi dati delle richieste
 			RichiestaTirocinioDAO ricDao = new RichiestaTirocinio();
-			ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) ricDao.getRichiestaPerStudente(studente);
+			ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) ricDao.getRichiestePerStudente(studente);
 			studente.setRichiesteTirocinio(richieste);
 			
 			// prendi dati dei registri

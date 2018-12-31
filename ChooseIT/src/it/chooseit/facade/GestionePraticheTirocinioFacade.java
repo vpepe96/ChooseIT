@@ -153,7 +153,7 @@ public class GestionePraticheTirocinioFacade {
 		for(StudenteBean s : studenti) {
 			try {
 				s.setRegistriTirocinio((ArrayList<RegistroTirocinioBean>) registroTirocinio.getRegistriDiStudente(s));
-				s.setRichiesteTirocinio((ArrayList<RichiestaTirocinioBean>) richiestaTirocinio.getRichiestaPerStudente(s));
+				s.setRichiesteTirocinio((ArrayList<RichiestaTirocinioBean>) richiestaTirocinio.getRichiestePerStudente(s));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -162,13 +162,16 @@ public class GestionePraticheTirocinioFacade {
 		return studenti;
 	}
 	
-	public Collection<RichiestaTirocinioBean> listaRichiesteTirocinio(String ruoloUtente){
+	public Collection<RichiestaTirocinioBean> listaRichiesteTirocinio(String ruoloUtente, String email){
 		Collection<RichiestaTirocinioBean> richieste = new ArrayList<RichiestaTirocinioBean>();
+		Collection<StatoRichiestaBean> statiRichieste = new ArrayList<StatoRichiestaBean>();
 		RichiestaTirocinioDAO richiestaDao = new RichiestaTirocinio();
+		StudenteDAO studenteDao = new Studente();
+		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
 		
 		if(ruoloUtente.equalsIgnoreCase("Presidente")) {
 			try {
-				richieste = richiestaDao.getRichiestaPerStato("in convalida");
+				richieste = richiestaDao.getRichiestePerStato("in convalida");
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
@@ -176,19 +179,29 @@ public class GestionePraticheTirocinioFacade {
 		}
 		else if (ruoloUtente.equalsIgnoreCase("Segreteria")) {
 			try {
-				richieste = richiestaDao.getRichiestaPerStato("nuova");
-				richieste.addAll(richiestaDao.getRichiestaPerStato("in validazione"));
+				richieste = richiestaDao.getRichiestePerStato("nuova");
+				richieste.addAll(richiestaDao.getRichiestePerStato("in validazione"));
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		else if(ruoloUtente.equalsIgnoreCase("Studente")) {
+			try {
+				richieste = richiestaDao.getRichiestePerStudente(studenteDao.retrieveByKey(email));
+				for(RichiestaTirocinioBean ric : richieste) {
+					statiRichieste.add(statoRichiestaDao.getStatoRichiesta(ric));
+				}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
 			}
 		}
 		
-		StatoRichiestaDAO statoRichiesta = new StatoRichiesta();
-		
 		for(RichiestaTirocinioBean r : richieste) {
 			try {
-				r.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiesta.getStatiRichiesta(r));
+				r.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiestaDao.getStatiRichiesta(r));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -232,7 +245,7 @@ public class GestionePraticheTirocinioFacade {
 		Date dataStato = new Date(System.currentTimeMillis());
 		ConvertEnum convert = new ConvertEnum();
 			
-		if(scelta.equalsIgnoreCase("in validazione")) {
+		if(scelta.equalsIgnoreCase("inValidazione")) {
 			richiesta.setRegistroTirocinio(new RegistroTirocinioBean(richiesta.getStudente(), tutorAziendale, tutorUniversitario, richiesta));
 			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("invalidazione"), richiesta);
 			
@@ -288,7 +301,7 @@ public class GestionePraticheTirocinioFacade {
 		Date dataStato = new Date(System.currentTimeMillis());
 		ConvertEnum convert = new ConvertEnum();
 		
-		if(scelta.equalsIgnoreCase("in convalida")) {
+		if(scelta.equalsIgnoreCase("inConvalida")) {
 			StatoRichiestaBean stato = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("inconvalida"), richiesta);
 			try {
 				statoRichiesta.insert(stato);
