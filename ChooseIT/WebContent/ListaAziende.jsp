@@ -142,7 +142,7 @@
 												<%
 													}
 												%>
-											</tbody>
+											</tbody>  
 										</table>
 
 									</div>
