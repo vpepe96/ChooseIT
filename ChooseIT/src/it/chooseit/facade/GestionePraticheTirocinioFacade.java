@@ -223,29 +223,71 @@ public class GestionePraticheTirocinioFacade {
 		return richieste;
 	}
 	
-	public boolean inviaRichiestaTirocinio(RichiestaTirocinioBean richiesta) {
+	public boolean inviaRichiestaTirocinio(RichiestaTirocinioBean richiesta, String email) {
 		RichiestaTirocinioDAO richiestaTirocinio = new RichiestaTirocinio();
 		StatoRichiestaDAO statoRichiesta = new StatoRichiesta();
 		StatoRichiestaBean statoRic = null;
+		StudenteDAO studenteDao = new Studente();
+		StudenteBean studente = null;
+		ArrayList<RichiestaTirocinioBean> richiesteTir = new ArrayList<RichiestaTirocinioBean>();
+		ArrayList<StatoRichiestaBean> statiRic = new ArrayList<StatoRichiestaBean>();
 		Date dataStato = new Date(System.currentTimeMillis());
 		ConvertEnum convert = new ConvertEnum();
+		int i = 0;
 		
-		statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("nuova"), richiesta);
+		//Recupero i dati dello studente
 		try {
-			richiestaTirocinio.insert(richiesta);
-			statoRichiesta.insert(statoRic);
-		} catch (SQLException e) {
-			e.printStackTrace();
+			studente = studenteDao.retrieveByKey(email);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			System.out.println("Errore di riperimento dati dello studente");
+		}
+		
+		//Recupero la lista delle richieste di tirocinio dello studente
+		richiesteTir = studente.getRichiesteTirocinio();
+		
+		//Verifico quante richieste di tirocinio dello studente sono in uno stato qualsiasi diverso dallo stato "rifiutata"
+		for(RichiestaTirocinioBean r: richiesteTir) {
+			try {
+				//Recupero l'ultimo stato aggiornato della richiesta di tirocinio r
+				statoRic = statoRichiesta.getStatoRichiesta(r);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("Errore di riperimento dati dello stato della richiesta di tirocinio");
+			}
+			if(!statoRic.getTipo().toString().equalsIgnoreCase("rifiutata"))
+					i++;			
+		}
+		
+		//Se le richieste di tirocinio con stato diverso da quello "annullata" sono minori di 2 allora si inserisce la richiesta, altrimenti no
+		if(i < 2) {
+			//Creo un nuovo stato per la richiesta effettuata impostandolo a "nuova"
+			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("nuova"), richiesta);
+			try {
+				//Inserisco la richiesta di tirocinio
+				richiestaTirocinio.insert(richiesta);
+				//Inserisco lo stato della richiesta di tirocinio
+				statoRichiesta.insert(statoRic);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("Errore d'inserimento della richiesta di tirocinio");
+				return false;
+			}
+
+			//Aggiorno le dipendenze della richiesta di tirocinio
+			try {
+				richiesta.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiesta.getStatiRichiesta(richiesta));
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("Errore durante l'aggiornamento delle dipendenze della richiesta di tirocinio");
+			}
+
+			return true;
+		}
+		else {
+			System.out.println("Lo studente ha già effettuato due richieste di tirocinio");	
 			return false;
 		}
-		
-		try {
-			richiesta.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiesta.getStatiRichiesta(richiesta));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return true;
 	}
 	
 	public boolean valutazioneInizialeRichiestaTirocinio(RichiestaTirocinioBean richiesta, TutorAziendaleBean tutorAziendale, TutorUniversitarioBean tutorUniversitario, String scelta) {

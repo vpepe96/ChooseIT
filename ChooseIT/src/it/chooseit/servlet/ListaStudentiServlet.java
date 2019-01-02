@@ -16,7 +16,7 @@ import it.chooseit.dao.StudenteDAO;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 import it.chooseit.impl.Studente;
 
-@WebServlet("/ServletListaStudenti")
+@WebServlet("/ListaStudentiServlet")
 public class ListaStudentiServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
