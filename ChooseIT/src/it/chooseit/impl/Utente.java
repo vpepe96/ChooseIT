@@ -163,6 +163,8 @@ public class Utente implements UtenteDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 
 			String sql = "update utente set nome = ?, cognome = ?, data_nascita = ?, indirizzo = ?, telefono = ?, foto_profilo = ? where email = ?;";
+			
+			System.out.println(sql);
 
 			preparedStatement = connection.prepareStatement(sql);
 
@@ -171,10 +173,13 @@ public class Utente implements UtenteDAO {
 			preparedStatement.setDate(3, utente.getDataNascita());
 			preparedStatement.setString(4, utente.getIndirizzo());
 			preparedStatement.setString(5, utente.getTelefono());
-			preparedStatement.setString(7, utente.getFotoProfilo());
-			preparedStatement.setString(8, utente.getEmail());
+			preparedStatement.setString(6, utente.getFotoProfilo());
+			preparedStatement.setString(7, utente.getEmail());
+			
+			System.out.println("doUpdate: "+ preparedStatement.toString());
 
 			preparedStatement.executeUpdate();
+			connection.commit();
 
 		} finally {
 			try {
