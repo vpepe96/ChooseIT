@@ -1,3 +1,4 @@
+<%@page import="it.chooseit.bean.UtenteBean"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -62,11 +63,12 @@
 			<!-- User info -->
 			<div class="login-info">
 				<span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
-					
+					<%UtenteBean utente= (UtenteBean)session.getAttribute("utente");%>
 					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
+						<img src=<%=utente.getFotoProfilo() %> alt="foto profilo" class="online" /> 
 						<span>
-							Prova nome
+							
+							<%=utente.getNome() %> <%=utente.getCognome() %>
 						</span>
 					</a> 
 					
@@ -107,6 +109,7 @@
 					<li class="">
 						<a href="index.html" title="blank_"><span class="menu-item-parent">Registro tirocinio</span></a>
 					</li>
+					
 				</ul>
 				<%
 					} else if(ruolo.equals("presidente")) {
