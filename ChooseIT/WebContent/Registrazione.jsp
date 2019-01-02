@@ -382,5 +382,17 @@
 			}
 			request.getSession().removeAttribute("registrazioneOK");
 		}
+	
+		if(request.getSession().getAttribute("formatoOK") != null){
+			boolean formatoOK = (boolean) request.getSession().getAttribute("formatoOK");
+			request.getSession().removeAttribute("formatoOK");
+			if(!formatoOK){
+				%>
+				<script type="text/javascript">
+					alert("ERRORE.\nIl formato consentito per le immagini è .jpeg");
+				</script>	
+				<%				
+			}
+		}
 	%>
 </html>

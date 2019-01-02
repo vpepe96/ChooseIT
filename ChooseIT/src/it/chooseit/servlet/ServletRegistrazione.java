@@ -87,18 +87,31 @@ public class ServletRegistrazione extends HttpServlet {
 		String filePath = GestioneModulisticaFacade.uploadImmagine(bean, getServletContext().getRealPath("//"));
 
 		boolean fotoOK = false;
+		boolean formatoOK = false;
 		// 3)SALVO NEL PATH OTTENUTO
 		if (request.getPart("fotoProfilo") != null && request.getPart("fotoProfilo").getSize() > 0) {
+			
 			if (filePath != null && !filePath.equals("")) {
+				
 				Part part = request.getPart("fotoProfilo");
-				part.write(filePath);
-				fotoOK = true;
-				System.out.println("Salvato in " + filePath);
+				if(part.getContentType().equals("image/jpeg")) {
+					
+					formatoOK = true;
+					part.write(filePath);
+					fotoOK = true;
+					System.out.println("Salvato in " + filePath);
+				}else {
+					
+					System.out.println("Errore formato");
+				}
+				
 			} else {
 		
 				System.out.println("Errore nel salvataggio foto profilo");
 			}
-
+	
+		}else {
+			formatoOK = true;
 		}
 
 		// 4)AGGIORNO IL BEAN AGGIUNGENDO IL PERCORSO APPENA OTTENUTO (filePath) 
@@ -109,9 +122,15 @@ public class ServletRegistrazione extends HttpServlet {
 			bean.setFotoProfilo("");
 		}
 
-		GestioneAccountFacade gestore = new GestioneAccountFacade();
-		boolean registrazioneOK = gestore.registrazione(bean, password);
-		request.getSession().setAttribute("registrazioneOK", registrazioneOK);
+		if(formatoOK) {
+			GestioneAccountFacade gestore = new GestioneAccountFacade();
+			boolean registrazioneOK = gestore.registrazione(bean, password);
+			request.getSession().setAttribute("registrazioneOK", registrazioneOK);
+		}else {
+	
+			request.getSession().setAttribute("formatoOK", false);
+		}
+
 
 		String url = response.encodeRedirectURL("/Registrazione.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
