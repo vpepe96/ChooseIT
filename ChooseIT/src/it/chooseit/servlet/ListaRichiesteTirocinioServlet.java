@@ -1,5 +1,8 @@
 package it.chooseit.servlet;
 
+/**
+ * 
+ */
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -11,17 +14,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.chooseit.bean.AziendaBean;
-import it.chooseit.dao.AziendaDAO;
+import it.chooseit.bean.RichiestaTirocinioBean;
+import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
-import it.chooseit.impl.Azienda;
+import it.chooseit.impl.RichiestaTirocinio;
 
-@WebServlet("/ServletListaAziende")
-public class ServletListaAziende extends HttpServlet{
-
+@WebServlet("/ServletListaRichiesteTirocinio")
+public class ListaRichiesteTirocinioServlet extends HttpServlet{
+	
 	private static final long serialVersionUID = 1L;
 
-	public ServletListaAziende() {
+	public ListaRichiesteTirocinioServlet() {
 		super();
 	}
 	
@@ -30,22 +33,26 @@ public class ServletListaAziende extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AziendaDAO aziendaDao = new Azienda();
-		Collection<AziendaBean> listaAziende = null;
+		String ruolo = (String) request.getSession().getAttribute("ruolo");
+		String email = (String) request.getSession().getAttribute("email");
+		RichiestaTirocinioDAO richiestaTirocinioDao = new RichiestaTirocinio();
+		Collection<RichiestaTirocinioBean> listaRichiesteTirocinio = null;
+		
 		
 		try {
-			listaAziende = aziendaDao.retrieveAll("ragione_sociale");
+			listaRichiesteTirocinio = richiestaTirocinioDao.retrieveAll("id");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		listaAziende = gestore.listaAziende();
-		request.getSession().setAttribute("listaAziende", listaAziende);
+		listaRichiesteTirocinio = gestore.listaRichiesteTirocinio(ruolo, email);
 		
-		String url = response.encodeRedirectURL("/ListaAziende.jsp");
+		request.getSession().setAttribute("listaRichiesteTirocinio", listaRichiesteTirocinio);
+		
+		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
-	
+
 }

@@ -13,11 +13,11 @@ import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 
 @WebServlet("/ServletConvalidaRichiestaTirocinio")
-public class ServletConvalidaRichiestaTirocinio extends HttpServlet{
+public class ConvalidaRichiestaTirocinioServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
-	public ServletConvalidaRichiestaTirocinio() {
+	public ConvalidaRichiestaTirocinioServlet() {
 		super();
 	}
 	

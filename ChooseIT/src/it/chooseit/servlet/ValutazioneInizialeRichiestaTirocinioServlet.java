@@ -20,11 +20,11 @@ import it.chooseit.impl.TutorAziendale;
 import it.chooseit.impl.TutorUniversitario;
 
 @WebServlet("/ServletValutazioneInizialeRichiestaTirocinio")
-public class ServletValutazioneInizialeRichiestaTirocinio extends HttpServlet{
+public class ValutazioneInizialeRichiestaTirocinioServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
-	public ServletValutazioneInizialeRichiestaTirocinio() {
+	public ValutazioneInizialeRichiestaTirocinioServlet() {
 		super();
 	}
 	

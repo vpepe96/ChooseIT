@@ -25,11 +25,11 @@ import it.chooseit.impl.Azienda;
 
 @WebServlet("/ServletInviaRichiestaTirocinio")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
-public class ServletInviaRichiestaTirocinio extends HttpServlet{
+public class InviaRichiestaTirocinioServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
-	public ServletInviaRichiestaTirocinio() {
+	public InviaRichiestaTirocinioServlet() {
 		super();
 	}
 

@@ -1,6 +1,8 @@
 package it.chooseit.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,15 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.chooseit.bean.RichiestaTirocinioBean;
+import it.chooseit.bean.StudenteBean;
+import it.chooseit.dao.StudenteDAO;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
+import it.chooseit.impl.Studente;
 
-@WebServlet("/ServletValutazioneFinaleRichiestaTirocinio")
-public class ServletValutazioneFinaleRichiestaTirocinio extends HttpServlet{
+@WebServlet("/ServletListaStudenti")
+public class ListaStudentiServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	
-	public ServletValutazioneFinaleRichiestaTirocinio() {
+
+	public ListaStudentiServlet() {
 		super();
 	}
 	
@@ -26,14 +30,23 @@ public class ServletValutazioneFinaleRichiestaTirocinio extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String scelta = request.getParameter("scelta");
-		RichiestaTirocinioBean richiestaTirocinio = (RichiestaTirocinioBean) request.getSession().getAttribute("richiestaTirocinio");
+		String ruolo = (String) request.getSession().getAttribute("ruolo");
+		String email = (String) request.getSession().getAttribute("email");
+		StudenteDAO studenteDao = new Studente();
+		Collection<StudenteBean> listaStudenti = null;
+		
+		
+		try {
+			listaStudenti = studenteDao.retrieveAll("matricola");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		boolean valutazioneFinaleRichiestaOK = gestore.valutazioneFinaleRichiestaTirocinio(richiestaTirocinio, scelta);
-		request.getSession().setAttribute("valutazioneFinaleRichiestaOK", valutazioneFinaleRichiestaOK);
+		listaStudenti = gestore.listaStudenti(ruolo, email);
+		request.getSession().setAttribute("listaStudenti", listaStudenti);
 		
-		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
+		String url = response.encodeRedirectURL("/ListaStudenti.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}

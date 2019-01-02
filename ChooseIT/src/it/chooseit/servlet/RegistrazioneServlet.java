@@ -22,13 +22,13 @@ import it.chooseit.facade.GestioneAccountFacade;
  */
 @WebServlet("/ServletRegistrazione")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
-public class ServletRegistrazione extends HttpServlet {
+public class RegistrazioneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletRegistrazione() {
+	public RegistrazioneServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

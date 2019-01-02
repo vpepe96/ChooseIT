@@ -20,14 +20,14 @@ import javax.servlet.RequestDispatcher;
  * Servlet implementation class ServletInserimentoReport
  */
 @WebServlet("/ServletInserimentoReport")
-public class ServletInserimentoReport extends HttpServlet {
+public class InserimentoReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
 	
-    public ServletInserimentoReport() {
+    public InserimentoReportServlet() {
         super();
     }
 
