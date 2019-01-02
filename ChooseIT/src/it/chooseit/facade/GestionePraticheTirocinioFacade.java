@@ -115,8 +115,8 @@ public class GestionePraticheTirocinioFacade {
 		
 		if(ruoloUtente.equalsIgnoreCase("Presidente")) {
 			try {
-				studenti = studenteDao.getStudentiPerStatoRichiesta("in convalida");
-				studenti.addAll(studenteDao.getStudentiPerStatoTirocinio("in corso"));
+				studenti = studenteDao.getStudentiPerStatoRichiesta("inconvalida");
+				studenti.addAll(studenteDao.getStudentiPerStatoTirocinio("incorso"));
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
@@ -125,7 +125,7 @@ public class GestionePraticheTirocinioFacade {
 		else if (ruoloUtente.equalsIgnoreCase("Segreteria")) {
 			try {
 				studenti = studenteDao.getStudentiPerStatoRichiesta("nuova");
-				studenti.addAll(studenteDao.getStudentiPerStatoRichiesta("in validazione"));
+				studenti.addAll(studenteDao.getStudentiPerStatoRichiesta("invalidazione"));
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
@@ -173,7 +173,15 @@ public class GestionePraticheTirocinioFacade {
 		
 		if(ruoloUtente.equalsIgnoreCase("Presidente")) {
 			try {
-				richieste = richiestaDao.getRichiestePerStato("in convalida");
+				Collection<RichiestaTirocinioBean> ric = new ArrayList<RichiestaTirocinioBean>();
+				StatoRichiestaBean stat = new StatoRichiestaBean();
+				ric = richiestaDao.retrieveAll(null);
+				
+				for(RichiestaTirocinioBean r : ric) {
+					stat = statoRichiestaDao.getStatoRichiesta(r);
+					if(stat.getTipo().toString().equalsIgnoreCase("inconvalida"))
+						richieste.add(r);
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
@@ -181,8 +189,15 @@ public class GestionePraticheTirocinioFacade {
 		}
 		else if (ruoloUtente.equalsIgnoreCase("Segreteria")) {
 			try {
-				richieste = richiestaDao.getRichiestePerStato("nuova");
-				richieste.addAll(richiestaDao.getRichiestePerStato("in validazione"));
+				Collection<RichiestaTirocinioBean> ric = new ArrayList<RichiestaTirocinioBean>();
+				StatoRichiestaBean stat = new StatoRichiestaBean();
+				ric = richiestaDao.retrieveAll(null);
+				
+				for(RichiestaTirocinioBean r : ric) {
+					stat = statoRichiestaDao.getStatoRichiesta(r);
+					if(stat.getTipo().toString().equalsIgnoreCase("nuova") || stat.getTipo().toString().equalsIgnoreCase("invalidazione"))
+						richieste.add(r);
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
