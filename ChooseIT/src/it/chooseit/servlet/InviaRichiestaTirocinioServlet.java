@@ -107,7 +107,7 @@ public class InviaRichiestaTirocinioServlet extends HttpServlet{
 		}
 		
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		boolean inviaRichiestaOK = gestore.inviaRichiestaTirocinio(richiestaBean);
+		boolean inviaRichiestaOK = gestore.inviaRichiestaTirocinio(richiestaBean,email);
 		request.getSession().setAttribute("inviaRichiestaOK", inviaRichiestaOK);
 
 		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
