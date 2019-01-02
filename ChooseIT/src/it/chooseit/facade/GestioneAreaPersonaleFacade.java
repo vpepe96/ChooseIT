@@ -17,7 +17,7 @@ public class GestioneAreaPersonaleFacade {
 	 * @param utente utente da modificare
 	 * @return boolean true se la modifica è avvenuta, false altrimenti 
 	 * */
-	public boolean modificaProfilo(UtenteBean utente) {
+	public static boolean modificaProfilo(UtenteBean utente) {
 		Utente ut=new Utente();
 		try {
 			ut.update(utente);
@@ -32,10 +32,12 @@ public class GestioneAreaPersonaleFacade {
 	 * @param studente studente da modificare
 	 * @return boolean true se la modifica è avvenuta, false altrimenti 
 	 * */
-	public boolean modificaProfilo(StudenteBean studente) {
+	public static boolean modificaProfilo(StudenteBean studente) {
 		Studente stud=new Studente();
+		Utente ut=new Utente();
 		try {
 			stud.update(studente);
+			ut.update(studente);
 			return true;
 		} catch (SQLException e) {
 			return false;

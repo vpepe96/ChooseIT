@@ -149,12 +149,9 @@
 				
 														<div class="col-sm-3 profile-pic">
 														
-														<%if(profilo.getFotoProfilo()!=null && profilo.getFotoProfilo()!="") {%>
-														
-															<img src=<%=profilo.getFotoProfilo()%> alt="Immagine profilo">
-														<%}else{ %>
-															<img src="/img/avatars/sunny-big.png"  alt="Immagine profilo">
-														<%} %>
+															<% System.out.println("Tentativo: "+profilo.getFotoProfilo()); %>
+															<img src=<%= profilo.getFotoProfilo() %>  alt="Immagine profilo">
+
 														</div>
 														
 														
@@ -226,13 +223,14 @@
 				
 											</div>
 											<!-- end row -->
-												<form style="display:none" id="form_modifica_profilo" name="form_modifica_profilo" method="post" action=""  class="smart-form client-form" onSubmit="return validaRegistrazioneCliente()">
+											<%String ModificaProfiloUrl=response.encodeURL("ModificaProfiloServlet"); %>
+												<form style="display:none" id="form_modifica_profilo" name="form_modifica_profilo" method="post" action="<%=ModificaProfiloUrl%>"  class="smart-form client-form" enctype="multipart/form-data" >
 													
 													<section>
 														<label class="label">Telefono</label> <label class="input">
 															<i class="icon-append fa fa-user"></i> <input type="text"
-															name="telefono" id="telefono" required="required"
-															pattern="^[0-9]{10}$">
+															name="telefono" id="telefono" 
+															pattern="^[0-9]{10}$" value="<%=profilo.getTelefono() %>">
 														</label>
 													</section>
 
@@ -240,8 +238,8 @@
 													<section>
 														<label class="label">Indirizzo</label> <label class="input">
 															<i class="icon-append fa fa-user"></i> <input type="text"
-															name="indirizzo" id="indirizzo" required="required"
-															pattern="^[A-Za-z0-9,()\s]{3,60}">
+															name="indirizzo" id="indirizzo" 
+															pattern="^[A-Za-z0-9,()\s]{3,60}" value= "<%=profilo.getIndirizzo() %>" >
 														</label>
 													</section>
 														
@@ -249,7 +247,7 @@
 													<section>
 														<label class="label">Descrizione</label> <label class="input">
 															<i class="fa"></i> <textarea rows="4" cols="50" maxlength="300"
-																name="descrizione" form="form-reg"></textarea>
+																name="descrizione" form="form-reg" value="<%=descrizione%>"></textarea>
 														</label>
 													</section>
 	
@@ -264,7 +262,7 @@
 														</label>
 													</section>
 
-
+													<button type="submit" class="btn btn-primary">Modifica</button>
 										</form>
 											
 										</div>

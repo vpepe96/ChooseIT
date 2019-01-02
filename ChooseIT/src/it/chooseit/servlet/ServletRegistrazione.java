@@ -95,7 +95,7 @@ public class ServletRegistrazione extends HttpServlet {
 				fotoOK = true;
 				System.out.println("Salvato in " + filePath);
 			} else {
-				// è andata male
+		
 				System.out.println("Errore nel salvataggio foto profilo");
 			}
 
