@@ -23,7 +23,7 @@ import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 import it.chooseit.impl.Azienda;
 
-@WebServlet("/ServletInviaRichiestaTirocinio")
+@WebServlet("/InviaRichiestaTirocinioServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class InviaRichiestaTirocinioServlet extends HttpServlet{
 

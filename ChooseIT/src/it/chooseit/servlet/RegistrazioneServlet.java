@@ -20,7 +20,7 @@ import it.chooseit.facade.GestioneAccountFacade;
 /**
  * Servlet implementation class ServletRegistrazione
  */
-@WebServlet("/ServletRegistrazione")
+@WebServlet("/RegistrazioneServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class RegistrazioneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

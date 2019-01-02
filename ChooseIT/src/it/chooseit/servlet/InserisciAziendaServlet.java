@@ -15,7 +15,7 @@ import it.chooseit.bean.AziendaBean;
 import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 
-@WebServlet("/ServletInserisciAzienda")
+@WebServlet("/InserisciAziendaServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class InserisciAziendaServlet extends HttpServlet {
 

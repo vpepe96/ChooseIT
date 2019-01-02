@@ -18,7 +18,7 @@ import it.chooseit.facade.GestioneReportFacade;
 /**
  * Servlet implementation class ListaQuestionariTutorAziendali
  */
-@WebServlet("/ListaQuestionariTutorAziendali")
+@WebServlet("/ListaQuestionariTutorAziendaliServlet")
 public class ListaQuestionariTutorAziendaliServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

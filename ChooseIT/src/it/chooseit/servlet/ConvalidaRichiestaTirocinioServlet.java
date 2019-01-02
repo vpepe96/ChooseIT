@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 
-@WebServlet("/ServletConvalidaRichiestaTirocinio")
+@WebServlet("/ConvalidaRichiestaTirocinioServlet")
 public class ConvalidaRichiestaTirocinioServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
