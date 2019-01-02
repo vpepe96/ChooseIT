@@ -9,8 +9,8 @@
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
 		<title> ChooseIT | Lista delle aziende </title>
-		<meta name="description" content="">
-		<meta name="author" content="">
+		<meta name="description" content="Lista delle aziende convenzionate">
+		<meta name="author" content="RocketStudios">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -67,8 +67,11 @@
 								Lista aziende convenzionate
 						</h1>
 					</div>
-					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="height: 66.4px;">
+						<button type="button" class="btn btn-labeled btn-default">
+ 								<span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
+ 								Nuova azienda
+						</button>
 					</div>
 				</div>
 				
@@ -114,7 +117,6 @@
 				
 									<!-- widget content -->
 									<div class="widget-body no-padding">
-				
 										<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
 											<thead>			                
 												<tr>
@@ -122,6 +124,7 @@
 													<th>Progetto formativo</th>
 													<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Sede legale</th>
 													<th data-hide="phone,tablet">Sede operativa</th>
+													<th></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -138,6 +141,7 @@
 													<td><%=azienda.getProgettoFormativo()%></td>
 													<td><%=azienda.getSedeLegale()%></td>
 													<td><%=azienda.getSedeOperativa()%></td>
+													<td><a class="btn btn-default btn-sm" href="javascript:void(0);">Modifica</a></td>
 												</tr>
 												<%
 													}
