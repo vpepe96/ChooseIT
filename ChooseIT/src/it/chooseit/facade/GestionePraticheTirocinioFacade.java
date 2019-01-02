@@ -504,6 +504,13 @@ public class GestionePraticheTirocinioFacade {
 		return true;
 	}
 	
+	/**
+	 * Permette di convalidare la richiesta di tirocinio
+	 * 
+	 * @param richiesta richiesta di tirocinio da convalidare
+	 * @param scelta esito della convalida della richiesta di tirocinio
+	 * @return un valore vero falso a seconda della riuscita della convalida della richiesta di tirocinio
+	 */
 	public boolean convalidaRichiestaTirocinio(RichiestaTirocinioBean richiesta, String scelta) {
 		StatoRichiestaDAO statoRichiesta = new StatoRichiesta();
 		StatoTirocinioDAO statoTirocinio = new StatoTirocinio();
