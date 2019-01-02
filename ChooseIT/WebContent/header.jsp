@@ -62,16 +62,18 @@
 			
 			<!-- Navigation bar -->
 			<div class="topnav">
-				<%
+				
+  				<a href="AreaPersonale.jsp">Area Personale</a>
+  				<%
 					
 					String ruolo = (String) session.getAttribute("ruolo");
 					if(!ruolo.equals("segreteria")) {
 				%>
-  				<a href="#home">Profilo</a>
+				<a href="profilo.jsp">Profilo</a>
   				<%
 					}
   				%>
-  				<a href="#news">Contatti</a>
+  				
 			</div>
 			<!-- END navigation bar -->
 			
@@ -87,7 +89,8 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<span> <a href="index.jsp" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+					<%String urlLogout=response.encodeUrl("ServletLogout"); %>
+					<span> <a href=<%=urlLogout %> title="Sign Out" data-action="userLogout" data-logout-msg="Sei sicuro di voler uscire?"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->
 
