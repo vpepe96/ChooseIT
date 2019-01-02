@@ -94,7 +94,7 @@
 				%>
 				<ul>
 					<li class="">
-						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista aziende</span></a>
+						<a href="ListaAziende.jsp" title="blank_"><span class="menu-item-parent">Lista aziende</span></a>
 					</li>
 					<li class="">
 						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista richieste</span></a>
@@ -105,7 +105,7 @@
 				%>
 				<ul>
 					<li class="">
-						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista aziende</span></a>
+						<a href="ListaAziende.jsp" title="blank_"><span class="menu-item-parent">Lista aziende</span></a>
 					</li>
 					<li class="">
 						<a href="index.html" title="blank_"><span class="menu-item-parent">Registro tirocinio</span></a>

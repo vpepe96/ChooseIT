@@ -5,11 +5,11 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<title> ChooseIT | Login </title>
 		<meta name="description" content="">
-		<meta name="author" content="">
+		<meta name="author" content="RocketStudios">
 		
-		<meta name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
 		<!-- Basic Styles -->
 		<link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
@@ -49,6 +49,7 @@
 		<%
 			UtenteBean utente = null;
 			String ruolo = (String) request.getSession().getAttribute("ruolo");
+			
 			if (ruolo == null) {
 				request.getSession().setAttribute("ruolo", "guest");
 				ruolo = "guest";
@@ -62,16 +63,12 @@
 			<div id="logo-group">
 	
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo-chooseit.png"
-					alt="ChooseIT">
+				<span id="logo">
+					<img src="img/logo-chooseit.png" alt="ChooseIT">
 				</span>
 				<!-- END LOGO PLACEHOLDER -->
 	
 			</div>
-	
-			<!-- Navigation bar -->
-			<div class="topnav"></div>
-			<!-- END navigation bar -->
 	
 			<!-- #TOGGLE LAYOUT BUTTONS -->
 			<!-- pulled right: nav area -->
@@ -79,8 +76,8 @@
 	
 				<!-- collapse menu button -->
 				<div id="hide-menu" class="btn-header pull-right">
-					<span> <a href="javascript:void(0);" data-action="toggleMenu"
-						title="Collapse Menu"><i class="fa fa-reorder"></i></a>
+					<span>
+						<a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a>
 					</span>
 				</div>
 				<!-- end collapse menu -->
@@ -90,21 +87,20 @@
 	
 		</header>
 		<!-- END HEADER -->
-	
+
 		<!-- #NAVIGATION -->
 		<!-- Left panel : Navigation area -->
-		<!-- Note: This width of the aside area can be adjusted through LESS/SASS variables -->
+		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
 		<aside id="left-panel">
-	
+		
 			<!-- User info -->
 			<div class="login-info">
 				<span> <!-- User image size is adjusted inside CSS, it should stay as is -->
-	
-					
+
 				</span>
 			</div>
 			<!-- end user info -->
-	
+
 			<!-- NAVIGATION : This navigation is also responsive
 	
 				To make this navigation dynamic please make sure to link the node
@@ -113,32 +109,36 @@
 				-->
 			<nav>
 				<!-- 
-					NOTE: Notice the gaps after each icon usage <i></i>..
-					Please note that these links work a bit different than
-					traditional href="" links. See documentation for details.
-					-->
+				NOTE: Notice the gaps after each icon usage <i></i>..
+				Please note that these links work a bit different than
+				traditional href="" links. See documentation for details.
+				-->
+
 				<%
 					if (ruolo.equals("guest")) {
 				%>
+				
 				<ul>
-					<li><a href="index.jsp" title="Dashboard"><span
-							class="menu-item">Login</span></a></li>
-					<li><a href="Registrazione.jsp" title="Dashboard"><span
-							class="menu-item">Registrazione</span></a></li>
+					<li class="active open">
+						<a href="index.jsp" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-sign-in"></i> <span class="menu-item-parent">Login</span></a>
+					</li>
+					<li class="top-menu-invisible">
+						<a href="Registrazione.jsp"><i class="fa fa-lg fa-fw fa fa-check-square-o txt-color-blue"></i> <span class="menu-item-parent">Registrazione</span></a>
+					</li>
 				</ul>
-	
+
 				<%
 					}
 				%>
 			</nav>
-	
-			<span class="minifyme" data-action="minifyMenu"> <i
-				class="fa fa-arrow-circle-left hit"></i>
+			
+			<span class="minifyme" data-action="minifyMenu"> 
+				<i class="fa fa-arrow-circle-left hit"></i> 
 			</span>
-	
+			
 		</aside>
 		<!-- END NAVIGATION -->
-	
+		
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
 	
@@ -171,7 +171,6 @@
 								<header> Login </header>
 	
 								<fieldset>
-	
 									<section>
 										<label class="label">E-mail</label> <label class="input">
 											<i class="icon-append fa fa-user"></i> <input type="email" id="email" required="required" pattern="^[A-Za-z0-9.]+@[A-Za-z._]+(it|.com){1}$" name="email">
@@ -214,6 +213,98 @@
 			include file = "footer.jsp"
 		%>
 		
+		<!--================================================== -->
+
+		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
+
+		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			if (!window.jQuery) {
+				document.write('<script src="js/libs/jquery-3.2.1.min.js"><\/script>');
+			}
+		</script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script>
+			if (!window.jQuery.ui) {
+				document.write('<script src="js/libs/jquery-ui.min.js"><\/script>');
+			}
+		</script>
+
+		<!-- IMPORTANT: APP CONFIG -->
+		<script src="js/app.config.js"></script>
+
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
+
+		<!-- BOOTSTRAP JS -->
+		<script src="js/bootstrap/bootstrap.min.js"></script>
+
+		<!-- CUSTOM NOTIFICATION -->
+		<script src="js/notification/SmartNotification.min.js"></script>
+
+		<!-- JARVIS WIDGETS -->
+		<script src="js/smartwidgets/jarvis.widget.min.js"></script>
+
+		<!-- EASY PIE CHARTS -->
+		<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+		<!-- SPARKLINES -->
+		<script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+		<!-- JQUERY VALIDATE -->
+		<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+		<!-- JQUERY MASKED INPUT -->
+		<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+		<!-- JQUERY SELECT2 INPUT -->
+		<script src="js/plugin/select2/select2.min.js"></script>
+
+		<!-- JQUERY UI + Bootstrap Slider -->
+		<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+		<!-- browser msie issue fix -->
+		<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+		<!-- FastClick: For mobile devices -->
+		<script src="js/plugin/fastclick/fastclick.min.js"></script>
+
+		<!--[if IE 8]>
+
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+		<![endif]-->
+
+		<!-- MAIN APP JS FILE -->
+		<script src="js/app.min.js"></script>
+
+		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+		<!-- Voice command : plugin -->
+		<script src="js/speech/voicecommand.min.js"></script>
+
+		<!-- SmartChat UI : plugin -->
+		<script src="js/smart-chat-ui/smart.chat.ui.min.js"></script>
+		<script src="js/smart-chat-ui/smart.chat.manager.min.js"></script>
+		
+		<!-- PAGE RELATED PLUGIN(S) -->
+		
+		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
+		<script src="js/plugin/flot/jquery.flot.cust.min.js"></script>
+		<script src="js/plugin/flot/jquery.flot.resize.min.js"></script>
+		<script src="js/plugin/flot/jquery.flot.time.min.js"></script>
+		<script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script>
+		
+		<!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
+		<script src="js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+		<script src="js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+		
+		<!-- Full Calendar -->
+		<script src="js/plugin/moment/moment.min.js"></script>
+		<script src="js/plugin/fullcalendar/fullcalendar.min.js"></script>
+
 		<%
 		if (request.getSession().getAttribute("loginOK") != null) {
 			boolean loginOK = (boolean) request.getSession().getAttribute("loginOK");
