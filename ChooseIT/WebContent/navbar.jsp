@@ -109,6 +109,7 @@
 					<li class="">
 						<a href="index.html" title="blank_"><span class="menu-item-parent">Registro tirocinio</span></a>
 					</li>
+					
 				</ul>
 				<%
 					} else if(ruolo.equals("presidente")) {
