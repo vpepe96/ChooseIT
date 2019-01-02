@@ -64,13 +64,14 @@
 			<div class="topnav">
 				
   				<a href="AreaPersonale.jsp">Area Personale</a>
-  				<%
-					
   				
+  				<%
 					String ruolo = (String) session.getAttribute("ruolo");
 					if(!ruolo.equals("segreteria")) {
 				%>
-				<a href="profilo.jsp">Profilo</a>
+				
+				<a href="Profilo.jsp">Profilo</a>
+  				
   				<%
 					}
   				%>
@@ -90,7 +91,9 @@
 
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
-					<%String urlLogout=response.encodeUrl("ServletLogout"); %>
+					<%
+						String urlLogout = response.encodeUrl("LogoutServlet");
+					%>
 					<span> <a href=<%=urlLogout %> title="Sign Out" data-action="userLogout" data-logout-msg="Sei sicuro di voler uscire?"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
 				<!-- end logout button -->

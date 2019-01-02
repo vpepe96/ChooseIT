@@ -63,11 +63,12 @@
 			<!-- User info -->
 			<div class="login-info">
 				<span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
-					<%UtenteBean utente= (UtenteBean)session.getAttribute("utente");%>
+					<%
+						UtenteBean utente = (UtenteBean) session.getAttribute("utente");
+					%>
 					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-						<img src=<%=utente.getFotoProfilo() %> alt="foto profilo" class="online" /> 
+						<img src="<%=utente.getFotoProfilo()%>" alt="foto profilo" class="online" /> 
 						<span>
-							
 							<%=utente.getNome() %> <%=utente.getCognome() %>
 						</span>
 					</a> 
