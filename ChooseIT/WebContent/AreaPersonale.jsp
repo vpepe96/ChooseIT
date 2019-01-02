@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
 		<title> ChooseIT - Area Personale</title>
 		<meta name="description" content="">
-		<meta name="author" content="">
+		<meta name="author" content="RocketStudios">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -32,8 +30,8 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
 
 		<!-- FAVICONS -->
-		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="img/logo2.png" type="image/x-icon">
+		<link rel="icon" href="img/logo2.png" type="image/x-icon">
 
 		<!-- GOOGLE FONT -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
@@ -91,26 +89,20 @@
 		* 'fixed-page-footer' - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-	<body class="">
+	<body>
 
-		<%@ include file = "navbar.jsp" %>
-
-		
-		
-				
+		<%@
+			include file = "navbar.jsp"
+		%>
+			
 		<!-- PAGE FOOTER -->
-		<div class="page-footer">
-			<%@ include file = "footer.jsp" %>
-		</div>
+			<%@
+				include file = "footer.jsp"
+			%>
 		<!-- END PAGE FOOTER -->
-
-		
 
 		<!--================================================== -->
 
-		
-		
-		</script>
 		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
 
@@ -118,8 +110,6 @@
 		
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
 		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
-
-		
 
 		<!-- CUSTOM NOTIFICATION -->
 		<script src="js/notification/SmartNotification.min.js"></script>
@@ -156,11 +146,7 @@
 		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
 
 		<![endif]-->
-
 		
-
-		
-
 		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
 		<!-- Voice command : plugin -->
 		<script src="js/speech/voicecommand.min.js"></script>
@@ -184,7 +170,5 @@
 
 		</script>
 
-
 	</body>
-
 </html>

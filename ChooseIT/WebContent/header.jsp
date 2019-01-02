@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<title> ChooseIT | Header </title>
 		<meta name="description" content="">
-		<meta name="author" content="">
+		<meta name="author" content="RocketStudios">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
@@ -63,14 +63,19 @@
 			<!-- Navigation bar -->
 			<div class="topnav">
 				
-  				<a href="AreaPersonale.jsp">Area Personale</a>
+				<%
+					String urlAreaPersonale = response.encodeURL("AreaPersonale.jsp");
+				%>
+				
+  				<a href="<%=urlAreaPersonale%>">Area Personale</a>
   				
   				<%
 					String ruolo = (String) session.getAttribute("ruolo");
 					if(!ruolo.equals("segreteria")) {
+						String urlProfilo = response.encodeURL("Profilo.jsp");
 				%>
 				
-				<a href="Profilo.jsp">Profilo</a>
+				<a href="<%=urlProfilo%>">Profilo</a>
   				
   				<%
 					}

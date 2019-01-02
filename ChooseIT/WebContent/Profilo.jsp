@@ -1,17 +1,13 @@
-
 <%@page import="it.chooseit.bean.*"%>
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
 	<head>
 		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
 		<title> ChooseIT - Profilo</title>
 		<meta name="description" content="">
-		<meta name="author" content="">
+		<meta name="author" content="RocketStudios">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -35,8 +31,8 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
 
 		<!-- FAVICONS -->
-		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="img/logo2.png" type="image/x-icon">
+		<link rel="icon" href="img/logo2.png" type="image/x-icon">
 
 		<!-- GOOGLE FONT -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
@@ -94,24 +90,24 @@
 		* 'fixed-page-footer' - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-	<body class="">
+	
+	<body>
 
-		<%@ include file = "navbar.jsp" %>
-
+		<%@
+			include file = "navbar.jsp"
+		%>
 		
-		
-				<%
-					
-					UtenteBean profilo= (UtenteBean) session.getAttribute("utente");
-					String matricola="";
-					String descrizione="";
-					if(ruolo.equals("studente")){
-						StudenteBean stud= (StudenteBean) session.getAttribute("utente");
-						//Me li prendo così in quanto sono gli unici valori che lo studente possiede in più rispetto a un normale Utente
-						descrizione=stud.getDescrizione();
-						matricola=stud.getMatricola();
-					}
-				%>
+		<%
+			UtenteBean profilo= (UtenteBean) session.getAttribute("utente");
+			String matricola="";
+			String descrizione="";
+			if(ruolo.equals("studente")){
+				StudenteBean stud= (StudenteBean) session.getAttribute("utente");
+				//Me li prendo così in quanto sono gli unici valori che lo studente possiede in più rispetto a un normale Utente
+				descrizione=stud.getDescrizione();
+				matricola=stud.getMatricola();
+			}
+		%>
 
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
