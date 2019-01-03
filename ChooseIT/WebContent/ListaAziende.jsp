@@ -163,9 +163,14 @@
 													</td>
 													<%
 														if(ruolo.equals("segreteria")) {
-															String urlModificaAzienda = (String) response.encodeURL("AggiornaAzienda.jsp");
+															String urlModificaAzienda = (String) response.encodeURL("DettaglioAziendaServlet");
 													%>
-													<td><a class="btn btn-default btn-sm" href="<%=urlModificaAzienda%>">Modifica</a></td>
+													<td>
+														<form  id="dettagli" name="modifica" method="post" action="<%=urlModificaAzienda %>">
+															<input type="hidden" id="id_azienda" name="id_azienda" value="<%=azienda.getRagioneSociale()%>">
+															<input type="submit" value="Modifica">
+														</form>
+													</td>
 													<%
 														}
 													%>

@@ -135,11 +135,35 @@
 																	<span>Upload del progetto formativo</span>
 																</button>
 															</li>
+															<br>
+															<li>
+																<button class="button" style="vertical-align: middle"
+																	onclick="displayForm()">
+																	<span>Modifica Profilo</span>
+																</button>
+															</li>
 														</ul>
 														<br>
 	
 													</div>
-													<div class="col-sm-3"></div>
+
+													<div class="col-sm-3">
+														<form id="form_upload_pf"
+															name="form_upload_pf" method="post"
+															action="................." class="smart-form client-form"
+															enctype="multipart/form-data">
+						
+															<section>
+																<label class="label">Progetto formativo</label> <label class="input">
+																	<i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
+																	name="progetto_formativo" id="progetto_formativo" pattern="^[0-9]{10}$"
+																	value="">
+																</label>
+															</section>
+						
+															<button type="submit" class="btn btn-primary">Invia richiesta</button>
+														</form>
+													</div>
 	
 												</div>
 	
@@ -152,22 +176,42 @@
 								</div>
 	
 								<div class="col-sm-12 col-md-12 col-lg-6">
+					
+										<%
+											String urlAggiornaAzienda = response.encodeURL("AggiornaAziendaServlet");
+										%>
+										<form id="form_modifica_azienda" style="display: none"
+											name="form_modifica_azienda" method="post"
+											action="<%=urlAggiornaAzienda%>" class="smart-form client-form"
+											enctype="multipart/form-data">
+		
+											<section>
+												<label class="label">Nome</label> <label class="input">
+													<i class="icon-append fa fa-user"></i> <input type="text" name="ragioneSociale" id="ragioneSociale" value="<%=azienda.getRagioneSociale()%>">
+												</label>
+											</section>
+		
+		
+											<section>
+												<label class="label">Sede legale</label> <label class="input">
+													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeLegale" id="sedeLegale">
+												</label>
+											</section>
 	
-									<form style="display: none" id="form_upload_pf"
-										name="form_upload_pf" method="post"
-										action="................." class="smart-form client-form"
-										enctype="multipart/form-data">
-	
-										<section>
-											<label class="label">Progetto formativo</label> <label class="input">
-												<i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
-												name="progetto_formativo" id="progetto_formativo" pattern="^[0-9]{10}$"
-												value="">
-											</label>
-										</section>
-	
-										<button type="submit" class="btn btn-primary">Invia richiesta</button>
-									</form>
+											<section>
+												<label class="label">Sede operativa</label> <label class="input">
+													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeOperativa" id="sedeOperativa">
+												</label>
+											</section>
+		
+											<section>
+												<label class="label">Progetto formativo</label> <label class="input"> <i class="fa">
+													</i> <input type="file" name="progettoFormativo" id="progettoFormativo" accept=".pdf">
+												</label>
+											</section>
+		
+											<button type="submit" class="btn btn-primary">Modifica</button>
+										</form>					
 	
 								</div>
 	
@@ -195,6 +239,13 @@
 		<script type="text/javascript">
 		function displayForm(){
 				$("#form_upload_pf").fadeIn();
+		}
+		
+		</script>
+		
+		<script type="text/javascript">
+		function displayForm(){
+				$("#form_modifica_azienda").fadeIn();
 		}
 		
 		</script>

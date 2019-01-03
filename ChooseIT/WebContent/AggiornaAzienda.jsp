@@ -122,8 +122,8 @@
 										enctype="multipart/form-data">
 	
 										<section>
-											<label class="label">Nome</label> <label class="">
-												<i class="icon-append fa fa-user"></i> <input type="text" name="ragioneSociale" id="ragioneSociale" value="<%=azienda.getRegioneSociale() %>">
+											<label class="label">Nome</label> <label class="input">
+												<i class="icon-append fa fa-user"></i> <input type="text" name="ragioneSociale" id="ragioneSociale" value="">
 											</label>
 										</section>
 	

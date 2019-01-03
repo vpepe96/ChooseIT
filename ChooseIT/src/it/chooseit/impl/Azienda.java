@@ -135,7 +135,7 @@ public class Azienda implements AziendaDAO{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		String insertSQL = "UPDATE " + Azienda.TABLE_NAME
-				+ " SET progetto_formativo = ?, sede_operativa=?, sede_legale=?,"
+				+ " SET progetto_formativo = ?, sede_operativa = ?, sede_legale = ? "
 				+ " WHERE ragione_sociale = ?;";
 
 		try {
@@ -143,10 +143,10 @@ public class Azienda implements AziendaDAO{
 
 			preparedStatement = connection.prepareStatement(insertSQL);
 
-			preparedStatement.setString(1, object.getRagioneSociale());
-			preparedStatement.setString(2, object.getProgettoFormativo());
-			preparedStatement.setString(3, object.getSedeOperativa());
-			preparedStatement.setString(4, object.getSedeLegale());
+			preparedStatement.setString(1, object.getProgettoFormativo());
+			preparedStatement.setString(2, object.getSedeOperativa());
+			preparedStatement.setString(3, object.getSedeLegale());
+			preparedStatement.setString(4, object.getRagioneSociale());
 
 			System.out.println("doUpdate: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
