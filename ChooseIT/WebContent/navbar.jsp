@@ -106,8 +106,8 @@
 				
 				<%
 					} else if(ruolo.equals("studente")) {
-						String urlListaAziende = response.encodeURL("ListaAziendeServlet.java");
-						String urlListaRichiesteTirocinio = response.encodeURL("ListaRichiesteTirocinioServlet.java");
+						String urlListaAziende = response.encodeURL("ListaAziendeServlet");
+						String urlListaRichiesteTirocinio = response.encodeURL("ListaRichiesteTirocinioServlet");
 						String urlRegistroTirocinio = response.encodeURL("#");
 						String urlQuestionarioValutativo = response.encodeURL("#");
 				%>
