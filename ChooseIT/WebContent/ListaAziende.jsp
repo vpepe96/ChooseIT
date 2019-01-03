@@ -78,18 +78,6 @@
 								Lista aziende convenzionate
 						</h1>
 					</div>
-					<%
-						if(ruolo.equals("segreteria")) {
-					%>
-					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="height: 66.4px;">
-						<button type="button" class="btn btn-labeled btn-default">
- 								<span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
- 								Nuova azienda
-						</button>
-					</div>
-					<%
-						}
-					%>
 				</div>
 				
 				<!-- widget grid -->
