@@ -171,7 +171,9 @@
 	
 								<div class="col-sm-12 col-md-12 col-lg-6">
 	
-									<%String ModificaProfiloUrl=response.encodeURL("ModificaProfiloServlet"); %>
+									<%
+										String ModificaProfiloUrl = response.encodeURL("ModificaProfiloServlet");
+									%>
 									<form style="display: none" id="form_modifica_profilo"
 										name="form_modifica_profilo" method="post"
 										action="<%=ModificaProfiloUrl%>" class="smart-form client-form"

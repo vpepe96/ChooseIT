@@ -225,16 +225,18 @@ public class TutorAziendale implements TutorAziendaleDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		Collection<TutorAziendaleBean> tutor = new LinkedList<TutorAziendaleBean>();
+		Collection<TutorAziendaleBean> tutor = new ArrayList<>();
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "select * from utente, tutor_aziendale, azienda where ragione_sociale = " + azienda.getRagioneSociale() + "" +
-							"and ragione_sociale = azienda_id" +
+			String sql = "select * from utente, tutor_aziendale, azienda where ragione_sociale = ? "+
+							"and ragione_sociale = azienda_id " +
 							"and utente.email = tutor_aziendale.email;";
 
 			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, azienda.getRagioneSociale());
 
 			ResultSet rs = preparedStatement.executeQuery();
 			

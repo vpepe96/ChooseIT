@@ -93,11 +93,21 @@
 				-->
 				<% 
 					if(ruolo.equals("segreteria")) {
+						String urlListaAziende = response.encodeURL("ListaAziendeServlet");
+						String urlNuovaAzienda = response.encodeURL("InserimentoAzienda.jsp");
 				%>
 				
 				<ul>
-					<li class="active open">
-						<a href="index.jsp" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-user"></i> <span class="menu-item-parent">Lista aziende</span></a>
+					<li class="top-menu-invisible">
+						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-industry"></i> <span class="menu-item-parent">Aziende</span></a>
+						<ul style="display: block;">
+							<li class="top-menu-invisible">
+								<a href="<%=urlListaAziende %>" title="Dashboard"><span class="menu-item-parent">Aziende convenzionate</span></a>
+							</li>
+							<li>
+								<a href="<%=urlNuovaAzienda %>" title="Dashboard"><span class="menu-item-parent">Inserimento nuova azienda</span></a>
+							</li>
+						</ul>	
 					</li>
 					<li class="top-menu-invisible">
 						<a href="Registrazione.jsp"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>

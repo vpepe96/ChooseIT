@@ -70,7 +70,117 @@
 	
 			</div>
 			<!-- END RIBBON -->
+		
+			<!-- MAIN CONTENT -->
+			<div id="content">
 	
+				<!-- row -->
+	
+				<div class="row">
+	
+					<div class="col-sm-12">
+	
+						<div class="well well-sm">
+	
+							<div class="row">
+	
+								<div class="col-sm-12 col-md-12 col-lg-6">
+									<div class="well well-light well-sm no-margin no-padding">
+	
+										<div class="row">
+	
+											<div class="col-sm-12">
+												<div id="myCarousel" class="carousel fade profile-carousel">
+													<div class="carousel-inner">
+														<!-- Slide 1 -->
+														<div class="">
+															<img src="img/demo/s1.jpg" alt="demo user">
+														</div>
+													</div>
+												</div>
+											</div>
+	
+											<div class="col-sm-12">
+	
+												<div class="row">
+	
+													<div class="col-sm-3 profile-pic">
+													</div>
+													<div class="col-sm-6">
+														<h1>
+															<span class="semi-bold"><%=azienda.getRagioneSociale() %></span><br>
+														</h1>
+	
+														<ul class="list-unstyled">
+															<li>
+																<p class="text-muted">
+																	<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=azienda.getSedeLegale() %></span>
+																</p>
+															</li>
+															<li>
+																<p class="text-muted">
+																	<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=azienda.getSedeOperativa() %></span>
+																</p>
+															</li>
+															<li>
+																<p class="text-muted">
+																	<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken">
+																	<a href="<%=azienda.getProgettoFormativo() %>" download="pf"><%=azienda.getRagioneSociale() %>-PF.pdf</a></span>
+																</p>
+															</li>
+															<br>
+															<li>
+																<button class="button" style="vertical-align: middle"
+																	onclick="displayForm()">
+																	<span>Upload del progetto formativo</span>
+																</button>
+															</li>
+														</ul>
+														<br>
+	
+													</div>
+													<div class="col-sm-3"></div>
+	
+												</div>
+	
+											</div>
+	
+										</div>
+	
+									</div>
+	
+								</div>
+	
+								<div class="col-sm-12 col-md-12 col-lg-6">
+	
+									<form style="display: none" id="form_upload_pf"
+										name="form_upload_pf" method="post"
+										action="................." class="smart-form client-form"
+										enctype="multipart/form-data">
+	
+										<section>
+											<label class="label">Progetto formativo</label> <label class="input">
+												<i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
+												name="progetto_formativo" id="progetto_formativo" pattern="^[0-9]{10}$"
+												value="">
+											</label>
+										</section>
+	
+										<button type="submit" class="btn btn-primary">Invia richiesta</button>
+									</form>
+	
+								</div>
+	
+							</div>
+						</div>
+					</div>
+	
+				</div>
+				<!-- end row -->
+	
+			</div>
+			<!-- END MAIN CONTENT -->
+			
 		</div>
 		<!-- END MAIN PANEL -->
 
@@ -84,7 +194,7 @@
 
 		<script type="text/javascript">
 		function displayForm(){
-				$("#form_modifica_profilo").fadeIn();
+				$("#form_upload_pf").fadeIn();
 		}
 		
 		</script>

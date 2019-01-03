@@ -163,8 +163,9 @@
 													</td>
 													<%
 														if(ruolo.equals("segreteria")) {
+															String urlModificaAzienda = (String) response.encodeURL("AggiornaAzienda.jsp");
 													%>
-													<td><a class="btn btn-default btn-sm" href="javascript:void(0);">Modifica</a></td>
+													<td><a class="btn btn-default btn-sm" href="<%=urlModificaAzienda%>">Modifica</a></td>
 													<%
 														}
 													%>

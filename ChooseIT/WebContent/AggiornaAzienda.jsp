@@ -113,56 +113,41 @@
 							<!-- widget content -->
 							<div class="widget-body no-padding">
 						
-								<form action="demo-contacts.php" method="post" id="contact-form" class="smart-form">
-									<header>Dati azienda</header>
-									
-									<fieldset>					
-										<div class="row">
-											<section class="col col-6">
-												<label class="label">Nome</label>
-												<label class="input">
-													<i class="icon-append fa fa-user"></i>
-													<input type="text" name="named" id="named">
-												</label>
-											</section>
-										</div>
-										
+								<%
+										String urlAggiornaAzienda = response.encodeURL("AggiornaAziendaServlet");
+									%>
+									<form id="form_modifica_azienda"
+										name="form_modifica_azienda" method="post"
+										action="<%=urlAggiornaAzienda%>" class="smart-form client-form"
+										enctype="multipart/form-data">
+	
 										<section>
-											<label class="label">Sede legale</label>
-											<label class="input">
-												<i class="icon-append fa fa-briefcase"></i>
-												<input type="text" name="subject" id="subject">
+											<label class="label">Nome</label> <label class="">
+												<i class="icon-append fa fa-user"></i> <input type="text" name="ragioneSociale" id="ragioneSociale" value="<%=azienda.getRegioneSociale() %>">
 											</label>
 										</section>
-										
+	
+	
 										<section>
-											<label class="label">Sede operativa</label>
-											<label class="input">
-												<i class="icon-append fa fa-cogs"></i>
-												<input type="text" name="subject" id="subject">
-											</label>
-										</section>
-										
-										<section>
-											<label class="label">Progetto formativo</label>
-											<label class="input">
-												<i class="icon-append fa fa-file-pdf-o"></i>
-												<input type="text" name="subject" id="subject">
+											<label class="label">Sede legale</label> <label class="input">
+												<i class="icon-append fa fa-user"></i> <input type="text" name="sedeLegale" id="sedeLegale">
 											</label>
 										</section>
 
-									</fieldset>
-									
-									<footer>
-											<a href="javascript:void(0);" class="btn btn-labeled btn-success"> <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Success </a>
-											<a href="javascript:void(0);" class="btn btn-labeled btn-danger"> <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>Cancel </a>
-									</footer>
-									
-									<div class="message">
-										<i class="fa fa-thumbs-up"></i>
-										<p>Your message was successfully sent!</p>
-									</div>
-								</form>						
+										<section>
+											<label class="label">Sede operativa</label> <label class="input">
+												<i class="icon-append fa fa-user"></i> <input type="text" name="sedeOperativa" id="sedeOperativa">
+											</label>
+										</section>
+	
+										<section>
+											<label class="label">Progetto formativo</label> <label class="input"> <i class="fa">
+												</i> <input type="file" name="progettoFormativo" id="progettoFormativo" accept=".pdf">
+											</label>
+										</section>
+	
+										<button type="submit" class="btn btn-primary">Modifica</button>
+									</form>					
 						
 							</div>
 							<!-- end widget content -->

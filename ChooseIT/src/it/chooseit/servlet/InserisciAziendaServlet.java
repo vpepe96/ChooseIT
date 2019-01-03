@@ -70,7 +70,7 @@ public class InserisciAziendaServlet extends HttpServlet {
 		boolean iserisciAziendaOK = gestore.inserisciAzienda(aziendaBean);
 		request.getSession().setAttribute("iserisciAziendaOK", iserisciAziendaOK);
 
-		String url = response.encodeRedirectURL("/ListaAziende.jsp");
+		String url = response.encodeRedirectURL("ListaAziende.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
