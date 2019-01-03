@@ -106,10 +106,10 @@
 				
 				<%
 					} else if(ruolo.equals("studente")) {
-						String urlListaAziende = response.encodeUrl("ListaAziende.jsp");
-						String urlListaRichieste = response.encodeUrl("#");
-						String urlRegistroTirocinio = response.encodeUrl("#");
-						String urlQuestionarioValutativo = response.encodeUrl("#");
+						String urlListaAziende = response.encodeURL("ListaAziende.jsp");
+						String urlListaRichieste = response.encodeURL("#");
+						String urlRegistroTirocinio = response.encodeURL("#");
+						String urlQuestionarioValutativo = response.encodeURL("#");
 				%>
 				
 				<ul>

@@ -97,7 +97,7 @@
 				<!-- logout button -->
 				<div id="logout" class="btn-header transparent pull-right">
 					<%
-						String urlLogout = response.encodeUrl("LogoutServlet");
+						String urlLogout = response.encodeURL("LogoutServlet");
 					%>
 					<span> <a href=<%=urlLogout %> title="Sign Out" data-action="userLogout" data-logout-msg="Sei sicuro di voler uscire?"><i class="fa fa-sign-out"></i></a> </span>
 				</div>
