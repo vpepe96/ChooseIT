@@ -166,10 +166,7 @@ public class StatoTirocinio implements StatoTirocinioDAO{
 		
 		StatoTirocinioBean bean = new StatoTirocinioBean(null, null, null);
 		
-		String selectSQL = "SELECT * \r\n" + 
-						   "FROM stato_tirocinio \r\n" + 
-						   "WHERE data_stato = " + 
-						   "(SELECT MAX(data_stato) FROM stato_richiesta WHERE registro_id = ?)";
+		String selectSQL = "SELECT * FROM stato_tirocinio WHERE data_stato in (SELECT MAX(data_stato) FROM stato_tirocinio WHERE registro_id = ?);";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();

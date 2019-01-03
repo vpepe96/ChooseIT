@@ -74,7 +74,7 @@ public class InserimentoReportServlet extends HttpServlet {
                     
                     GestioneReportFacade reportN = new GestioneReportFacade();
                     
-                    reportN.inserimentoReport(report, reg);
+                    reportN.inserimentoReport(report);
                     
                     String url=response.encodeURL("/RegistroTirocinio.jsp");
         			RequestDispatcher dispatcher = request.getRequestDispatcher(url);

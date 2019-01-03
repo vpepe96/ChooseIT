@@ -100,7 +100,7 @@
 					<!-- widget div -->
 					<%
 						}
-						}
+					}
 					%>
 				</article>
 			</div>
