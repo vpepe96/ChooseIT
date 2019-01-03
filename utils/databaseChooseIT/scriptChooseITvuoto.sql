@@ -63,15 +63,48 @@ foreign key(email) references utente(email),
 foreign key(azienda_id) references azienda(ragione_sociale)
 );
 
+create table feedback(
+email_studente				varchar(50)			not null,
+ragione_sociale_azienda		varchar(50)			not null,
+descrizione					varchar(200)		not null,
+
+primary key(email_studente,ragione_sociale_azienda),
+foreign key(email_studente) references studente(email),
+foreign key(ragione_sociale_azienda) references azienda(ragione_sociale)
+);
+
+create table richiesta_tirocinio(
+id							integer			not null		auto_increment,
+studente_email				varchar(50)		not null,
+ragione_sociale_azienda		varchar(50)		not null,
+progetto_formativo			varchar(300)	not null,
+data_richiesta				date			not null,
+
+primary key(id),
+foreign key(studente_email) references studente(email),
+foreign key(ragione_sociale_azienda) references azienda(ragione_sociale)
+);
+
+create table stato_richiesta(
+data_stato			date			not null,
+tipo				enum('nuova','in validazione','in convalida','accettata','rifiutata')		not null,
+richiesta_id		integer			not null,
+
+primary key(data_stato, tipo, richiesta_id),
+foreign key(richiesta_id) references richiesta_tirocinio(id)
+);
+
 create table registro_tirocinio(
 identificativo				integer			not null		auto_increment,
 studente_email				varchar(50)		not null,
 data_inizio					date			not null,
 tutor_aziendale_email		varchar(50),
 tutor_universitario_email	varchar(50),
+richiesta_id				integer			not null,
 
 primary key(identificativo),
 foreign key(studente_email) references studente(email),
+foreign key(richiesta_id) references richiesta_tirocinio(id), 
 foreign key(tutor_aziendale_email) references tutor_aziendale(email),
 foreign key(tutor_universitario_email) references tutor_universitario(email)
 );
@@ -84,6 +117,7 @@ registro_id			integer				not null,
 primary key(data_stato,tipo,registro_id),
 foreign key(registro_id) references registro_tirocinio(identificativo)
 );
+
 
 create table questionario_valutativo_studente(
 registro_id			integer							not null,
@@ -142,36 +176,4 @@ report_data					date										not null,
 
 primary key(data_stato,tipo,report_id_reg,report_data),
 foreign key(report_id_reg,report_data) references report(registro_id,data_inserimento)
-);
-
-create table feedback(
-email_studente				varchar(50)			not null,
-ragione_sociale_azienda		varchar(50)			not null,
-descrizione					varchar(200)		not null,
-
-primary key(email_studente,ragione_sociale_azienda),
-foreign key(email_studente) references studente(email),
-foreign key(ragione_sociale_azienda) references azienda(ragione_sociale)
-);
-
-create table richiesta_tirocinio(
-id							integer			not null		auto_increment,
-studente_email				varchar(50)		not null,
-registro_id					integer			not null,
-ragione_sociale_azienda		varchar(50)		not null,
-progetto_formativo			varchar(300)	not null,
-data_richiesta				date			not null,
-
-primary key(id),
-foreign key(studente_email) references studente(email),
-foreign key(registro_id) references registro_tirocinio(identificativo)
-);
-
-create table stato_richiesta(
-data_stato			date			not null,
-tipo				enum('nuova','in validazione','in convalida','accettata','rifiutata')		not null,
-richiesta_id		integer			not null,
-
-primary key(data_stato, tipo, richiesta_id),
-foreign key(richiesta_id) references richiesta_tirocinio(id)
 );

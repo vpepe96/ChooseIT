@@ -63,15 +63,48 @@ foreign key(email) references utente(email),
 foreign key(azienda_id) references azienda(ragione_sociale)
 );
 
+create table feedback(
+email_studente				varchar(50)			not null,
+ragione_sociale_azienda		varchar(50)			not null,
+descrizione					varchar(200)		not null,
+
+primary key(email_studente,ragione_sociale_azienda),
+foreign key(email_studente) references studente(email),
+foreign key(ragione_sociale_azienda) references azienda(ragione_sociale)
+);
+
+create table richiesta_tirocinio(
+id							integer			not null		auto_increment,
+studente_email				varchar(50)		not null,
+ragione_sociale_azienda		varchar(50)		not null,
+progetto_formativo			varchar(300)	not null,
+data_richiesta				date			not null,
+
+primary key(id),
+foreign key(studente_email) references studente(email),
+foreign key(ragione_sociale_azienda) references azienda(ragione_sociale)
+);
+
+create table stato_richiesta(
+data_stato			date			not null,
+tipo				enum('nuova','in validazione','in convalida','accettata','rifiutata')		not null,
+richiesta_id		integer			not null,
+
+primary key(data_stato, tipo, richiesta_id),
+foreign key(richiesta_id) references richiesta_tirocinio(id)
+);
+
 create table registro_tirocinio(
 identificativo				integer			not null		auto_increment,
 studente_email				varchar(50)		not null,
 data_inizio					date			not null,
 tutor_aziendale_email		varchar(50),
 tutor_universitario_email	varchar(50),
+richiesta_id				integer			not null,
 
 primary key(identificativo),
 foreign key(studente_email) references studente(email),
+foreign key(richiesta_id) references richiesta_tirocinio(id), 
 foreign key(tutor_aziendale_email) references tutor_aziendale(email),
 foreign key(tutor_universitario_email) references tutor_universitario(email)
 );
@@ -84,6 +117,7 @@ registro_id			integer				not null,
 primary key(data_stato,tipo,registro_id),
 foreign key(registro_id) references registro_tirocinio(identificativo)
 );
+
 
 create table questionario_valutativo_studente(
 registro_id			integer							not null,
@@ -144,38 +178,6 @@ primary key(data_stato,tipo,report_id_reg,report_data),
 foreign key(report_id_reg,report_data) references report(registro_id,data_inserimento)
 );
 
-create table feedback(
-email_studente				varchar(50)			not null,
-ragione_sociale_azienda		varchar(50)			not null,
-descrizione					varchar(200)		not null,
-
-primary key(email_studente,ragione_sociale_azienda),
-foreign key(email_studente) references studente(email),
-foreign key(ragione_sociale_azienda) references azienda(ragione_sociale)
-);
-
-create table richiesta_tirocinio(
-id							integer			not null		auto_increment,
-studente_email				varchar(50)		not null,
-registro_id					integer			not null,
-ragione_sociale_azienda		varchar(50)		not null,
-progetto_formativo			varchar(300)	not null,
-data_richiesta				date			not null,
-
-primary key(id),
-foreign key(studente_email) references studente(email),
-foreign key(registro_id) references registro_tirocinio(identificativo)
-);
-
-create table stato_richiesta(
-data_stato			date			not null,
-tipo				enum('nuova','in validazione','in convalida','accettata','rifiutata')		not null,
-richiesta_id		integer			not null,
-
-primary key(data_stato, tipo, richiesta_id),
-foreign key(richiesta_id) references richiesta_tirocinio(id)
-);
-
 INSERT INTO `utente` VALUES ('a.bianchi@studenti.unisa.it','1000:fef35ff36a2e9e82a5771ae91dd87c81:9363e2c740ced58f7225b3ec67b080602bd43f8220d58a201e468a0d4974b6ef757bea14333b6dcb89bb004a2b10ba524e7ca26bed8bc1c6a06f0a886ac2e81e','Andrea','Bianchi','3654351265','via Como 36','1993-03-23',''),
 								('a.demichele@studenti.unisa.it','1000:bd4815ec87b1bfeba4a38a9a3491f71c:68b26492fe4c0cb028c18f6a46e17d105c7e7744460ee40b8bfc38b4c38e060dd51452bb669c22e0338af3417a832f5cca506274a4a4b5480b495b3fde80b184','Antonio','DeMichele','3425272212','via Milano 23','1993-05-11',''),
                                 ('a.gatti@studenti.unisa.it','1000:f676d2cef44e53c3b80438b646b10fb2:9eeacf40700f93a4082a48eb3f42dd1f85f3d5cae1087c02b41a10f7e7ee4cd37c9fbb7368f81c2696b0f1798640d46a2e8e6948d1cc49408bae0f770772db26','Andrea','Gatti','3442365723','via Avellino 7','1997-12-04',''),
@@ -203,6 +205,7 @@ INSERT INTO `utente` VALUES ('a.bianchi@studenti.unisa.it','1000:fef35ff36a2e9e8
                                 ('valeriorossi@gmail.com','1000:0a007cd4e971ff429478a2fa33cd5563:3a3d2e019dc9713e052d86130d489c4e5159329e46748b5a09871d3300289c215db66013811f70039a2a69895e9c5647d722119e2905e2d0d00e5ba7392d9885','Valerio','Rossi','3227712344','via Mecenate 2','1970-04-03',''),
                                 ('valfieri@unisa.it','1000:7cef1ae662e5f57132fdfd6381782849:9834ea91734cb36a2e414a3538b15fe6764949ccc05187ae113c2369734aad6760bc6406ade35a3f631ed831c15d59692259a1c44d9cfb88613e55a95eb2d5f1','Vittorio','Alfieri','3108921121','via Fisciano 33','1962-05-22',''),
                                 ('vnovo@gmail.com','1000:311535042209398ac9b1e581f0751d78:8bd37f48facd1f038d148dc18ca417546877925ad13a75a4a1d670786840471c2de449767d8064e7b721190ad70322f5e359dc4cde991c1247a50a49166e3184','Valentino','Novo','3267855842','via Dei Tribunali 66','1974-08-11','');
+
 INSERT INTO `studente` VALUES ('a.bianchi@studenti.unisa.it','0512104125','Andrea Bianchi, studente presso unisa\r'),
 								('a.demichele@studenti.unisa.it','0512104852','Antonio DeMichele, studente al terzo anno di informatica\r'),
                                 ('a.gatti@studenti.unisa.it','0512104179','Andrea Gatti\r'),
@@ -218,26 +221,55 @@ INSERT INTO `studente` VALUES ('a.bianchi@studenti.unisa.it','0512104125','Andre
                                 ('m.mancini@studenti.unisa.it','0512105777','Marco Mancini, studente al terzo anno di informatica\r'),
                                 ('m.rossi@studenti.unisa.it','0512104856','Mario Rossi, studente presso unisa\r'),
                                 ('t.ferrari@studenti.unisa.it','0512105147','Tiziano Ferrari, studente di informatica presso unisa\r');
+
 INSERT INTO `segreteria` VALUES ('aderosa.di@unisa.it'),
 								('rgiordano.di@unisa.it');
+
 INSERT INTO `presidente` VALUES ('adesantis@unisa.it'),
 								('fferrucci@unisa.it');
+
 INSERT INTO `tutor_universitario` VALUES ('aavella@unisa.it'),
 											('luchini@unisa.it'),
 											('mpoletto@unisa.it'),
                                             ('valfieri@unisa.it');
+
 INSERT INTO `azienda` VALUES ('Agic Technology','','via Emanuele Gianturco 108, Napoli(NA)','via di Castel Giubileo 62, Roma (RM)\r'),
 								('Allinit','','via del Parco Donica 12, Fisciano (SA)','via del Parco Donica 12, Fisciano (SA)'),
                                 ('ITD Solutions','','via Galileo Galilei 7, Milano (MI)','via della Maglianella 65, Roma (RM)\r'),
                                 ('Sautech','','via Corso Umberto I 158, SA','via Corso Umberto I 158, Cava de\' Tirreni (SA)\r');
+
 INSERT INTO `tutor_aziendale` VALUES ('valeriorossi@gmail.com','Agic Technology'),
 										('antoniobianchi@gmail.com','Allinit'),
 										('vnovo@gmail.com','ITD Solutions'),
                                         ('mariopellegrini@gmail.com','Sautech');
-INSERT INTO `registro_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','2012-11-05','valeriorossi@gmail.com','valfieri@unisa.it'),
-										(2,'a.bianchi@studenti.unisa.it','2014-10-10','mariopellegrini@gmail.com','mpoletto@unisa.it'),
-                                        (3,'f.colombo19@studenti.unisa.it','2017-10-10','vnovo@gmail.com','aavella@unisa.it'),
-                                        (4,'a.demichele@studenti.unisa.it','2018-11-10','vnovo@gmail.com','luchini@unisa.it');
+
+INSERT INTO `richiesta_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','Agic Technology','','2012-11-05'),
+											(2,'a.bianchi@studenti.unisa.it','Sautech','','2014-10-10'),
+                                            (3,'f.colombo19@studenti.unisa.it','ITD Solutions','','2017-10-10'),
+                                            (4,'a.demichele@studenti.unisa.it','ITD Solutions','','2018-11-10');
+
+INSERT INTO `stato_richiesta` VALUES ('2012-11-05','nuova',1),
+										('2012-11-06','in validazione',1),
+                                        ('2012-11-06','in convalida',1),
+                                        ('2012-11-07','accettata',1),
+                                        ('2014-10-10','nuova',2),
+                                        ('2014-10-11','in validazione',2),
+                                        ('2014-10-11','in convalida',2),
+                                        ('2014-10-12','accettata',2),
+                                        ('2017-10-10','nuova',3),
+                                        ('2017-10-10','in validazione',3),
+                                        ('2017-10-11','in convalida',3),
+                                        ('2017-10-11','accettata',3),
+                                        ('2018-11-10','nuova',4),
+                                        ('2018-11-10','in validazione',4),
+                                        ('2018-11-11','in convalida',4),
+                                        ('2018-11-11','accettata',4);
+                                        
+INSERT INTO `registro_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','2012-11-05','valeriorossi@gmail.com','valfieri@unisa.it',1),
+										(2,'a.bianchi@studenti.unisa.it','2014-10-10','mariopellegrini@gmail.com','mpoletto@unisa.it',2),
+                                        (3,'f.colombo19@studenti.unisa.it','2017-10-10','vnovo@gmail.com','aavella@unisa.it',3),
+                                        (4,'a.demichele@studenti.unisa.it','2018-11-10','vnovo@gmail.com','luchini@unisa.it',4);
+                                        
 INSERT INTO `stato_tirocinio` VALUES ('2012-11-05','in corso',1),
 										('2013-02-27','terminato',1),
                                         ('2014-10-10','in corso',2),
@@ -245,14 +277,17 @@ INSERT INTO `stato_tirocinio` VALUES ('2012-11-05','in corso',1),
                                         ('2017-10-10','in corso',3),
                                         ('2018-01-10','terminato',3),
                                         ('2018-11-10','in corso',4);
+
 INSERT INTO `questionario_valutativo_studente` VALUES (1,'3','5','4','3','5','3','2','4','2','3','4'),
 														(2,null,null,null,null,null,null,null,null,null,null,null),
                                                         (3,'5','4','3','4','3','2','4','5','3','4','4'),
                                                         (4,null,null,null,null,null,null,null,null,null,null,null);
+
 INSERT INTO `questionario_valutativo_ente_ospitante` VALUES (1,'4','3','5','2','4','4','5','3','4','2','4','3','4'),
 																(2,null,null,null,null,null,null,null,null,null,null,null,null,null),
                                                                 (3,'5','3','4','4','3','3','5','3','4','3','4','2','4'),
                                                                 (4,null,null,null,null,null,null,null,null,null,null,null,null,null);
+
 INSERT INTO `report` VALUES (1,'2012-11-10','','valeriorossi@gmail.com'),
 							(1,'2013-02-06','','valeriorossi@gmail.com'),
                             (1,'2013-02-21','','valeriorossi@gmail.com'),
@@ -262,6 +297,7 @@ INSERT INTO `report` VALUES (1,'2012-11-10','','valeriorossi@gmail.com'),
                             (3,'2017-10-12','','vnovo@gmail.com'),
                             (3,'2017-12-04','','vnovo@gmail.com'),
                             (3,'2018-01-08','','vnovo@gmail.com');
+
 INSERT INTO `stato_report` VALUES ('2012-11-10','compilato',1,'2012-11-10'),
 									('2012-11-11','validato',1,'2012-11-10'),
                                     ('2013-02-06','compilato',1,'2013-02-06'),
@@ -279,23 +315,3 @@ INSERT INTO `stato_report` VALUES ('2012-11-10','compilato',1,'2012-11-10'),
                                     ('2017-12-05','validato',3,'2017-12-04'),
                                     ('2018-01-08','compilato',3,'2018-01-08'),
                                     ('2018-01-09','validato',3,'2018-01-08');
-INSERT INTO `richiesta_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it',1,'Agic Technology','','2012-11-05'),
-											(2,'a.bianchi@studenti.unisa.it',2,'Sautech','','2014-10-10'),
-                                            (3,'f.colombo19@studenti.unisa.it',3,'ITD Solutions','','2017-10-10'),
-                                            (4,'a.demichele@studenti.unisa.it',4,'ITD Solutions','','2018-11-10');
-INSERT INTO `stato_richiesta` VALUES ('2012-11-05','nuova',1),
-										('2012-11-06','in validazione',1),
-                                        ('2012-11-06','in convalida',1),
-                                        ('2012-11-07','accettata',1),
-                                        ('2014-10-10','nuova',2),
-                                        ('2014-10-11','in validazione',2),
-                                        ('2014-10-11','in convalida',2),
-                                        ('2014-10-12','accettata',2),
-                                        ('2017-10-10','nuova',3),
-                                        ('2017-10-10','in validazione',3),
-                                        ('2017-10-11','in convalida',3),
-                                        ('2017-10-11','accettata',3),
-                                        ('2018-11-10','nuova',4),
-                                        ('2018-11-10','in validazione',4),
-                                        ('2018-11-11','in convalida',4),
-                                        ('2018-11-11','accettata',4);
