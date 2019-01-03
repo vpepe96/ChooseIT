@@ -45,86 +45,48 @@
 		<link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png">
 
 	</head>
-	
-	<!--
 
-	TABLE OF CONTENTS.
-	
-	Use search to find needed section.
-	
-	===================================================================
-	
-	|  01. #CSS Links                |  all CSS links and file paths  |
-	|  02. #FAVICONS                 |  Favicon links and file paths  |
-	|  03. #GOOGLE FONT              |  Google font link              |
-	|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
-	|  05. #BODY                     |  body tag                      |
-	|  06. #HEADER                   |  header tag                    |
-	|  07. #PROJECTS                 |  project lists                 |
-	|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
-	|  09. #MOBILE                   |  mobile view dropdown          |
-	|  10. #SEARCH                   |  search field                  |
-	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #RIGHT PANEL              |  right panel userlist          |
-	|  13. #MAIN PANEL               |  main panel                    |
-	|  14. #MAIN CONTENT             |  content holder                |
-	|  15. #PAGE FOOTER              |  page footer                   |
-	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  17. #PLUGINS                  |  all scripts and plugins       |
-	
-	===================================================================
-	
-	-->
-	
-	<!-- #BODY -->
-	<!-- Possible Classes
-
-		* 'smart-style-{SKIN#}'
-		* 'smart-rtl'         - Switch theme mode to RTL
-		* 'menu-on-top'       - Switch to top navigation (no DOM change required)
-		* 'no-menu'			  - Hides the menu completely
-		* 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
-		* 'fixed-header'      - Fixes the header
-		* 'fixed-navigation'  - Fixes the main menu
-		* 'fixed-ribbon'      - Fixes breadcrumb
-		* 'fixed-page-footer' - Fixes footer
-		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
-	-->
-	
 	<body>
 
 		<%@
 			include file = "navbar.jsp"
 		%>
-		
+			
 		<%
-			UtenteBean profilo= (UtenteBean) session.getAttribute("utente");
-			String matricola="";
-			String descrizione="";
+			UtenteBean profilo = (UtenteBean) session.getAttribute("utente");
+			String matricola = "";
+			String descrizione = "";
 			if(ruolo.equals("studente")){
-				StudenteBean stud= (StudenteBean) session.getAttribute("utente");
+				StudenteBean stud = (StudenteBean) session.getAttribute("utente");
 				//Me li prendo così in quanto sono gli unici valori che lo studente possiede in più rispetto a un normale Utente
-				descrizione=stud.getDescrizione();
-				matricola=stud.getMatricola();
+				descrizione = stud.getDescrizione();
+				matricola = stud.getMatricola();
 			}
 		%>
 
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
 
-			
+			<!-- RIBBON -->
+			<div id="ribbon">
+
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li>Home</li><li>Profilo</li>
+				</ol>
+				<!-- end breadcrumb -->
+
+			</div>
+			<!-- END RIBBON -->
+
 			<!-- MAIN CONTENT -->
 			<div id="content">
-
-				<!-- Bread crumb is created dynamically -->
-				
 				
 				<!-- row -->
 				
 				<div class="row">
 				
 					<div class="col-sm-12">
-				
 				
 							<div class="well well-sm">
 				
@@ -136,7 +98,14 @@
 											<div class="row">
 				
 												<div class="col-sm-12">
-													
+													<div id="myCarousel" class="carousel fade profile-carousel">
+														<div class="carousel-inner">
+															<!-- Slide 1 -->
+															<div class="">
+																<img src="img/demo/s1.jpg" alt="demo user">
+															</div>
+														</div>
+													</div>
 												</div>
 				
 												<div class="col-sm-12">
@@ -144,72 +113,41 @@
 													<div class="row">
 				
 														<div class="col-sm-3 profile-pic">
-														
-															<% System.out.println("Tentativo: "+profilo.getFotoProfilo()); %>
-															<img src=<%= profilo.getFotoProfilo() %>  alt="Immagine profilo">
-
+															<img src="img/avatars/sunny-big.png" alt="demo user">
 														</div>
-														
-														
-														
-														
-														
 														<div class="col-sm-6">
-															<h1><%=profilo.getNome() %> <%=profilo.getCognome() %> </h1>
+															<h1><%=profilo.getNome() %> <span class="semi-bold"><%=profilo.getCognome() %></span><br></h1>
 				
 															<ul class="list-unstyled">
-																<%if(ruolo=="studente"){ %>
 																<li>
-																	<p> Matricola: </p>
-																	<p class="text-muted"> <%=matricola %> </p>
-																</li>
-															
-																<%} %>
-															
-															
-																<li>
-																	<p> Telefono: </p>
-																	<p class="text-muted"> <%=profilo.getTelefono() %> </p>
+																	<p class="text-muted">
+																		<i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=profilo.getTelefono() %></span>
+																	</p>
 																</li>
 																<li>
-																	<p>E-mail:</p>
-																	<p class="text-muted"> <a href=<%="mailto:"+profilo.getEmail() %>><%=profilo.getEmail() %></a></p>
-																</li>
-																<br>
-																
-																<li>
-																	<p>Data di nscita:</p>
-																	<p class="text-muted"> <%=profilo.getDataNascita().toString() %></a></p>
+																	<p class="text-muted">
+																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=profilo.getEmail() %></span>
+																	</p>
 																</li>
 																<li>
-																	<p>Indirizzo:</p>
-																	<p class="text-muted"> <%=profilo.getIndirizzo() %></a></p>
+																	<p class="text-muted">
+																		<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=profilo.getIndirizzo() %></span>
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-calendar"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=profilo.getDataNascita() %></span>
+																	</p>
 																</li>
 																<br>
-																<%if(ruolo=="studente"){ %>
 																<li>
-																	<p> Descrizione: </p>
-																	<p class="text-muted"> <%=descrizione %> </p>
+																	<button class="button" style="vertical-align:middle" onclick="displayForm()"><span>Modifica Profilo</span></button>
 																</li>
-															
-																<%} %>
-																
 															</ul>
-															
-															<br>
-															<button class="button" style="vertical-align:middle" onclick="displayForm()"><span>Modifica Profilo</span></button>
-															<br>
 															<br>
 				
 														</div>
-														
-													</div>
-				
-												</div>
-				
-											</div>
-				
-											
+														<div class="col-sm-3">
 															
 														</div>
 				
@@ -218,7 +156,25 @@
 												</div>
 				
 											</div>
-											<!-- end row -->
+				
+										</div>
+				
+								</div>
+				
+							</div>
+			
+					</div>
+				
+				</div>
+				
+				<!-- end row -->
+
+			</div>
+			<!-- END MAIN CONTENT -->
+
+		</div>
+		<!-- END MAIN PANEL -->
+
 											<%String ModificaProfiloUrl=response.encodeURL("ModificaProfiloServlet"); %>
 												<form style="display:none" id="form_modifica_profilo" name="form_modifica_profilo" method="post" action="<%=ModificaProfiloUrl%>"  class="smart-form client-form" enctype="multipart/form-data" >
 													
@@ -273,12 +229,10 @@
 					
 
 		<!-- PAGE FOOTER -->
-		<div class="page-footer">
-			<%@ include file = "footer.jsp" %>
-		</div>
+			<%@
+				include file = "footer.jsp"
+			%>
 		<!-- END PAGE FOOTER -->
-
-		
 
 		<!--================================================== -->
 
@@ -288,15 +242,12 @@
 		}
 		
 		</script>
+
 		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
 
-		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-		
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
 		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
-
-		
 
 		<!-- CUSTOM NOTIFICATION -->
 		<script src="js/notification/SmartNotification.min.js"></script>
@@ -328,16 +279,6 @@
 		<!-- FastClick: For mobile devices -->
 		<script src="js/plugin/fastclick/fastclick.min.js"></script>
 
-		<!--[if IE 8]>
-
-		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
-
-		<![endif]-->
-
-		
-
-		
-
 		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
 		<!-- Voice command : plugin -->
 		<script src="js/speech/voicecommand.min.js"></script>
@@ -360,9 +301,6 @@
 		})
 
 		</script>
-
 		
-
 	</body>
-
 </html>

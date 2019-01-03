@@ -56,6 +56,17 @@
 		
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
+		
+			<!-- RIBBON -->
+			<div id="ribbon">
+				
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li>Home</li><li>Lista aziende</li>
+				</ol>
+
+			</div>
+			<!-- END RIBBON -->
 
 			<!-- MAIN CONTENT -->
 			<div id="content">

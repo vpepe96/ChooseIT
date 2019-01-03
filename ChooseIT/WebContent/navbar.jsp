@@ -73,7 +73,6 @@
 							<%=utente.getNome() %> <%=utente.getCognome() %>
 						</span>
 					</a> 
-					
 				</span>
 			</div>
 			<!-- end user info -->
@@ -84,7 +83,9 @@
 			(the reference to the nav > ul) after page load. Or the navigation
 			will not initialize.
 			-->
+			
 			<nav>
+			
 				<!-- 
 				NOTE: Notice the gaps after each icon usage <i></i>..
 				Please note that these links work a bit different than
@@ -93,45 +94,63 @@
 				<% 
 					if(ruolo.equals("segreteria")) {
 				%>
+				
 				<ul>
-					<li class="">
-						<a href="ListaAziende.jsp" title="blank_"><span class="menu-item-parent">Lista aziende</span></a>
+					<li class="active open">
+						<a href="index.jsp" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-user"></i> <span class="menu-item-parent">Lista aziende</span></a>
 					</li>
-					<li class="">
-						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista richieste</span></a>
+					<li class="top-menu-invisible">
+						<a href="Registrazione.jsp"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>
 					</li>
 				</ul>
+				
 				<%
 					} else if(ruolo.equals("studente")) {
+						String urlListaAziende = response.encodeUrl("ListaAziende.jsp");
+						String urlListaRichieste = response.encodeUrl("#");
+						String urlRegistroTirocinio = response.encodeUrl("#");
+						String urlQuestionarioValutativo = response.encodeUrl("#");
 				%>
+				
 				<ul>
-					<li class="">
-						<a href="ListaAziende.jsp" title="blank_"><span class="menu-item-parent">Lista aziende</span></a>
+					<li class="top-menu-invisible">
+						<a href="<%=urlListaAziende %>" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-industry"></i> <span class="menu-item-parent">Lista aziende</span></a>
 					</li>
-					<li class="">
-						<a href="index.html" title="blank_"><span class="menu-item-parent">Registro tirocinio</span></a>
+					<li class="top-menu-invisible">
+						<a href="#"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>
 					</li>
-					
+					<li class="top-menu-invisible">
+						<a href="#"><i class="fa fa-lg fa-fw fa fa-folder-open-o"></i> <span class="menu-item-parent">Registro di tirocinio</span></a>
+					</li>
+					<li class="top-menu-invisible">
+						<a href="#"><i class="fa fa-lg fa-fw fa fa-pencil-square-o"></i> <span class="menu-item-parent">Questionario valutativo</span></a>
+					</li>
 				</ul>
+				
 				<%
 					} else if(ruolo.equals("presidente")) {
 				%>
+				
 				<ul>
 					<li class="">
 						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista richieste</span></a>
 					</li>
 				</ul>
+				
 				<%
 					} else if(ruolo.equals("tutor_universitario")) {
 				%>
+				
 				<ul>
 					<li class="">
 						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista tirocini</span></a>
 					</li>
 				</ul>
+				
 				<%
 					} else if(ruolo.equals("tutor_aziendale")) {
 				%>
+				
 				<ul>
 					<li class="">
 						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista tirocini</span></a>
@@ -140,9 +159,11 @@
 						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista questionari</span></a>
 					</li>
 				</ul>
+				
 				<%
 					}
 				%>
+				
 			</nav>
 
 			<span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
