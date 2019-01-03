@@ -79,10 +79,14 @@ studente_email				varchar(50)		not null,
 ragione_sociale_azienda		varchar(50)		not null,
 progetto_formativo			varchar(300)	not null,
 data_richiesta				date			not null,
+tutor_aziendale_email		varchar(50),
+tutor_universitario_email	varchar(50),
 
 primary key(id),
 foreign key(studente_email) references studente(email),
-foreign key(ragione_sociale_azienda) references azienda(ragione_sociale)
+foreign key(ragione_sociale_azienda) references azienda(ragione_sociale),
+foreign key(tutor_aziendale_email) references tutor_aziendale(email),
+foreign key(tutor_universitario_email) references tutor_universitario(email)
 );
 
 create table stato_richiesta(

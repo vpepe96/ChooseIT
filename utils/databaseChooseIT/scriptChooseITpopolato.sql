@@ -79,10 +79,14 @@ studente_email				varchar(50)		not null,
 ragione_sociale_azienda		varchar(50)		not null,
 progetto_formativo			varchar(300)	not null,
 data_richiesta				date			not null,
+tutor_aziendale_email		varchar(50),
+tutor_universitario_email	varchar(50),
 
 primary key(id),
 foreign key(studente_email) references studente(email),
-foreign key(ragione_sociale_azienda) references azienda(ragione_sociale)
+foreign key(ragione_sociale_azienda) references azienda(ragione_sociale),
+foreign key(tutor_aziendale_email) references tutor_aziendale(email),
+foreign key(tutor_universitario_email) references tutor_universitario(email)
 );
 
 create table stato_richiesta(
@@ -243,10 +247,10 @@ INSERT INTO `tutor_aziendale` VALUES ('valeriorossi@gmail.com','Agic Technology'
 										('vnovo@gmail.com','ITD Solutions'),
                                         ('mariopellegrini@gmail.com','Sautech');
 
-INSERT INTO `richiesta_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','Agic Technology','','2012-11-05'),
-											(2,'a.bianchi@studenti.unisa.it','Sautech','','2014-10-10'),
-                                            (3,'f.colombo19@studenti.unisa.it','ITD Solutions','','2017-10-10'),
-                                            (4,'a.demichele@studenti.unisa.it','ITD Solutions','','2018-11-10');
+INSERT INTO `richiesta_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','Agic Technology','','2012-11-05','valeriorossi@gmail.com','valfieri@unisa.it'),
+											(2,'a.bianchi@studenti.unisa.it','Sautech','','2014-10-10','mariopellegrini@gmail.com','mpoletto@unisa.it'),
+                                            (3,'f.colombo19@studenti.unisa.it','ITD Solutions','','2017-10-10','vnovo@gmail.com','aavella@unisa.it'),
+                                            (4,'a.demichele@studenti.unisa.it','ITD Solutions','','2018-11-10','vnovo@gmail.com','luchini@unisa.it');
 
 INSERT INTO `stato_richiesta` VALUES ('2012-11-05','nuova',1),
 										('2012-11-06','in validazione',1),
