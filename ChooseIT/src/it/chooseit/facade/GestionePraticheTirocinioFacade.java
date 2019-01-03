@@ -299,8 +299,8 @@ public class GestionePraticheTirocinioFacade {
 	 * @return valore vero o falso a seconda dell'esito dell'invio della richiesta
 	 */
 	public boolean inviaRichiestaTirocinio(RichiestaTirocinioBean richiesta, String email) {
-		RichiestaTirocinioDAO richiestaTirocinio = new RichiestaTirocinio();
-		StatoRichiestaDAO statoRichiesta = new StatoRichiesta();
+		RichiestaTirocinioDAO richiestaTirocinioDao = new RichiestaTirocinio();
+		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
 		StatoRichiestaBean statoRic = null;
 		StudenteDAO studenteDao = new Studente();
 		StudenteBean studente = null;
@@ -309,20 +309,9 @@ public class GestionePraticheTirocinioFacade {
 		ConvertEnum convert = new ConvertEnum();
 		int i = 0;
 		
-		StatoTirocinioDAO statoTirocinio = new StatoTirocinio();
-		RegistroTirocinioDAO registroTirocinio = new RegistroTirocinio();
-		StatoTirocinioBean statoReg = null;
-		TutorAziendaleDAO tutorAziendaleDao = new TutorAziendale();
-		TutorAziendaleBean tutorAziendale = null;
-		TutorUniversitarioDAO tutorUniversitarioDao = new TutorUniversitario();
-		TutorUniversitarioBean tutorUniversitario = null;
-		
-		//Recupero i dati dello studente e dei tutor 
+		//Recupero i dati dello studente 
 		try {
 			studente = studenteDao.retrieveByKey(email);
-			tutorAziendale = tutorAziendaleDao.retrieveByKey("valeriorossi@gmail.com");
-			tutorUniversitario = tutorUniversitarioDao.retrieveByKey("luchini@unisa.it");
-		
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 			System.out.println("Errore di riperimento dati dello studente");
@@ -335,7 +324,7 @@ public class GestionePraticheTirocinioFacade {
 		for(RichiestaTirocinioBean r: richiesteTir) {
 			try {
 				//Recupero l'ultimo stato aggiornato della richiesta di tirocinio r
-				statoRic = statoRichiesta.getStatoRichiesta(r);
+				statoRic = statoRichiestaDao.getStatoRichiesta(r);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("Errore di riperimento dati dello stato della richiesta di tirocinio");
@@ -350,16 +339,13 @@ public class GestionePraticheTirocinioFacade {
 			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("nuova"), richiesta);
 			try {
 				richiesta.setStudente(studenteDao.retrieveByKey(email));
-				richiesta.setRegistroTirocinio(new RegistroTirocinioBean(richiesta.getStudente(), tutorAziendale, tutorUniversitario, richiesta));
+				richiesta.setTutorAziendale(null);
+				richiesta.setTutorUniversitario(null);
+				richiesta.setRegistroTirocinio(null);
 				//Inserisco la richiesta di tirocinio
-				richiestaTirocinio.insert(richiesta);
+				richiestaTirocinioDao.insert(richiesta);
 				//Inserisco lo stato della richiesta di tirocinio
-				statoRichiesta.insert(statoRic);
-				//Inserisco il registro di tirocinio
-				registroTirocinio.insert(richiesta.getRegistroTirocinio());
-				//Inserisco lo stato del registro di tirocinio
-				statoReg = new StatoTirocinioBean(richiesta.getRegistroTirocinio(), dataStato, convert.convertStatoTirocinio("incorso"));
-				statoTirocinio.insert(statoReg);
+				statoRichiestaDao.insert(statoRic);				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("Errore d'inserimento della richiesta di tirocinio");
@@ -368,7 +354,7 @@ public class GestionePraticheTirocinioFacade {
 
 			//Aggiorno le dipendenze della richiesta di tirocinio
 			try {
-				richiesta.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiesta.getStatiRichiesta(richiesta));
+				richiesta.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiestaDao.getStatiRichiesta(richiesta));
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("Errore durante l'aggiornamento delle dipendenze della richiesta di tirocinio");
@@ -394,29 +380,25 @@ public class GestionePraticheTirocinioFacade {
 	public boolean valutazioneInizialeRichiestaTirocinio(RichiestaTirocinioBean richiesta, TutorAziendaleBean tutorAziendale, TutorUniversitarioBean tutorUniversitario, String scelta) {
 		RichiestaTirocinioDAO richiestaTirocinioDao = new RichiestaTirocinio();
 		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
-		RegistroTirocinioDAO registroTirocinioDao = new RegistroTirocinio();
-		StatoTirocinioDAO statoTirocinioDao = new StatoTirocinio();
 		StatoRichiestaBean statoRic = null;
-		StatoTirocinioBean statoReg = null;
 		Date dataStato = new Date(System.currentTimeMillis());
 		ConvertEnum convert = new ConvertEnum();
 		
-		//Aggiorno il registro di tirocinio associato alla richiesta
-		richiesta.setRegistroTirocinio(new RegistroTirocinioBean(richiesta.getStudente(), tutorAziendale, tutorUniversitario, richiesta));
+		//Setto il tutor aziendale e enuversitario in base a quelli selezionati
+		richiesta.setTutorAziendale(tutorAziendale);
+		richiesta.setTutorUniversitario(tutorUniversitario);
 		
-		//Se la richiesta di tirocinio passa da nuova a in validazione viene inserita con il relativo stato di nuova
-		//Se la richiesta di tirocinio passa da nuova a rifiutata viene inserita con il relativo stato a rifiutata
-		if(scelta.equalsIgnoreCase("inValidazione")) {
-			richiesta.setRegistroTirocinio(new RegistroTirocinioBean(richiesta.getStudente(), tutorAziendale, tutorUniversitario, richiesta));
-			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("invalidazione"), richiesta);
-						
+		//Se la richiesta di tirocinio passa da nuova a in validazione viene aggiornata, inserendo i relativi tutor associati, ed inserito il relativo stato di in validazione
+		//Se la richiesta di tirocinio passa da nuova a rifiutata viene inserito il relativo stato a rifiutata
+		if(scelta.equalsIgnoreCase("in validazione")) {
+			//Creo il nuovo stato, "in validazione", della richiesta di tirocinio 
+			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("in validazione"), richiesta);
+			
 			try {
-				//Inserisco la richiesta di tirocinio
-				richiestaTirocinioDao.insert(richiesta);
+				//Aggiorno la richiesta di tirocinio
+				richiestaTirocinioDao.update(richiesta);
 				//Inserisco lo stato della richiesta di tirocinio
 				statoRichiestaDao.insert(statoRic);
-				//Aggiorno il registro di tirocinio
-				registroTirocinioDao.update(richiesta.getRegistroTirocinio());
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 				System.out.println("Errore durante l'inserimento della richiesta di tirocinio e del relativo stato");
@@ -424,16 +406,14 @@ public class GestionePraticheTirocinioFacade {
 			}
 		}
 		else {
+			//Creo il nuovo stato, "rifiutata", della richiesta di tirocinio
 			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("rifiutata"), richiesta);
-			statoReg = new StatoTirocinioBean(richiesta.getRegistroTirocinio(), dataStato, convert.convertStatoTirocinio("annullato"));
 			
 			try {
-				statoRichiestaDao.insert(statoRic);
-				statoTirocinioDao.insert(statoReg);
-				//Aggiorno il registro di tirocinio
-				registroTirocinioDao.update(richiesta.getRegistroTirocinio());
-				//Inserisco un nuovo stato annullato per il tirocinio
-				statoTirocinioDao.insert(new StatoTirocinioBean(richiesta.getRegistroTirocinio(), dataStato, convert.convertStatoTirocinio("annullato")));
+				//Aggiorno la richiesta di tirocinio
+				richiestaTirocinioDao.update(richiesta);
+				//Inserisco lo stato della richiesta di tirocinio
+				statoRichiestaDao.insert(statoRic);				
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 				System.out.println("Errore durante l'inserimento della richiesta di tirocinio e del relativo stato");
@@ -444,9 +424,6 @@ public class GestionePraticheTirocinioFacade {
 		//Aggiorno le dipendenze della richiesta di tirocinio
 		try {
 			richiesta.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiestaDao.getStatiRichiesta(richiesta));
-			richiesta.getRegistroTirocinio().setStatiTirocinio((ArrayList<StatoTirocinioBean>) statoTirocinioDao.getStatiTirocinio(richiesta.getRegistroTirocinio()));
-			richiesta.getRegistroTirocinio().getTutorAziendale().setRegistriTirocinio((ArrayList<RegistroTirocinioBean>) registroTirocinioDao.getRegistriDiTutorAziendale(richiesta.getRegistroTirocinio().getTutorAziendale()));
-			richiesta.getRegistroTirocinio().getTutorUniversitario().setRegistriTirocinio((ArrayList<RegistroTirocinioBean>) registroTirocinioDao.getRegistriDiTutorUniversitario(richiesta.getRegistroTirocinio().getTutorUniversitario()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -463,16 +440,18 @@ public class GestionePraticheTirocinioFacade {
 	 */
 	public boolean valutazioneFinaleRichiestaTirocinio(RichiestaTirocinioBean richiesta, String scelta) {
 		StatoRichiestaDAO statoRichiesta = new StatoRichiesta();
-		StatoTirocinioDAO statoTirocinio = new StatoTirocinio();
-		RegistroTirocinioDAO registroTirocinio = new RegistroTirocinio();
 		StatoRichiestaBean statoRic = null;
-		StatoTirocinioBean statoReg = null;
 		Date dataStato = new Date(System.currentTimeMillis());
 		ConvertEnum convert = new ConvertEnum();
 		
-		if(scelta.equalsIgnoreCase("inConvalida")) {
-			StatoRichiestaBean stato = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("inconvalida"), richiesta);
+		//Se la richiesta di tirocinio passa da in validazione a in convalida viene inserito il relativo stato di in convalida
+		//Se la richiesta di tirocinio passa da in validazione a rifiutata viene inserito il relativo stato a rifiutata
+		if(scelta.equalsIgnoreCase("in convalida")) {
+			//Creo il nuovo stato, "in convalida", della richiesta di tirocinio
+			StatoRichiestaBean stato = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("in convalida"), richiesta);
+			
 			try {
+				//Inserisco lo stato della richiesta di tirocinio
 				statoRichiesta.insert(stato);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -480,11 +459,12 @@ public class GestionePraticheTirocinioFacade {
 			}
 		}
 		else {
+			//Creo il nuovo stato, "rifutata", della richiesta di tirocinio
 			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("rifiutata"), richiesta);
-			statoReg = new StatoTirocinioBean(richiesta.getRegistroTirocinio(), dataStato, convert.convertStatoTirocinio("annullato"));
+
 			try {
+				//Inserisco lo stato della richiesta di tirocinio
 				statoRichiesta.insert(statoRic);
-				statoTirocinio.insert(statoReg);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 				return false;
@@ -494,9 +474,6 @@ public class GestionePraticheTirocinioFacade {
 		//Aggiorno le dipendenze della richiesta di tirocinio
 		try {
 			richiesta.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiesta.getStatiRichiesta(richiesta));
-			richiesta.getRegistroTirocinio().setStatiTirocinio((ArrayList<StatoTirocinioBean>) statoTirocinio.getStatiTirocinio(richiesta.getRegistroTirocinio()));
-			richiesta.getRegistroTirocinio().getTutorAziendale().setRegistriTirocinio((ArrayList<RegistroTirocinioBean>) registroTirocinio.getRegistriDiTutorAziendale(richiesta.getRegistroTirocinio().getTutorAziendale()));
-			richiesta.getRegistroTirocinio().getTutorUniversitario().setRegistriTirocinio((ArrayList<RegistroTirocinioBean>) registroTirocinio.getRegistriDiTutorUniversitario(richiesta.getRegistroTirocinio().getTutorUniversitario()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -512,47 +489,85 @@ public class GestionePraticheTirocinioFacade {
 	 * @return un valore vero falso a seconda della riuscita della convalida della richiesta di tirocinio
 	 */
 	public boolean convalidaRichiestaTirocinio(RichiestaTirocinioBean richiesta, String scelta) {
-		StatoRichiestaDAO statoRichiesta = new StatoRichiesta();
-		StatoTirocinioDAO statoTirocinio = new StatoTirocinio();
-		RegistroTirocinioDAO registroTirocinio = new RegistroTirocinio();
-		StatoRichiestaBean statoRic = null;
-		StatoTirocinioBean statoReg = null;
+		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
+		StatoTirocinioDAO statoTirocinioDao = new StatoTirocinio();
+		RegistroTirocinioDAO registroTirocinioDao = new RegistroTirocinio();
+		StatoRichiestaBean statoRichiestaBean = null;
+		RegistroTirocinioBean registroTirocinioBean = null;
+		StatoTirocinioBean statoTirocinioBean = null;
+		ArrayList<StatoTirocinioBean> statiTirocinio = new ArrayList<StatoTirocinioBean>();
 		Date dataStato = new Date(System.currentTimeMillis());
 		ConvertEnum convert = new ConvertEnum();
 		
+		//Se la richiesta di tirocinio passa da in convalida ad accettata viene inserito il relativo stato di accettata e viene creato il registro di tirocinio con il relativo stato di in corso, relativo alla richiesta di tirocinio
+		//Se la richiesta di tirocinio passa da in convalida a rifiutata viene inserito il relativo stato a rifiutata
 		if(scelta.equalsIgnoreCase("accettata")) {
-			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("accettata"), richiesta);
-			statoReg = new StatoTirocinioBean(richiesta.getRegistroTirocinio(), dataStato, convert.convertStatoTirocinio("incorso"));
+			statoRichiestaBean = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("accettata"), richiesta);
+			statoTirocinioBean = new StatoTirocinioBean(richiesta.getRegistroTirocinio(), dataStato, convert.convertStatoTirocinio("incorso"));
+			statiTirocinio.add(statoTirocinioBean);
+			//Conto quanti registri di tirocinio ci sono
+			int numRegistri = getNumRegistri();
+			
 			try {
-				statoRichiesta.insert(statoRic);
-				statoTirocinio.insert(statoReg);
+				//inserisco il nuovo stato della richiesta
+				statoRichiestaDao.insert(statoRichiestaBean);
+				//Creo il registro di tirocinio
+				registroTirocinioBean = new RegistroTirocinioBean(++numRegistri, dataStato, richiesta.getStudente(), richiesta.getTutorAziendale(), richiesta.getTutorUniversitario(), richiesta, null, statiTirocinio, null, null);
+				//Setto il registro di tirocinio collegato alla richiesta
+				richiesta.setRegistroTirocinio(registroTirocinioBean);
+				//Inserisco il registro di tirocinio
+				registroTirocinioDao.insert(registroTirocinioBean);
+				//Inserisco lo stato del tirocinio
+				statoTirocinioDao.insert(statoTirocinioBean);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
+				System.out.println("Errore nella fase di convalida della richiesta: annullamento richiesta fallito");
 				return false;
 			}	
 		}
 		else {
-			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("rifiutata"), richiesta);
-			statoReg = new StatoTirocinioBean(richiesta.getRegistroTirocinio(), dataStato, convert.convertStatoTirocinio("annullato"));
+			//Creo lo stato della richiesta di tirocinio
+			statoRichiestaBean = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("rifiutata"), richiesta);
 			try {
-				statoRichiesta.insert(statoRic);
-				statoTirocinio.insert(statoReg);
+				//Inserisco lo stato della richiesta tirocinio
+				statoRichiestaDao.insert(statoRichiestaBean);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
+				System.out.println("Errore nella fase di convalida della richiesta: annullamento richiesta fallito");
 				return false;
 			}	
 		}
 		
 		try {
-			richiesta.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiesta.getStatiRichiesta(richiesta));
-			richiesta.getRegistroTirocinio().setStatiTirocinio((ArrayList<StatoTirocinioBean>) statoTirocinio.getStatiTirocinio(richiesta.getRegistroTirocinio()));
-			richiesta.getRegistroTirocinio().getTutorAziendale().setRegistriTirocinio((ArrayList<RegistroTirocinioBean>) registroTirocinio.getRegistriDiTutorAziendale(richiesta.getRegistroTirocinio().getTutorAziendale()));
-			richiesta.getRegistroTirocinio().getTutorUniversitario().setRegistriTirocinio((ArrayList<RegistroTirocinioBean>) registroTirocinio.getRegistriDiTutorUniversitario(richiesta.getRegistroTirocinio().getTutorUniversitario()));
+			richiesta.setStatiRichiesta((ArrayList<StatoRichiestaBean>) statoRichiestaDao.getStatiRichiesta(richiesta));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * Restituisce il numero di registri di tirocinio esistenti
+	 * 
+	 * @return numero registri tirocinio
+	 */
+	private int getNumRegistri() {
+		RegistroTirocinioDAO registroTirocinioDao = new RegistroTirocinio();
+		ArrayList<RegistroTirocinioBean> registriTirocinio = null;
+		int numRegistri = 0;
+		
+		try {
+			registriTirocinio = (ArrayList<RegistroTirocinioBean>) registroTirocinioDao.retrieveAll("identificativo");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Errore nel reperimento dei registri di tirocinio");
+		}
+		
+		for(RegistroTirocinioBean r: registriTirocinio)
+			numRegistri++;
+		
+		return numRegistri;
 	}
 	
 }
