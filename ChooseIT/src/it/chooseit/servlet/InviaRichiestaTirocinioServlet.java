@@ -76,7 +76,7 @@ public class InviaRichiestaTirocinioServlet extends HttpServlet{
 		
 		// 3) CREA IL BEAN RICHIESTA DI TIROCINIO
 		RichiestaTirocinioBean richiestaBean = new RichiestaTirocinioBean();
-		richiestaBean.setStudenteEmail(studenteBean);
+		richiestaBean.setStudente(studenteBean);
 		richiestaBean.setAzienda(aziendaBean);
 		richiestaBean.setDataRichiesta(dataRichiesta);
 		

@@ -55,6 +55,16 @@ public class RichiestaTirocinioBean implements Serializable{
 	private RegistroTirocinioBean registroTirocinio;
 	
 	/**
+	 * Rappresenta il tutor aziendale associato alla richiesta di tirocinio
+	 */
+	private TutorAziendaleBean tutorAziendale;
+	
+	/**
+	 * Rappresenta il tutor universitario associato alla richiesta di tirocinio
+	 */
+	private TutorUniversitarioBean tutorUniversitario;
+	
+	/**
 	 * Rappresenta la lista di stati che assume la richiesta di tirocinio
 	 */
 	private ArrayList<StatoRichiestaBean> statiRichiesta;
@@ -70,13 +80,15 @@ public class RichiestaTirocinioBean implements Serializable{
 	 * @param registroTirocinio registro di tirocinio associato
 	 * @param statiRichiesta lista dei stati della richiesta di tirocinio 
 	 */
-	public RichiestaTirocinioBean(int id, StudenteBean studente, Date dataRichiesta, AziendaBean azienda, String progettoFormativo, RegistroTirocinioBean registroTirocinio, ArrayList<StatoRichiestaBean> statiRichiesta) {
+	public RichiestaTirocinioBean(int id, StudenteBean studente, Date dataRichiesta, AziendaBean azienda, String progettoFormativo, RegistroTirocinioBean registroTirocinio, TutorAziendaleBean tutorAziendale, TutorUniversitarioBean tutorUniversitario, ArrayList<StatoRichiestaBean> statiRichiesta) {
 		this.id = id;
 		this.studente = studente;
 		this.dataRichiesta = dataRichiesta;
 		this.azienda = azienda;
 		this.progettoFormativo = progettoFormativo;
 		this.registroTirocinio = registroTirocinio;
+		this.tutorAziendale = tutorAziendale;
+		this.tutorUniversitario = tutorUniversitario;
 		this.statiRichiesta = statiRichiesta;
 	}
 
@@ -126,7 +138,7 @@ public class RichiestaTirocinioBean implements Serializable{
 	 * Pre: studente != null
 	 * @param studente nuovo studente che effettua la richiesta di tirocinio
 	 */
-	public void setStudenteEmail(StudenteBean studente) {
+	public void setStudente(StudenteBean studente) {
 		this.studente = studente;
 	}
 
@@ -206,6 +218,42 @@ public class RichiestaTirocinioBean implements Serializable{
 		this.registroTirocinio = registroTirocinio;
 	}
 	
+	/**
+	 * Restituisce il tutor aziendale associato alla richiesta di tirocinio
+	 * 
+	 * @return tutor aziendale associato
+	 */
+	public TutorAziendaleBean getTutorAziendale() {
+		return tutorAziendale;
+	}
+
+	/**
+	 * Setta un nuovo tutor aziendale associato per la richiesta di tirocinio
+	 * 
+	 * @param tutorAziendale nuovo tutor aziendale
+	 */
+	public void setTutorAziendale(TutorAziendaleBean tutorAziendale) {
+		this.tutorAziendale = tutorAziendale;
+	}
+
+	/**
+	 * Restituisce il tutor universitario associato alla richiesta di tirocinio
+	 * 
+	 * @return tutor universitario associato
+	 */
+	public TutorUniversitarioBean getTutorUniversitario() {
+		return tutorUniversitario;
+	}
+
+	/**
+	 * Setta un nuovo tutor universitario associato per la richiesta di tirocinio
+	 * 
+	 * @param tutorUniversitario nuovo tutor universitario
+	 */
+	public void setTutorUniversitario(TutorUniversitarioBean tutorUniversitario) {
+		this.tutorUniversitario = tutorUniversitario;
+	}
+
 	/**
 	 * Restituisce la lista degli stati della richiesta di tirocinio
 	 * 

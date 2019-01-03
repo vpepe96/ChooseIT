@@ -349,7 +349,7 @@ public class GestionePraticheTirocinioFacade {
 			//Creo un nuovo stato per la richiesta effettuata impostandolo a "nuova"
 			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("nuova"), richiesta);
 			try {
-				richiesta.setStudenteEmail(studenteDao.retrieveByKey(email));
+				richiesta.setStudente(studenteDao.retrieveByKey(email));
 				richiesta.setRegistroTirocinio(new RegistroTirocinioBean(richiesta.getStudente(), tutorAziendale, tutorUniversitario, richiesta));
 				//Inserisco la richiesta di tirocinio
 				richiestaTirocinio.insert(richiesta);

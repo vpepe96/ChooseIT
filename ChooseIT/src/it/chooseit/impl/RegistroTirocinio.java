@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import it.chooseit.bean.RegistroTirocinioBean;
+import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.dao.RegistroTirocinioDAO;
+import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.dao.StudenteDAO;
 import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.dao.TutorUniversitarioDAO;
@@ -62,8 +64,10 @@ public class RegistroTirocinio implements RegistroTirocinioDAO {
 				TutorAziendaleBean tutorAziendale = tutorAziDao.retrieveByKey(rs.getString("tutor_aziendale_email"));
 				registro.setTutorAziendale(tutorAziendale);
 				
-				// settare con RichiestaTirocinioDAO.retrieveByKey(registro.getIdentificativo())
-				registro.setRichiestaTirocinio(null);
+				// Cerca i dati della richiesta di tirocinio
+				RichiestaTirocinioDAO ricTiDao = new RichiestaTirocinio();
+				RichiestaTirocinioBean richiestaTirocinio = ricTiDao.retrieveByKey(rs.getInt("richiesta_id"));
+				registro.setRichiestaTirocinio(richiestaTirocinio);
 				
 				// settare con ReportDAO.getReportRegistro(RegistroTirocinioBean bean) 
 				registro.setReports(null);
@@ -141,7 +145,7 @@ public class RegistroTirocinio implements RegistroTirocinioDAO {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "insert into registro_tirocinio (studente_email, data_inizio, tutor_aziendale_email, tutor_universitario_email) values (?, ?, ?, ?);";
+			String sql = "insert into registro_tirocinio (studente_email, data_inizio, tutor_aziendale_email, tutor_universitario_email, richiesta_id) values (?, ?, ?, ?, ?);";
 
 			preparedStatement = connection.prepareStatement(sql);
 
@@ -149,6 +153,7 @@ public class RegistroTirocinio implements RegistroTirocinioDAO {
 			preparedStatement.setDate(2, object.getDataInizio());
 			preparedStatement.setString(3, object.getTutorAziendale().getEmail());
 			preparedStatement.setString(4, object.getTutorUniversitario().getEmail());
+			preparedStatement.setInt(5, object.getRichiestaTirocinio().getId());
 
 			preparedStatement.executeUpdate();
 
@@ -170,13 +175,14 @@ public class RegistroTirocinio implements RegistroTirocinioDAO {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "update registro_tirocinio set tutor_aziendale_email = ?, tutor_universitario_email = ?  where identificativo = ?;";
+			String sql = "update registro_tirocinio set tutor_aziendale_email = ?, tutor_universitario_email = ?, richiesta_id = ?  where identificativo = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
 
 			preparedStatement.setString(1, object.getTutorAziendale().getEmail());
 			preparedStatement.setString(2, object.getTutorUniversitario().getEmail());
-			preparedStatement.setInt(3, object.getIdentificativo());
+			preparedStatement.setInt(3, object.getRichiestaTirocinio().getId());
+			preparedStatement.setInt(4, object.getIdentificativo());
 
 			preparedStatement.executeUpdate();
 
