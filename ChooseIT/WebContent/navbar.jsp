@@ -106,8 +106,8 @@
 				
 				<%
 					} else if(ruolo.equals("studente")) {
-						String urlListaAziende = response.encodeURL("ListaAziende.jsp");
-						String urlListaRichieste = response.encodeURL("#");
+						String urlListaAziende = response.encodeURL("ListaAziendeServlet.java");
+						String urlListaRichiesteTirocinio = response.encodeURL("ListaRichiesteTirocinioServlet.java");
 						String urlRegistroTirocinio = response.encodeURL("#");
 						String urlQuestionarioValutativo = response.encodeURL("#");
 				%>
@@ -117,7 +117,7 @@
 						<a href="<%=urlListaAziende %>" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-industry"></i> <span class="menu-item-parent">Lista aziende</span></a>
 					</li>
 					<li class="top-menu-invisible">
-						<a href="#"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>
+						<a href="<%=urlListaRichiesteTirocinio %>" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>
 					</li>
 					<li class="top-menu-invisible">
 						<a href="#"><i class="fa fa-lg fa-fw fa fa-folder-open-o"></i> <span class="menu-item-parent">Registro di tirocinio</span></a>
