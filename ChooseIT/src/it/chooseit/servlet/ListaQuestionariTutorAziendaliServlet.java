@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.chooseit.bean.QuestionarioStudenteBean;
+import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.UtenteBean;
 import it.chooseit.facade.GestioneReportFacade;
@@ -34,32 +35,23 @@ public class ListaQuestionariTutorAziendaliServlet extends HttpServlet {
 	 *      response)
 	 * 
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/* dalla sessione ricaviamo il tutor aziendale */
-		UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
-		String ruolo = (String) request.getSession().getAttribute("ruolo");
-		
-		if(ruolo.equals("tutorAziendale")) {
-			
-			TutorAziendaleBean tutor = (TutorAziendaleBean) utente;
-			
-			/* uso della GestioneReportFacade */
-			GestioneReportFacade report = new GestioneReportFacade();
-			/* utilizzo del metodo RecuperaQuestionariPer */
-			ArrayList<QuestionarioStudenteBean> questionari = (ArrayList<QuestionarioStudenteBean>) report.recuperaQuestionarioStudente(tutor);
-			
-			request.getSession().setAttribute("questionari", questionari);
-			
-			String url=response.encodeURL("/ListaQuestionari.jsp");
+
+		String id = request.getParameter("registroId");
+		if (id != null) {
+			int reg_id = Integer.parseInt(id);
+			TutorAziendaleBean tutor = (TutorAziendaleBean) request.getSession().getAttribute("utente");
+			RegistroTirocinioBean reg = tutor.getRegistroTirocinio(reg_id);
+			request.getSession().setAttribute("registroTirocinio", reg);
+
+			String url = response.encodeURL("/Questionari.jsp");
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
-		}else {
-			String url=response.encodeURL("/AreaPersonale.jsp");
+		} else {
+			String url = response.encodeURL("/ListaQuestionariTutorAziendale.jsp");
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 		}
-		
-		
 	}
 }

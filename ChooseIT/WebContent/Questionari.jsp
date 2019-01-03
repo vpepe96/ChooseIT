@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>Questionario</title>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="navbar.jsp" />
 
 	<%
 		String ruolo = (String) request.getSession().getAttribute("ruolo");
@@ -22,7 +22,8 @@
 			<!-- breadcrumb -->
 			<ol class="breadcrumb">
 				<li>Home</li>
-				<li>Registrazione</li>
+				<li>Lista Questionari</li>
+				<li>Questionario</li>
 			</ol>
 
 		</div>
@@ -51,9 +52,12 @@
 						<div class="widget-body">
 
 							<div class="table-responsive">
-
+							<%
+								String urlQuestionari=response.encodeURL("QuestionariServlet");
+							%>
 								<form name="formQuestionarioEnte" method="post"
-									action="QuestionarioServlet">
+									action="<%=urlQuestionari%>">
+								
 
 									<table class="table table-bordered">
 

@@ -233,7 +233,47 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
-
 	}
+
+	@Override
+	public Collection<QuestionarioStudenteBean> getQuestionariNonCompilati(TutorAziendaleBean tutor) throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		Collection<QuestionarioStudenteBean> list = new ArrayList<>();
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+
+			String sql = "select * from tutor_aziendale, registro_tirocinio, questionario_valutativo_studente,stato_tirocinio where " + 
+					"					 tutor_aziendale.email = ? and registro_tirocinio.tutor_aziendale_email = tutor_aziendale.email " + 
+					"					 and questionario_valutativo_studente.registro_id = registro_tirocinio.identificativo and " + 
+					"					 stato_tirocinio.registro_id=registro_tirocinio.identificativo and stato_tirocinio.tipo = 'terminato' " + 
+					"					 and questionario_valutativo_studente.pdt_1 is null;";
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			preparedStatement.setString(1, tutor.getEmail());
+
+			rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				QuestionarioStudenteBean bean;
+
+				bean = retrieveByKey(rs.getInt("identificativo"));
+
+				list.add(bean);
+			}
+
+			return list;
+		} finally {
+			try {
+				if (!connection.isClosed())
+					connection.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+		
+	
 
 }

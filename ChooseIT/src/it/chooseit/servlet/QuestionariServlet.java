@@ -12,6 +12,7 @@ import it.chooseit.bean.QuestionarioAziendaBean;
 import it.chooseit.bean.QuestionarioStudenteBean;
 import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.StatoTirocinioBean;
+import it.chooseit.bean.StatoTirocinioBean.StatoTirocinio;
 import it.chooseit.facade.GestioneReportFacade;
 import javax.servlet.RequestDispatcher;
 
@@ -42,27 +43,26 @@ public class QuestionariServlet extends HttpServlet {
 		GestioneReportFacade gestore = new GestioneReportFacade();
 		
 		if(ruolo.equals("tutorAziendale")) {
-			StatoTirocinioBean stato = (StatoTirocinioBean) request.getSession().getAttribute("stato");
 			RegistroTirocinioBean reg = (RegistroTirocinioBean) request.getSession().getAttribute("registroTirocinio");
 			
-			int id = reg.getIdentificativo();
-			int pdt1 = Integer.getInteger(request.getParameter("pdt1"));
-			int pdt2 = Integer.getInteger(request.getParameter("pdt2"));
-			int pdt3 = Integer.getInteger(request.getParameter("pdt3"));
-			int pdt4 = Integer.getInteger(request.getParameter("pdt4"));
+			
+			int pdt1 = Integer.parseInt(request.getParameter("pdt1"));
+			int pdt2 = Integer.parseInt(request.getParameter("pdt2"));
+			int pdt3 = Integer.parseInt(request.getParameter("pdt3"));
+			int pdt4 = Integer.parseInt(request.getParameter("pdt4"));
 
-			int t1 = Integer.getInteger(request.getParameter("t1"));
-			int t2 = Integer.getInteger(request.getParameter("t2"));
-			int t3 = Integer.getInteger(request.getParameter("t3"));
-			int t4 = Integer.getInteger(request.getParameter("t4"));
+			int t1 = Integer.parseInt(request.getParameter("t1"));
+			int t2 = Integer.parseInt(request.getParameter("t2"));
+			int t3 = Integer.parseInt(request.getParameter("t3"));
+			int t4 = Integer.parseInt(request.getParameter("t4"));
 
-			int su1 = Integer.getInteger(request.getParameter("su1"));
-			int su2 = Integer.getInteger(request.getParameter("su2"));
-			int su3 = Integer.getInteger(request.getParameter("su3"));
+			int su1 = Integer.parseInt(request.getParameter("su1"));
+			int su2 = Integer.parseInt(request.getParameter("su2"));
+			int su3 = Integer.parseInt(request.getParameter("su3"));
 
-			if (stato.getTipo().equals("Terminato") && stato.getRegistroTirocinio().getIdentificativo() == id) {
+			
 				
-				QuestionarioStudenteBean questionarioente = new QuestionarioStudenteBean();
+				QuestionarioStudenteBean questionarioente = new QuestionarioStudenteBean(reg);
 				questionarioente.setPdt1(pdt1);
 				questionarioente.setPdt2(pdt2);
 				questionarioente.setPdt3(pdt3);
@@ -83,7 +83,7 @@ public class QuestionariServlet extends HttpServlet {
 				String url=response.encodeURL("/AreaPersonale.jsp");
 				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
-			}
+			
 			
 		}else if(ruolo.equals("studente")){
 			StatoTirocinioBean stato = (StatoTirocinioBean) request.getSession().getAttribute("stato");
@@ -107,7 +107,7 @@ public class QuestionariServlet extends HttpServlet {
 			int su3 = Integer.getInteger(request.getParameter("su3"));
 
 			
-			if (stato.getTipo().equals("Terminato") && stato.getRegistroTirocinio().getIdentificativo() == id) {
+			if (stato.getTipo() == StatoTirocinio.TERMINATO && stato.getRegistroTirocinio().getIdentificativo() == id) {
 				
 				QuestionarioAziendaBean questionarioStu = new QuestionarioAziendaBean();
 				questionarioStu.setPdt1(pdt1);
