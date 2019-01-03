@@ -43,7 +43,7 @@ public class ListaAziendeServlet extends HttpServlet{
 		listaAziende = gestore.listaAziende();
 		request.getSession().setAttribute("listaAziende", listaAziende);
 		
-		String url = response.encodeRedirectURL("/ListaAziende.jsp");
+		String url = response.encodeRedirectURL("ListaAziende.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}

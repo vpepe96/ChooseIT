@@ -78,12 +78,18 @@
 								Lista aziende convenzionate
 						</h1>
 					</div>
+					<%
+						if(ruolo.equals("segreteria")) {
+					%>
 					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8" style="height: 66.4px;">
 						<button type="button" class="btn btn-labeled btn-default">
  								<span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
  								Nuova azienda
 						</button>
 					</div>
+					<%
+						}
+					%>
 				</div>
 				
 				<!-- widget grid -->
@@ -136,23 +142,44 @@
 													<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Sede legale</th>
 													<th data-hide="phone,tablet">Sede operativa</th>
 													<th></th>
+													<%
+														if(ruolo.equals("segreteria")) {
+													%>
+													<th></th>
+													<%
+														}
+													%>
 												</tr>
 											</thead>
 											<tbody>
 												<%
-													Azienda r = new Azienda();
-													Collection<AziendaBean> aziende = r.retrieveAll("ragione_sociale"); 
+													Collection<AziendaBean> aziende = (Collection<AziendaBean>) request.getSession().getAttribute("listaAziende"); 
 
 													Iterator<?> it = aziende.iterator();
 													while(it.hasNext()){
 														AziendaBean azienda = (AziendaBean) it.next();
 												%>
 												<tr>
+													<%
+														String urlNomeAzienda = response.encodeURL("DettaglioAziendaServlet");
+													%>
 													<td><%=azienda.getRagioneSociale()%></td>
 													<td><%=azienda.getProgettoFormativo()%></td>
 													<td><%=azienda.getSedeLegale()%></td>
 													<td><%=azienda.getSedeOperativa()%></td>
+													<td>
+														<form  id="dettagli" name="dettagli" method="post" action="<%=urlNomeAzienda %>">
+															<input type="hidden" id="id_azienda" name="id_azienda" value="<%=azienda.getRagioneSociale()%>">
+															<input type="submit" value="Dettagli">
+														</form>
+													</td>
+													<%
+														if(ruolo.equals("segreteria")) {
+													%>
 													<td><a class="btn btn-default btn-sm" href="javascript:void(0);">Modifica</a></td>
+													<%
+														}
+													%>
 												</tr>
 												<%
 													}

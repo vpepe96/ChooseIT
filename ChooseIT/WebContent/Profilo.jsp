@@ -66,167 +66,172 @@
 
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
-
+	
 			<!-- RIBBON -->
 			<div id="ribbon">
-
+	
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Home</li><li>Profilo</li>
+					<li>Home</li>
+					<li>Profilo</li>
 				</ol>
 				<!-- end breadcrumb -->
-
+	
 			</div>
 			<!-- END RIBBON -->
-
+	
 			<!-- MAIN CONTENT -->
 			<div id="content">
-				
+	
 				<!-- row -->
-				
+	
 				<div class="row">
-				
+	
 					<div class="col-sm-12">
-				
-							<div class="well well-sm">
-				
-								<div class="row">
-				
-									<div class="col-sm-12 col-md-12 col-lg-6">
-										<div class="well well-light well-sm no-margin no-padding">
-				
-											<div class="row">
-				
-												<div class="col-sm-12">
-													<div id="myCarousel" class="carousel fade profile-carousel">
-														<div class="carousel-inner">
-															<!-- Slide 1 -->
-															<div class="">
-																<img src="img/demo/s1.jpg" alt="demo user">
-															</div>
+	
+						<div class="well well-sm">
+	
+							<div class="row">
+	
+								<div class="col-sm-12 col-md-12 col-lg-6">
+									<div class="well well-light well-sm no-margin no-padding">
+	
+										<div class="row">
+	
+											<div class="col-sm-12">
+												<div id="myCarousel" class="carousel fade profile-carousel">
+													<div class="carousel-inner">
+														<!-- Slide 1 -->
+														<div class="">
+															<img src="img/demo/s1.jpg" alt="demo user">
 														</div>
 													</div>
 												</div>
-				
-												<div class="col-sm-12">
-				
-													<div class="row">
-				
-														<div class="col-sm-3 profile-pic">
-															<img src="img/avatars/sunny-big.png" alt="demo user">
-														</div>
-														<div class="col-sm-6">
-															<h1><%=profilo.getNome() %> <span class="semi-bold"><%=profilo.getCognome() %></span><br></h1>
-				
-															<ul class="list-unstyled">
-																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=profilo.getTelefono() %></span>
-																	</p>
-																</li>
-																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=profilo.getEmail() %></span>
-																	</p>
-																</li>
-																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=profilo.getIndirizzo() %></span>
-																	</p>
-																</li>
-																<li>
-																	<p class="text-muted">
-																		<i class="fa fa-calendar"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=profilo.getDataNascita() %></span>
-																	</p>
-																</li>
-																<br>
-																<li>
-																	<button class="button" style="vertical-align:middle" onclick="displayForm()"><span>Modifica Profilo</span></button>
-																</li>
-															</ul>
-															<br>
-				
-														</div>
-														<div class="col-sm-3">
-															
-														</div>
-				
-													</div>
-				
-												</div>
-				
 											</div>
-				
+	
+											<div class="col-sm-12">
+	
+												<div class="row">
+	
+													<div class="col-sm-3 profile-pic">
+														<img src="img/avatars/sunny-big.png" alt="demo user">
+													</div>
+													<div class="col-sm-6">
+														<h1><%=profilo.getNome() %>
+															<span class="semi-bold"><%=profilo.getCognome() %></span><br>
+														</h1>
+	
+														<ul class="list-unstyled">
+															<li>
+																<p class="text-muted">
+																	<i class="fa fa-phone"></i>&nbsp;&nbsp;<span
+																		class="txt-color-darken"><%=profilo.getTelefono() %></span>
+																</p>
+															</li>
+															<li>
+																<p class="text-muted">
+																	<i class="fa fa-envelope"></i>&nbsp;&nbsp;<span
+																		class="txt-color-darken"><%=profilo.getEmail() %></span>
+																</p>
+															</li>
+															<li>
+																<p class="text-muted">
+																	<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<span
+																		class="txt-color-darken"><%=profilo.getIndirizzo() %></span>
+																</p>
+															</li>
+															<li>
+																<p class="text-muted">
+																	<i class="fa fa-calendar"></i>&nbsp;&nbsp;<span
+																		class="txt-color-darken"><%=profilo.getDataNascita() %></span>
+																</p>
+															</li>
+															<br>
+															<li>
+																<button class="button" style="vertical-align: middle"
+																	onclick="displayForm()">
+																	<span>Modifica Profilo</span>
+																</button>
+															</li>
+														</ul>
+														<br>
+	
+													</div>
+													<div class="col-sm-3"></div>
+	
+												</div>
+	
+											</div>
+	
 										</div>
-				
+	
+									</div>
+	
 								</div>
-				
+	
+								<div class="col-sm-12 col-md-12 col-lg-6">
+	
+									<%String ModificaProfiloUrl=response.encodeURL("ModificaProfiloServlet"); %>
+									<form style="display: none" id="form_modifica_profilo"
+										name="form_modifica_profilo" method="post"
+										action="<%=ModificaProfiloUrl%>" class="smart-form client-form"
+										enctype="multipart/form-data">
+	
+										<section>
+											<label class="label">Telefono</label> <label class="input">
+												<i class="icon-append fa fa-user"></i> <input type="text"
+												name="telefono" id="telefono" pattern="^[0-9]{10}$"
+												value="<%=profilo.getTelefono() %>">
+											</label>
+										</section>
+	
+	
+										<section>
+											<label class="label">Indirizzo</label> <label class="input">
+												<i class="icon-append fa fa-user"></i> <input type="text"
+												name="indirizzo" id="indirizzo"
+												pattern="^[A-Za-z0-9,()\s]{3,60}"
+												value="<%=profilo.getIndirizzo() %>">
+											</label>
+										</section>
+	
+										<%if(ruolo.equals("studente")) {%>
+										<section>
+											<label class="label">Descrizione</label> <label class="input">
+												<i class="fa"></i> <textarea rows="4" cols="50"
+													maxlength="300" name="descrizione" form="form-reg"
+													value="<%=descrizione%>"></textarea>
+											</label>
+										</section>
+	
+										<%
+												}
+											%>
+	
+										<section>
+											<label class="label">Immagine del Profilo</label> <label
+												class="input"> <i class="fa"></i> <input type="file"
+												name="fotoProfilo" id="fotoProfilo" accept=".jpg">
+											</label>
+										</section>
+	
+										<button type="submit" class="btn btn-primary">Modifica</button>
+									</form>
+	
+								</div>
+	
 							</div>
-			
+						</div>
 					</div>
-				
+	
 				</div>
-				
 				<!-- end row -->
-
+	
 			</div>
 			<!-- END MAIN CONTENT -->
-
+	
 		</div>
 		<!-- END MAIN PANEL -->
-
-											<%String ModificaProfiloUrl=response.encodeURL("ModificaProfiloServlet"); %>
-												<form style="display:none" id="form_modifica_profilo" name="form_modifica_profilo" method="post" action="<%=ModificaProfiloUrl%>"  class="smart-form client-form" enctype="multipart/form-data" >
-													
-													<section>
-														<label class="label">Telefono</label> <label class="input">
-															<i class="icon-append fa fa-user"></i> <input type="text"
-															name="telefono" id="telefono" 
-															pattern="^[0-9]{10}$" value="<%=profilo.getTelefono() %>">
-														</label>
-													</section>
-
-
-													<section>
-														<label class="label">Indirizzo</label> <label class="input">
-															<i class="icon-append fa fa-user"></i> <input type="text"
-															name="indirizzo" id="indirizzo" 
-															pattern="^[A-Za-z0-9,()\s]{3,60}" value= "<%=profilo.getIndirizzo() %>" >
-														</label>
-													</section>
-														
-													<%if(ruolo.equals("studente")) {%>
-													<section>
-														<label class="label">Descrizione</label> <label class="input">
-															<i class="fa"></i> <textarea rows="4" cols="50" maxlength="300"
-																name="descrizione" form="form-reg" value="<%=descrizione%>"></textarea>
-														</label>
-													</section>
-	
-													<%
-														}
-													%>
-
-													<section>
-														<label class="label">Immagine del Profilo</label> <label
-															class="input"> <i class="fa"></i> <input type="file"
-															name="fotoProfilo" id="fotoProfilo" accept=".jpg">
-														</label>
-													</section>
-
-													<button type="submit" class="btn btn-primary">Modifica</button>
-										</form>
-											
-										</div>
-				
-									</div>
-									
-								</div>
-				
-							</div>
-				
-				
-					
 
 		<!-- PAGE FOOTER -->
 			<%@
