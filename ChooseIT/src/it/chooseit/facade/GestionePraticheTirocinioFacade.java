@@ -226,6 +226,7 @@ public class GestionePraticheTirocinioFacade {
 		RichiestaTirocinioDAO richiestaDao = new RichiestaTirocinio();
 		StudenteDAO studenteDao = new Studente();
 		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
+		ConvertEnum convert = new ConvertEnum();
 		
 		//Se l'utente loggato è il presidente allora visualizzo la lista delle richieste di tirocinio in convalida
 		//Altrimenti se l'utente loggato è la segreteria allora visualizzo la lista delle richieste di tirocinio nuove e in validazione
@@ -240,7 +241,7 @@ public class GestionePraticheTirocinioFacade {
 				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato è quello di in convalida e la aggiungo alla lista altrimenti no
 				for(RichiestaTirocinioBean r : ric) {
 					stat = statoRichiestaDao.getStatoRichiesta(r);
-					if(stat.getTipo().toString().equalsIgnoreCase("inconvalida"))
+					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("in convalida"))
 						richieste.add(r);
 				}
 			} catch (SQLException e) {
@@ -259,7 +260,9 @@ public class GestionePraticheTirocinioFacade {
 				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato è quello di nuovo o in validazione e la aggiungo alla lista altrimenti no
 				for(RichiestaTirocinioBean r : ric) {
 					stat = statoRichiestaDao.getStatoRichiesta(r);
-					if(stat.getTipo().toString().equalsIgnoreCase("nuova") || stat.getTipo().toString().equalsIgnoreCase("invalidazione"))
+					if(stat == null)
+						System.out.println("STATO RICHIESTA VUOTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("nuova") || convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("in validazione"))
 						richieste.add(r);
 				}
 			} catch (SQLException e) {
@@ -334,7 +337,9 @@ public class GestionePraticheTirocinioFacade {
 				e.printStackTrace();
 				System.out.println("Errore di riperimento dati dello stato della richiesta di tirocinio");
 			}
-			if(!statoRic.getTipo().toString().equalsIgnoreCase("rifiutata"))
+			if(statoRic == null)
+				System.out.println("Stato Richiesta vuotooooooooooooooooooooooooooooo");
+			if(!convert.convertStatoRichiestaString(statoRic.getTipo()).equalsIgnoreCase("rifiutata"))
 					i++;			
 		}
 		
@@ -348,14 +353,21 @@ public class GestionePraticheTirocinioFacade {
 				richiesta.setTutorUniversitario(null);
 				richiesta.setRegistroTirocinio(null);
 				//Inserisco la richiesta di tirocinio
-				richiestaTirocinioDao.insert(richiesta);
-				//Inserisco lo stato della richiesta di tirocinio
-				statoRichiestaDao.insert(statoRic);				
+				richiestaTirocinioDao.insert(richiesta);			
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("Errore d'inserimento della richiesta di tirocinio");
 				return false;
 			}
+
+			//Inserisco lo stato della richiesta di tirocinio
+			try {
+				statoRichiestaDao.insert(statoRic);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				System.out.println("Errore d'inserimento dello stato della richiesta di tirocinio");
+			}	
 
 			//Aggiorno le dipendenze della richiesta di tirocinio
 			try {

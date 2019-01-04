@@ -44,6 +44,28 @@ public class ConvertEnum {
 		return tipo;
 	}
 	
+	public String convertStatoRichiestaString(StatoRichiesta stato) {
+		String tipo = null;
+		String[] stati = {"NUOVA","IN VALIDAZIONE","IN CONVALIDA","ACCETTATA","RIFIUTATA"};
+		
+		if(stato.toString().equalsIgnoreCase(stati[0]))
+			tipo = stati[0];
+		
+		else if(stato.toString().equalsIgnoreCase(stati[1]))
+			tipo = stati[1];
+		
+		else if(stato.toString().equalsIgnoreCase(stati[2]))
+			tipo = stati[2];
+		
+		else if(stato.toString().equalsIgnoreCase(stati[3]))
+			tipo = stati[3];
+		
+		else if(stato.toString().equalsIgnoreCase(stati[4]))
+			tipo = stati[4];
+		
+		return tipo;
+	}
+	
 	/**
 	 * Restituisce la variabile enum di StatoReport che corrisponde ad una stringa specificata
 	 * Stati di report: public enum StatoReport {NUOVO, COMPILATO, VALIDATO, RIFIUTATO}

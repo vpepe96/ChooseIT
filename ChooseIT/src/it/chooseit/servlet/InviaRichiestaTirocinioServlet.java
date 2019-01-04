@@ -38,19 +38,15 @@ public class InviaRichiestaTirocinioServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		//1) RECUPERO STUDENTE DALLA SESSIONE
 		StudenteBean studenteBean = (StudenteBean) request.getSession().getAttribute("utente");
-		RichiestaTirocinioBean richiestaBean = (RichiestaTirocinioBean) request.getSession().getAttribute("richiesta");
+		AziendaBean aziendaBean = (AziendaBean) request.getSession().getAttribute("azienda");
 		
 		Date dataRichiesta = new Date(System.currentTimeMillis());
-		String ragioneSociale = request.getParameter("ragioneSociale");
-		AziendaDAO aziendaDao = new Azienda();
-	
-		// 2) CREA IL BEAN AZIENDA
-		AziendaBean aziendaBean = null;
-		try {
-			aziendaBean = aziendaDao.retrieveByKey(ragioneSociale);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
+		// 3) CREA IL BEAN RICHIESTA DI TIROCINIO
+		RichiestaTirocinioBean richiestaBean = new RichiestaTirocinioBean();
+		richiestaBean.setStudente(studenteBean);
+		richiestaBean.setAzienda(aziendaBean);
+		richiestaBean.setDataRichiesta(dataRichiesta);
 		
 		// 4)OTTENGO IL PATH DOVE SALVARE
 		String filePath = GestioneModulisticaFacade.uploadRichiestaTirocinio(richiestaBean, getServletContext().getRealPath("//"));
@@ -82,7 +78,7 @@ public class InviaRichiestaTirocinioServlet extends HttpServlet{
 		boolean inviaRichiestaOK = gestore.inviaRichiestaTirocinio(richiestaBean, studenteBean.getEmail());
 		request.getSession().setAttribute("inviaRichiestaOK", inviaRichiestaOK);
 
-		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
+		String url = response.encodeRedirectURL("/ListaRichiesteTirocinioServlet");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 		

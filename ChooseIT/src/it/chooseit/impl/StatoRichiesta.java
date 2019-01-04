@@ -88,7 +88,8 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 	public synchronized void insert(StatoRichiestaBean statoRichiesta) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+		ConvertEnum convert = new ConvertEnum();
+		
 		String insertSQL = "INSERT INTO stato_richiesta (data_stato,tipo,richiesta_id) VALUES (?, ?, ?)";
 
 		try {
@@ -96,7 +97,7 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 			preparedStatement = connection.prepareStatement(insertSQL);
 			
 			preparedStatement.setDate(1, statoRichiesta.getDataStato());
-			preparedStatement.setString(2, statoRichiesta.getTipo().toString());
+			preparedStatement.setString(2, convert.convertStatoRichiestaString(statoRichiesta.getTipo()));
 			preparedStatement.setInt(3, statoRichiesta.getRichiestaTirocinio().getId());
 					
 			System.out.println("doSave: "+ preparedStatement.toString());
@@ -123,6 +124,7 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 	public synchronized void update(StatoRichiestaBean statoRichiesta) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		ConvertEnum convert = new ConvertEnum();
 		
 		String updateSQL = "UPDATE stato_richiesta SET data_stato=?, tipo=?" + 
 						   "WHERE richiesta_id = ?";
@@ -133,7 +135,7 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 			preparedStatement = connection.prepareStatement(updateSQL);
 			
 			preparedStatement.setDate(1, statoRichiesta.getDataStato());
-			preparedStatement.setString(2, statoRichiesta.getTipo().toString());
+			preparedStatement.setString(2, convert.convertStatoRichiestaString(statoRichiesta.getTipo()));
 			preparedStatement.setInt(3, statoRichiesta.getRichiestaTirocinio().getId());
 			
 			System.out.println("doUpdate: "+ preparedStatement.toString());

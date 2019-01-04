@@ -139,31 +139,58 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO richiesta_tirocinio(studente_email,ragione_sociale_azienda,progetto_formativo,data_richiesta,tutor_aziendale_email,tutor_universitario_email) VALUES (?, ?, ?, ?, ?, ?)";
+		if(richiestaTirocinio.getTutorAziendale() == null && richiestaTirocinio.getTutorUniversitario() == null) {
+			String insertSQL = "INSERT INTO richiesta_tirocinio(studente_email,ragione_sociale_azienda,progetto_formativo,data_richiesta) VALUES (?, ?, ?, ?)";
 
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(insertSQL);
-			
-			preparedStatement.setString(1, richiestaTirocinio.getStudente().getEmail());
-			preparedStatement.setString(2, richiestaTirocinio.getAzienda().getRagioneSociale());
-			preparedStatement.setString(3, richiestaTirocinio.getProgettoFormativo());
-			preparedStatement.setDate(4, richiestaTirocinio.getDataRichiesta());
-			preparedStatement.setString(5, richiestaTirocinio.getTutorAziendale().getEmail());
-			preparedStatement.setString(6, richiestaTirocinio.getTutorUniversitario().getEmail());
-			
-			System.out.println("doSave: "+ preparedStatement.toString());
-			preparedStatement.executeUpdate();
 
-		} finally {
 			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(insertSQL);
+
+				preparedStatement.setString(1, richiestaTirocinio.getStudente().getEmail());
+				preparedStatement.setString(2, richiestaTirocinio.getAzienda().getRagioneSociale());
+				preparedStatement.setString(3, richiestaTirocinio.getProgettoFormativo());
+				preparedStatement.setDate(4, richiestaTirocinio.getDataRichiesta());
+
+				System.out.println("doSave: "+ preparedStatement.toString());
+				preparedStatement.executeUpdate();
+
 			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
 			}
 		}
-		
+		else {	
+			String insertSQL = "INSERT INTO richiesta_tirocinio(studente_email,ragione_sociale_azienda,progetto_formativo,data_richiesta,tutor_aziendale_email,tutor_universitario_email) VALUES (?, ?, ?, ?, ?, ?)";
+
+			try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(insertSQL);
+
+				preparedStatement.setString(1, richiestaTirocinio.getStudente().getEmail());
+				preparedStatement.setString(2, richiestaTirocinio.getAzienda().getRagioneSociale());
+				preparedStatement.setString(3, richiestaTirocinio.getProgettoFormativo());
+				preparedStatement.setDate(4, richiestaTirocinio.getDataRichiesta());
+				preparedStatement.setString(5, richiestaTirocinio.getTutorAziendale().getEmail());
+				preparedStatement.setString(6, richiestaTirocinio.getTutorUniversitario().getEmail());
+
+				System.out.println("doSave: "+ preparedStatement.toString());
+				preparedStatement.executeUpdate();
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+		}
+
 	}
 
 	@Override
