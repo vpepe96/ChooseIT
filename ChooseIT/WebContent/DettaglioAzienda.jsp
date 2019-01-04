@@ -234,19 +234,19 @@
 		
 											<section>
 												<label class="label">Sede legale</label> <label class="input">
-													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeLegale" id="sedeLegale">
+													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeLegale" id="sedeLegale" value="<%=azienda.getSedeLegale() %>">
 												</label>
 											</section>
 	
 											<section>
 												<label class="label">Sede operativa</label> <label class="input">
-													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeOperativa" id="sedeOperativa">
+													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeOperativa" id="sedeOperativa" value="<%=azienda.getSedeOperativa() %>">
 												</label>
 											</section>
 		
 											<section>
 												<label class="label">Progetto formativo</label> <label class="input"> <i class="fa">
-													</i> <input type="file" name="progettoFormativo" id="progettoFormativo" accept=".pdf">
+													</i> <input type="file" name="progettoFormativo" id="progettoFormativo" accept=".pdf" value="<%=azienda.getProgettoFormativo() %>">
 												</label>
 											</section>
 			
