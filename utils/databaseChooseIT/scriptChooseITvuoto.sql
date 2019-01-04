@@ -164,7 +164,7 @@ foreign key(registro_id) references registro_tirocinio(identificativo)
 create table report(
 registro_id				integer			not null,
 data_inserimento		date			not null,
-contenuto				varchar(50)		not null,
+contenuto				varchar(500)		not null,
 tutor_aziendale_email	varchar(50),
 
 primary key(registro_id, data_inserimento),

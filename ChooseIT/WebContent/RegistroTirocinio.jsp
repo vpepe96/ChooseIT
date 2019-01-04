@@ -121,10 +121,13 @@
 											for (ReportBean x : reports) {
 										%>
 										<tr>
-											<td><%=statoImpl.getStatoReport(x)%></td>
+											<td><%=statoImpl.getStatoReport(x).getTipo()%></td>
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
-											<td><a href="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>">Download</a>
-											<td><form action="ValutaReportServlet?action=valuta&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post">
+											<td><form action="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
+												<input type="submit" value="Download">
+											</form>
+											<td><form action="ValutaReportServlet?action=valuta&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
+													<input type="file" required="required" name="fileReport" size="50" accept="application/pdf">
 													<input type="submit" value="Valuta">
 												</form>
 											</td>
@@ -181,7 +184,7 @@
 											for (ReportBean x : reports) {
 										%>
 										<tr>
-											<td><%=statoImpl.getStatoReport(x)%></td>
+											<td><%=statoImpl.getStatoReport(x).getTipo()%></td>
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
 											<td><a href="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>">Download</a>
 										</tr>
@@ -240,7 +243,7 @@
 											for (ReportBean x : reports) {
 										%>
 										<tr>
-											<td><%=statoImpl.getStatoReport(x)%></td>
+											<td><%=statoImpl.getStatoReport(x).getTipo() %></td>
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
 											<td><a href="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>">Download</a>
 											<td><form action="ValutaReportServlet?action=upload&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post">

@@ -126,11 +126,10 @@ public class GestioneAccountFacade {
 	public StudenteBean getDatiDiStudente(StudenteBean studente) {
 		
 		try {
-			System.out.println("dati richieste");
 			// prendi dati delle richieste
 			RichiestaTirocinioDAO ricDao = new RichiestaTirocinio();
 			ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) ricDao.getRichiestePerStudente(studente);
-			System.out.println("dati stati richieste");
+			
 			// prendi stati delle richieste
 			StatoRichiestaDAO statoRicDao = new StatoRichiesta();
 			for (RichiestaTirocinioBean richiestaTirocinioBean : richieste) {
@@ -141,10 +140,10 @@ public class GestioneAccountFacade {
 			}
 			studente.setRichiesteTirocinio(richieste);
 			
-			System.out.println("dati registri");
 			// prendi dati dei registri
 			RegistroTirocinioDAO regDao = new RegistroTirocinio();
 			ArrayList<RegistroTirocinioBean> registri;
+			
 			registri = (ArrayList<RegistroTirocinioBean>) regDao.getRegistriDiStudente(studente);
 			for (RegistroTirocinioBean registroTirocinioBean : registri) {
 				registroTirocinioBean = getDatiDiRegistro(registroTirocinioBean);

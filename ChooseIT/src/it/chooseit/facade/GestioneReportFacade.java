@@ -9,16 +9,11 @@ import it.chooseit.dao.QuestionarioAziendaDAO;
 import it.chooseit.dao.QuestionarioStudenteDAO;
 import it.chooseit.dao.RegistroTirocinioDAO;
 import it.chooseit.dao.ReportDAO;
-import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.impl.QuestionarioAzienda;
 import it.chooseit.impl.QuestionarioStudente;
 import it.chooseit.impl.RegistroTirocinio;
 import it.chooseit.impl.Report;
-import it.chooseit.impl.TutorAziendale;
-import it.chooseit.services.DriverManagerConnectionPool;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,8 +37,12 @@ public class GestioneReportFacade {
 
 		Collection<RegistroTirocinioBean> list = new ArrayList<>();
 		RegistroTirocinioDAO registro = new RegistroTirocinio();
+		GestioneAccountFacade g = new GestioneAccountFacade();
 		try {
-			list = registro.getRegistriDiTirociniInCorso();
+			list = registro.retrieveAll(null);
+			for (RegistroTirocinioBean registroTirocinioBean : list) {
+				g.getDatiDiRegistro(registroTirocinioBean);
+			}
 			return list;
 		} catch (SQLException e) {
 			return null;
@@ -193,6 +192,26 @@ public class GestioneReportFacade {
 			if( bean!=null) {
 			        bean.setTutorAziendale(tutor);
 				    report.update(bean);
+					
+				}
+				}catch (SQLException e) {
+			return null;
+		  	}
+		return bean;
+		
+	}
+	/**
+	 * Permette l'inserimento del report  da parte dello studente
+	 * @param report e tutorAziendale
+	 */
+	
+	public ReportBean inserimentoFirma(ReportBean bean) {
+		
+		ReportDAO report =new Report();
+	    try {
+			
+			if( bean!=null) {
+			       report.update(bean);
 					
 				}
 				}catch (SQLException e) {
