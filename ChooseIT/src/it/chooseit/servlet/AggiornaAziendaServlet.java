@@ -60,25 +60,20 @@ public class AggiornaAziendaServlet extends HttpServlet{
 				part.write(filePath);
 				progettoFormativoOK = true;
 				System.out.println("Salvato in " + filePath);
+				aziendaBean.setProgettoFormativo(filePath); //lo aggiorna solo se il file è presente altrimenti resta quello ottenuto con retrievebykey
 			} else {
 				// è andata male
 				System.out.println("Errore nel salvataggio del progetto formativo");
 			}
 		}	
 		
-		// 3)AGGIORNO IL BEAN AGGIUNGENDO IL PERCORSO APPENA OTTENUTO (filePath) 
-		// (solo se il progetto formativo dell'azienda è stata inserito, cioè se progettoFormativoOK == true)
-		if (progettoFormativoOK) {
-			aziendaBean.setProgettoFormativo(filePath);
-		} else {
-			aziendaBean.setProgettoFormativo("");
-		}
 
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
 		boolean aggiornaAziendaOK = gestore.aggiornaAzienda(aziendaBean);
 		request.getSession().setAttribute("aggiornaAziendaOK", aggiornaAziendaOK);
+		request.getSession().setAttribute("azienda", aziendaBean);
 
-		String url = response.encodeRedirectURL("/ListaAziende.jsp");
+		String url = response.encodeRedirectURL("/DettaglioAzienda.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
