@@ -318,7 +318,12 @@ public class GestionePraticheTirocinioFacade {
 		}
 		
 		//Recupero la lista delle richieste di tirocinio dello studente
-		richiesteTir = studente.getRichiesteTirocinio();
+		try {
+			richiesteTir = (ArrayList<RichiestaTirocinioBean>) richiestaTirocinioDao.getRichiestePerStudente(studente);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			System.out.println("Errore in InviaRichiestaTirocinio: reperimento lista richieste studente");
+		}
 		
 		//Verifico quante richieste di tirocinio dello studente sono in uno stato qualsiasi diverso dallo stato "rifiutata"
 		for(RichiestaTirocinioBean r: richiesteTir) {

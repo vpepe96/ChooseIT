@@ -3,8 +3,6 @@ package it.chooseit.servlet;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,34 +36,14 @@ public class InviaRichiestaTirocinioServlet extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String email = (String) request.getSession().getAttribute("email");
-		String nome = (String) request.getSession().getAttribute("nome");
-		String cognome = (String) request.getSession().getAttribute("cognome");
-		String telefono = (String) request.getSession().getAttribute("telefono");
-		String indirizzo = (String) request.getSession().getAttribute("indirizzo");
-		Date dataNascita = convertDate((String) request.getSession().getAttribute("dataNascita"));
-		String matricola = (String) request.getSession().getAttribute("matricola");
-		String descrizione = (String) request.getSession().getAttribute("descrizione");
+		//1) RECUPERO STUDENTE DALLA SESSIONE
+		StudenteBean studenteBean = (StudenteBean) request.getSession().getAttribute("utente");
+		RichiestaTirocinioBean richiestaBean = (RichiestaTirocinioBean) request.getSession().getAttribute("richiesta");
 		
 		Date dataRichiesta = new Date(System.currentTimeMillis());
 		String ragioneSociale = request.getParameter("ragioneSociale");
 		AziendaDAO aziendaDao = new Azienda();
-		
-		// 1) CREA IL BEAN STUDENTE
-		StudenteBean studenteBean = new StudenteBean();
-		studenteBean.setDataNascita(dataNascita);
-		studenteBean.setEmail(email);
-		studenteBean.setNome(nome);
-		studenteBean.setCognome(cognome);
-		studenteBean.setTelefono(telefono);
-		studenteBean.setMatricola(matricola);
-		studenteBean.setIndirizzo(indirizzo);
-		if (descrizione == null) {
-			studenteBean.setDescrizione("");
-		} else {
-			studenteBean.setDescrizione(descrizione);
-		}
-		
+	
 		// 2) CREA IL BEAN AZIENDA
 		AziendaBean aziendaBean = null;
 		try {
@@ -73,12 +51,6 @@ public class InviaRichiestaTirocinioServlet extends HttpServlet{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		// 3) CREA IL BEAN RICHIESTA DI TIROCINIO
-		RichiestaTirocinioBean richiestaBean = new RichiestaTirocinioBean();
-		richiestaBean.setStudente(studenteBean);
-		richiestaBean.setAzienda(aziendaBean);
-		richiestaBean.setDataRichiesta(dataRichiesta);
 		
 		// 4)OTTENGO IL PATH DOVE SALVARE
 		String filePath = GestioneModulisticaFacade.uploadRichiestaTirocinio(richiestaBean, getServletContext().getRealPath("//"));
@@ -107,7 +79,7 @@ public class InviaRichiestaTirocinioServlet extends HttpServlet{
 		}
 		
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		boolean inviaRichiestaOK = gestore.inviaRichiestaTirocinio(richiestaBean,email);
+		boolean inviaRichiestaOK = gestore.inviaRichiestaTirocinio(richiestaBean, studenteBean.getEmail());
 		request.getSession().setAttribute("inviaRichiestaOK", inviaRichiestaOK);
 
 		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
@@ -116,16 +88,4 @@ public class InviaRichiestaTirocinioServlet extends HttpServlet{
 		
 	}
 	
-	private Date convertDate(String data) {
-		// Parse da String a sql.Date
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		java.sql.Date sqlDate = null;
-		try {
-			java.util.Date utilDate = format.parse(data);
-			sqlDate = new java.sql.Date(utilDate.getTime());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return sqlDate;
-	}
 }
