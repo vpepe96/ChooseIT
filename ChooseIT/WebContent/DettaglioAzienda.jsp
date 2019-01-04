@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" import="it.chooseit.bean.*, it.chooseit.impl.*"%>
 <!DOCTYPE html>
@@ -178,22 +179,25 @@
 																%>
 																<div class="padding-gutter">
 																	<form id="form_upload_pf"
-															name="form_upload_pf" method="post"
-															action="<%=urlInviaRichiesta %>" class="smart-form client-form"
-															enctype="multipart/form-data">
-															<section>
-																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
-																	name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
-																	value="">
-																</label>
-															</section>
-															
-															<button type="submit" class="btn btn-primary">
-														 		<span class="btn-label">
-														  		<i class="glyphicon glyphicon-share-alt"></i>
-														 		</span>Invia richiesta
-															</button>
-														</form>
+																		name="form_upload_pf" method="post"
+																		action="<%=urlInviaRichiesta %>" class="smart-form client-form"
+																		enctype="multipart/form-data">
+																		<section>
+																			<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
+																				name="progetto_formativo" id="progetto_formativo" pattern="^[0-9]{10}$"
+																				value="">
+																			</label>
+																		</section>
+																		
+																		<section>
+																			<button type="submit" class="btn btn-labeled btn-primary">
+																				<span class="btn-label" style="margin-right: 5px; left: 0px;">
+																					<i class="glyphicon glyphicon-share-alt"></i>
+																				 </span>Invia richiesta
+																			</button>
+																		</section>
+																		
+																	</form>
 																</div>
 																<%
 																	}
@@ -248,7 +252,9 @@
 											</section>
 			
 											<button type="submit" class="btn btn-labeled btn-success">
-												 <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Conferma
+												 <span class="btn-label" style="margin-right: 5px; left: 0px;">
+												 	<i class="glyphicon glyphicon-ok"></i>
+												 </span>Conferma
 											</button>
 											
 										</form>

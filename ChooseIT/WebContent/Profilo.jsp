@@ -146,6 +146,18 @@
 																		class="txt-color-darken"><%=profilo.getDataNascita() %></span>
 																</p>
 															</li>
+															<li>
+																<p class="text-muted">
+																	<i class="fa fa-mortar-board"></i>&nbsp;&nbsp;<span
+																		class="txt-color-darken"><%=matricola %></span>
+																</p>
+															</li>
+															<li>
+																<p class="text-muted">
+																	<i class="fa fa-comment-o"></i>&nbsp;&nbsp;<span
+																		class="txt-color-darken"><%=descrizione %></span>
+																</p>
+															</li>
 															<br>
 															<li>
 																<button class="button" style="vertical-align: middle"
