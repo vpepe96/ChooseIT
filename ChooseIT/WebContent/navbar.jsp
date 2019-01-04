@@ -95,6 +95,7 @@
 					if(ruolo.equals("segreteria")) {
 						String urlListaAziende = response.encodeURL("ListaAziendeServlet");
 						String urlNuovaAzienda = response.encodeURL("InserimentoAzienda.jsp");
+						String urlListaRichiesteTirocinio = response.encodeURL("ListaRichiesteTirocinioServlet");
 				%>
 				
 				<ul>
@@ -110,7 +111,7 @@
 						</ul>	
 					</li>
 					<li class="top-menu-invisible">
-						<a href="Registrazione.jsp"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>
+						<a href="<%=urlListaRichiesteTirocinio %>" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>
 					</li>
 				</ul>
 				
@@ -139,11 +140,12 @@
 				
 				<%
 					} else if(ruolo.equals("presidente")) {
+						String urlListaRichiesteTirocinio = response.encodeURL("ListaRichiesteTirocinioServlet");
 				%>
 				
 				<ul>
-					<li class="">
-						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista richieste</span></a>
+					<li class="top-menu-invisible">
+						<a href="<%=urlListaRichiesteTirocinio %>" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>
 					</li>
 				</ul>
 				

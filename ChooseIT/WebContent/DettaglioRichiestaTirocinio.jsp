@@ -44,9 +44,9 @@
 	href="css/demo.min.css">
 
 <!-- FAVICONS -->
-<link rel="shortcut icon" href="img/favicon/favicon.ico"
+<link rel="shortcut icon" href="img/logo2.png"
 	type="image/x-icon">
-<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="img/logo2.png" type="image/x-icon">
 
 <!-- GOOGLE FONT -->
 <link rel="stylesheet"
