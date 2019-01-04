@@ -91,6 +91,8 @@ public class GestioneAccountFacade {
 				if(ruolo.equals("tutorAziendale")) {
 					//recupera le informazioni di tutor aziendale dal db...
 					TutorAziendaleDAO tutorAziDao = new TutorAziendale();
+					TutorAziendaleBean tutor = tutorAziDao.retrieveByKey(email);
+					tutor = getDatiDiTutorAziendale(tutor);
 					utente = tutorAziDao.retrieveByKey(email);
 				}
 				
@@ -124,12 +126,22 @@ public class GestioneAccountFacade {
 	public StudenteBean getDatiDiStudente(StudenteBean studente) {
 		
 		try {
-			
+			System.out.println("dati richieste");
 			// prendi dati delle richieste
 			RichiestaTirocinioDAO ricDao = new RichiestaTirocinio();
 			ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) ricDao.getRichiestePerStudente(studente);
+			System.out.println("dati stati richieste");
+			// prendi stati delle richieste
+			StatoRichiestaDAO statoRicDao = new StatoRichiesta();
+			for (RichiestaTirocinioBean richiestaTirocinioBean : richieste) {
+				ArrayList<StatoRichiestaBean> statiRichiesta = (ArrayList<StatoRichiestaBean>) statoRicDao.getStatiRichiesta(richiestaTirocinioBean);
+				for (StatoRichiestaBean statoRichiesta : statiRichiesta) {
+					statoRichiesta.setRichiestaId(richiestaTirocinioBean);
+				}
+			}
 			studente.setRichiesteTirocinio(richieste);
 			
+			System.out.println("dati registri");
 			// prendi dati dei registri
 			RegistroTirocinioDAO regDao = new RegistroTirocinio();
 			ArrayList<RegistroTirocinioBean> registri;
@@ -138,10 +150,10 @@ public class GestioneAccountFacade {
 				registroTirocinioBean = getDatiDiRegistro(registroTirocinioBean);
 				registroTirocinioBean.setStudente(studente);
 				
-				//aggiungi la richiesta di registro a listaRichieste
-				RichiestaTirocinioBean richiestaTirocinio = registroTirocinioBean.getRichiestaTirocinio();
-				studente.addRichiestaTirocinio(richiestaTirocinio);
-				
+				//aggiungi il registro alla richiesta
+				RichiestaTirocinioBean richiesta = studente.getRichiestaTirocinio(registroTirocinioBean.getRichiestaTirocinio().getId());
+				if(richiesta !=null)
+					richiesta.setRegistroTirocinio(registroTirocinioBean);
 			}
 			studente.setRegistriTirocinio(registri);
 			
@@ -165,7 +177,7 @@ public class GestioneAccountFacade {
 		ArrayList<RegistroTirocinioBean> registri;
 		
 		ReportDAO repoDao = new Report();
-		ArrayList<ReportBean> reportFirmati = new ArrayList<>();
+		ArrayList<ReportBean> reportFirmati = null;
 		
 		try {
 			// prendi dati dei registri
@@ -174,11 +186,15 @@ public class GestioneAccountFacade {
 				registroTirocinioBean = getDatiDiRegistro(registroTirocinioBean);
 				
 				//prendi report firmati
-				reportFirmati.add((ReportBean) repoDao.getReportFirmati(registroTirocinioBean));
-				
+				reportFirmati = (ArrayList<ReportBean>) repoDao.getReportFirmati(registroTirocinioBean);
+				for (ReportBean reportBean : reportFirmati) {
+					reportBean.setRegistroTirocinio(registroTirocinioBean);
+					reportBean.setTutorAziendale(tutor);
+				}
+				tutor.setReports(reportFirmati);
 			}
 			tutor.setRegistriTirocinio(registri);
-			tutor.setReports(reportFirmati);
+			
 			
 		} catch (SQLException e) {
 			// c'è stato un errore nel reperimento dati dal db, restituisci il tutor aziendale con i dati recuperati fin'ora
@@ -224,8 +240,6 @@ public class GestioneAccountFacade {
 	 * @throws SQLException
 	 */
 	public RegistroTirocinioBean getDatiDiRegistro(RegistroTirocinioBean registroTirocinioBean) throws SQLException {
-		RichiestaTirocinioDAO ricDao = new RichiestaTirocinio();
-		StatoRichiestaDAO sRichiestaDao = new StatoRichiesta();
 		
 		ReportDAO repDao = new Report();
 		StatoReportDAO sRepoDao = new StatoReport();
@@ -261,17 +275,6 @@ public class GestioneAccountFacade {
 		for (StatoTirocinioBean statoBean : statiTirocinio) {
 			statoBean.setRegistroTirocinio(registroTirocinioBean);
 		}
-		
-		//recupera richiesta
-		RichiestaTirocinioBean richiesta = ricDao.retrieveByKey(registroTirocinioBean.getIdentificativo());
-		richiesta.setRegistroTirocinio(registroTirocinioBean);
-		ArrayList<StatoRichiestaBean> statiRichieste = (ArrayList<StatoRichiestaBean>) sRichiestaDao.getStatiRichiesta(richiesta);
-		for (StatoRichiestaBean statoRichiestaBean : statiRichieste) {
-			statoRichiestaBean.setRichiestaId(richiesta);
-		}
-		richiesta.setStatiRichiesta(statiRichieste);
-		registroTirocinioBean.setRichiestaTirocinio(richiesta);
-		
 		return registroTirocinioBean;
 	}
 	
