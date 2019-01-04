@@ -34,8 +34,8 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
 
 		<!-- FAVICONS -->
-		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="img/logo2.png" type="image/x-icon">
+		<link rel="icon" href="img/logo2.png" type="image/x-icon">
 
 		<!-- GOOGLE FONT -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
@@ -126,10 +126,9 @@
 											<thead>			                
 												<tr>
 													<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Nome</th>
-													<th>Progetto formativo</th>
-													<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Sede legale</th>
-													<th data-hide="phone,tablet">Sede operativa</th>
-													<th></th>
+													<th><i class="fa fa-fw fa-file-pdf-o text-muted hidden-md hidden-sm hidden-xs"></i> Progetto formativo</th>
+													<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker text-muted hidden-md hidden-sm hidden-xs"></i> Sede legale</th>
+													<th data-hide="phone,tablet"><i class="fa fa-fw fa fa-wrench text-muted hidden-md hidden-sm hidden-xs"></i> Sede operativa</th>
 													<%
 														if(ruolo.equals("segreteria")) {
 													%>
@@ -158,22 +157,13 @@
 													<td>
 														<form  id="dettagli" name="dettagli" method="post" action="<%=urlNomeAzienda %>">
 															<input type="hidden" id="id_azienda" name="id_azienda" value="<%=azienda.getRagioneSociale()%>">
-															<input type="submit" value="Dettagli">
+															<button type="submit" class="btn btn-labeled btn-default">
+														 		<span class="btn-label">
+														  		<i class="glyphicon glyphicon-chevron-right"></i>
+														 		</span>Visualizza dettagli
+															</button>
 														</form>
 													</td>
-													<%
-														if(ruolo.equals("segreteria")) {
-															String urlModificaAzienda = (String) response.encodeURL("DettaglioAziendaServlet");
-													%>
-													<td>
-														<form  id="dettagli" name="modifica" method="post" action="<%=urlModificaAzienda %>">
-															<input type="hidden" id="id_azienda" name="id_azienda" value="<%=azienda.getRagioneSociale()%>">
-															<input type="submit" value="Modifica">
-														</form>
-													</td>
-													<%
-														}
-													%>
 												</tr>
 												<%
 													}
