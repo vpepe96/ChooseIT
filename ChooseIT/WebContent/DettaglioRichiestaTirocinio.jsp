@@ -266,16 +266,44 @@
 																		<i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;<i class="txt-color-darken">Stato:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=statoRichiestaDao.getStatoRichiesta(richiesta).toString() %></span>
 																	</p>
 																</li>
+																<%
+																	if(richiesta.getTutorUniversitario() == null){
+																%>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Universitario:</i>&nbsp;&nbsp;<span class="txt-color-darken"> </span>
+																	</p>
+																</li>
+																<%
+																	}
+																	else{
+																%>
 																<li>
 																	<p class="text-muted">
 																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Universitario:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getTutorUniversitario().getEmail() %></span>
 																	</p>
 																</li>
+																<%
+																	}
+																	if(richiesta.getTutorAziendale() == null){
+																%>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Aziendale:</i>&nbsp;&nbsp;<span class="txt-color-darken"> </span>
+																	</p>
+																</li>
+																<%
+																	}
+																	else{
+																%>
 																<li>
 																	<p class="text-muted">
 																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Aziendale:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getTutorAziendale().getEmail() %></span>
 																	</p>
 																</li>
+																<%
+																	}
+																%>
 																<li>
 																	<p class="text-muted">
 																		<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<i class="txt-color-darken">Azienda:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getAzienda().getRagioneSociale() %></span>

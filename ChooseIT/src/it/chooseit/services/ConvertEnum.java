@@ -63,7 +63,7 @@ public class ConvertEnum {
 		else if(stato.toString().equalsIgnoreCase(stati[4]))
 			tipo = stati[4];
 		
-		return tipo;
+		return tipo.toLowerCase();
 	}
 	
 	/**

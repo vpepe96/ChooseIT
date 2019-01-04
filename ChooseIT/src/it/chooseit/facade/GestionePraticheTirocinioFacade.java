@@ -337,37 +337,39 @@ public class GestionePraticheTirocinioFacade {
 				e.printStackTrace();
 				System.out.println("Errore di riperimento dati dello stato della richiesta di tirocinio");
 			}
-			if(statoRic == null)
-				System.out.println("Stato Richiesta vuotooooooooooooooooooooooooooooo");
 			if(!convert.convertStatoRichiestaString(statoRic.getTipo()).equalsIgnoreCase("rifiutata"))
 					i++;			
 		}
 		
 		//Se le richieste di tirocinio con stato diverso da quello "annullata" sono minori di 2 allora si inserisce la richiesta, altrimenti no
 		if(i < 2) {
-			//Creo un nuovo stato per la richiesta effettuata impostandolo a "nuova"
-			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("nuova"), richiesta);
+			
 			try {
 				richiesta.setStudente(studenteDao.retrieveByKey(email));
 				richiesta.setTutorAziendale(null);
 				richiesta.setTutorUniversitario(null);
 				richiesta.setRegistroTirocinio(null);
 				//Inserisco la richiesta di tirocinio
-				richiestaTirocinioDao.insert(richiesta);			
+				richiestaTirocinioDao.insert(richiesta);
+				//Prelevo tutte le richieste
+				ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) richiestaTirocinioDao.retrieveAll("id");
+				int id = richieste.size();
+			
+				/*for(RichiestaTirocinioBean r: richieste) {
+					   if(r.getDataRichiesta() == richiesta.getDataRichiesta())
+						   id = r.getId();
+					}*/
+				System.out.println("IDENTIFICATIVO DA SETTARE PER RICHIESTAS"+id);
+				richiesta.setId(id);
+				//Creo un nuovo stato per la richiesta effettuata impostandolo a "nuova"
+				statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("nuova"), richiesta);
+				//Inserisco lo stato della richiesta di tirocinio
+				statoRichiestaDao.insert(statoRic);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("Errore d'inserimento della richiesta di tirocinio");
 				return false;
 			}
-
-			//Inserisco lo stato della richiesta di tirocinio
-			try {
-				statoRichiestaDao.insert(statoRic);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				System.out.println("Errore d'inserimento dello stato della richiesta di tirocinio");
-			}	
 
 			//Aggiorno le dipendenze della richiesta di tirocinio
 			try {

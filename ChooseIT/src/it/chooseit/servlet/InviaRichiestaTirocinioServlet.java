@@ -2,7 +2,6 @@ package it.chooseit.servlet;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,10 +15,8 @@ import javax.servlet.http.Part;
 import it.chooseit.bean.AziendaBean;
 import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StudenteBean;
-import it.chooseit.dao.AziendaDAO;
 import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
-import it.chooseit.impl.Azienda;
 
 @WebServlet("/InviaRichiestaTirocinioServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)

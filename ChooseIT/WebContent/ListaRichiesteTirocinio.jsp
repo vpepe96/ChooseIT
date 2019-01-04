@@ -200,9 +200,27 @@
 												<tr>
 												<%
 														String urlRichiestaTirocinio = response.encodeURL("DettaglioRichiestaTirocinioServlet");
+														if(richiesta.getTutorUniversitario() == null){
+													%>
+													<td> </td>
+													<%
+														}
+														else{
 													%>
 													<td><%=richiesta.getTutorUniversitario().getEmail()%></td>
+													<%
+														}
+														if(richiesta.getTutorAziendale() == null){
+													%>
+													<td> </td>
+													<%
+														}
+														else{
+													%>
 													<td><%=richiesta.getTutorAziendale().getEmail()%></td>
+													<%
+														}
+													%>
 													<td><%=richiesta.getAzienda().getRagioneSociale()%></td>
 													<td><%=richiesta.getDataRichiesta()%></td>
 													<td><%=statoRichiesta.getTipo().toString()%></td>
