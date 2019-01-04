@@ -168,33 +168,36 @@
 				
 													<hr>
 				
-													<div class="padding-10">
+													<div class="padding-gutter">
 				
 														<div class="tab-content padding-top-10">
 															<div class="tab-pane fade in active" id="a1">
-				
-																<div class="row">
+																<%
+																	if(ruoloUtente.equals("studente")){
+																		String urlInviaRichiesta = response.encodeURL("InviaRichiestaTirocinioServlet");
+																%>
+																<div class="padding-gutter">
 																	<form id="form_upload_pf"
 															name="form_upload_pf" method="post"
-															action="................." class="smart-form client-form"
+															action="<%=urlInviaRichiesta %>" class="smart-form client-form"
 															enctype="multipart/form-data">
-															<%
-																	if(ruoloUtente.equals("studente")){
-															%>
 															<section>
-																<label class="label">Progetto formativo</label> <label class="input">
-																	<i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
+																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
 																	name="progetto_formativo" id="progetto_formativo" pattern="^[0-9]{10}$"
 																	value="">
 																</label>
 															</section>
-															<%
-																	}
-															%>
-															<button type="submit" class="btn btn-primary">Invia richiesta</button>
+															
+															<button type="submit" class="btn btn-primary">
+														 		<span class="btn-label">
+														  		<i class="glyphicon glyphicon-share-alt"></i>
+														 		</span>Invia richiesta
+															</button>
 														</form>
 																</div>
-				
+																<%
+																	}
+																%>
 															</div>
 															<div class="tab-pane fade" id="a2">
 	
