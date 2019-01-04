@@ -50,6 +50,22 @@
 		<%@
 			include file = "navbar.jsp"
 		%>
+		<%
+			if (request.getSession().getAttribute("progettoFormativoBoolean") != null) {
+			boolean progettoFormativoBoolean = (boolean) request.getSession().getAttribute("progettoFormativoBoolean");
+			System.out.println(progettoFormativoBoolean);
+			request.getSession().removeAttribute("progettoFormativoBoolean");
+			if (!progettoFormativoBoolean) {
+		%>
+		<script type="text/javascript">
+			alert("ERRORE.\nImpossibile recuperare il progetto formativo.");
+		</script>
+		<%
+			}
+				request.getSession().removeAttribute("progettoFormativoBoolean");
+			}
+		%>
+			
 			
 		<%
 			AziendaBean azienda = (AziendaBean) request.getSession().getAttribute("azienda");
@@ -130,10 +146,21 @@
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><i>Progetto formativo:</i>&nbsp;&nbsp;
-																		<a href="<%=azienda.getProgettoFormativo() %>" download="pf"><%=azienda.getRagioneSociale() %>-PF.pdf</a></span>
-																	</p>
+																		<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><i>Progetto formativo:</i>&nbsp;&nbsp;</span>
+																		
+																		<%
+																		String DownloadPFUrl = response.encodeURL("DownloadProgettoFormativoServlet");
+																		System.out.println(azienda.getProgettoFormativo());
+																		%>
+																		
+																		<form  id="form_modifica_profilo" name="form_download_pf" method="post" action="<%=DownloadPFUrl%>" class="smart-form client-form">
+																		 <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=azienda.getProgettoFormativo() %>">
+																		<button type="submit" class="btn btn-primary">Download</button>
+																	</form>
+																	
+																
 																</li>
+																
 																<br>
 																<%
 																	String ruoloUtente = (String) session.getAttribute("ruolo");
