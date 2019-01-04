@@ -56,30 +56,35 @@
 
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
-	
+
 			<!-- RIBBON -->
 			<div id="ribbon">
-	
+
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Home</li>
-					<li>Lista aziende</li>
-					<li><%=azienda.getRagioneSociale() %></li>
+					<li>Home</li><li>Lista aziende</li><li><%=azienda.getRagioneSociale() %></li>
 				</ol>
 				<!-- end breadcrumb -->
-	
+
 			</div>
 			<!-- END RIBBON -->
-			
+
 			<!-- MAIN CONTENT -->
 			<div id="content">
+
+				<!-- Bread crumb is created dynamically -->
+				<!-- row -->
+				<div class="row">
+				
+				</div>
+				<!-- end row -->
 				
 				<!-- row -->
-				
 				<div class="row">
 				
 					<div class="col-sm-12">
-
+				
+				
 							<div class="well well-sm">
 				
 								<div class="row">
@@ -88,7 +93,7 @@
 										<div class="well well-light well-sm no-margin no-padding">
 				
 											<div class="row">
-											
+				
 												<div class="col-sm-12">
 													<div id="myCarousel" class="carousel fade profile-carousel">
 														<div class="carousel-inner">
@@ -99,12 +104,13 @@
 														</div>
 													</div>
 												</div>
-	
+				
 												<div class="col-sm-12">
-		
+				
 													<div class="row">
-		
+				
 														<div class="col-sm-3 profile-pic">
+															<img src="img/avatars/sunny-big.png" alt="demo user">
 														</div>
 														<div class="col-sm-6">
 															<h1>
@@ -138,25 +144,63 @@
 																</li>
 															</ul>
 															<br>
-		
 														</div>
-	
 														<div class="col-sm-3">
-														
+															
 														</div>
-	
-													</div>
-	
-												</div>
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
 				
-								<div class="col-sm-12 col-md-12 col-lg-6">
+													</div>
+				
+												</div>
+				
+											</div>
+				
+											<div class="row">
+				
+												<div class="col-sm-12">
+				
+													<hr>
+				
+													<div class="padding-10">
+				
+														<div class="tab-content padding-top-10">
+															<div class="tab-pane fade in active" id="a1">
+				
+																<div class="row">
+																	<form id="form_upload_pf"
+															name="form_upload_pf" method="post"
+															action="................." class="smart-form client-form"
+															enctype="multipart/form-data">
+						
+															<section>
+																<label class="label">Progetto formativo</label> <label class="input">
+																	<i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
+																	name="progetto_formativo" id="progetto_formativo" pattern="^[0-9]{10}$"
+																	value="">
+																</label>
+															</section>
+						
+															<button type="submit" class="btn btn-primary">Invia richiesta</button>
+														</form>
+																</div>
+				
+															</div>
+															<div class="tab-pane fade" id="a2">
+	
+															</div><!-- end tab -->
+														</div>
+				
+													</div>
+				
+												</div>
+				
+											</div>
+											<!-- end row -->
+				
+										</div>
+				
+									</div>
+									<div class="col-sm-12 col-md-12 col-lg-6">
 										<%
 											String urlAggiornaAzienda = response.encodeURL("AggiornaAziendaServlet");
 										%>
@@ -170,7 +214,6 @@
 													<i class="icon-append fa fa-user"></i> <input type="text" name="ragioneSociale" id="ragioneSociale" value="<%=azienda.getRagioneSociale()%>">
 												</label>
 											</section>
-		
 		
 											<section>
 												<label class="label">Sede legale</label> <label class="input">
@@ -189,43 +232,28 @@
 													</i> <input type="file" name="progettoFormativo" id="progettoFormativo" accept=".pdf">
 												</label>
 											</section>
-		
-											<button type="submit" class="btn btn-primary">Modifica</button>
-										</form>					
+			
+											<button type="submit" class="btn btn-labeled btn-success">
+												 <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span>Conferma
+											</button>
+											
+										</form>
 										
-				
+									</div>
 								</div>
-
-													<div class="col-sm-3">
-														<form id="form_upload_pf"
-															name="form_upload_pf" method="post"
-															action="................." class="smart-form client-form"
-															enctype="multipart/form-data">
-						
-															<section>
-																<label class="label">Progetto formativo</label> <label class="input">
-																	<i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
-																	name="progetto_formativo" id="progetto_formativo" pattern="^[0-9]{10}$"
-																	value="">
-																</label>
-															</section>
-						
-															<button type="submit" class="btn btn-primary">Invia richiesta</button>
-														</form>
-													</div>
-	
-								
-	
-
-						</div>
+				
+							</div>
+				
+				
 					</div>
-	
+				
 				</div>
+				
 				<!-- end row -->
-	
+
 			</div>
 			<!-- END MAIN CONTENT -->
-			
+
 		</div>
 		<!-- END MAIN PANEL -->
 
