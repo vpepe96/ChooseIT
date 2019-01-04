@@ -1,3 +1,5 @@
+<%@page import="it.chooseit.bean.StatoTirocinioBean"%>
+<%@page import="it.chooseit.bean.StatoReportBean"%>
 <%@page import="it.chooseit.bean.TutorUniversitarioBean"%>
 <%@page import="it.chooseit.impl.StatoReport"%>
 <%@page import="it.chooseit.bean.ReportBean"%>
@@ -125,12 +127,16 @@
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
 											<td><form action="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
 												<input type="submit" value="Download">
-											</form>
+											</form></td>
+											<%if(statoImpl.getStatoReport(x).getTipo().equals(StatoReportBean.StatoReport.COMPILATO)){ %>
 											<td><form action="ValutaReportServlet?action=valuta&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
 													<input type="file" required="required" name="fileReport" size="50" accept="application/pdf">
 													<input type="submit" value="Valuta">
 												</form>
 											</td>
+											<%}else{%>
+												<td>Il report non può essere modificato.</td>	
+											<% }%>
 										</tr>
 										<%
 											}
@@ -186,7 +192,9 @@
 										<tr>
 											<td><%=statoImpl.getStatoReport(x).getTipo()%></td>
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
-											<td><a href="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>">Download</a>
+											<td><form action="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
+												<input type="submit" value="Download">
+											</form></td>
 										</tr>
 										<%
 											}
@@ -236,7 +244,6 @@
 												<th><strong>Stato</strong></th>
 												<th><strong>Data Report</strong>
 												<th><strong>Download</strong></th>
-												<th><strong>Upload</strong></th>
 											</tr>
 										</thead>
 										<%
@@ -245,15 +252,23 @@
 										<tr>
 											<td><%=statoImpl.getStatoReport(x).getTipo() %></td>
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
-											<td><a href="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>">Download</a>
-											<td><form action="ValutaReportServlet?action=upload&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post">
-													<input type="submit" value="Upload">
-												</form>
-											</td>
+											<td><form action="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
+												<input type="submit" value="Download">
+											</form></td>
 										</tr>
 										<%
 											}
+											StatoTirocinio statoTirDao = new StatoTirocinio();
+											if(statoTirDao.getStatoTirocinio(reg).getTipo().equals(StatoTirocinioBean.StatoTirocinio.INCORSO)){
 										%>
+										<tr>
+										<td><form action="ValutaReportServlet?action=upload" method="post" enctype="multipart/form-data">
+													<input type="file" required="required" name="fileReport" size="50" accept="application/pdf">
+													<input type="submit" value="Invia Report">
+												</form>
+											</td>
+										</tr>
+										<%} %>
 									</table>
 								</div>
 								<!--  end div contenuto -->

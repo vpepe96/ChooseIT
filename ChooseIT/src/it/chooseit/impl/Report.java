@@ -121,7 +121,11 @@ public class Report implements ReportDAO {
 			preparedStatement.setInt(1,object.getRegistroTirocinio().getIdentificativo());
 			preparedStatement.setDate(2, object.getDataInserimento());
 			preparedStatement.setString(3, object.getPath());
-			preparedStatement.setString(4, object.getTutorAziendale().getEmail());
+			if(object.getTutorAziendale() == null) {
+				preparedStatement.setString(4, null);
+			}else {
+				preparedStatement.setString(4, object.getTutorAziendale().getEmail());
+			}
 			System.out.println("doSave: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 

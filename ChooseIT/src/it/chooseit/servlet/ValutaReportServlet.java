@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,15 +58,6 @@ public class ValutaReportServlet extends HttpServlet {
 		String dataInserimento = request.getParameter("dataInserimento");
 		String path = request.getParameter("path");
 
-		// Parse da String a sql.Date
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		java.sql.Date sqlDate = null;
-		try {
-			java.util.Date utilDate = format.parse(dataInserimento);
-			sqlDate = new java.sql.Date(utilDate.getTime());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 
 		/* id del registro */
 		int id = registroTirocinio.getIdentificativo();
@@ -77,13 +69,23 @@ public class ValutaReportServlet extends HttpServlet {
 		if (id != 0) {
 			report.setRegistroTirocinio(registroTirocinio);
 			report.setPath(path);
-			report.setDataInserimento(sqlDate);
 		}
 
 		/* download report */
 
 		if (action.trim().equals("download")) {
 
+			// Parse da String a sql.Date
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			java.sql.Date sqlDate = null;
+			try {
+				java.util.Date utilDate = format.parse(dataInserimento);
+				sqlDate = new java.sql.Date(utilDate.getTime());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			report.setDataInserimento(sqlDate);
+			
 			// 2) RICHIAMO IL METODO PER OTTENERE IL FILE
 			File f = GestioneModulisticaFacade.downloadReport(report, getServletContext().getRealPath("//"));
 
@@ -113,6 +115,17 @@ public class ValutaReportServlet extends HttpServlet {
 
 			if (action.trim().equals("valuta")) {
 
+				// Parse da String a sql.Date
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				java.sql.Date sqlDate = null;
+				try {
+					java.util.Date utilDate = format.parse(dataInserimento);
+					sqlDate = new java.sql.Date(utilDate.getTime());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				report.setDataInserimento(sqlDate);
+				
 				// 2)OTTENGO IL PATH DOVE SALVARE
 				String filePath = GestioneModulisticaFacade.uploadReport(report, getServletContext().getRealPath("\\"));
 
@@ -141,8 +154,41 @@ public class ValutaReportServlet extends HttpServlet {
 				}
 
 			}
+		}else if(ruolo.equals("studente")) {
+			if(action.equals("upload")) {
+
+				report.setDataInserimento(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+				// 2)OTTENGO IL PATH DOVE SALVARE
+				String filePath = GestioneModulisticaFacade.uploadReport(report, getServletContext().getRealPath("\\"));
+
+				// 3)SALVO NEL PATH OTTENUTO
+				if (request.getPart("fileReport") != null && request.getPart("fileReport").getSize() > 0) {
+					
+						if (filePath != null && !filePath.equals("")) {
+							Part part = request.getPart("fileReport");
+							part.write(filePath);
+							System.out.println("Salvato in " + filePath);
+							
+							// 4)AGGIORNO IL BEAN AGGIUNGENDO IL PERCORSO APPENA OTTENUTO (filePath) E
+							// FACCIO UPDATE NEL DB
+
+							report.setPath(filePath);
+							GestioneReportFacade gestore = new GestioneReportFacade();
+							gestore.inserimentoReport(report);
+							
+						} else {
+							// Ë andata male
+							System.out.println("Errore nel salvataggio del file");
+						}
+					
+				}else {
+					System.out.println("File non trovato.");
+				}
+				
+				
+			}
 		}
-		String url = response.encodeRedirectURL("/RegistroTirocinio.jsp");
+		String url = response.encodeRedirectURL("/AreaPersonale.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}

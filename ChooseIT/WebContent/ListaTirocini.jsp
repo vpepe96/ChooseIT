@@ -153,8 +153,7 @@
 						} else if (ruolo.trim().equals("tutorUniversitario")) {
 							TutorUniversitarioBean tutor = (TutorUniversitarioBean) request.getSession().getAttribute("utente");
 							RegistroTirocinio registroImpl = new RegistroTirocinio();
-							ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroImpl
-									.getRegistriDiTutorUniversitario(tutor);
+							ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) registroImpl.getRegistriDiTutorUniversitario(tutor);
 
 							if (registri.size() != 0) {
 								StatoTirocinio statoImpl = new StatoTirocinio();
@@ -215,10 +214,9 @@
 					<!-- widget div -->
 					<%
 						}
-						} else if (ruolo.trim().equals("segreteria")) {
+						} else if (ruolo.trim().equals("segreteria") || ruolo.trim().equals("presidente")) {
 							GestioneReportFacade g = new GestioneReportFacade();
-							ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) g
-									.listaRegistroTirocinio();
+							ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) g.listaRegistroTirocinio();
 
 							if (registri.size() != 0) {
 								StatoTirocinio statoImpl = new StatoTirocinio();

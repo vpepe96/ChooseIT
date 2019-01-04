@@ -2,6 +2,7 @@ package it.chooseit.facade;
 
 import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.ReportBean;
+import it.chooseit.bean.StatoReportBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
@@ -9,10 +10,12 @@ import it.chooseit.dao.QuestionarioAziendaDAO;
 import it.chooseit.dao.QuestionarioStudenteDAO;
 import it.chooseit.dao.RegistroTirocinioDAO;
 import it.chooseit.dao.ReportDAO;
+import it.chooseit.dao.StatoReportDAO;
 import it.chooseit.impl.QuestionarioAzienda;
 import it.chooseit.impl.QuestionarioStudente;
 import it.chooseit.impl.RegistroTirocinio;
 import it.chooseit.impl.Report;
+import it.chooseit.impl.StatoReport;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -96,6 +99,13 @@ public class GestioneReportFacade {
 			if (report != null ) {
 				ReportDAO reportD = new Report();
 				reportD.insert(report);
+				StatoReportDAO statoDao = new StatoReport();
+				StatoReportBean stato = new StatoReportBean();
+				stato.setRegistroTirocinio(report.getRegistroTirocinio());
+				stato.setDataStato(report.getDataInserimento());
+				stato.setReport(report);
+				stato.setTipo(it.chooseit.bean.StatoReportBean.StatoReport.COMPILATO);
+				statoDao.insert(stato);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
