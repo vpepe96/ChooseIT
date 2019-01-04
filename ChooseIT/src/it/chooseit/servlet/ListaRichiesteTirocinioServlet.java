@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.chooseit.bean.RichiestaTirocinioBean;
+import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 import it.chooseit.impl.RichiestaTirocinio;
@@ -34,7 +35,7 @@ public class ListaRichiesteTirocinioServlet extends HttpServlet{
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ruolo = (String) request.getSession().getAttribute("ruolo");
-		String email = (String) request.getSession().getAttribute("email");
+		UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
 		RichiestaTirocinioDAO richiestaTirocinioDao = new RichiestaTirocinio();
 		Collection<RichiestaTirocinioBean> listaRichiesteTirocinio = null;
 		
@@ -46,7 +47,7 @@ public class ListaRichiesteTirocinioServlet extends HttpServlet{
 		}
 		
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		listaRichiesteTirocinio = gestore.listaRichiesteTirocinio(ruolo, email);
+		listaRichiesteTirocinio = gestore.listaRichiesteTirocinio(ruolo, utente.getEmail());
 		
 		request.getSession().setAttribute("listaRichiesteTirocinio", listaRichiesteTirocinio);
 		
