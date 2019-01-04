@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.chooseit.bean.StudenteBean;
+import it.chooseit.bean.UtenteBean;
 import it.chooseit.dao.StudenteDAO;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 import it.chooseit.impl.Studente;
@@ -31,7 +32,7 @@ public class ListaStudentiServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ruolo = (String) request.getSession().getAttribute("ruolo");
-		String email = (String) request.getSession().getAttribute("email");
+		UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
 		StudenteDAO studenteDao = new Studente();
 		Collection<StudenteBean> listaStudenti = null;
 		
@@ -43,7 +44,7 @@ public class ListaStudentiServlet extends HttpServlet {
 		}
 		
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		listaStudenti = gestore.listaStudenti(ruolo, email);
+		listaStudenti = gestore.listaStudenti(ruolo, utente.getEmail());
 		request.getSession().setAttribute("listaStudenti", listaStudenti);
 		
 		String url = response.encodeRedirectURL("/ListaStudenti.jsp");

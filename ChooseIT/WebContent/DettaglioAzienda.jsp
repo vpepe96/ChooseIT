@@ -120,21 +120,25 @@
 															<ul class="list-unstyled">
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=azienda.getSedeLegale() %></span>
+																		<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<i class="txt-color-darken">Sede legale:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=azienda.getSedeLegale() %></span>
 																	</p>
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<span class="txt-color-darken"><%=azienda.getSedeOperativa() %></span>
+																		<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<i class="txt-color-darken">Sede operativa:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=azienda.getSedeOperativa() %></span>
 																	</p>
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken">
+																		<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><i>Progetto formativo:</i>&nbsp;&nbsp;
 																		<a href="<%=azienda.getProgettoFormativo() %>" download="pf"><%=azienda.getRagioneSociale() %>-PF.pdf</a></span>
 																	</p>
 																</li>
 																<br>
+																<%
+																	String ruoloUtente = (String) session.getAttribute("ruolo");
+																	if(ruoloUtente.equals("segreteria")){
+																%>
 																<li>
 																	<button type="button" class="btn btn-labeled btn-default" onclick="displayForm()">
 														 				<span class="btn-label">
@@ -142,6 +146,9 @@
 														 				</span>Modifica azienda
 																	</button>
 																</li>
+																<%
+																	}
+																%>
 															</ul>
 															<br>
 														</div>
@@ -171,7 +178,9 @@
 															name="form_upload_pf" method="post"
 															action="................." class="smart-form client-form"
 															enctype="multipart/form-data">
-						
+															<%
+																	if(ruoloUtente.equals("studente")){
+															%>
 															<section>
 																<label class="label">Progetto formativo</label> <label class="input">
 																	<i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
@@ -179,7 +188,9 @@
 																	value="">
 																</label>
 															</section>
-						
+															<%
+																	}
+															%>
 															<button type="submit" class="btn btn-primary">Invia richiesta</button>
 														</form>
 																</div>
