@@ -81,6 +81,12 @@
 					}
   				%>
   				
+  				<%
+					String urlContatti = response.encodeURL("Contatti.jsp");
+				%>
+				
+  				<a href="<%=urlContatti%>">Contatti</a>
+  				
 			</div>
 			<!-- END navigation bar -->
 			

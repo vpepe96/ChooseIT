@@ -109,7 +109,7 @@ public class ModificaProfiloServlet extends HttpServlet {
 		}
 		
 		
-			String url = response.encodeURL("/profilo.jsp");
+			String url = response.encodeURL("/Profilo.jsp");
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 	}
