@@ -160,7 +160,11 @@
 													<td>
 														<form  id="dettagli" name="dettagli" method="post" action="<%=urlRichiestaTirocinio %>">
 															<input type="hidden" id="id_richiesta" name="id_richiesta" value="<%=richiesta.getId()%>">
-															<input type="submit" value="Dettagli">
+															<button type="submit" class="btn btn-labeled btn-default">
+														 		<span class="btn-label">
+														  		<i class="glyphicon glyphicon-chevron-right"></i>
+														 		</span>Visualizza dettagli
+															</button>
 														</form>
 													</td>
 												</tr>
@@ -205,7 +209,11 @@
 													<td>
 														<form  id="dettagli" name="dettagli" method="post" action="<%=urlRichiestaTirocinio %>">
 															<input type="hidden" id="id_richiesta" name="id_richiesta" value="<%=richiesta.getId()%>">
-															<input type="submit" value="Dettagli">
+															<button type="submit" class="btn btn-labeled btn-default">
+														 		<span class="btn-label">
+														  		<i class="glyphicon glyphicon-chevron-right"></i>
+														 		</span>Visualizza dettagli
+															</button>
 														</form>
 													</td>
 												</tr>

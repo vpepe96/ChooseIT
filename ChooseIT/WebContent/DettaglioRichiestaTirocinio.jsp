@@ -10,8 +10,8 @@
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>ChooseIT | Validazione</title>
-<meta name="description" content="Lista delle aziende convenzionate">
+<title>ChooseIT | Dettaglio richiesta di tirocinio</title>
+<meta name="description" content="Dettaglio richiesta di tirocinio">
 <meta name="author" content="RocketStudios">
 
 <meta name="viewport"

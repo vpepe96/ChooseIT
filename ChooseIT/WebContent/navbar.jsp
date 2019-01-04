@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title> ChooseIT | Navigation Bar </title>  
-		<meta name="description" content="">
+		<meta name="description" content="Navigation Bar">
 		<meta name="author" content="RocketStudios">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -96,6 +96,7 @@
 						String urlListaAziende = response.encodeURL("ListaAziendeServlet");
 						String urlNuovaAzienda = response.encodeURL("InserimentoAzienda.jsp");
 						String urlListaRichiesteTirocinio = response.encodeURL("ListaRichiesteTirocinioServlet");
+						String urlListaTirocini = response.encodeURL("ListaTirocinioServlet");
 				%>
 				
 				<ul>
@@ -113,13 +114,21 @@
 					<li class="top-menu-invisible">
 						<a href="<%=urlListaRichiesteTirocinio %>" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>
 					</li>
+					<li class="top-menu-invisible">
+						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-folder-open-o"></i> <span class="menu-item-parent">Registro di tirocinio</span></a>
+						<ul style="display: block;">
+							<li class="top-menu-invisible">
+								<a href="<%=urlListaTirocini %>" title="Dashboard"><span class="menu-item-parent">Lista Tirocini</span></a>
+							</li>
+						</ul>	
+					</li>
 				</ul>
 				
 				<%
 					} else if(ruolo.equals("studente")) {
 						String urlListaAziende = response.encodeURL("ListaAziendeServlet");
 						String urlListaRichiesteTirocinio = response.encodeURL("ListaRichiesteTirocinioServlet");
-						String urlRegistroTirocinio = response.encodeURL("#");
+						String urlListaTirocini = response.encodeURL("ListaTirocinioServlet");
 						String urlQuestionarioValutativo = response.encodeURL("#");
 				%>
 				
@@ -131,7 +140,12 @@
 						<a href="<%=urlListaRichiesteTirocinio %>" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-send-o"></i> <span class="menu-item-parent">Lista richieste</span></a>
 					</li>
 					<li class="top-menu-invisible">
-						<a href="#"><i class="fa fa-lg fa-fw fa fa-folder-open-o"></i> <span class="menu-item-parent">Registro di tirocinio</span></a>
+						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-folder-open-o"></i> <span class="menu-item-parent">Registro di tirocinio</span></a>
+						<ul style="display: block;">
+							<li class="top-menu-invisible">
+								<a href="<%=urlListaTirocini %>" title="Dashboard"><span class="menu-item-parent">Lista Tirocini</span></a>
+							</li>
+						</ul>	
 					</li>
 					<li class="top-menu-invisible">
 						<a href="#"><i class="fa fa-lg fa-fw fa fa-pencil-square-o"></i> <span class="menu-item-parent">Questionario valutativo</span></a>
@@ -151,24 +165,42 @@
 				
 				<%
 					} else if(ruolo.equals("tutor_universitario")) {
+						String urlListaTirocini = response.encodeURL("ListaTirocinioServlet");
 				%>
 				
 				<ul>
-					<li class="">
-						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista tirocini</span></a>
+					<li class="top-menu-invisible">
+						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-folder-open-o"></i> <span class="menu-item-parent">Registro di tirocinio</span></a>
+						<ul style="display: block;">
+							<li class="top-menu-invisible">
+								<a href="<%=urlListaTirocini %>" title="Dashboard"><span class="menu-item-parent">Lista Tirocini</span></a>
+							</li>
+						</ul>	
 					</li>
 				</ul>
 				
 				<%
 					} else if(ruolo.equals("tutor_aziendale")) {
+						String urlListaTirocini = response.encodeURL("ListaTirocinioServlet");
+						String urlListaQuestionari = response.encodeURL("ListaQuestionariTutorAziendaliServlet");
 				%>
 				
 				<ul>
-					<li class="">
-						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista tirocini</span></a>
+					<li class="top-menu-invisible">
+						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-folder-open-o"></i> <span class="menu-item-parent">Registro di tirocinio</span></a>
+						<ul style="display: block;">
+							<li class="top-menu-invisible">
+								<a href="<%=urlListaTirocini %>" title="Dashboard"><span class="menu-item-parent">Lista Tirocini</span></a>
+							</li>
+						</ul>	
 					</li>
-					<li class="">
-						<a href="index.html" title="blank_"><span class="menu-item-parent">Lista questionari</span></a>
+					<li class="top-menu-invisible">
+						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa fa-pencil-square-o"></i> <span class="menu-item-parent">Questionario valutativo</span></a>
+						<ul style="display: block;">
+							<li class="top-menu-invisible">
+								<a href="<%=urlListaQuestionari %>" title="Dashboard"><span class="menu-item-parent">Lista questionari</span></a>
+							</li>
+						</ul>	
 					</li>
 				</ul>
 				

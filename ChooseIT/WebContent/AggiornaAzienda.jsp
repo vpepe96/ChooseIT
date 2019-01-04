@@ -7,7 +7,7 @@
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
 		<title> ChooseIT | Aggiorna azienda </title>
-		<meta name="description" content="Lista delle aziende convenzionate">
+		<meta name="description" content="Aggiorna azienda">
 		<meta name="author" content="RocketStudios">
 			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
