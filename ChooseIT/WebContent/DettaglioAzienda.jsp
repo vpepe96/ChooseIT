@@ -111,7 +111,6 @@
 													<div class="row">
 				
 														<div class="col-sm-3 profile-pic">
-															<img src="img/avatars/sunny-big.png" alt="demo user">
 														</div>
 														<div class="col-sm-6">
 															<h1>
@@ -184,7 +183,7 @@
 																		enctype="multipart/form-data">
 																		<section>
 																			<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
-																				name="progetto_formativo" id="progetto_formativo" pattern="^[0-9]{10}$"
+																				name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
 																				value="">
 																			</label>
 																		</section>
