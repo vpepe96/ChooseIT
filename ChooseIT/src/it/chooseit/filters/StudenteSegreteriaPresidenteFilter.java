@@ -12,18 +12,16 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Servlet Filter implementation class TutorUniversitarioFilter
+ * Servlet Filter implementation class StudenteSegreteriaPresidenteFilter
  */
-@WebFilter("/TutorUniversitarioFilter")
-public class TutorUniversitarioFilter implements Filter {
+@WebFilter("/StudenteSegreteriaPresidenteFilter")
+public class StudenteSegreteriaPresidenteFilter implements Filter {
 
-	
 	FilterConfig filterConfig;
-	
     /**
      * Default constructor. 
      */
-    public TutorUniversitarioFilter() {
+    public StudenteSegreteriaPresidenteFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -46,9 +44,9 @@ public class TutorUniversitarioFilter implements Filter {
 			((HttpServletRequest) request).getSession().setAttribute("ruolo", ruolo);
 		}
 		
-		//se sono tutorUniversitario posso andare
-		//se non sono tutorUniversitario allora dispatcher
-		if (!ruolo.trim().equals("tutorUniversitario")) {
+		//se sono studente OR segreteria OR presidente posso andare
+		//se non sono nè studente nè segreteria nè presidente allora dispatcher
+		if (!ruolo.trim().equals("studente") && !ruolo.trim().equals("segreteria")  && !ruolo.trim().equals("presidente")) {
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
 			request.setAttribute("nonAutorizzato", true);
 			dispatcher.forward(request, response);
@@ -56,13 +54,12 @@ public class TutorUniversitarioFilter implements Filter {
 		}
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
-	}
+}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		filterConfig = fConfig;
-	}
-
+/**
+* @see Filter#init(FilterConfig)
+*/
+public void init(FilterConfig fConfig) throws ServletException {
+filterConfig = fConfig;
+}
 }
