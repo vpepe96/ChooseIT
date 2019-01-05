@@ -416,7 +416,7 @@
 															enctype="multipart/form-data">
 															
 															<section>
-																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
+																<label class="label">Progetto formativo:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
 																	name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
 																	value="">
 																</label>
