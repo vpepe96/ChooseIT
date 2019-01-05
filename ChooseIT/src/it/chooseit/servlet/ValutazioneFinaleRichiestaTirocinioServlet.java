@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 
 @WebServlet("/ValutazioneFinaleRichiestaTirocinioServlet")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class ValutazioneFinaleRichiestaTirocinioServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -28,12 +30,10 @@ public class ValutazioneFinaleRichiestaTirocinioServlet extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String scelta = request.getParameter("scelta");
-		RichiestaTirocinioBean richiestaBean = (RichiestaTirocinioBean) request.getSession().getAttribute("richiestaTirocinio");
+		String scelta = (String) request.getParameter("scelta");
+		RichiestaTirocinioBean richiestaBean = (RichiestaTirocinioBean) request.getSession().getAttribute("richiesta");
 		
-		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		boolean valutazioneFinaleRichiestaOK = gestore.valutazioneFinaleRichiestaTirocinio(richiestaBean, scelta);
-		request.getSession().setAttribute("valutazioneFinaleRichiestaOK", valutazioneFinaleRichiestaOK);
+		System.out.println("Studente:"+richiestaBean.getStudente().getEmail());
 		
 		// 1)OTTENGO IL PATH DOVE SALVARE
 		String filePath = GestioneModulisticaFacade.uploadRichiestaTirocinio(richiestaBean, getServletContext().getRealPath("//"));
@@ -53,6 +53,10 @@ public class ValutazioneFinaleRichiestaTirocinioServlet extends HttpServlet{
 				System.out.println("Errore nel salvataggio del progetto formativo");
 			}
 		}	
+		
+		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
+		boolean valutazioneFinaleRichiestaOK = gestore.valutazioneFinaleRichiestaTirocinio(richiestaBean, scelta);
+		request.getSession().setAttribute("valutazioneFinaleRichiestaOK", valutazioneFinaleRichiestaOK);
 
 		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);

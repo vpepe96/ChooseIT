@@ -56,6 +56,10 @@
 			String ruoloUtente = (String) session.getAttribute("ruolo");
 			RichiestaTirocinioBean richiesta = (RichiestaTirocinioBean) session.getAttribute("richiesta");
 			StatoRichiestaBean statoRichiesta = statoRichiestaDao.getStatoRichiesta(richiesta);
+	
+			ConvertEnum convert = new ConvertEnum();
+		 	String stato = convert.convertStatoRichiestaString(statoRichiesta.getTipo());
+		 	System.out.println("STATO RICHIESTA"+stato);
 
 			if (request.getSession().getAttribute("progettoFormativoBoolean") != null) {
 				boolean progettoFormativoBoolean = (boolean) request.getSession().getAttribute("progettoFormativoBoolean");
@@ -372,7 +376,7 @@
 																		%>
 																		
 																		<form  id="form_modifica_profilo" name="form_download_pf" method="post" action="<%=DownloadPFUrl%>" class="smart-form client-form">
-																		 <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=richiesta.getAzienda().getProgettoFormativo() %>">
+																		 <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=richiesta.getProgettoFormativo() %>">
 																		<button type="submit" class="btn btn-primary">Download</button>
 																	</form>
 																	
@@ -399,23 +403,19 @@
 				
 														<div class="tab-content padding-top-10">
 															<div class="tab-pane fade in active" id="a1">
-																<%
-																	ConvertEnum convert = new ConvertEnum();
-																 	String stato = convert.convertStatoRichiestaString(statoRichiesta.getTipo());
-																 	System.out.println("STATO RICHIESTA"+stato);
-																	if(stato.equalsIgnoreCase("nuova")){
-																		String urlValutazioneIniziale = response.encodeURL("ValutazioneInizialeRichiestaTirocinioServlet");
-																%>
 																<div class="padding-gutter">
 															
-															
+															<%
+															if(stato.equalsIgnoreCase("nuova")){
+																String urlValutazioneIniziale = response.encodeURL("ValutazioneInizialeRichiestaTirocinioServlet");
+															%>
 															<form id="form_upload_pf"
 															name="form_upload_pf" method="post"
 															action="<%=urlValutazioneIniziale %>" class="smart-form client-form"
 															enctype="multipart/form-data">
 															
 															<section>
-																<label class="label">Progetto formativo:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
+																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
 																	name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
 																	value="">
 																</label>
@@ -465,7 +465,7 @@
 																<label class="label">Valuta la richiesta:</label>
 																<select class="form-control" id="scelta" name="scelta">
 																	<option value="rifiutata">Rifiuta</option>
-																	<option value="invalidazione">In Validazione</option>
+																	<option value="inValidazione">In Validazione</option>
 																</select>
 															</section>
 																													
@@ -476,16 +476,13 @@
 														 			</span>OK
 																</button>
 															</section>
-														</form>
-														
-																</div>
-																<%
-																	}
-																	else if(statoRichiestaDao.getStatoRichiesta(richiesta).toString().equalsIgnoreCase("in validazione")){
+															</form>
+															<%
+															}
+																	else if(stato.equalsIgnoreCase("invalidazione")){
 																			String urlValutazioneFinale = response.encodeURL("ValutazioneFinaleRichiestaTirocinioServlet");
 																%>
-																<div class="padding-gutter">
-																	<form id="form_upload_pf"
+															<form id="form_upload_pf"
 															name="form_upload_pf" method="post"
 															action="<%=urlValutazioneFinale %>" class="smart-form client-form"
 															enctype="multipart/form-data">
@@ -505,11 +502,20 @@
 																</select>
 															</section>
 															
-														</form>														
-																</div>
-																<%
+															<section>
+																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; ">
+														 			<span class="btn-label" style="margin-right: 5px; left: 0px;">
+														  			<i class="glyphicon glyphicon-check"></i>
+														 			</span>OK
+																</button>
+															</section>
+															
+															</form>
+															<%
 																	}
-																%>
+															%>
+														
+																</div>
 															</div>
 															<div class="tab-pane fade" id="a2">
 	
@@ -633,7 +639,7 @@
 																		%>
 																		
 																		<form  id="form_modifica_profilo" name="form_download_pf" method="post" action="<%=DownloadPFUrl%>" class="smart-form client-form">
-																		 <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=richiesta.getAzienda().getProgettoFormativo() %>">
+																		 <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=richiesta.getProgettoFormativo() %>">
 																		<button type="submit" class="btn btn-primary">Download</button>
 																	</form>
 																	
@@ -662,15 +668,16 @@
 				
 														<div class="tab-content padding-top-10">
 															<div class="tab-pane fade in active" id="a1">
+															<div class="padding-gutter">
 																<%
-																	if(statoRichiestaDao.getStatoRichiesta(richiesta).toString().equalsIgnoreCase("nuova")){
-																		String urlConvalida = response.encodeURL("CovalidaRichiestaTirocinioServlet");
+																	if(stato.equalsIgnoreCase("inconvalida")){
+																		String urlConvalida = response.encodeURL("ConvalidaRichiestaTirocinioServlet");
 																%>
-																<div class="padding-gutter">
 																	<form id="form_upload_pf"
 															name="form_upload_pf" method="post"
 															action="<%=urlConvalida %>" class="smart-form client-form"
 															enctype="multipart/form-data">
+															
 															<section>
 																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
 																	name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
@@ -685,12 +692,20 @@
 																	<option value="accettata">Accetta</option>
 																</select>
 															</section>
-									
-														</form>
-																</div>
-																<%
+															
+															<section>
+																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; ">
+														 			<span class="btn-label" style="margin-right: 5px; left: 0px;">
+														  			<i class="glyphicon glyphicon-check"></i>
+														 			</span>OK
+																</button>
+															</section>
+															
+															</form>
+															<%
 																	}
-																%>
+															%>
+																</div>
 															</div>
 															<div class="tab-pane fade" id="a2">
 	

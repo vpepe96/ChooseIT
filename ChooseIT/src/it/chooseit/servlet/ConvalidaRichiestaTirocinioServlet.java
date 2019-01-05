@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 
 @WebServlet("/ConvalidaRichiestaTirocinioServlet")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class ConvalidaRichiestaTirocinioServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
@@ -28,13 +30,9 @@ public class ConvalidaRichiestaTirocinioServlet extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String scelta = request.getParameter("scelta");
-		RichiestaTirocinioBean richiestaTirocinio = (RichiestaTirocinioBean) request.getSession().getAttribute("richiestaTirocinio");
-		
-		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		boolean convalidaRichiestaOK = gestore.convalidaRichiestaTirocinio(richiestaTirocinio, scelta);
-		request.getSession().setAttribute("convalidaRichiestaOK", convalidaRichiestaOK);
-		
+		String scelta = (String) request.getParameter("scelta");
+		RichiestaTirocinioBean richiestaTirocinio = (RichiestaTirocinioBean) request.getSession().getAttribute("richiesta");
+	
 		// 1)OTTENGO IL PATH DOVE SALVARE
 		String filePath = GestioneModulisticaFacade.uploadRichiestaTirocinio(richiestaTirocinio, getServletContext().getRealPath("//"));
 
@@ -53,6 +51,12 @@ public class ConvalidaRichiestaTirocinioServlet extends HttpServlet{
 				System.out.println("Errore nel salvataggio del progetto formativo");
 			}
 		}	
+		
+
+		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
+		boolean convalidaRichiestaOK = gestore.convalidaRichiestaTirocinio(richiestaTirocinio, scelta);
+		request.getSession().setAttribute("convalidaRichiestaOK", convalidaRichiestaOK);
+		
 		
 		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);

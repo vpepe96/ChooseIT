@@ -24,7 +24,7 @@ public class ConvertEnum {
 	 */
 	public StatoRichiesta convertStatoRichiesta(String stato) {
 		StatoRichiesta tipo = null;
-		String[] stati = {"NUOVA","IN VALIDAZIONE","IN CONVALIDA","ACCETTATA","RIFIUTATA"};
+		String[] stati = {"NUOVA","INVALIDAZIONE","INCONVALIDA","ACCETTATA","RIFIUTATA"};
 		
 		if(stato.equalsIgnoreCase(stati[0]))
 			tipo = StatoRichiesta.NUOVA;
@@ -46,7 +46,7 @@ public class ConvertEnum {
 	
 	public String convertStatoRichiestaString(StatoRichiesta stato) {
 		String tipo = null;
-		String[] stati = {"NUOVA","IN VALIDAZIONE","IN CONVALIDA","ACCETTATA","RIFIUTATA"};
+		String[] stati = {"NUOVA","INVALIDAZIONE","INCONVALIDA","ACCETTATA","RIFIUTATA"};
 		
 		if(stato.toString().equalsIgnoreCase(stati[0]))
 			tipo = stati[0];

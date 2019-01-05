@@ -245,7 +245,7 @@ public class GestionePraticheTirocinioFacade {
 				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato è quello di in convalida e la aggiungo alla lista altrimenti no
 				for(RichiestaTirocinioBean r : ric) {
 					stat = statoRichiestaDao.getStatoRichiesta(r);
-					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("in convalida"))
+					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("inconvalida"))
 						richieste.add(r);
 				}
 			} catch (SQLException e) {
@@ -266,7 +266,7 @@ public class GestionePraticheTirocinioFacade {
 				while (it.hasNext()) {
 					richiestaBean = (RichiestaTirocinioBean) it.next();
 					stat = statoRichiestaDao.getStatoRichiesta(richiestaBean);
-					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("nuova") || convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("in validazione")) {
+					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("nuova") || convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("invalidazione")) {
 						richieste.add(richiestaBean);
 					System.out.println("ID"+richiestaBean.getId()+"AZIENDA"+richiestaBean.getAzienda().getRagioneSociale()+"STUDENTE"+richiestaBean.getStudente().getEmail()+"DATA"+richiestaBean.getDataRichiesta());
 					}
@@ -422,7 +422,7 @@ public class GestionePraticheTirocinioFacade {
 		System.out.println("SCELTA VALUTAZIONE"+scelta);
 		if(scelta.equalsIgnoreCase("inValidazione")) {
 			//Creo il nuovo stato, "in validazione", della richiesta di tirocinio 
-			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("in validazione"), richiesta);
+			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("invalidazione"), richiesta);
 			
 			try {
 				//Aggiorno la richiesta di tirocinio
@@ -476,9 +476,9 @@ public class GestionePraticheTirocinioFacade {
 		
 		//Se la richiesta di tirocinio passa da in validazione a in convalida viene inserito il relativo stato di in convalida
 		//Se la richiesta di tirocinio passa da in validazione a rifiutata viene inserito il relativo stato a rifiutata
-		if(scelta.equalsIgnoreCase("in convalida")) {
+		if(scelta.equalsIgnoreCase("inconvalida")) {
 			//Creo il nuovo stato, "in convalida", della richiesta di tirocinio
-			StatoRichiestaBean stato = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("in convalida"), richiesta);
+			StatoRichiestaBean stato = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("inconvalida"), richiesta);
 			
 			try {
 				//Inserisco lo stato della richiesta di tirocinio

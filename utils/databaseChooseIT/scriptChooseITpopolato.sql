@@ -91,7 +91,7 @@ foreign key(tutor_universitario_email) references tutor_universitario(email)
 
 create table stato_richiesta(
 data_stato			date			not null,
-tipo				enum('nuova','in validazione','in convalida','accettata','rifiutata')		not null,
+tipo				enum('nuova','invalidazione','inconvalida','accettata','rifiutata')		not null,
 richiesta_id		integer			not null,
 
 primary key(data_stato, tipo, richiesta_id),
@@ -115,7 +115,7 @@ foreign key(tutor_universitario_email) references tutor_universitario(email)
 
 create table stato_tirocinio(
 data_stato			date				not null,
-tipo				enum('in corso','terminato','annullato')		not null,
+tipo				enum('incorso','terminato','annullato')		not null,
 registro_id			integer				not null,
 
 primary key(data_stato,tipo,registro_id),
@@ -254,24 +254,24 @@ INSERT INTO `richiesta_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','Agic Te
                                              (5,'m.longo@studenti.unisa.it','ITD Solutions','','2018-11-25','vnovo@gmail.com','luchini@unisa.it');
 
 INSERT INTO `stato_richiesta` VALUES ('2012-11-05','nuova',1),
-										('2012-11-06','in validazione',1),
-                                        ('2012-11-06','in convalida',1),
+										('2012-11-06','invalidazione',1),
+                                        ('2012-11-06','inconvalida',1),
                                         ('2012-11-07','accettata',1),
                                         ('2014-10-10','nuova',2),
-                                        ('2014-10-11','in validazione',2),
-                                        ('2014-10-11','in convalida',2),
+                                        ('2014-10-11','invalidazione',2),
+                                        ('2014-10-11','inconvalida',2),
                                         ('2014-10-12','accettata',2),
                                         ('2017-10-10','nuova',3),
-                                        ('2017-10-10','in validazione',3),
-                                        ('2017-10-11','in convalida',3),
+                                        ('2017-10-10','invalidazione',3),
+                                        ('2017-10-11','inconvalida',3),
                                         ('2017-10-11','accettata',3),
                                         ('2018-11-10','nuova',4),
-                                        ('2018-11-10','in validazione',4),
-                                        ('2018-11-11','in convalida',4),
+                                        ('2018-11-10','invalidazione',4),
+                                        ('2018-11-11','inconvalida',4),
                                         ('2018-11-11','accettata',4),
                                         ('2018-11-25','nuova',5),
-                                        ('2018-11-25','in validazione',5),
-                                        ('2018-11-25','in convalida',5),
+                                        ('2018-11-25','invalidazione',5),
+                                        ('2018-11-25','inconvalida',5),
                                         ('2018-11-25','accettata',5);
                                         
 INSERT INTO `registro_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','2012-11-05','valeriorossi@gmail.com','valfieri@unisa.it',1),
@@ -280,14 +280,14 @@ INSERT INTO `registro_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','2012-11-
                                         (4,'a.demichele@studenti.unisa.it','2018-11-10','vnovo@gmail.com','luchini@unisa.it',4),
                                         (5,'m.longo@studenti.unisa.it','2018-11-25','vnovo@gmail.com','luchini@unisa.it',5);
                                         
-INSERT INTO `stato_tirocinio` VALUES ('2012-11-05','in corso',1),
+INSERT INTO `stato_tirocinio` VALUES ('2012-11-05','incorso',1),
 										('2013-02-27','terminato',1),
-                                        ('2014-10-10','in corso',2),
+                                        ('2014-10-10','incorso',2),
                                         ('2014-11-03','annullato',2),
-                                        ('2017-10-10','in corso',3),
+                                        ('2017-10-10','incorso',3),
                                         ('2018-01-10','terminato',3),
-                                        ('2018-11-10','in corso',4),
-                                        ('2018-11-25','in corso',5);
+                                        ('2018-11-10','incorso',4),
+                                        ('2018-11-25','incorso',5);
 
 INSERT INTO `questionario_valutativo_studente` VALUES (1,3,5,4,3,5,3,2,4,2,3,4),
 														(2,null,null,null,null,null,null,null,null,null,null,null),
