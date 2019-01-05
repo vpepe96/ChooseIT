@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import it.chooseit.bean.AziendaBean;
 import it.chooseit.bean.RegistroTirocinioBean;
@@ -252,19 +253,23 @@ public class GestionePraticheTirocinioFacade {
 		}
 		else if (ruoloUtente.equalsIgnoreCase("Segreteria")) {
 			try {
-				Collection<RichiestaTirocinioBean> ric = new ArrayList<RichiestaTirocinioBean>();
 				StatoRichiestaBean stat = new StatoRichiestaBean();
+				RichiestaTirocinioBean richiestaBean = null;
 				//Ottengo la lista di tutte le richieste di tirocinio
-				ric = richiestaDao.retrieveAll(null);
+				Collection<RichiestaTirocinioBean> ric = richiestaDao.retrieveAll(null);
 				
 				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato è quello di nuovo o in validazione e la aggiungo alla lista altrimenti no
-				for(RichiestaTirocinioBean r : ric) {
-					stat = statoRichiestaDao.getStatoRichiesta(r);
-					if(stat == null)
-						System.out.println("STATO RICHIESTA VUOTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("nuova") || convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("in validazione"))
-						richieste.add(r);
+				Iterator<?> it = ric.iterator();
+				while (it.hasNext()) {
+					richiestaBean = (RichiestaTirocinioBean) it.next();
+					stat = statoRichiestaDao.getStatoRichiesta(richiestaBean);
+					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("nuova") || convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("in validazione")) {
+						richieste.add(richiestaBean);
+					System.out.println("ID"+richiestaBean.getId()+"AZIENDA"+richiestaBean.getAzienda().getRagioneSociale()+"STUDENTE"+richiestaBean.getStudente().getEmail()+"DATA"+richiestaBean.getDataRichiesta());
+					}
 				}
+				
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("Errore di reperimento dati della lista delle richieste di tirocinio per la segreteria");
@@ -405,11 +410,14 @@ public class GestionePraticheTirocinioFacade {
 		
 		//Setto il tutor aziendale e enuversitario in base a quelli selezionati
 		richiesta.setTutorAziendale(tutorAziendale);
+		System.out.println("TUTOR AZIENDALE"+tutorAziendale.getNome()+" "+tutorAziendale.getCognome());
 		richiesta.setTutorUniversitario(tutorUniversitario);
+		System.out.println("TUTOR UNIVERSITARIO"+tutorUniversitario.getNome()+" "+tutorUniversitario.getCognome());
 		
 		//Se la richiesta di tirocinio passa da nuova a in validazione viene aggiornata, inserendo i relativi tutor associati, ed inserito il relativo stato di in validazione
 		//Se la richiesta di tirocinio passa da nuova a rifiutata viene inserito il relativo stato a rifiutata
-		if(scelta.equalsIgnoreCase("in validazione")) {
+		System.out.println("SCELTA VALUTAZIONE"+scelta);
+		if(scelta.equalsIgnoreCase("inValidazione")) {
 			//Creo il nuovo stato, "in validazione", della richiesta di tirocinio 
 			statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("in validazione"), richiesta);
 			

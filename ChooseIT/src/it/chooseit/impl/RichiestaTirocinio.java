@@ -41,7 +41,6 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 
 			ResultSet rs = preparedStatament.executeQuery();
 
-			StudenteBean studente = new StudenteBean();
 			AziendaBean azienda = new AziendaBean();
 			TutorAziendaleBean tutorAziendale = new TutorAziendaleBean();
 			TutorUniversitarioBean tutorUniversitario = new TutorUniversitarioBean();			
@@ -53,7 +52,7 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 				
 				// Cerca dati studente
 				StudenteDAO studenteDao = new Studente();
-				studente = studenteDao.retrieveByKey(studente.getEmail());			
+				StudenteBean studente = studenteDao.retrieveByKey(rs.getString("studente_email"));			
 				richiesta.setStudente(studente);
 				
 				//Cerca dati azienda

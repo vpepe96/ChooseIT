@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import it.chooseit.bean.RichiestaTirocinioBean;
+import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 
 @WebServlet("/ValutazioneFinaleRichiestaTirocinioServlet")
@@ -27,12 +29,31 @@ public class ValutazioneFinaleRichiestaTirocinioServlet extends HttpServlet{
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String scelta = request.getParameter("scelta");
-		RichiestaTirocinioBean richiestaTirocinio = (RichiestaTirocinioBean) request.getSession().getAttribute("richiestaTirocinio");
+		RichiestaTirocinioBean richiestaBean = (RichiestaTirocinioBean) request.getSession().getAttribute("richiestaTirocinio");
 		
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		boolean valutazioneFinaleRichiestaOK = gestore.valutazioneFinaleRichiestaTirocinio(richiestaTirocinio, scelta);
+		boolean valutazioneFinaleRichiestaOK = gestore.valutazioneFinaleRichiestaTirocinio(richiestaBean, scelta);
 		request.getSession().setAttribute("valutazioneFinaleRichiestaOK", valutazioneFinaleRichiestaOK);
 		
+		// 1)OTTENGO IL PATH DOVE SALVARE
+		String filePath = GestioneModulisticaFacade.uploadRichiestaTirocinio(richiestaBean, getServletContext().getRealPath("//"));
+
+		boolean progettoFormativoOK = false;
+
+		// 2)SALVO NEL PATH OTTENUTO
+		if (request.getPart("progettoFormativo") != null && request.getPart("progettoFormativo").getSize() > 0) {
+			if (filePath != null && !filePath.equals("")) {
+				Part part = request.getPart("progettoFormativo");
+				part.write(filePath);
+				progettoFormativoOK = true;
+				System.out.println("Salvato in " + filePath);
+				richiestaBean.setProgettoFormativo(filePath); //lo aggiorna solo se il file è presente altrimenti resta quello ottenuto con retrievebykey
+			} else {
+				// è andata male
+				System.out.println("Errore nel salvataggio del progetto formativo");
+			}
+		}	
+
 		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

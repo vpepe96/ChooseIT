@@ -1,7 +1,7 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collection"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import="it.chooseit.bean.*, it.chooseit.impl.*, it.chooseit.dao.*"%>
+    pageEncoding="utf-8" import="it.chooseit.bean.*, it.chooseit.impl.*, it.chooseit.dao.*, it.chooseit.services.ConvertEnum"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -51,14 +51,26 @@
 		<%@
 			include file = "navbar.jsp"
 		%>
-			
 		<%
 			StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
 			String ruoloUtente = (String) session.getAttribute("ruolo");
-			RichiestaTirocinioBean richiesta = (RichiestaTirocinioBean) request.getSession().getAttribute("richiesta");
+			RichiestaTirocinioBean richiesta = (RichiestaTirocinioBean) session.getAttribute("richiesta");
 			StatoRichiestaBean statoRichiesta = statoRichiestaDao.getStatoRichiesta(richiesta);
-		%>
 
+			if (request.getSession().getAttribute("progettoFormativoBoolean") != null) {
+				boolean progettoFormativoBoolean = (boolean) request.getSession().getAttribute("progettoFormativoBoolean");
+				System.out.println(progettoFormativoBoolean);
+				request.getSession().removeAttribute("progettoFormativoBoolean");
+				if (!progettoFormativoBoolean) {
+		%>
+		<script type="text/javascript">
+			alert("ERRORE.\nImpossibile recuperare il progetto formativo.");
+		</script>
+		<%
+			}
+				request.getSession().removeAttribute("progettoFormativoBoolean");
+			}
+		%>
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
 
@@ -92,7 +104,9 @@
 				
 							<div class="well well-sm">
 							<%
+								//Pagina per lo studente
 								if(ruoloUtente.equals("studente")){
+									
 							%>	
 								<div class="row">
 				
@@ -136,16 +150,46 @@
 																		<i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;<i class="txt-color-darken">Stato:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=statoRichiesta.getTipo().toString() %></span>
 																	</p>
 																</li>
+																<%
+																	if(richiesta.getTutorUniversitario() == null){
+																%>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Universitario:</i>&nbsp;&nbsp;<span class="txt-color-darken"></span>
+																	</p>
+																</li>
+																<%
+																	}
+																	else
+																	{
+																%>
 																<li>
 																	<p class="text-muted">
 																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Universitario:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getTutorUniversitario().getEmail() %></span>
 																	</p>
 																</li>
+																<%
+																	}
+																	if(richiesta.getTutorUniversitario() == null){
+																%>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Aziendale:</i>&nbsp;&nbsp;<span class="txt-color-darken"></span>
+																	</p>
+																</li>
+																<%
+																	}
+																	else
+																	{
+																%>
 																<li>
 																	<p class="text-muted">
 																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Aziendale:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getTutorAziendale().getEmail() %></span>
 																	</p>
 																</li>
+																<%
+																	}
+																%>
 																<li>
 																	<p class="text-muted">
 																		<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<i class="txt-color-darken">Azienda:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getAzienda().getRagioneSociale() %></span>
@@ -153,9 +197,19 @@
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><i>Progetto formativo:</i>&nbsp;&nbsp;
-																		<a href="<%=richiesta.getProgettoFormativo() %>" download="pf"><%=richiesta.getAzienda().getRagioneSociale() %>-PF.pdf</a></span>
-																	</p>
+																		<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><i>Progetto formativo:</i>&nbsp;&nbsp;</span>
+																		
+																		<%
+																		String DownloadPFUrl = response.encodeURL("DownloadProgettoFormativoServlet");
+																		System.out.println(richiesta.getAzienda().getProgettoFormativo());
+																		%>
+																		
+																		<form  id="form_modifica_profilo" name="form_download_pf" method="post" action="<%=DownloadPFUrl%>" class="smart-form client-form">
+																		<span> <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=richiesta.getAzienda().getProgettoFormativo() %>">
+																		<button type="submit" class="btn btn-primary">Download</button></span>
+																	</form>
+																	
+																
 																</li>
 															</ul>
 															<br>
@@ -263,6 +317,265 @@
 																</li>
 																<li>
 																	<p class="text-muted">
+																		<i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;<i class="txt-color-darken">Stato:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=statoRichiesta.getTipo().toString()%></span>
+																	</p>
+																</li>
+																<%
+																	if(richiesta.getTutorUniversitario() == null){
+																%>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Universitario:</i>&nbsp;&nbsp;<span class="txt-color-darken"> </span>
+																	</p>
+																</li>
+																<%
+																	}
+																	else{
+																%>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Universitario:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getTutorUniversitario().getEmail() %></span>
+																	</p>
+																</li>
+																<%
+																	}
+																	if(richiesta.getTutorAziendale() == null){
+																%>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Aziendale:</i>&nbsp;&nbsp;<span class="txt-color-darken"> </span>
+																	</p>
+																</li>
+																<%
+																	}
+																	else{
+																%>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Tutor Aziendale:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getTutorAziendale().getEmail() %></span>
+																	</p>
+																</li>
+																<%
+																	}
+																%>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-map-marker"></i>&nbsp;&nbsp;<i class="txt-color-darken">Azienda:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getAzienda().getRagioneSociale() %></span>
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><i>Progetto formativo:</i>&nbsp;&nbsp;</span>
+																		
+																		<%
+																		String DownloadPFUrl = response.encodeURL("DownloadProgettoFormativoServlet");
+																		System.out.println(richiesta.getAzienda().getProgettoFormativo());
+																		%>
+																		
+																		<form  id="form_modifica_profilo" name="form_download_pf" method="post" action="<%=DownloadPFUrl%>" class="smart-form client-form">
+																		 <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=richiesta.getAzienda().getProgettoFormativo() %>">
+																		<button type="submit" class="btn btn-primary">Download</button>
+																	</form>
+																	
+																
+																</li>
+															</ul>
+															<br>
+														</div>
+														<div class="col-sm-3">
+															
+														</div>
+				
+													</div>
+				
+												</div>
+				
+											</div>
+											<hr>
+											<div class="row">
+				
+												<div class="col-sm-12">
+
+													<div class="padding-gutter">
+				
+														<div class="tab-content padding-top-10">
+															<div class="tab-pane fade in active" id="a1">
+																<%
+																	ConvertEnum convert = new ConvertEnum();
+																 	String stato = convert.convertStatoRichiestaString(statoRichiesta.getTipo());
+																 	System.out.println("STATO RICHIESTA"+stato);
+																	if(stato.equalsIgnoreCase("nuova")){
+																		String urlValutazioneIniziale = response.encodeURL("ValutazioneInizialeRichiestaTirocinioServlet");
+																%>
+																<div class="padding-gutter">
+															<form id="form_upload_pf"
+															name="form_upload_pf" method="post"
+															action="<%=urlValutazioneIniziale %>" class="smart-form client-form"
+															enctype="multipart/form-data">
+															
+															<section>
+																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
+																	name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
+																	value="">
+																</label>
+															</section>
+															
+															<section>
+																<label class="label">Seleziona tutor universitario:</label>
+																<select class="form-control" id="email_tutor_universitario" name="email_tutor_universitario">
+																<%
+																TutorUniversitarioDAO tutorUniversitarioDao = new TutorUniversitario();
+																Collection<TutorUniversitarioBean> tutorUniversitari = tutorUniversitarioDao.retrieveAll(null);
+																TutorUniversitarioBean tutorUniversitario = new TutorUniversitarioBean();
+																Iterator<?> it = tutorUniversitari.iterator();
+																while (it.hasNext()) {
+																	tutorUniversitario = (TutorUniversitarioBean) it.next();
+																%>
+																	<option value="<%=tutorUniversitario.getEmail()%>">
+																		<%=tutorUniversitario.getNome() + " " + tutorUniversitario.getCognome()%>
+																	</option>
+																<%
+																	}
+																%>
+																</select>
+															</section>
+															
+															<section>
+																<label class="label">Seleziona tutor aziendale:</label>
+																<select class="form-control" id="email_tutor_aziendale" name="email_tutor_aziendale">
+																<%
+																TutorAziendaleDAO tutorAziendaleDao = new TutorAziendale();
+																Collection<TutorAziendaleBean> tutorAziendali = tutorAziendaleDao.getTutorDiAzienda(richiesta.getAzienda());
+																TutorAziendaleBean tutorAziendale = new TutorAziendaleBean();
+																Iterator<?> it2 = tutorAziendali.iterator();
+																while (it2.hasNext()) {
+																	tutorAziendale = (TutorAziendaleBean) it2.next();
+																%>
+																	<option value="<%=tutorAziendale.getEmail()%>">
+																		<%=tutorAziendale.getNome() + " " + tutorAziendale.getCognome()%>
+																	</option>
+																<%
+																	}
+																%>
+																</select>
+															</section>
+															
+															<section>			
+																<label class="label">Valuta la richiesta:</label>
+																<select class="form-control" id="scelta" name="scelta">
+																	<option value="rifiutata">Rifiuta</option>
+																	<option value="invalidazione">In Validazione</option>
+																</select>
+															</section>
+																													
+															<section>
+																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; ">
+														 			<span class="btn-label" style="margin-right: 5px; left: 0px;">
+														  			<i class="glyphicon glyphicon-check"></i>
+														 			</span>OK
+																</button>
+															</section>
+														</form>
+														
+																</div>
+																<%
+																	}
+																	else if(statoRichiestaDao.getStatoRichiesta(richiesta).toString().equalsIgnoreCase("in validazione")){
+																			String urlValutazioneFinale = response.encodeURL("ValutazioneFinaleRichiestaTirocinioServlet");
+																%>
+																<div class="padding-gutter">
+																	<form id="form_upload_pf"
+															name="form_upload_pf" method="post"
+															action="<%=urlValutazioneFinale %>" class="smart-form client-form"
+															enctype="multipart/form-data">
+															
+															<section>
+																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
+																	name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
+																	value="">
+																</label>
+															</section>
+															
+															<section>			
+																<label class="label">Valuta la richiesta:</label>
+																<select class="form-control" id="scelta" name="scelta">
+																	<option value="rifiutata">Rifiuta</option>
+																	<option value="inConvalida">In Convalida</option>
+																</select>
+															</section>
+															
+														</form>														
+																</div>
+																<%
+																	}
+																%>
+															</div>
+															<div class="tab-pane fade" id="a2">
+	
+															</div><!-- end tab -->
+														</div>
+				
+													</div>
+				
+												</div>
+				
+											</div>
+											<!-- end row -->
+				
+										</div>
+				
+									</div>
+									
+								</div>
+								<%
+									}
+								//Pagina per presidente
+								else if(ruoloUtente.equals("presidente")){
+							%>	
+								<div class="row">
+				
+									<div class="col-sm-12 col-md-12 col-lg-6">
+										<div class="well well-light well-sm no-margin no-padding">
+				
+											<div class="row">
+				
+												<div class="col-sm-12">
+													<div id="myCarousel" class="carousel fade profile-carousel">
+														<div class="carousel-inner">
+															<!-- Slide 1 -->
+															<div class="">
+																<img src="img/demo/s1.jpg" alt="demo user">
+															</div>
+														</div>
+													</div>
+												</div>
+				
+												<div class="col-sm-12">
+				
+													<div class="row">
+				
+														<div class="col-sm-3 profile-pic">
+															<img src="img/avatars/sunny-big.png" alt="demo user">
+														</div>
+						
+														<div class="col-sm-6">
+															<h1>
+																<span class="semi-bold">Dettaglio richiesta tirocinio</span><br>
+															</h1>
+		
+															<ul class="list-unstyled">
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;<i class="txt-color-darken">Studente:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getStudente().getEmail() %></span>
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-fw fa-calendar"></i>&nbsp;&nbsp;<i class="txt-color-darken">Data:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=richiesta.getDataRichiesta() %></span>
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
 																		<i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;<i class="txt-color-darken">Stato:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=statoRichiestaDao.getStatoRichiesta(richiesta).toString() %></span>
 																	</p>
 																</li>
@@ -311,9 +624,19 @@
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><i>Progetto formativo:</i>&nbsp;&nbsp;
-																		<a href="<%=richiesta.getProgettoFormativo() %>" download="pf"><%=richiesta.getAzienda().getRagioneSociale() %>-PF.pdf</a></span>
-																	</p>
+																		<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;<span class="txt-color-darken"><i>Progetto formativo:</i>&nbsp;&nbsp;</span>
+																		
+																		<%
+																		String DownloadPFUrl = response.encodeURL("DownloadProgettoFormativoServlet");
+																		System.out.println(richiesta.getAzienda().getProgettoFormativo());
+																		%>
+																		
+																		<form  id="form_modifica_profilo" name="form_download_pf" method="post" action="<%=DownloadPFUrl%>" class="smart-form client-form">
+																		 <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=richiesta.getAzienda().getProgettoFormativo() %>">
+																		<button type="submit" class="btn btn-primary">Download</button>
+																	</form>
+																	
+																
 																</li>
 															</ul>
 															<br>
@@ -340,12 +663,12 @@
 															<div class="tab-pane fade in active" id="a1">
 																<%
 																	if(statoRichiestaDao.getStatoRichiesta(richiesta).toString().equalsIgnoreCase("nuova")){
-																		String urlValutazioneIniziale = response.encodeURL("ValutazioneInizialeRichiestaTirocinioServlet");
+																		String urlConvalida = response.encodeURL("CovalidaRichiestaTirocinioServlet");
 																%>
 																<div class="padding-gutter">
 																	<form id="form_upload_pf"
 															name="form_upload_pf" method="post"
-															action="<%=urlValutazioneIniziale %>" class="smart-form client-form"
+															action="<%=urlConvalida %>" class="smart-form client-form"
 															enctype="multipart/form-data">
 															<section>
 																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
@@ -354,29 +677,14 @@
 																</label>
 															</section>
 															
-															<section>
-																<label class="label">Seleziona tutor universitario:</label>
-																<%
-																TutorUniversitarioDAO tutorUniversitarioDao = new TutorUniversitario();
-																Collection<TutorUniversitarioBean> tutors = tutorUniversitarioDao.retrieveAll(null);
-																TutorUniversitarioBean tutorUniversitario = new TutorUniversitarioBean();
-																Iterator<?> it = tutors.iterator();
-																while (it.hasNext()) {
-																	tutorUniversitario = (TutorUniversitarioBean) it.next();
-															%>
-															<ul class="dropdown-menu">
-																<li><%=tutorUniversitario.getNome() + " " + tutorUniversitario.getCognome()%></li>
-															</ul>
-															<%
-																}
-															%>
+															<section>			
+																<label class="label">Valuta la richiesta:</label>
+																<select class="form-control" id="scelta" name="scelta">
+																	<option value="rifiutata">Rifiuta</option>
+																	<option value="accettata">Accetta</option>
+																</select>
 															</section>
-															
-															<button type="submit" class="btn btn-primary">
-														 		<span class="btn-label">
-														  		<i class="glyphicon glyphicon-share-alt"></i>
-														 		</span>Invia richiesta
-															</button>
+									
 														</form>
 																</div>
 																<%
