@@ -5,7 +5,10 @@ package it.chooseit.facade;
  */
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -595,6 +598,25 @@ public class GestionePraticheTirocinioFacade {
 			numRegistri++;
 		
 		return numRegistri;
+	}
+	
+	/**
+	 * Aggiunge lo stato terminato al registro di tirocinio.
+	 * @param bean il registro di tirocinio da terminare
+	 */
+	public void terminaTirocinio(RegistroTirocinioBean bean) {
+		StatoTirocinioDAO statoDao = new StatoTirocinio();
+
+		java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+		
+		StatoTirocinioBean stato = new StatoTirocinioBean(bean, sqlDate, it.chooseit.bean.StatoTirocinioBean.StatoTirocinio.TERMINATO);
+		
+		try {
+			statoDao.insert(stato);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

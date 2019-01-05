@@ -125,7 +125,7 @@ public class QuestionarioAzienda implements QuestionarioAziendaDAO {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "delete from questionario_valutativo_ente_ospitante where registro__id = ?;";
+			String sql = "delete from questionario_valutativo_ente_ospitante where registro_id = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
 

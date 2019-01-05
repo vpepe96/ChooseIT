@@ -83,7 +83,6 @@ public class StatoTirocinio implements StatoTirocinioDAO{
 			System.out.println("doSave: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -115,7 +114,6 @@ public class StatoTirocinio implements StatoTirocinioDAO{
 			System.out.println("doUpdate: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -145,7 +143,6 @@ public class StatoTirocinio implements StatoTirocinioDAO{
 			System.out.println("doDelete: "+ preparedStatement.toString());
 			result = preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)

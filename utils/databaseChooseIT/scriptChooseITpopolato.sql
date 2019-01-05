@@ -250,7 +250,8 @@ INSERT INTO `tutor_aziendale` VALUES ('valeriorossi@gmail.com','Agic Technology'
 INSERT INTO `richiesta_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','Agic Technology','','2012-11-05','valeriorossi@gmail.com','valfieri@unisa.it'),
 											(2,'a.bianchi@studenti.unisa.it','Sautech','','2014-10-10','mariopellegrini@gmail.com','mpoletto@unisa.it'),
                                             (3,'f.colombo19@studenti.unisa.it','ITD Solutions','','2017-10-10','vnovo@gmail.com','aavella@unisa.it'),
-                                            (4,'a.demichele@studenti.unisa.it','ITD Solutions','','2018-11-10','vnovo@gmail.com','luchini@unisa.it');
+                                            (4,'a.demichele@studenti.unisa.it','ITD Solutions','','2018-11-10','vnovo@gmail.com','luchini@unisa.it'),
+                                             (5,'m.longo@studenti.unisa.it','ITD Solutions','','2018-11-25','vnovo@gmail.com','luchini@unisa.it');
 
 INSERT INTO `stato_richiesta` VALUES ('2012-11-05','nuova',1),
 										('2012-11-06','in validazione',1),
@@ -267,12 +268,17 @@ INSERT INTO `stato_richiesta` VALUES ('2012-11-05','nuova',1),
                                         ('2018-11-10','nuova',4),
                                         ('2018-11-10','in validazione',4),
                                         ('2018-11-11','in convalida',4),
-                                        ('2018-11-11','accettata',4);
+                                        ('2018-11-11','accettata',4),
+                                        ('2018-11-25','nuova',5),
+                                        ('2018-11-25','in validazione',5),
+                                        ('2018-11-25','in convalida',5),
+                                        ('2018-11-25','accettata',5);
                                         
 INSERT INTO `registro_tirocinio` VALUES (1,'m.rossi@studenti.unisa.it','2012-11-05','valeriorossi@gmail.com','valfieri@unisa.it',1),
 										(2,'a.bianchi@studenti.unisa.it','2014-10-10','mariopellegrini@gmail.com','mpoletto@unisa.it',2),
                                         (3,'f.colombo19@studenti.unisa.it','2017-10-10','vnovo@gmail.com','aavella@unisa.it',3),
-                                        (4,'a.demichele@studenti.unisa.it','2018-11-10','vnovo@gmail.com','luchini@unisa.it',4);
+                                        (4,'a.demichele@studenti.unisa.it','2018-11-10','vnovo@gmail.com','luchini@unisa.it',4),
+                                        (5,'m.longo@studenti.unisa.it','2018-11-25','vnovo@gmail.com','luchini@unisa.it',5);
                                         
 INSERT INTO `stato_tirocinio` VALUES ('2012-11-05','in corso',1),
 										('2013-02-27','terminato',1),
@@ -280,17 +286,20 @@ INSERT INTO `stato_tirocinio` VALUES ('2012-11-05','in corso',1),
                                         ('2014-11-03','annullato',2),
                                         ('2017-10-10','in corso',3),
                                         ('2018-01-10','terminato',3),
-                                        ('2018-11-10','in corso',4);
+                                        ('2018-11-10','in corso',4),
+                                        ('2018-11-25','in corso',5);
 
-INSERT INTO `questionario_valutativo_studente` VALUES (1,'3','5','4','3','5','3','2','4','2','3','4'),
+INSERT INTO `questionario_valutativo_studente` VALUES (1,3,5,4,3,5,3,2,4,2,3,4),
 														(2,null,null,null,null,null,null,null,null,null,null,null),
-                                                        (3,'5','4','3','4','3','2','4','5','3','4','4'),
-                                                        (4,null,null,null,null,null,null,null,null,null,null,null);
+                                                        (3,5,4,3,4,3,2,4,5,3,4,4),
+                                                        (4,null,null,null,null,null,null,null,null,null,null,null),
+                                                        (5,null,null,null,null,null,null,null,null,null,null,null);
 
-INSERT INTO `questionario_valutativo_ente_ospitante` VALUES (1,'4','3','5','2','4','4','5','3','4','2','4','3','4'),
+INSERT INTO `questionario_valutativo_ente_ospitante` VALUES (1,4,3,5,2,4,4,5,3,4,2,4,3,4),
 																(2,null,null,null,null,null,null,null,null,null,null,null,null,null),
-                                                                (3,'5','3','4','4','3','3','5','3','4','3','4','2','4'),
-                                                                (4,null,null,null,null,null,null,null,null,null,null,null,null,null);
+                                                                (3,5,3,4,4,3,3,5,3,4,3,4,2,4),
+                                                                (4,null,null,null,null,null,null,null,null,null,null,null,null,null),
+                                                                (5,null,null,null,null,null,null,null,null,null,null,null,null,null);
 
 INSERT INTO `report` VALUES (1,'2012-11-10','','valeriorossi@gmail.com'),
 							(1,'2013-02-06','','valeriorossi@gmail.com'),

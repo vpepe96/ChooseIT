@@ -90,26 +90,40 @@ public class QuestionariServlet extends HttpServlet {
 			RegistroTirocinioBean reg = (RegistroTirocinioBean) request.getSession().getAttribute("registroTirocinio");
 			
 			int id = reg.getIdentificativo();
-			int pdt1 = Integer.getInteger(request.getParameter("pdt1"));
-			int pdt2 = Integer.getInteger(request.getParameter("pdt2"));
-			int pdt3 = Integer.getInteger(request.getParameter("pdt3"));
-			int pdt4 = Integer.getInteger(request.getParameter("pdt4"));
-			int pdt5 = Integer.getInteger(request.getParameter("pdt5"));
+			String pdt_1 = (String) request.getParameter("pdt1");
+			int pdt1 = Integer.parseInt(pdt_1);
+			String pdt_2 = (String) request.getParameter("pdt2");
+			int pdt2 = Integer.parseInt(pdt_2);
+			String pdt_3 = (String) request.getParameter("pdt3");
+			int pdt3 = Integer.parseInt(pdt_3);
+			String pdt_4 = (String) request.getParameter("pdt4");
+			int pdt4 = Integer.parseInt(pdt_4);
+			String pdt_5 = (String) request.getParameter("pdt5");
+			int pdt5 = Integer.parseInt(pdt_5);
 			
-			int eo1 = Integer.getInteger(request.getParameter("eo1"));
-			int eo2 = Integer.getInteger(request.getParameter("eo2"));
-			int eo3 = Integer.getInteger(request.getParameter("eo3"));
-			int eo4 = Integer.getInteger(request.getParameter("eo4"));
-			int eo5 = Integer.getInteger(request.getParameter("eo5"));
-
-			int su1 = Integer.getInteger(request.getParameter("su1"));
-			int su2 = Integer.getInteger(request.getParameter("su2"));
-			int su3 = Integer.getInteger(request.getParameter("su3"));
+			String eo_1 = (String) request.getParameter("eo1");
+			int eo1 = Integer.parseInt(eo_1);
+			String eo_2 = (String) request.getParameter("eo2");
+			int eo2 = Integer.parseInt(eo_2);
+			String eo_3 = (String) request.getParameter("eo3");
+			int eo3 = Integer.parseInt(eo_3);
+			String eo_4 = (String) request.getParameter("eo4");
+			int eo4 = Integer.parseInt(eo_4);
+			String eo_5 = (String) request.getParameter("eo5");
+			int eo5 = Integer.parseInt(eo_5);
+			
+			String su_1 = (String) request.getParameter("su1");
+			int su1 = Integer.parseInt(su_1);
+			String su_2 = (String) request.getParameter("su2");
+			int su2 = Integer.parseInt(su_2);
+			String su_3 = (String) request.getParameter("su3");
+			int su3 = Integer.parseInt(su_3);
 
 			
 			if (stato.getTipo() == StatoTirocinio.TERMINATO && stato.getRegistroTirocinio().getIdentificativo() == id) {
 				
 				QuestionarioAziendaBean questionarioStu = new QuestionarioAziendaBean();
+				questionarioStu.setRegistroTirocinio(reg);
 				questionarioStu.setPdt1(pdt1);
 				questionarioStu.setPdt2(pdt2);
 				questionarioStu.setPdt3(pdt3);
@@ -125,7 +139,8 @@ public class QuestionariServlet extends HttpServlet {
 				questionarioStu.setSu1(su1);
 				questionarioStu.setSu2(su2);
 				questionarioStu.setSu3(su3);
-
+				
+				System.out.println("Compila");
 				gestore.inserisciQuestionarioAzienda(questionarioStu);
 				
 				request.getSession().setAttribute("questionarioOK", true);
@@ -135,11 +150,6 @@ public class QuestionariServlet extends HttpServlet {
 			}			
 
 		}
-		
-		request.getSession().setAttribute("questionarioOK", false);
-		String url=response.encodeURL("/AreaPersonale.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
 		
 	}
 
