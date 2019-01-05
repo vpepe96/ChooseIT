@@ -91,7 +91,7 @@ foreign key(tutor_universitario_email) references tutor_universitario(email)
 
 create table stato_richiesta(
 data_stato			date			not null,
-tipo				enum('nuova','in validazione','in convalida','accettata','rifiutata')		not null,
+tipo				enum('nuova','invalidazione','inconvalida','accettata','rifiutata')		not null,
 richiesta_id		integer			not null,
 
 primary key(data_stato, tipo, richiesta_id),
@@ -115,7 +115,7 @@ foreign key(tutor_universitario_email) references tutor_universitario(email)
 
 create table stato_tirocinio(
 data_stato			date				not null,
-tipo				enum('in corso','terminato','annullato')		not null,
+tipo				enum('incorso','terminato','annullato')		not null,
 registro_id			integer				not null,
 
 primary key(data_stato,tipo,registro_id),
