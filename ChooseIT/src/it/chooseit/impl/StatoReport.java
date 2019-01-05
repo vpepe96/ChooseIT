@@ -76,7 +76,7 @@ public class StatoReport implements StatoReportDAO {
 	public synchronized void insert(StatoReportBean statoReport) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-
+		
 		String insertSQL = "INSERT INTO stato_report(data_stato,tipo,report_id_reg,report_data) VALUES (?, ?, ?, ?)";
 
 		try {
@@ -91,7 +91,6 @@ public class StatoReport implements StatoReportDAO {
 			System.out.println("doSave: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -124,7 +123,6 @@ public class StatoReport implements StatoReportDAO {
 			System.out.println("doUpdate: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -155,7 +153,6 @@ public class StatoReport implements StatoReportDAO {
 			System.out.println("doDelete: "+ preparedStatement.toString());
 			result = preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)

@@ -1,6 +1,7 @@
 package it.chooseit.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -10,11 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.chooseit.bean.QuestionarioStudenteBean;
 import it.chooseit.bean.RegistroTirocinioBean;
-import it.chooseit.bean.TutorAziendaleBean;
-import it.chooseit.bean.UtenteBean;
-import it.chooseit.facade.GestioneReportFacade;
+import it.chooseit.dao.RegistroTirocinioDAO;
+import it.chooseit.impl.RegistroTirocinio;
 
 /**
  * Servlet implementation class ListaQuestionariTutorAziendali
@@ -41,20 +40,20 @@ public class ListaQuestionariTutorAziendaliServlet extends HttpServlet {
 		String id = request.getParameter("registroId");
 		if (id != null) {
 			int reg_id = Integer.parseInt(id);
-			TutorAziendaleBean tutor = (TutorAziendaleBean) request.getSession().getAttribute("utente");
-			GestioneReportFacade gestione = new GestioneReportFacade();
-			ArrayList<RegistroTirocinioBean> reg = (ArrayList<RegistroTirocinioBean>) gestione.listaTirocinio(tutor);
-			for (RegistroTirocinioBean registroTirocinioBean : reg) {
-				if(registroTirocinioBean.getIdentificativo() == reg_id) {
-					request.getSession().setAttribute("registroTirocinio", registroTirocinioBean);
-					break;
+				RegistroTirocinioDAO regDao = new RegistroTirocinio();
+				RegistroTirocinioBean registroTirocinioBean = null;
+				try {
+					registroTirocinioBean = regDao.retrieveByKey(reg_id);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			}
-			request.getSession().setAttribute("registroTirocinio", reg);
-
-			String url = response.encodeURL("/Questionari.jsp");
-			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-			dispatcher.forward(request, response);
+					request.getSession().setAttribute("registroTirocinio", registroTirocinioBean);
+				
+					String url = response.encodeURL("/Questionari.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+					dispatcher.forward(request, response);
+			
 		} else {
 			String url = response.encodeURL("/ListaQuestionariTutorAziendale.jsp");
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);

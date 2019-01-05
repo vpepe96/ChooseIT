@@ -46,21 +46,31 @@ public class QuestionariServlet extends HttpServlet {
 			RegistroTirocinioBean reg = (RegistroTirocinioBean) request.getSession().getAttribute("registroTirocinio");
 			
 			
-			int pdt1 = Integer.parseInt(request.getParameter("pdt1"));
-			int pdt2 = Integer.parseInt(request.getParameter("pdt2"));
-			int pdt3 = Integer.parseInt(request.getParameter("pdt3"));
-			int pdt4 = Integer.parseInt(request.getParameter("pdt4"));
+			String pdt_1 = (String) request.getParameter("pdt1");
+			int pdt1 = Integer.parseInt(pdt_1);
+			String pdt_2 = (String) request.getParameter("pdt2");
+			int pdt2 = Integer.parseInt(pdt_2);
+			String pdt_3 = (String) request.getParameter("pdt3");
+			int pdt3 = Integer.parseInt(pdt_3);
+			String pdt_4 = (String) request.getParameter("pdt4");
+			int pdt4 = Integer.parseInt(pdt_4);
 
-			int t1 = Integer.parseInt(request.getParameter("t1"));
-			int t2 = Integer.parseInt(request.getParameter("t2"));
-			int t3 = Integer.parseInt(request.getParameter("t3"));
-			int t4 = Integer.parseInt(request.getParameter("t4"));
+			String t_1 = (String) request.getParameter("t1");
+			int t1 = Integer.parseInt(t_1);
+			String t_2 = (String) request.getParameter("t2");
+			int t2 = Integer.parseInt(t_2);
+			String t_3 = (String) request.getParameter("t3");
+			int t3 = Integer.parseInt(t_3);
+			String t_4 = (String) request.getParameter("t4");
+			int t4 = Integer.parseInt(t_4);
 
-			int su1 = Integer.parseInt(request.getParameter("su1"));
-			int su2 = Integer.parseInt(request.getParameter("su2"));
-			int su3 = Integer.parseInt(request.getParameter("su3"));
+			String su_1 = (String) request.getParameter("su1");
+			int su1 = Integer.parseInt(su_1);
+			String su_2 = (String) request.getParameter("su2");
+			int su2 = Integer.parseInt(su_2);
+			String su_3 = (String) request.getParameter("su3");
+			int su3 = Integer.parseInt(su_3);
 
-			
 				
 				QuestionarioStudenteBean questionarioente = new QuestionarioStudenteBean(reg);
 				questionarioente.setPdt1(pdt1);

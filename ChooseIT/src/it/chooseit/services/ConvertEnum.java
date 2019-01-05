@@ -103,7 +103,7 @@ public class ConvertEnum {
 	 */
 	public StatoTirocinio convertStatoTirocinio(String stato) {
 		StatoTirocinio tipo = null;
-		String[] stati = {"IN CORSO","ANNULLATO","TERMINATO"};
+		String[] stati = {"INCORSO","ANNULLATO","TERMINATO"};
 		
 		if(stato.equalsIgnoreCase(stati[0]))
 			tipo = StatoTirocinio.INCORSO;

@@ -125,14 +125,19 @@
 										<tr>
 											<td><%=statoImpl.getStatoReport(x).getTipo()%></td>
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
-											<td><form action="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
+											<td><form action="ValutaReportServlet?action=download"  method="post" enctype="multipart/form-data">
+												<input type="hidden" name="dataInserimento" id="dataInserimento" value="<%=x.getDataInserimento() %>">
+												<input type="hidden" name="path" id="path" value="<%=x.getPath()%>">
 												<input type="submit" value="Download">
 											</form></td>
 											<%if(statoImpl.getStatoReport(x).getTipo().equals(StatoReportBean.StatoReport.COMPILATO)){ %>
-											<td><form action="ValutaReportServlet?action=valuta&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
-													<input type="file" required="required" name="fileReport" size="50" accept="application/pdf">
-													<input type="submit" value="Valuta">
-												</form>
+											<td>
+												<td><form action="ValutaReportServlet?action=valuta"  method="post" enctype="multipart/form-data">
+												<input type="hidden" name="dataInserimento" id="dataInserimento" value="<%=x.getDataInserimento() %>">
+												<input type="hidden" name="path" id="path" value="<%=x.getPath()%>">
+												<input type="file" required="required" name="fileReport" size="50" accept="application/pdf">
+												<input type="submit" value="Valuta">
+											</form>
 											</td>
 											<%}else{%>
 												<td>Il report non può essere modificato.</td>	
@@ -191,7 +196,9 @@
 										<tr>
 											<td><%=statoImpl.getStatoReport(x).getTipo()%></td>
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
-											<td><form action="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
+											<td><form action="ValutaReportServlet?action=download"  method="post" enctype="multipart/form-data">
+												<input type="hidden" name="dataInserimento" id="dataInserimento" value="<%=x.getDataInserimento() %>">
+												<input type="hidden" name="path" id="path" value="<%=x.getPath()%>">
 												<input type="submit" value="Download">
 											</form></td>
 										</tr>
@@ -254,7 +261,9 @@
 										<tr>
 											<td><%=statoImpl.getStatoReport(x).getTipo() %></td>
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
-											<td><form action="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
+											<td><form action="ValutaReportServlet?action=download"  method="post" enctype="multipart/form-data">
+												<input type="hidden" name="dataInserimento" id="dataInserimento" value="<%=x.getDataInserimento() %>">
+												<input type="hidden" name="path" id="path" value="<%=x.getPath()%>">
 												<input type="submit" value="Download">
 											</form></td>
 										</tr>
@@ -334,7 +343,9 @@
 										<tr>
 											<td><%=statoImpl.getStatoReport(x).getTipo()%></td>
 											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
-											<td><form action="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
+											<td><form action="ValutaReportServlet?action=download"  method="post" enctype="multipart/form-data">
+												<input type="hidden" name="dataInserimento" id="dataInserimento" value="<%=x.getDataInserimento() %>">
+												<input type="hidden" name="path" id="path" value="<%=x.getPath()%>">
 												<input type="submit" value="Download">
 											</form></td>
 										</tr>

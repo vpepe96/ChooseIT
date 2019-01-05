@@ -123,7 +123,7 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "insert into questionario__valutativo_studente (registro_id,pdt_1,pdt_2,pdt_3,pdt_4,t_1,t_2,t_3,t_4,su_1,su_2,su_3) values (?,?,?,?,?,?,?,?,?,?,?,?);";
+			String sql = "insert into questionario_valutativo_studente (registro_id,pdt_1,pdt_2,pdt_3,pdt_4,t_1,t_2,t_3,t_4,su_1,su_2,su_3) values (?,?,?,?,?,?,?,?,?,?,?,?);";
 
 			preparedStatement = connection.prepareStatement(sql);
 
@@ -133,14 +133,14 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 			preparedStatement.setInt(4, questionario.getPdt3());
 			preparedStatement.setInt(5, questionario.getPdt4());
 			
-			preparedStatement.setInt(7, questionario.getT1());
-			preparedStatement.setInt(8, questionario.getT2());
-			preparedStatement.setInt(9, questionario.getT3());
-			preparedStatement.setInt(10, questionario.getT4());
+			preparedStatement.setInt(6, questionario.getT1());
+			preparedStatement.setInt(7, questionario.getT2());
+			preparedStatement.setInt(8, questionario.getT3());
+			preparedStatement.setInt(9, questionario.getT4());
 			
-			preparedStatement.setInt(12, questionario.getSu1());
-			preparedStatement.setInt(13, questionario.getSu2());
-			preparedStatement.setInt(14, questionario.getSu3());
+			preparedStatement.setInt(10, questionario.getSu1());
+			preparedStatement.setInt(11, questionario.getSu2());
+			preparedStatement.setInt(12, questionario.getSu3());
 
 			preparedStatement.executeUpdate();
 
@@ -171,7 +171,7 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String sql = "delete from questionario__valutativo_studente where registro__id = ?;";
+			String sql = "delete from questionario_valutativo_studente where registro_id = ?;";
 
 			preparedStatement = connection.prepareStatement(sql);
 

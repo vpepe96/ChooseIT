@@ -179,7 +179,6 @@ public class Utente implements UtenteDAO {
 			System.out.println("doUpdate: "+ preparedStatement.toString());
 
 			preparedStatement.executeUpdate();
-			connection.commit();
 
 		} finally {
 			try {

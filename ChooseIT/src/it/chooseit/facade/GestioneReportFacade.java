@@ -17,8 +17,10 @@ import it.chooseit.impl.RegistroTirocinio;
 import it.chooseit.impl.Report;
 import it.chooseit.impl.StatoReport;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 
 import it.chooseit.bean.QuestionarioAziendaBean;
@@ -166,7 +168,12 @@ public class GestioneReportFacade {
 		QuestionarioStudenteDAO nuovoQuestionario = new QuestionarioStudente();
 		try {
 			if (questionario != null) {
+				System.out.println("cancella questionario");
+				nuovoQuestionario.delete(questionario.getRegistroTirocinio().getIdentificativo());
+				System.out.println("inserisci questionario");
 				nuovoQuestionario.insert(questionario);
+			}else {
+				System.out.println("questionario null");
 			}
 		} catch (SQLException E) {
 		}
@@ -197,12 +204,15 @@ public class GestioneReportFacade {
 	public ReportBean inserimentoFirma(ReportBean bean,TutorAziendaleBean tutor) {
 		
 		ReportDAO report =new Report();
+		StatoReportDAO stato = new StatoReport();
 	    try {
 			
 			if( bean!=null) {
 			        bean.setTutorAziendale(tutor);
 				    report.update(bean);
-					
+				    Date dataStato = new Date(Calendar.getInstance().getTimeInMillis());
+				    StatoReportBean stRepo = new StatoReportBean(dataStato, it.chooseit.bean.StatoReportBean.StatoReport.VALIDATO, bean, bean.getRegistroTirocinio());
+					stato.insert(stRepo);
 				}
 				}catch (SQLException e) {
 			return null;
