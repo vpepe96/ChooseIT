@@ -153,7 +153,7 @@
 					<!-- widget div -->
 					<%
 						}
-						} else if (ruolo.trim().equals("tutorUniversitario") || ruolo.trim().equals("segreteria")) {
+						} else if (ruolo.trim().equals("tutorUniversitario")) {
 							RegistroTirocinioBean reg = (RegistroTirocinioBean) request.getSession().getAttribute("registroTirocinio");
 							if (reg != null) {
 								StatoReport statoImpl = new StatoReport();
@@ -215,6 +215,9 @@
 										<%
 						if (ruolo.trim().equals("studente")) {
 							RegistroTirocinioBean reg = (RegistroTirocinioBean) request.getSession().getAttribute("registroTirocinio");
+							StatoTirocinio statoTirDao = new StatoTirocinio();
+							StatoTirocinioBean stato = statoTirDao.getStatoTirocinio(reg);
+							request.getSession().setAttribute("stato", stato);
 							if (reg != null) {
 								StatoReport statoImpl = new StatoReport();
 								ArrayList<ReportBean> reports = reg.getReports();
@@ -257,8 +260,7 @@
 										</tr>
 										<%
 											}
-											StatoTirocinio statoTirDao = new StatoTirocinio();
-											if(statoTirDao.getStatoTirocinio(reg).getTipo().equals(StatoTirocinioBean.StatoTirocinio.INCORSO)){
+											if(stato.getTipo().equals(StatoTirocinioBean.StatoTirocinio.INCORSO)){
 										%>
 										<tr>
 										<td><form action="ValutaReportServlet?action=upload" method="post" enctype="multipart/form-data">
@@ -274,6 +276,15 @@
 
 							</div>
 							<!-- end div table -->
+							
+							<%
+							if(stato.getTipo().equals(StatoTirocinioBean.StatoTirocinio.TERMINATO)){
+							%>	
+								<a href="Questionari.jsp">Compila il Questionario</a>
+							<% 	
+							}
+							%>
+							
 						</div>
 						<!-- end div widget body -->
 					</div>
@@ -281,6 +292,78 @@
 					<%
 						}
 						} %>
+						<% 
+							if (ruolo.trim().equals("segreteria")) {
+							RegistroTirocinioBean reg = (RegistroTirocinioBean) request.getSession().getAttribute("registroTirocinio");
+							StatoTirocinio statoTirDao = new StatoTirocinio();
+							StatoTirocinioBean stato = statoTirDao.getStatoTirocinio(reg);
+							request.getSession().setAttribute("stato", stato);
+							if (reg != null) {
+								StatoReport statoImpl = new StatoReport();
+								ArrayList<ReportBean> reports = reg.getReports();
+					%>
+
+					<header>
+
+						<h2>Lista Tirocini</h2>
+
+					</header>
+
+					<!-- widget div-->
+					<div>
+
+						<!-- widget content -->
+						<div class="widget-body">
+
+							<div class="table-responsive">
+
+
+								<div class="contenuto">
+
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th><strong>Stato</strong></th>
+												<th><strong>Data Report</strong>
+												<th><strong>Download</strong></th>
+											</tr>
+										</thead>
+										<%
+											for (ReportBean x : reports) {
+										%>
+										<tr>
+											<td><%=statoImpl.getStatoReport(x).getTipo()%></td>
+											<td><%=statoImpl.getStatoReport(x).getDataStato() %></td>
+											<td><form action="ValutaReportServlet?action=download&dataInserimento=<%=x.getDataInserimento()%>&path=<%=x.getPath()%>" method="post" enctype="multipart/form-data">
+												<input type="submit" value="Download">
+											</form></td>
+										</tr>
+										<%
+											}
+										%>
+									</table>
+								</div>
+								<!--  end div contenuto -->
+
+							</div>
+							<!-- end div table -->
+							<%
+							if(stato.getTipo().equals(StatoTirocinioBean.StatoTirocinio.INCORSO)){
+							%>	
+								<form action="ValutaTirocinioServlet" method="post">
+												<input type="submit" value="Termina Tirocinio">
+								</form>
+							<% 	
+							}
+							%>
+						</div>
+						<!-- end div widget body -->
+					</div>
+					<!-- widget div -->
+					<%
+							}
+						}
+					%>
 				</article>
 			</div>
 			<!-- end div row -->
