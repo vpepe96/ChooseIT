@@ -96,7 +96,7 @@
 						String urlListaAziende = response.encodeURL("ListaAziendeServlet");
 						String urlNuovaAzienda = response.encodeURL("InserimentoAzienda.jsp");
 						String urlListaRichiesteTirocinio = response.encodeURL("ListaRichiesteTirocinioServlet");
-						String urlListaTirocini = response.encodeURL("ListaTirocinioServlet");
+						String urlListaTirocini = response.encodeURL("ListaTirocini.jsp");
 				%>
 				
 				<ul>
@@ -128,8 +128,7 @@
 					} else if(ruolo.equals("studente")) {
 						String urlListaAziende = response.encodeURL("ListaAziendeServlet");
 						String urlListaRichiesteTirocinio = response.encodeURL("ListaRichiesteTirocinioServlet");
-						String urlListaTirocini = response.encodeURL("ListaTirocinioServlet");
-						String urlQuestionarioValutativo = response.encodeURL("#");
+						String urlListaTirocini = response.encodeURL("ListaTirocini.jsp");
 				%>
 				
 				<ul>
@@ -147,9 +146,6 @@
 							</li>
 						</ul>	
 					</li>
-					<li class="top-menu-invisible">
-						<a href="#"><i class="fa fa-lg fa-fw fa fa-pencil-square-o"></i> <span class="menu-item-parent">Questionario valutativo</span></a>
-					</li>
 				</ul>
 				
 				<%
@@ -164,8 +160,8 @@
 				</ul>
 				
 				<%
-					} else if(ruolo.equals("tutor_universitario")) {
-						String urlListaTirocini = response.encodeURL("ListaTirocinioServlet");
+					} else if(ruolo.equals("tutorUniversitario")) {
+						String urlListaTirocini = response.encodeURL("ListaTirocini.jsp");
 				%>
 				
 				<ul>
@@ -180,9 +176,9 @@
 				</ul>
 				
 				<%
-					} else if(ruolo.equals("tutor_aziendale")) {
-						String urlListaTirocini = response.encodeURL("ListaTirocinioServlet");
-						String urlListaQuestionari = response.encodeURL("ListaQuestionariTutorAziendaliServlet");
+					} else if(ruolo.equals("tutorAziendale")) {
+						String urlListaTirocini = response.encodeURL("ListaTirocini.jsp");
+						String urlListaQuestionari = response.encodeURL("ListaQuestionariTutorAziendale.jsp");
 				%>
 				
 				<ul>

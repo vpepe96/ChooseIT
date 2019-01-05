@@ -154,7 +154,6 @@
 					<%
 						}
 						} else if (ruolo.trim().equals("tutorUniversitario") || ruolo.trim().equals("segreteria")) {
-							TutorUniversitarioBean tutor = (TutorUniversitarioBean) request.getSession().getAttribute("utente");
 							RegistroTirocinioBean reg = (RegistroTirocinioBean) request.getSession().getAttribute("registroTirocinio");
 							if (reg != null) {
 								StatoReport statoImpl = new StatoReport();

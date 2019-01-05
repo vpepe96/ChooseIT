@@ -140,6 +140,14 @@
 					</div>
 					<!-- widget div -->
 					<%
+						}else{
+					%>
+						<header>
+
+						<h2>Lista Questionari è vuota.</h2>
+
+					</header>
+					<% 		
 						}
 					}
 					%>

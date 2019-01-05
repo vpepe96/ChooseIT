@@ -42,7 +42,14 @@ public class ListaQuestionariTutorAziendaliServlet extends HttpServlet {
 		if (id != null) {
 			int reg_id = Integer.parseInt(id);
 			TutorAziendaleBean tutor = (TutorAziendaleBean) request.getSession().getAttribute("utente");
-			RegistroTirocinioBean reg = tutor.getRegistroTirocinio(reg_id);
+			GestioneReportFacade gestione = new GestioneReportFacade();
+			ArrayList<RegistroTirocinioBean> reg = (ArrayList<RegistroTirocinioBean>) gestione.listaTirocinio(tutor);
+			for (RegistroTirocinioBean registroTirocinioBean : reg) {
+				if(registroTirocinioBean.getIdentificativo() == reg_id) {
+					request.getSession().setAttribute("registroTirocinio", registroTirocinioBean);
+					break;
+				}
+			}
 			request.getSession().setAttribute("registroTirocinio", reg);
 
 			String url = response.encodeURL("/Questionari.jsp");
