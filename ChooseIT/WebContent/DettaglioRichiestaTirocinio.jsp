@@ -408,6 +408,8 @@
 																		String urlValutazioneIniziale = response.encodeURL("ValutazioneInizialeRichiestaTirocinioServlet");
 																%>
 																<div class="padding-gutter">
+															
+															
 															<form id="form_upload_pf"
 															name="form_upload_pf" method="post"
 															action="<%=urlValutazioneIniziale %>" class="smart-form client-form"
