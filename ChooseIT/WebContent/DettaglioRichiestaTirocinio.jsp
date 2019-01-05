@@ -131,7 +131,6 @@
 													<div class="row">
 				
 														<div class="col-sm-3 profile-pic">
-															<img src="img/avatars/sunny-big.png" alt="demo user">
 														</div>
 						
 														<div class="col-sm-6">
