@@ -83,19 +83,36 @@ public class QuestionarioAzienda implements QuestionarioAziendaDAO {
 			preparedStatement = connection.prepareStatement(sql);
 
 			preparedStatement.setInt(1, questionario.getRegistroTirocinio().getIdentificativo());
-			preparedStatement.setInt(2, questionario.getPdt1());
-			preparedStatement.setInt(3, questionario.getPdt2());
-			preparedStatement.setInt(4, questionario.getPdt3());
-			preparedStatement.setInt(5, questionario.getPdt4());
-			preparedStatement.setInt(6, questionario.getPdt5());
-			preparedStatement.setInt(7, questionario.getEo1());
-			preparedStatement.setInt(8, questionario.getEo2());
-			preparedStatement.setInt(9, questionario.getEo3());
-			preparedStatement.setInt(10, questionario.getEo4());
-			preparedStatement.setInt(11, questionario.getEo5());
-			preparedStatement.setInt(12, questionario.getSu1());
-			preparedStatement.setInt(13, questionario.getSu2());
-			preparedStatement.setInt(14, questionario.getSu3());
+			if(questionario.getPdt1() == 0) {
+				preparedStatement.setNull(2, java.sql.Types.NULL);
+				preparedStatement.setNull(3, java.sql.Types.NULL);
+				preparedStatement.setNull(4, java.sql.Types.NULL);
+				preparedStatement.setNull(5, java.sql.Types.NULL);
+				preparedStatement.setNull(6, java.sql.Types.NULL);
+				preparedStatement.setNull(7, java.sql.Types.NULL);
+				preparedStatement.setNull(8, java.sql.Types.NULL);
+				preparedStatement.setNull(9, java.sql.Types.NULL);
+				preparedStatement.setNull(10, java.sql.Types.NULL);
+				preparedStatement.setNull(11, java.sql.Types.NULL);
+				preparedStatement.setNull(12, java.sql.Types.NULL);
+				preparedStatement.setNull(13, java.sql.Types.NULL);
+				preparedStatement.setNull(14, java.sql.Types.NULL);
+			}else {
+				preparedStatement.setInt(2, questionario.getPdt1());
+				preparedStatement.setInt(3, questionario.getPdt2());
+				preparedStatement.setInt(4, questionario.getPdt3());
+				preparedStatement.setInt(5, questionario.getPdt4());
+				preparedStatement.setInt(6, questionario.getPdt5());
+				preparedStatement.setInt(7, questionario.getEo1());
+				preparedStatement.setInt(8, questionario.getEo2());
+				preparedStatement.setInt(9, questionario.getEo3());
+				preparedStatement.setInt(10, questionario.getEo4());
+				preparedStatement.setInt(11, questionario.getEo5());
+				preparedStatement.setInt(12, questionario.getSu1());
+				preparedStatement.setInt(13, questionario.getSu2());
+				preparedStatement.setInt(14, questionario.getSu3());
+			}
+			
 
 			preparedStatement.executeUpdate();
 
@@ -133,8 +150,10 @@ public class QuestionarioAzienda implements QuestionarioAziendaDAO {
 
 			int result = preparedStatement.executeUpdate();
 			if (result == 1) {
+				System.out.println("Cancellato");
 				return true;
 			} else {
+				System.out.println("non cancellato");
 				return false;
 			}
 
@@ -161,7 +180,7 @@ public class QuestionarioAzienda implements QuestionarioAziendaDAO {
 
 			String sql = "select * from studente, registro_tirocinio, questionario_valutativo_ente_ospitante where "
 					+ "studente.email = ? and registro_tirocinio.studente_email = studente.email and"
-					+ "questionario_valutativo_ente_ospitante.registro_id = registro_tirocinio.identificativo;";
+					+ "questionario_valutativo_ente_ospitante.registro_id = registro_tirocinio.identificativo and questionario_valutativo_ente_ospitante.pdt_1 is null;";
 
 			preparedStatement = connection.prepareStatement(sql);
 

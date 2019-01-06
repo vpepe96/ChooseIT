@@ -13,6 +13,8 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import it.chooseit.bean.AziendaBean;
+import it.chooseit.bean.QuestionarioAziendaBean;
+import it.chooseit.bean.QuestionarioStudenteBean;
 import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.RichiestaTirocinioBean;
@@ -21,6 +23,8 @@ import it.chooseit.bean.StatoTirocinioBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.dao.AziendaDAO;
+import it.chooseit.dao.QuestionarioAziendaDAO;
+import it.chooseit.dao.QuestionarioStudenteDAO;
 import it.chooseit.dao.RegistroTirocinioDAO;
 import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.dao.StatoRichiestaDAO;
@@ -29,6 +33,8 @@ import it.chooseit.dao.StudenteDAO;
 import it.chooseit.dao.TutorAziendaleDAO;
 import it.chooseit.dao.TutorUniversitarioDAO;
 import it.chooseit.impl.Azienda;
+import it.chooseit.impl.QuestionarioAzienda;
+import it.chooseit.impl.QuestionarioStudente;
 import it.chooseit.impl.RegistroTirocinio;
 import it.chooseit.impl.RichiestaTirocinio;
 import it.chooseit.impl.StatoRichiesta;
@@ -538,6 +544,10 @@ public class GestionePraticheTirocinioFacade {
 			//Conto quanti registri di tirocinio ci sono
 			int numRegistri = getNumRegistri();
 			
+			//DAO per i questionari
+			QuestionarioStudenteDAO qSDao = new QuestionarioStudente();
+			QuestionarioAziendaDAO qADao = new QuestionarioAzienda();
+			
 			try {
 				//inserisco il nuovo stato della richiesta
 				statoRichiestaDao.insert(statoRichiestaBean);
@@ -547,8 +557,15 @@ public class GestionePraticheTirocinioFacade {
 				richiesta.setRegistroTirocinio(registroTirocinioBean);
 				//Inserisco il registro di tirocinio
 				registroTirocinioDao.insert(registroTirocinioBean);
+				//Aggiungo il registro di tirocinio allo stati tirocinio
+				statoTirocinioBean.setRegistroTirocinio(registroTirocinioBean);
 				//Inserisco lo stato del tirocinio
 				statoTirocinioDao.insert(statoTirocinioBean);
+				//Inserisco il questionario valutativo studente
+				qSDao.insert(new QuestionarioStudenteBean(registroTirocinioBean));
+				//Inserisco il questionario valutativo ente ospitante
+				qADao.insert(new QuestionarioAziendaBean(registroTirocinioBean));
+				
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 				System.out.println("Errore nella fase di convalida della richiesta: annullamento richiesta fallito");

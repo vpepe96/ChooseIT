@@ -96,10 +96,8 @@ public class QuestionariServlet extends HttpServlet {
 			
 			
 		}else if(ruolo.equals("studente")){
-			StatoTirocinioBean stato = (StatoTirocinioBean) request.getSession().getAttribute("stato");
 			RegistroTirocinioBean reg = (RegistroTirocinioBean) request.getSession().getAttribute("registroTirocinio");
 			
-			int id = reg.getIdentificativo();
 			String pdt_1 = (String) request.getParameter("pdt1");
 			int pdt1 = Integer.parseInt(pdt_1);
 			String pdt_2 = (String) request.getParameter("pdt2");
@@ -129,11 +127,8 @@ public class QuestionariServlet extends HttpServlet {
 			String su_3 = (String) request.getParameter("su3");
 			int su3 = Integer.parseInt(su_3);
 
-			
-			if (stato.getTipo() == StatoTirocinio.TERMINATO && stato.getRegistroTirocinio().getIdentificativo() == id) {
 				
-				QuestionarioAziendaBean questionarioStu = new QuestionarioAziendaBean();
-				questionarioStu.setRegistroTirocinio(reg);
+				QuestionarioAziendaBean questionarioStu = new QuestionarioAziendaBean(reg);
 				questionarioStu.setPdt1(pdt1);
 				questionarioStu.setPdt2(pdt2);
 				questionarioStu.setPdt3(pdt3);
@@ -157,7 +152,7 @@ public class QuestionariServlet extends HttpServlet {
 				String url=response.encodeURL("/AreaPersonale.jsp");
 				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
-			}			
+		
 
 		}
 		

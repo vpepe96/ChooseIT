@@ -126,21 +126,36 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
 			String sql = "insert into questionario_valutativo_studente (registro_id,pdt_1,pdt_2,pdt_3,pdt_4,t_1,t_2,t_3,t_4,su_1,su_2,su_3) values (?,?,?,?,?,?,?,?,?,?,?,?);";
 
 			preparedStatement = connection.prepareStatement(sql);
-
+			
 			preparedStatement.setInt(1, questionario.getRegistroTirocinio().getIdentificativo());
-			preparedStatement.setInt(2, questionario.getPdt1());
-			preparedStatement.setInt(3, questionario.getPdt2());
-			preparedStatement.setInt(4, questionario.getPdt3());
-			preparedStatement.setInt(5, questionario.getPdt4());
+			if(questionario.getPdt1() == 0) {
+				preparedStatement.setNull(2, java.sql.Types.NULL);
+				preparedStatement.setNull(3, java.sql.Types.NULL);
+				preparedStatement.setNull(4, java.sql.Types.NULL);
+				preparedStatement.setNull(5, java.sql.Types.NULL);
+				preparedStatement.setNull(6, java.sql.Types.NULL);
+				preparedStatement.setNull(7, java.sql.Types.NULL);
+				preparedStatement.setNull(8, java.sql.Types.NULL);
+				preparedStatement.setNull(9, java.sql.Types.NULL);
+				preparedStatement.setNull(10, java.sql.Types.NULL);
+				preparedStatement.setNull(11, java.sql.Types.NULL);
+				preparedStatement.setNull(12, java.sql.Types.NULL);
+			}else {
+				preparedStatement.setInt(2, questionario.getPdt1());
+				preparedStatement.setInt(3, questionario.getPdt2());
+				preparedStatement.setInt(4, questionario.getPdt3());
+				preparedStatement.setInt(5, questionario.getPdt4());
+				
+				preparedStatement.setInt(6, questionario.getT1());
+				preparedStatement.setInt(7, questionario.getT2());
+				preparedStatement.setInt(8, questionario.getT3());
+				preparedStatement.setInt(9, questionario.getT4());
+				
+				preparedStatement.setInt(10, questionario.getSu1());
+				preparedStatement.setInt(11, questionario.getSu2());
+				preparedStatement.setInt(12, questionario.getSu3());
+			}
 			
-			preparedStatement.setInt(6, questionario.getT1());
-			preparedStatement.setInt(7, questionario.getT2());
-			preparedStatement.setInt(8, questionario.getT3());
-			preparedStatement.setInt(9, questionario.getT4());
-			
-			preparedStatement.setInt(10, questionario.getSu1());
-			preparedStatement.setInt(11, questionario.getSu2());
-			preparedStatement.setInt(12, questionario.getSu3());
 
 			preparedStatement.executeUpdate();
 

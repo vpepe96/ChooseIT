@@ -246,7 +246,6 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 			System.out.println("doDelete: "+ preparedStatement.toString());
 			result = preparedStatement.executeUpdate();
 
-			connection.commit();
 		} finally {
 			try {
 				if (preparedStatement != null)

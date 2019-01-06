@@ -188,6 +188,9 @@ public class GestioneReportFacade {
 		QuestionarioAziendaDAO nuovoQuestionario = new QuestionarioAzienda();
 		try {
 			if (questionario != null) {
+				System.out.println("cancella questionario");
+				nuovoQuestionario.delete(questionario.getRegistroTirocinio().getIdentificativo());
+				System.out.println("inserisci questionario");
 				nuovoQuestionario.insert(questionario);
 			}
 		} catch (SQLException e) {
