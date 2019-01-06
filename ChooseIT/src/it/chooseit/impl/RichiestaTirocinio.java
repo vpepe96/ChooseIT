@@ -304,7 +304,7 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 
-			String selectSQL = "SELECT id, studente_email, ragione_sociale_azienda, progetto_formativo, data_richiesta, tutor_aziendale_email, tutor_universitario_email" + 
+			String selectSQL = "SELECT id, studente_email, ragione_sociale_azienda, progetto_formativo, data_richiesta, tutor_aziendale_email, tutor_universitario_email " + 
 							   "FROM richiesta_tirocinio JOIN stato_richiesta ON richiesta_tirocinio.id = stato_richiesta.richiesta_id " + 
 						       "WHERE stato_richiesta.tipo = ?";
 
