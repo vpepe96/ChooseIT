@@ -193,7 +193,6 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ConvertEnum convert = new ConvertEnum();
-		RichiestaTirocinio ric = new RichiestaTirocinio();
 		
 		StatoRichiestaBean bean = new StatoRichiestaBean(null, null, null);
 		
@@ -215,7 +214,7 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 			while(rs.next()) {
 				bean.setDataStato(rs.getDate("data_stato"));
 				bean.setTipo(convert.convertStatoRichiesta(rs.getString("tipo")));
-				bean.setRichiestaId(ric.retrieveByKey(richiestaTirocinio.getId()));
+				bean.setRichiestaId(richiestaTirocinio);
 			}
 		} finally {
 			try {
@@ -249,14 +248,13 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 			System.out.println("doRetrieveAll:" + preparedStatement.toString());
 			
 			ResultSet rs = preparedStatement.executeQuery();
-			RichiestaTirocinio ric = new RichiestaTirocinio();
 			
 			while(rs.next()) {
 				StatoRichiestaBean bean = new StatoRichiestaBean(null, null, null);
 				
 				bean.setDataStato(rs.getDate("data_stato"));
 				bean.setTipo(convert.convertStatoRichiesta(rs.getString("tipo")));
-				bean.setRichiestaId(ric.retrieveByKey(rs.getInt("richiesta_id")));
+				bean.setRichiestaId(richiestaTirocinio);
 				
 				statiRichiesta.add(bean);
 			}
