@@ -1,6 +1,7 @@
-
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Collection"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import="it.chooseit.bean.*, it.chooseit.impl.*"%>
+    pageEncoding="utf-8" import="it.chooseit.bean.*, it.chooseit.impl.*, it.chooseit.dao.*"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -196,12 +197,72 @@
 													<hr>
 				
 													<div class="padding-gutter">
-				
+													
 														<div class="tab-content padding-top-10">
+															<script type="text/javascript">
+															function controllaRichieste(numRichiesteTot, numRichiesteAcc, numRichiesteRif, numRichiesteAlt){
+																
+																var alert;
+																
+																if(numRichiesteTot == 1 && numRichiesteAlt == 1){
+																	var alert = window.alert("Impossibile inviare la richiesta, una richiesta è ancora in attesa di completamento");
+																}
+																if(numRichiesteTot >= 2 && numRichiesteAcc == 2){
+																	var alert = window.alert("Impossibile inviare la richiesta, effettuato numero massimo di richieste consentite");
+																}
+																else if(numRichiesteTot >= 2 && numRichiesteAcc == 1 && numRichiesteRif == 0 && numRichiesteAlt == 1){
+																	var alert = window.alert("Impossibile inviare la richiesta, una richiesta è ancora in attesa di completamento");
+																}
+																else {
+																	var alert = window.alert("Richiesta inviata con successo");
+																}
+														
+																return alert;
+															}
+															</script>
 															<div class="tab-pane fade in active" id="a1">
 																<%
 																	if(ruoloUtente.equals("studente")){
-																		String urlInviaRichiesta = response.encodeURL("InviaRichiestaTirocinioServlet");
+																		StudenteBean studente = (StudenteBean) request.getSession().getAttribute("utente");
+																		RichiestaTirocinioDAO richiestaTirocinioDao = new RichiestaTirocinio();
+																		RichiestaTirocinioBean richiestaTirocinio = new RichiestaTirocinioBean();
+																		Collection<RichiestaTirocinioBean> richieste = richiestaTirocinioDao.getRichiestePerStudente(studente);
+																		StatoRichiestaDAO statoRichiestaDao  = new StatoRichiesta();
+																		StatoRichiestaBean statoRichiesta = new StatoRichiestaBean();
+																		
+																		int numRichiesteTot = richieste.size();
+																		int numRichiesteAcc = 0;
+																		int numRichiesteRif = 0;
+																		int numRichiesteAlt = 0;
+																		
+																		Iterator<?> it = richieste.iterator();
+																		while(it.hasNext()){
+																			richiestaTirocinio = (RichiestaTirocinioBean) it.next();
+																			numRichiesteTot++;
+																			statoRichiesta = statoRichiestaDao.getStatoRichiesta(richiestaTirocinio);
+																			if(statoRichiesta.getTipo().toString().equalsIgnoreCase("accettata"))
+																				numRichiesteAcc++;
+																			else if(statoRichiesta.getTipo().toString().equalsIgnoreCase("rifiutata"))
+																				numRichiesteRif++;
+																			else if(statoRichiesta.getTipo().toString().equalsIgnoreCase("nuova") ||statoRichiesta.getTipo().toString().equalsIgnoreCase("invalidazione") || statoRichiesta.getTipo().toString().equalsIgnoreCase("inconvalida"))
+																				numRichiesteAlt++;
+																		}
+																		
+																		System.out.println("RICHIESTE TOT"+numRichiesteTot);
+																		System.out.println("RICHIESTE ACC"+numRichiesteAcc);
+																		System.out.println("RICHIESTE RIF"+numRichiesteRif);
+																		System.out.println("RICHIESTE ALTRO STATO"+numRichiesteAlt);
+																		
+																																	
+																		String urlInviaRichiesta;
+																		if(numRichiesteTot == 1 && numRichiesteAlt == 1)
+																			urlInviaRichiesta = response.encodeURL("ListaRichiesteTirocinioServlet");
+																		if(numRichiesteTot >= 2 && numRichiesteAcc == 2)
+																			urlInviaRichiesta = response.encodeURL("ListaRichiesteTirocinioServlet");																		
+																		else if(numRichiesteTot >= 2 && numRichiesteAcc == 1 && numRichiesteRif == 0 && numRichiesteAlt == 1)
+																			urlInviaRichiesta = response.encodeURL("ListaRichiesteTirocinioServlet");
+																		else
+																			urlInviaRichiesta = response.encodeURL("InviaRichiestaTirocinioServlet");
 																%>
 																<div class="padding-gutter">
 																	<form id="form_upload_pf"
@@ -216,7 +277,7 @@
 																		</section>
 																		
 																		<section>
-																			<button type="submit" class="btn btn-labeled btn-primary">
+																			<button type="submit" class="btn btn-labeled btn-primary" onclick="controllaRichieste(<%=numRichiesteTot%>,<%=numRichiesteAcc%>,<%=numRichiesteRif%>,<%=numRichiesteAlt%>)">
 																				<span class="btn-label" style="margin-right: 5px; left: 0px;">
 																					<i class="glyphicon glyphicon-share-alt"></i>
 																				 </span>Invia richiesta
