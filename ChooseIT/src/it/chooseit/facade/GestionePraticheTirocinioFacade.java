@@ -270,9 +270,8 @@ public class GestionePraticheTirocinioFacade {
 				while (it.hasNext()) {
 					richiestaBean = (RichiestaTirocinioBean) it.next();
 					stat = statoRichiestaDao.getStatoRichiesta(richiestaBean);
-					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("nuova") || convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("invalidazione")) {
+					if(stat.getTipo().toString().equalsIgnoreCase("nuova") || stat.getTipo().toString().equalsIgnoreCase("invalidazione")) {
 						richieste.add(richiestaBean);
-					System.out.println("ID"+richiestaBean.getId()+"AZIENDA"+richiestaBean.getAzienda().getRagioneSociale()+"STUDENTE"+richiestaBean.getStudente().getEmail()+"DATA"+richiestaBean.getDataRichiesta());
 					}
 				}
 				

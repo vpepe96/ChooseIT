@@ -16,6 +16,7 @@ import java.util.Collection;
 
 import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StatoRichiestaBean;
+import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.dao.StatoRichiestaDAO;
 import it.chooseit.services.ConvertEnum;
 import it.chooseit.services.DriverManagerConnectionPool;
@@ -198,8 +199,7 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 		
 		String selectSQL = "SELECT * \r\n" + 
 						   "FROM stato_richiesta \r\n" + 
-						   "WHERE data_stato = " + 
-						   "(SELECT MAX(data_stato) FROM stato_richiesta WHERE richiesta_id = ?)";
+						   "WHERE richiesta_id = ?";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -210,6 +210,7 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 			System.out.println("doRetrieveByKey:" + preparedStatement.toString());
 			
 			ResultSet rs = preparedStatement.executeQuery();
+			RichiestaTirocinioDAO ric = new RichiestaTirocinio();
 			
 			while(rs.next()) {
 				bean.setDataStato(rs.getDate("data_stato"));

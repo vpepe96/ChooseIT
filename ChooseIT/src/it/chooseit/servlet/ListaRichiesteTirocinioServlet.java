@@ -58,7 +58,6 @@ public class ListaRichiesteTirocinioServlet extends HttpServlet{
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
 		listaRichiesteTirocinio = gestore.listaRichiesteTirocinio(ruolo, utente.getEmail());
 		
-		request.getSession().removeAttribute("listaRichiesteTirocinio");
 		request.getSession().setAttribute("listaRichiesteTirocinio", listaRichiesteTirocinio);
 		
 		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");
