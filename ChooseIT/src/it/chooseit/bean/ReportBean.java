@@ -1,5 +1,12 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import it.chooseit.bean.StatoReportBean.StatoReport;
+
+
 /**
  * Un oggetto ReportBean rappresenta report generico sull'attività lavorativa odierna svolta da un tirocinante presso un'azienda.
  * Un report ha un collegamento al registro di tirocinio, rappresentato con la variabile d'istanza registroTirocinio, una data 
@@ -9,12 +16,6 @@ package it.chooseit.bean;
  *  
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-
-import it.chooseit.bean.StatoReportBean.StatoReport;
 
 public class ReportBean implements Serializable{
 	

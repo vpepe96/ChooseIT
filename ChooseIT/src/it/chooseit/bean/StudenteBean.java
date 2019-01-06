@@ -1,5 +1,9 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
+
 /**
  * Un oggetto StudenteBean rappresenta uno studente dell'Università degli Studi di Salerno,
  * iscritto alla piattaforma ChooseIT. 
@@ -11,11 +15,6 @@ package it.chooseit.bean;
  *
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-
 public class StudenteBean extends UtenteBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

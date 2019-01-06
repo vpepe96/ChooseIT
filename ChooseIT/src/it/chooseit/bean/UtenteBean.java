@@ -1,5 +1,8 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+
 /**
  * Un oggetto UtenteBean rappresenta un utente loggato al sistema ChooseIT.
  * Un utente ha una email, un nome, un cognome, un numero di telefono, un indirizzo,
@@ -8,10 +11,6 @@ package it.chooseit.bean;
  * 
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
-
 public class UtenteBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;

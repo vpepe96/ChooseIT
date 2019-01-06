@@ -22,20 +22,32 @@ import it.chooseit.facade.GestionePraticheTirocinioFacade;
 import it.chooseit.impl.TutorAziendale;
 import it.chooseit.impl.TutorUniversitario;
 
+/**
+ * Servlet implementation class ValutazioneInizialeRichiestaTirocinioServlet
+ */
 @WebServlet("/ValutazioneInizialeRichiestaTirocinioServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class ValutazioneInizialeRichiestaTirocinioServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+     * @see HttpServlet#HttpServlet()
+     */
 	public ValutazioneInizialeRichiestaTirocinioServlet() {
 		super();
 	}
 	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request,response);
 	}
 	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RichiestaTirocinioBean richiestaBean = (RichiestaTirocinioBean) request.getSession().getAttribute("richiesta");
 		String emailTutorUniversitario = (String) request.getParameter("email_tutor_universitario");

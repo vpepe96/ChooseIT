@@ -1,5 +1,11 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import it.chooseit.bean.StatoRichiestaBean.StatoRichiesta;
+
 /**
  * Un oggetto RichiestaTirocinioBean rappresenta la richiesta di tirocinio, fatta da uno studente, per iniziare un tirocinio 
  * presso un'azienda.
@@ -13,13 +19,6 @@ package it.chooseit.bean;
  *  
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-
-import it.chooseit.bean.StatoRichiestaBean.StatoRichiesta;
-
 public class RichiestaTirocinioBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;

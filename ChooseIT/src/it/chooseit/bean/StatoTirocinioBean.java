@@ -1,5 +1,9 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+
+
 /**
  * Un oggetto StatoTirocinioBean rappresenta lo stato di un tirocinio. Uno stato ha
  * un identificativo per il registro associato a quel tirocinio, rappresentato con
@@ -8,10 +12,6 @@ package it.chooseit.bean;
  * 
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
-
 public class StatoTirocinioBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;

@@ -215,7 +215,7 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 			while(rs.next()) {
 				bean.setDataStato(rs.getDate("data_stato"));
 				bean.setTipo(convert.convertStatoRichiesta(rs.getString("tipo")));
-				bean.setRichiestaId(ric.retrieveByKey(rs.getInt("richiesta_id")));
+				bean.setRichiestaId(ric.retrieveByKey(richiestaTirocinio.getId()));
 			}
 		} finally {
 			try {

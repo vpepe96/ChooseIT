@@ -583,7 +583,7 @@
 																</li>
 																<li>
 																	<p class="text-muted">
-																		<i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;<i class="txt-color-darken">Stato:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=statoRichiestaDao.getStatoRichiesta(richiesta).toString() %></span>
+																		<i class="glyphicon glyphicon-stats"></i>&nbsp;&nbsp;<i class="txt-color-darken">Stato:</i>&nbsp;&nbsp;<span class="txt-color-darken"><%=statoRichiesta.getTipo().toString() %></span>
 																	</p>
 																</li>
 																<%

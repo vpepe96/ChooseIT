@@ -1,8 +1,5 @@
 package it.chooseit.servlet;
 
-/**
- * 
- */
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -20,19 +17,31 @@ import it.chooseit.dao.RichiestaTirocinioDAO;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 import it.chooseit.impl.RichiestaTirocinio;
 
+/**
+ * Servlet implementation class ListaRichiesteTirocinioServlet
+ */
 @WebServlet("/ListaRichiesteTirocinioServlet")
 public class ListaRichiesteTirocinioServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 
+	/**
+     * @see HttpServlet#HttpServlet()
+     */
 	public ListaRichiesteTirocinioServlet() {
 		super();
 	}
 	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request,response);
 	}
 	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ruolo = (String) request.getSession().getAttribute("ruolo");
 		UtenteBean utente = (UtenteBean) request.getSession().getAttribute("utente");
@@ -49,6 +58,7 @@ public class ListaRichiesteTirocinioServlet extends HttpServlet{
 		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
 		listaRichiesteTirocinio = gestore.listaRichiesteTirocinio(ruolo, utente.getEmail());
 		
+		request.getSession().removeAttribute("listaRichiesteTirocinio");
 		request.getSession().setAttribute("listaRichiesteTirocinio", listaRichiesteTirocinio);
 		
 		String url = response.encodeRedirectURL("/ListaRichiesteTirocinio.jsp");

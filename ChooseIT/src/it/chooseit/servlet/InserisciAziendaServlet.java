@@ -15,20 +15,32 @@ import it.chooseit.bean.AziendaBean;
 import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 
+/**
+ * Servlet implementation class InserisciAziendaServlet
+ */
 @WebServlet("/InserisciAziendaServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class InserisciAziendaServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+     * @see HttpServlet#HttpServlet()
+     */
 	public InserisciAziendaServlet() {
 		super();
 	}
 	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		doPost(request, response);
 	}
 	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String ragioneSociale = request.getParameter("ragioneSociale");
 		String sedeOperativa = request.getParameter("sedeOperativa");

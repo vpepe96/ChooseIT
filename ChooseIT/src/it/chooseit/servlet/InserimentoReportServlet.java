@@ -19,6 +19,7 @@ import javax.servlet.RequestDispatcher;
 /**
  * Servlet implementation class ServletInserimentoReport
  */
+
 @WebServlet("/InserimentoReportServlet")
 public class InserimentoReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

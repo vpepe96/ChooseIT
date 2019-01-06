@@ -1,5 +1,9 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+
+
 /**
  * Un oggetto StatoReportBean rappresenta lo stato di un report caricato in un registro di tirocinio.
  * Uno stato ha una data, rappresentata con la variabile d'istanza dataStato, ha un tipo, rappresentato
@@ -8,10 +12,6 @@ package it.chooseit.bean;
  * 
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
-
 public class StatoReportBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

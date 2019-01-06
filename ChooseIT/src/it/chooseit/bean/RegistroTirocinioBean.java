@@ -1,5 +1,11 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import it.chooseit.bean.StatoTirocinioBean.StatoTirocinio;
+
 /**
  * Un oggetto RegistroTirocinioBean rappresenta il registro di tirocinio relativo ad un tirocinio di uno studente presso 
  * un'azienda.
@@ -13,13 +19,6 @@ package it.chooseit.bean;
  *  
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-
-import it.chooseit.bean.StatoTirocinioBean.StatoTirocinio;
-
 public class RegistroTirocinioBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

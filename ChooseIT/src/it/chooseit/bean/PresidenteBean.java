@@ -1,15 +1,14 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+
 /**
  * Un oggetto PresidenteBean rappresenta il Presidente dell'Università degli Studi di Salerno, iscritto alla piattaforma ChooseIT.
  * Un oggetto PresidenteBean è anche {@inheritDoc}.
  * 
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
-
 public class PresidenteBean extends UtenteBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

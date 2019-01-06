@@ -1,5 +1,8 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * Un oggetto AziendaBean rappresenta un'azienda convenzionata con l'Università degli Studi di Salerno ed iscritta al sistema ChooseIT.
  * Un'azienda ha un nome, rappresentato con la variabile d'istanza ragioneSociale, un progetto formativo, rappresentato con la 
@@ -9,10 +12,6 @@ package it.chooseit.bean;
  * 
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.util.ArrayList;
-
 public class AziendaBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

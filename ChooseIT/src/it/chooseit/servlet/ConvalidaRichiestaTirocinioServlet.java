@@ -15,20 +15,32 @@ import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 
+/**
+ * Servlet implementation class ModificaProfiloServlet
+ */
 @WebServlet("/ConvalidaRichiestaTirocinioServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class ConvalidaRichiestaTirocinioServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Servlet implementation class ModificaProfiloServlet
+	 */
 	public ConvalidaRichiestaTirocinioServlet() {
 		super();
 	}
 	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request,response);
 	}
 	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String scelta = (String) request.getParameter("scelta");
 		RichiestaTirocinioBean richiestaTirocinio = (RichiestaTirocinioBean) request.getSession().getAttribute("richiesta");

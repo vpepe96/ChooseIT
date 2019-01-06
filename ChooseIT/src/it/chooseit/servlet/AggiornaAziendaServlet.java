@@ -18,20 +18,33 @@ import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
 import it.chooseit.impl.Azienda;
 
+/**
+ * Servlet implementation class AggiornaAziendaServlet
+ */
+
 @WebServlet("/AggiornaAziendaServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class AggiornaAziendaServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+     * @see HttpServlet#HttpServlet()
+     */
 	public AggiornaAziendaServlet() {
 		super();
 	}
 	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		doPost(request, response);
 	}
 	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String ragioneSociale = request.getParameter("ragioneSociale");
 		AziendaDAO aziendaDao = new Azienda();

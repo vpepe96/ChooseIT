@@ -17,6 +17,7 @@ import it.chooseit.impl.RichiestaTirocinio;
 /**
  * Servlet implementation class DettaglioRichiestaTirocinioServlet
  */
+
 @WebServlet("/DettaglioRichiestaTirocinioServlet")
 public class DettaglioRichiestaTirocinioServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;

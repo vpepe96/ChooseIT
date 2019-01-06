@@ -1,5 +1,8 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+
 /**
  * Un oggetto StatoRichiestaBean rappresenta lo stato di una richiesta di tirocinio.
  * Uno stato ha una data, rappresentata con la variabile d'istanza dataStato, ha un tipo, rappresentato
@@ -8,9 +11,6 @@ package it.chooseit.bean;
  * 
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
 
 public class StatoRichiestaBean implements Serializable{
 

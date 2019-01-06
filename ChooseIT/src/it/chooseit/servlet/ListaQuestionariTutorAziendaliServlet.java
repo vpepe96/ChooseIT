@@ -2,7 +2,6 @@ package it.chooseit.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +15,7 @@ import it.chooseit.dao.RegistroTirocinioDAO;
 import it.chooseit.impl.RegistroTirocinio;
 
 /**
- * Servlet implementation class ListaQuestionariTutorAziendali
+ * Servlet implementation class ListaQuestionariTutorAziendaliServlet
  */
 @WebServlet("/ListaQuestionariTutorAziendaliServlet")
 public class ListaQuestionariTutorAziendaliServlet extends HttpServlet {

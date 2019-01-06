@@ -1,5 +1,8 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+
+
 /**
  * Un oggetto QuestionarioAziendaBean rappresenta un questionario valutativo che viene compilato da un tirocinante 
  * in riferimento ad un tutor aziendale.
@@ -11,9 +14,6 @@ package it.chooseit.bean;
  *  
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-
 public class QuestionarioAziendaBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;

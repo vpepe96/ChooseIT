@@ -1,14 +1,14 @@
 package it.chooseit.bean;
 
+import java.io.Serializable;
+import java.sql.Date;
+
 /**
  * Un oggetto SegreteriaBean rappresenta un segretario/a dell'Università degli Studi di Salerno, iscritto alla piattaforma ChooseIT.
  * Un oggetto SegreteriaBean è anche {@inheritDoc}.
  * 
  * @author RocketStudios
  */
-
-import java.io.Serializable;
-import java.sql.Date;
 
 public class SegreteriaBean extends UtenteBean implements Serializable{
 
