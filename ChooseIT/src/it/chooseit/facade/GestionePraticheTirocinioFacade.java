@@ -249,7 +249,7 @@ public class GestionePraticheTirocinioFacade {
 				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato è quello di in convalida e la aggiungo alla lista altrimenti no
 				for(RichiestaTirocinioBean r : ric) {
 					stat = statoRichiestaDao.getStatoRichiesta(r);
-					if(convert.convertStatoRichiestaString(stat.getTipo()).equalsIgnoreCase("inconvalida"))
+					if(stat.getTipo().toString().equalsIgnoreCase("inconvalida"))
 						richieste.add(r);
 				}
 			} catch (SQLException e) {

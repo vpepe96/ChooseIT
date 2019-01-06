@@ -210,7 +210,6 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 			System.out.println("doRetrieveByKey:" + preparedStatement.toString());
 			
 			ResultSet rs = preparedStatement.executeQuery();
-			RichiestaTirocinioDAO ric = new RichiestaTirocinio();
 			
 			while(rs.next()) {
 				bean.setDataStato(rs.getDate("data_stato"));

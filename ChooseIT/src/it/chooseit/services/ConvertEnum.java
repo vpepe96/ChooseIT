@@ -44,6 +44,12 @@ public class ConvertEnum {
 		return tipo;
 	}
 	
+	/**
+	 * Restituisce il valore String di una variabile enum StatoRichiesta 
+	 * 
+	 * @param stato variabile StatoRichiesta
+	 * @return valore String di stato
+	 */
 	public String convertStatoRichiestaString(StatoRichiesta stato) {
 		String tipo = null;
 		String[] stati = {"NUOVA","INVALIDAZIONE","INCONVALIDA","ACCETTATA","RIFIUTATA"};
