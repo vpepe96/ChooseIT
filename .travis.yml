@@ -1,1 +1,5 @@
 language: java
+notifications:
+  email:
+    - umberto.picarielloa@gmail.com
+    - c.capo4@studenti.unisa.it
