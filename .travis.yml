@@ -4,6 +4,9 @@ jdk:
   
 script: ant build
 
+before_install:
+  - cd java
+ 
 notifications:
   email:
     - umberto.picarielloa@gmail.com
