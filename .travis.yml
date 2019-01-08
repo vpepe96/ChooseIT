@@ -5,6 +5,11 @@ jdk:
   
 script: ant build
 
+addons:
+    apt:
+    packages:
+    - oracle-java8-installer
+
 default_text_charset: 'utf-8'
 
 notifications:
