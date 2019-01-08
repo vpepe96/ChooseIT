@@ -43,7 +43,7 @@ import it.chooseit.impl.TutorUniversitario;
 import it.chooseit.impl.Utente;
 
 /**
- * Definisce i metodi per gestire le funzionalità relative all’account.
+ * Definisce i metodi per gestire le funzionalit&agrave; relative all’account.
  */
 public class GestioneAccountFacade {
 	
@@ -112,7 +112,7 @@ public class GestioneAccountFacade {
 			}
 			
 		} catch (SQLException e) {
-			//...altrimenti c'è stato un errore di accesso al db e return null
+			//...altrimenti c'&egrave; stato un errore di accesso al db e return null
 			return null;
 		}
 	}
@@ -158,7 +158,7 @@ public class GestioneAccountFacade {
 			
 			
 		} catch (SQLException e) {
-			// c'è stato un errore nel reperimento dati dal db, restituisci lo studente con i dati recuperati fin'ora
+			// c'&egrave; stato un errore nel reperimento dati dal db, restituisci lo studente con i dati recuperati fin'ora
 			return studente;
 		}
 		return studente;
@@ -196,7 +196,7 @@ public class GestioneAccountFacade {
 			
 			
 		} catch (SQLException e) {
-			// c'è stato un errore nel reperimento dati dal db, restituisci il tutor aziendale con i dati recuperati fin'ora
+			// c'&egrave; stato un errore nel reperimento dati dal db, restituisci il tutor aziendale con i dati recuperati fin'ora
 			System.out.println(e.getMessage());
 			return tutor;
 		}
@@ -223,7 +223,7 @@ public class GestioneAccountFacade {
 			tutor.setRegistriTirocinio(registri);
 			
 		} catch (SQLException e) {
-			// c'è stato un errore nel reperimento dati dal db, restituisci il tutor universitario con i dati recuperati fin'ora
+			// c'&egrave; stato un errore nel reperimento dati dal db, restituisci il tutor universitario con i dati recuperati fin'ora
 			System.out.println(e.getMessage());
 			return tutor;
 		}
@@ -282,7 +282,7 @@ public class GestioneAccountFacade {
 	 * Permette di registrare un nuovo studente al sito.
 	 * @param studente lo studente da registrare
 	 * @param pwd la password dello studente da registrare
-	 * @return true se la registrazione è andata a buon fine, false altrimenti
+	 * @return true se la registrazione &egrave; andata a buon fine, false altrimenti
 	 */
 	public boolean registrazione(StudenteBean studente, String pwd) {
 
@@ -315,31 +315,31 @@ public class GestioneAccountFacade {
 			//Se l'utente esiste...
 			if(utenteDao.retrieveByKey(email) != null) {
 				
-				// Controllo se l'utente è studente
+				// Controllo se l'utente &egrave; studente
 				StudenteDAO studenteDao = new Studente();
 				if(studenteDao.retrieveByKey(email) != null) {
 					ruolo = "studente";
 				}
 				
-				// Controllo se l'utente è segreteria
+				// Controllo se l'utente &egrave; segreteria
 				SegreteriaDAO segreteriaDao = new Segreteria();
 				if(segreteriaDao.retrieveByKey(email) != null) {
 					ruolo = "segreteria";
 				}
 				
-				// Controllo se l'utente è presidente
+				// Controllo se l'utente &egrave; presidente
 				PresidenteDAO presidenteDao = new Presidente();
 				if(presidenteDao.retrieveByKey(email) != null) {
 					ruolo = "presidente";
 				}
 				
-				// Controllo se l'utente è tutor aziendale
+				// Controllo se l'utente &egrave; tutor aziendale
 				TutorAziendaleDAO tutorAziDao = new TutorAziendale();
 				if(tutorAziDao.retrieveByKey(email) != null) {
 					ruolo = "tutorAziendale";
 				}
 				
-				// Controllo se l'utente &#232; tutor universitario
+				// Controllo se l'utente &egrave; tutor universitario
 				TutorUniversitarioDAO tutorUniDao = new TutorUniversitario();
 				if(tutorUniDao.retrieveByKey(email) != null) {
 					ruolo = "tutorUniversitario";
@@ -351,7 +351,7 @@ public class GestioneAccountFacade {
 				return null;
 			}
 		} catch (SQLException e) {
-			//...altrimenti c'&#232; stato un errore di accesso al db e return null
+			//...altrimenti c'&egrave; stato un errore di accesso al db e return null
 			return null;
 		}
 	}

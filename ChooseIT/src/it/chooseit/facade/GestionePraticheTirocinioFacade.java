@@ -156,9 +156,9 @@ public class GestionePraticheTirocinioFacade {
 		Collection<StudenteBean> studenti = new ArrayList<StudenteBean>();
 		StudenteDAO studenteDao = new Studente();
 		
-		//Se l'utente loggato è il presidente allora visualizzo la lista degli studenti con richieste di tirocinio in convalida e studenti con tirocinio in corso
-		//Altrimenti se l'utente loggato è la segreteria allora visualizzo la lista degli studenti con richieste di tirocinio nuove e in validazione
-		//Altrimenti se l'utente loggato è un tutor allora visualizzo la lista degli studenti ad esso associati
+		//Se l'utente loggato &egrave; il presidente allora visualizzo la lista degli studenti con richieste di tirocinio in convalida e studenti con tirocinio in corso
+		//Altrimenti se l'utente loggato &egrave; la segreteria allora visualizzo la lista degli studenti con richieste di tirocinio nuove e in validazione
+		//Altrimenti se l'utente loggato &egrave; un tutor allora visualizzo la lista degli studenti ad esso associati
 		if(ruoloUtente.equalsIgnoreCase("Presidente")) {
 			try {
 				//Ottengo la lista degli studenti con richiesta di tirocinio nello stato di "in convalida"
@@ -236,9 +236,9 @@ public class GestionePraticheTirocinioFacade {
 		StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
 		ConvertEnum convert = new ConvertEnum();
 		
-		//Se l'utente loggato è il presidente allora visualizzo la lista delle richieste di tirocinio in convalida
-		//Altrimenti se l'utente loggato è la segreteria allora visualizzo la lista delle richieste di tirocinio nuove e in validazione
-		//Altrimenti se l'utente loggato è uno studente allora visualizzo la lista delle richieste di tirocinio effettuate
+		//Se l'utente loggato &egrave; il presidente allora visualizzo la lista delle richieste di tirocinio in convalida
+		//Altrimenti se l'utente loggato &egrave; la segreteria allora visualizzo la lista delle richieste di tirocinio nuove e in validazione
+		//Altrimenti se l'utente loggato &egrave; uno studente allora visualizzo la lista delle richieste di tirocinio effettuate
 		if(ruoloUtente.equalsIgnoreCase("Presidente")) {
 			try {
 				Collection<RichiestaTirocinioBean> ric = new ArrayList<RichiestaTirocinioBean>();
@@ -246,7 +246,7 @@ public class GestionePraticheTirocinioFacade {
 				//Ottengo la lista di tutte le richieste di tirocinio
 				ric = richiestaDao.retrieveAll(null);
 				
-				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato è quello di in convalida e la aggiungo alla lista altrimenti no
+				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato &egrave; quello di in convalida e la aggiungo alla lista altrimenti no
 				for(RichiestaTirocinioBean r : ric) {
 					stat = statoRichiestaDao.getStatoRichiesta(r);
 					if(stat.getTipo().toString().equalsIgnoreCase("inconvalida"))
@@ -265,7 +265,7 @@ public class GestionePraticheTirocinioFacade {
 				//Ottengo la lista di tutte le richieste di tirocinio
 				Collection<RichiestaTirocinioBean> ric = richiestaDao.retrieveAll(null);
 				
-				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato è quello di nuovo o in validazione e la aggiungo alla lista altrimenti no
+				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato &egrave; quello di nuovo o in validazione e la aggiungo alla lista altrimenti no
 				Iterator<?> it = ric.iterator();
 				while (it.hasNext()) {
 					richiestaBean = (RichiestaTirocinioBean) it.next();

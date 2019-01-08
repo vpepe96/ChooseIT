@@ -8,7 +8,7 @@ import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.UtenteBean;
 
 /**
- * Definisce i metodi per gestire le funzionalità relative all' upload e download della modulistica.
+ * Definisce i metodi per gestire le funzionalit&agrave; relative all' upload e download della modulistica.
  */
 public class GestioneModulisticaFacade {
 	

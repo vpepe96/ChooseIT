@@ -37,7 +37,7 @@ public interface GenericDAO<T,S> {
 	/**
 	 * Elimina un oggetto di tipo T in base al codice.
 	 * @param key codice dell'elemento che si vuole eliminare
-	 * @return boolean true se l'oggetto è stato eliminato, false altrimenti
+	 * @return boolean true se l'oggetto &egrave; stato eliminato, false altrimenti
 	 * */
 	public boolean delete(S key) throws SQLException;
 	
