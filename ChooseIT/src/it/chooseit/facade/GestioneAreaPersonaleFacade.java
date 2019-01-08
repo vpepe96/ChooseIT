@@ -8,14 +8,14 @@ import it.chooseit.impl.Studente;
 import it.chooseit.impl.Utente;
 
 /**
- * Definisce i metodi per gestire le funzionalità relative all’area personale.
+ * Definisce i metodi per gestire le funzionalit&#224; relative all’area personale.
  */
 public class GestioneAreaPersonaleFacade {
 	
 	/**
 	 * Permette ad un utente generico di modificare il proprio profilo.
 	 * @param utente utente da modificare
-	 * @return boolean true se la modifica è avvenuta, false altrimenti 
+	 * @return boolean true se la modifica &#232; avvenuta, false altrimenti 
 	 * */
 	public static boolean modificaProfilo(UtenteBean utente) {
 		Utente ut=new Utente();
@@ -30,7 +30,7 @@ public class GestioneAreaPersonaleFacade {
 	/**
 	 * Permette ad uno studente di modificare il proprio profilo.
 	 * @param studente studente da modificare
-	 * @return boolean true se la modifica è avvenuta, false altrimenti 
+	 * @return boolean true se la modifica &#232; avvenuta, false altrimenti 
 	 * */
 	public static boolean modificaProfilo(StudenteBean studente) {
 		Studente stud=new Studente();

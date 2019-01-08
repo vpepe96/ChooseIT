@@ -24,7 +24,7 @@ public class StatoTirocinioBean implements Serializable{
 	private RegistroTirocinioBean registroTirocinio;
 	
 	/**
-	 * Rappresenta la data in cui è stato assegnato lo stato al tirocinio.
+	 * Rappresenta la data in cui &#232; stato assegnato lo stato al tirocinio.
 	 */
 	private Date dataStato;
 	

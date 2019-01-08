@@ -29,7 +29,7 @@ public class StatoReportBean implements Serializable {
 	private StatoReport tipo;
 	
 	/**
-	 * Rappresenta il report a cui è associato lo stato.
+	 * Rappresenta il report a cui &#232; associato lo stato.
 	 */
 	private ReportBean report;
 	

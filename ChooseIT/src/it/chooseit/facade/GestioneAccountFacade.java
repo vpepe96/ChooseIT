@@ -339,7 +339,7 @@ public class GestioneAccountFacade {
 					ruolo = "tutorAziendale";
 				}
 				
-				// Controllo se l'utente è tutor universitario
+				// Controllo se l'utente &#232; tutor universitario
 				TutorUniversitarioDAO tutorUniDao = new TutorUniversitario();
 				if(tutorUniDao.retrieveByKey(email) != null) {
 					ruolo = "tutorUniversitario";
@@ -351,7 +351,7 @@ public class GestioneAccountFacade {
 				return null;
 			}
 		} catch (SQLException e) {
-			//...altrimenti c'è stato un errore di accesso al db e return null
+			//...altrimenti c'&#232; stato un errore di accesso al db e return null
 			return null;
 		}
 	}
