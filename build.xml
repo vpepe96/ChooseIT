@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="ChooseIT" basedir="." default="main">
-    <property name="dir.src"     value="src"/it/chooseit>
+    <property name="dir.src"     value="src/it/chooseit"/>
     <property name="dir.build"   value="build"/>
     <property name="dir.classes" value="${dir.build}/classes"/>
     <property name="dir.jar"     value="${dir.build}/jar"/>
