@@ -4,6 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="ChooseIT" default="build" name="ChooseIT">
+    <import file="dependencies.xml"/>
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../../eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -87,5 +88,8 @@
         <java classname="it.chooseit.test.test" failonerror="true" fork="yes">
             <classpath refid="ChooseIT.classpath"/>
         </java>
+    </target>
+    <target name="dist.dependencies">
+        <antcall target="depend.${ant.project.name}"/>
     </target>
 </project>
