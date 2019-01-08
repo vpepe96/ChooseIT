@@ -1,11 +1,11 @@
 language: java
 jdk:
   - oraclejdk8
+  - oraclejdk9
+  - openjdk8
   
 script: ant build
 
-install: ant deps
- 
 notifications:
   email:
     - umberto.picarielloa@gmail.com
