@@ -59,9 +59,9 @@ public class ValutazioneFinaleRichiestaTirocinioServlet extends HttpServlet{
 				part.write(filePath);
 				progettoFormativoOK = true;
 				System.out.println("Salvato in " + filePath);
-				richiestaBean.setProgettoFormativo(filePath); //lo aggiorna solo se il file è presente altrimenti resta quello ottenuto con retrievebykey
+				richiestaBean.setProgettoFormativo(filePath); //lo aggiorna solo se il file &egrave; presente altrimenti resta quello ottenuto con retrievebykey
 			} else {
-				// è andata male
+				// &egrave; andata male
 				System.out.println("Errore nel salvataggio del progetto formativo");
 			}
 		}	

@@ -115,7 +115,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		}
 
 		// 4)AGGIORNO IL BEAN AGGIUNGENDO IL PERCORSO APPENA OTTENUTO (filePath) 
-		// (solo se la foto è stata inserità, cioè se fotoOK == true)
+		// (solo se la foto &egrave; stata inserit&agrave;, cio&egrave; se fotoOK == true)
 		if (fotoOK) {
 			bean.setFotoProfilo(filePath);
 		} else {

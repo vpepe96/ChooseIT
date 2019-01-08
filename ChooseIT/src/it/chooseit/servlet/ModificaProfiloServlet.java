@@ -66,7 +66,7 @@ public class ModificaProfiloServlet extends HttpServlet {
 			
 			String filePath = GestioneModulisticaFacade.uploadImmagine(stud, getServletContext().getRealPath("//"));
 			
-			if (request.getPart("fotoProfilo") != null && request.getPart("fotoProfilo").getSize() > 0) { //viene fatto solo se è presente il file
+			if (request.getPart("fotoProfilo") != null && request.getPart("fotoProfilo").getSize() > 0) { //viene fatto solo se &egrave; presente il file
 				if (filePath != null && !filePath.equals("")) {
 					Part part = request.getPart("fotoProfilo");
 					part.write(filePath);
@@ -90,7 +90,7 @@ public class ModificaProfiloServlet extends HttpServlet {
 			
 			String filePath = GestioneModulisticaFacade.uploadImmagine(utente, getServletContext().getRealPath("//"));
 			
-			if (request.getPart("fotoProfilo") != null && request.getPart("fotoProfilo").getSize() > 0) { //viene fatto solo se è presente il file
+			if (request.getPart("fotoProfilo") != null && request.getPart("fotoProfilo").getSize() > 0) { //viene fatto solo se &egrave; presente il file
 				if (filePath != null && !filePath.equals("")) {
 					Part part = request.getPart("fotoProfilo");
 					part.write(filePath);

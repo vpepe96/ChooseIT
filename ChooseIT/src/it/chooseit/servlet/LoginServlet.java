@@ -73,31 +73,31 @@ public class LoginServlet extends HttpServlet {
 			if(ruolo != null) {
 				request.getSession().setAttribute("ruolo", ruolo);
 				
-				// Se l'utente è di tipo 'studente'
+				// Se l'utente &egrave; di tipo 'studente'
 				if(ruolo.equals("studente")){
 					StudenteBean studente = (StudenteBean) utente;
 					request.getSession().setAttribute("utente", studente);
 				}
 				
-				// Se l'utente è di tipo 'segreteria'
+				// Se l'utente &egrave; di tipo 'segreteria'
 				if(ruolo.equals("segreteria")){
 					SegreteriaBean segreteria = (SegreteriaBean) utente;
 					request.getSession().setAttribute("utente", segreteria);
 				}
 				
-				// Se l'utente è di tipo 'presidente'
+				// Se l'utente &egrave; di tipo 'presidente'
 				if(ruolo.equals("presidente")){
 					PresidenteBean presidente = (PresidenteBean) utente;
 					request.getSession().setAttribute("utente", presidente);
 				}
 				
-				// Se l'utente è di tipo 'tutorUniversitario'
+				// Se l'utente &egrave; di tipo 'tutorUniversitario'
 				if(ruolo.equals("tutorUniversitario")){
 					TutorUniversitarioBean tutorUniversitario = (TutorUniversitarioBean) utente;
 					request.getSession().setAttribute("utente", tutorUniversitario);
 				}
 				
-				// Se l'utente è di tipo 'tutorAziendale'
+				// Se l'utente &egrave; di tipo 'tutorAziendale'
 				if(ruolo.equals("tutorAziendale")){
 					TutorAziendaleBean tutorAziendale = (TutorAziendaleBean) utente;
 					request.getSession().setAttribute("utente", tutorAziendale);
@@ -109,7 +109,7 @@ public class LoginServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 				
 			}else {
-				// ...altrimenti c'è un errore nel recupero del ruolo
+				// ...altrimenti c'&egrave; un errore nel recupero del ruolo
 				request.getSession().setAttribute("loginOK", false);
 				String url=response.encodeRedirectURL("/index.jsp");
 				RequestDispatcher dispatcher = request.getRequestDispatcher(url);

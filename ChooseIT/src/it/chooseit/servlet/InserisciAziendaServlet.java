@@ -65,13 +65,13 @@ public class InserisciAziendaServlet extends HttpServlet {
 				progettoFormativoOK = true;
 				System.out.println("Salvato in " + filePath);
 			} else {
-				// è andata male
+				// &egrave; andata male
 				System.out.println("Errore nel salvataggio del progetto formativo");
 			}
 		}	
 		
 		// 6)AGGIORNO IL BEAN AGGIUNGENDO IL PERCORSO APPENA OTTENUTO (filePath) 
-		// (solo se la richiesta di tirocinio è stata inserita, cioè se progettoFormativoOK == true)
+		// (solo se la richiesta di tirocinio &egrave; stata inserita, cio&egrave; se progettoFormativoOK == true)
 		if (progettoFormativoOK) {
 			aziendaBean.setProgettoFormativo(filePath);
 		} else {
