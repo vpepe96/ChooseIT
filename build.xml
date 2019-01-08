@@ -1,34 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="ChooseIT" basedir="." default="main">
-    <property name="dir.src"     value="src/it/chooseit"/>
-    <property name="dir.build"   value="build"/>
-    <property name="dir.classes" value="${dir.build}/classes"/>
-    <property name="dir.jar"     value="${dir.build}/jar"/>
-
-    <property name="main-class"  value="cc.engeld.ChooseIT"/>
-
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="ChooseIT">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.47.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/annotations-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/catalina-ant.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/catalina-ha.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/catalina.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/ecj-4.7.3a.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/el-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/jasper-el.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/jasper.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/jaspic-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/jsp-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/servlet-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-jni.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-util.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../../../../Program Files/Apache TomCat/apache-tomcat-9.0.10/lib/websocket-api.jar"/>
+    </path>
+    <path id="ChooseIT.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
     <target name="clean">
-        <delete dir="${dir.build}"/>
+        <delete dir="build/classes"/>
     </target>
-
-    <target name="compile">
-        <mkdir dir="${dir.classes}"/>
-        <javac srcdir="${dir.src}" destdir="${dir.classes}"/>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="ChooseIT.classpath"/>
+        </javac>
     </target>
-
-    <target name="jar" depends="compile">
-        <mkdir dir="${dir.jar}"/>
-        <jar destfile="${dir.jar}/${ant.project.name}.jar" basedir="${dir.classes}">
-            <manifest>
-                <attribute name="Main-Class" value="${main-class}"/>
-            </manifest>
-        </jar>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
     </target>
-
-    <target name="run" depends="jar">
-        <java jar="${dir.jar}/${ant.project.name}.jar" fork="true"/>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
     </target>
-
-    <target name="clean-build" depends="clean,jar"/>
-    <target name="main" depends="clean,run"/>
+    <target name="test">
+        <java classname="it.chooseit.test.test" failonerror="true" fork="yes">
+            <classpath refid="ChooseIT.classpath"/>
+        </java>
+    </target>
 </project>
