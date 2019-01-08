@@ -5,9 +5,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 /**
- * Un oggetto StudenteBean rappresenta uno studente dell'Universit&#224; degli Studi di Salerno,
+ * Un oggetto StudenteBean rappresenta uno studente dell'Universit&agrave;; degli Studi di Salerno,
  * iscritto alla piattaforma ChooseIT. 
- * Un oggetto StudenteBean &#232; anche {@inheritDoc}. 
+ * Un oggetto StudenteBean &egrave; anche {@inheritDoc}. 
  * Inoltre, ha una matricola, rappresentata dalla variabile d'istanza matricola, una descrizione del 
  * proprio profilo personale, rappresentata dalla variabile d'istanza descrizione,una lista di registri 
  * di tirocinio, rappresentata dalla variabile d'isanza registriTirocinio, e una lista di richieste di 

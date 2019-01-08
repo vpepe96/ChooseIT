@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Un oggetto AziendaBean rappresenta un'azienda convenzionata con l'Università degli Studi di Salerno ed iscritta al sistema ChooseIT.
+ * Un oggetto AziendaBean rappresenta un'azienda convenzionata con l'Universit&agrave; degli Studi di Salerno ed iscritta al sistema ChooseIT.
  * Un'azienda ha un nome, rappresentato con la variabile d'istanza ragioneSociale, un progetto formativo, rappresentato con la 
  * variabile d'istanza progettoFormativo, una sede operativa, rappresentata con la variabile d'istanza sedeOperativa, una sede 
  * legale, rappresentata con la variabile d'istanza sedeLegale, una lista di tutor, rappresentata con la variabile d'istanza
@@ -212,7 +212,7 @@ public class AziendaBean implements Serializable {
 	}
 	
 	/**
-	 * Restituisce la lista delle richieste di tirocinio in cui è stata selezionata l'azienda
+	 * Restituisce la lista delle richieste di tirocinio in cui &egrave; stata selezionata l'azienda
 	 * 
 	 * @return lista delle richieste di tirocinio
 	 */
@@ -221,7 +221,7 @@ public class AziendaBean implements Serializable {
 	}
 
 	/**
-	 * Setta una nuova lista di richieste di tirocinio n cui è stata selezionata l'azienda
+	 * Setta una nuova lista di richieste di tirocinio n cui &egrave; stata selezionata l'azienda
 	 *
 	 * @param richiesteTirocinio lista di richieste di tirocinio
 	 */
@@ -246,7 +246,7 @@ public class AziendaBean implements Serializable {
 	}
 	
 	/**
-	 * Aggiunge una richiesta di tirocinio alla lista delle richieste di tirocinio n cui è stata selezionata l'azienda
+	 * Aggiunge una richiesta di tirocinio alla lista delle richieste di tirocinio n cui &egrave; stata selezionata l'azienda
 	 * 
 	 * @param richiestaTirocinio richiesta di tirocinio da aggiungere
 	 */

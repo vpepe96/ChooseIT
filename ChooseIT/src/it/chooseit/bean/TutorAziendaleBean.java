@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 
 /**
- * Un oggetto TutorAziendaleBean rappresenta un tutor di un'azienda convenzionata presso l'Universit&#224; degli Studi di Salerno,
+ * Un oggetto TutorAziendaleBean rappresenta un tutor di un'azienda convenzionata presso l'Universit&agrave; degli Studi di Salerno,
  * iscritto alla piattaforma ChooseIT. 
- * Un oggetto TutorAziendaleBean &#232; anche * {@inheritDoc}. 
+ * Un oggetto TutorAziendaleBean &egrave;anche * {@inheritDoc}. 
  * Inoltre, ha un riferimento all'azienda in cui ricopre il ruolo di tutor, rappresentato dalla variabile d'istanza azienda,
  * una lista di report, collegati ad un registro di tirocinio, che deve firmare, rappresentata dalla variabile d'istanza
- * reports, e una lista di tirocini a cui &#232; stato assegnato, rappresentata dalla varbiale d'istanza registriTirocinio.
+ * reports, e una lista di tirocini a cui &egrave;stato assegnato, rappresentata dalla varbiale d'istanza registriTirocinio.
  *
  * @author RocketStudios
  */
@@ -31,7 +31,7 @@ public class TutorAziendaleBean extends UtenteBean implements Serializable{
 	private ArrayList<ReportBean> reports;
 	
 	/**
-	 * Rappresenta la lista di tutti i tirocini a cui &#232; stato assegnato il tutor
+	 * Rappresenta la lista di tutti i tirocini a cui &egrave;stato assegnato il tutor
 	 */
 	private ArrayList<RegistroTirocinioBean> registriTirocinio;
 	

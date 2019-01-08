@@ -19,7 +19,7 @@ public class QuestionarioAziendaBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Rappresenta il registro di tirocinio a cui è collegato il questionario
+	 * Rappresenta il registro di tirocinio a cui &egrave; collegato il questionario
 	 */
 	private RegistroTirocinioBean registroTirocinio;
 	
@@ -108,7 +108,7 @@ public class QuestionarioAziendaBean implements Serializable{
     */
 	
 	/**
-	 * Restituisce il registro di tirocinio a cui è associato QuestionarioAziendaBean
+	 * Restituisce il registro di tirocinio a cui &egrave; associato QuestionarioAziendaBean
 	 * 
 	 * @return registro di tirocinio associato
 	 */
@@ -117,7 +117,7 @@ public class QuestionarioAziendaBean implements Serializable{
 	}
 
 	/**
-	 * Setta un nuovo registro di tirocinio a cui è associato QuestionarioAziendaBean
+	 * Setta un nuovo registro di tirocinio a cui &egrave; associato QuestionarioAziendaBean
 	 * 
 	 * Pre: registro != null
 	 * @param registro nuovo registro di tirocinio associato

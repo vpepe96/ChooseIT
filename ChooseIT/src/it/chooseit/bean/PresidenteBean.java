@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /**
- * Un oggetto PresidenteBean rappresenta il Presidente dell'Università degli Studi di Salerno, iscritto alla piattaforma ChooseIT.
- * Un oggetto PresidenteBean è anche {@inheritDoc}.
+ * Un oggetto PresidenteBean rappresenta il Presidente dell'Universit&agrave; degli Studi di Salerno, iscritto alla piattaforma ChooseIT.
+ * Un oggetto PresidenteBean &egrave; anche {@inheritDoc}.
  * 
  * @author RocketStudios
  */

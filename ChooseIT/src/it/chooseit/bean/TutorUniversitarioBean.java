@@ -5,10 +5,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 /**
- * Un oggetto TutorUniveristarioBean rappresenta un tutor universitario dell'Università degli Studi di Salerno
+ * Un oggetto TutorUniveristarioBean rappresenta un tutor universitario dell'Universit&agrave; degli Studi di Salerno
  * iscritto alla piattaforma ChooseIT. 
- * Un oggetto TutorUniversitarioBean è anche {@inheritDoc}.
- * Inoltre, una lista di tirocini a cui è stato assegnato, rappresentata dalla varbiale d'istanza registriTirocinio. 
+ * Un oggetto TutorUniversitarioBean &egrave; anche {@inheritDoc}.
+ * Inoltre, una lista di tirocini a cui &egrave; stato assegnato, rappresentata dalla varbiale d'istanza registriTirocinio. 
  *
  * @author RocketStudios
  */
@@ -17,7 +17,7 @@ public class TutorUniversitarioBean extends UtenteBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Rappresenta la lista di tutti i tirocini a cui è stato assegnato il tutor
+	 * Rappresenta la lista di tutti i tirocini a cui &egrave; stato assegnato il tutor
 	 */
 	private ArrayList<RegistroTirocinioBean> registriTirocinio;
 	

@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /**
- * Un oggetto SegreteriaBean rappresenta un segretario/a dell'Universit&#224;  degli Studi di Salerno, iscritto alla piattaforma ChooseIT.
- * Un oggetto SegreteriaBean &#232; anche {@inheritDoc}.
+ * Un oggetto SegreteriaBean rappresenta un segretario/a dell'Universit&agrave;  degli Studi di Salerno, iscritto alla piattaforma ChooseIT.
+ * Un oggetto SegreteriaBean &egrave; anche {@inheritDoc}.
  * 
  * @author RocketStudios
  */

@@ -39,12 +39,12 @@ public class RegistroTirocinioBean implements Serializable{
 	private StudenteBean studente;
 	
 	/**
-	 * Rappresenta l'email del tutor aziendale che è stato assegnato al tirocinio a cui si riferisce il registro di tirocinio
+	 * Rappresenta l'email del tutor aziendale che &egrave; stato assegnato al tirocinio a cui si riferisce il registro di tirocinio
 	 */
 	private TutorAziendaleBean tutorAziendale;
 	
 	/**
-	 * Rappresenta l'email del tutor universitario che è stato assegnato al tirocinio a cui si riferisce il registro di tirocinio
+	 * Rappresenta l'email del tutor universitario che &egrave; stato assegnato al tirocinio a cui si riferisce il registro di tirocinio
 	 */
 	private TutorUniversitarioBean tutorUniversitario;
 	

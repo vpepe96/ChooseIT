@@ -8,7 +8,7 @@ import it.chooseit.bean.StatoReportBean.StatoReport;
 
 
 /**
- * Un oggetto ReportBean rappresenta report generico sull'attività lavorativa odierna svolta da un tirocinante presso un'azienda.
+ * Un oggetto ReportBean rappresenta report generico sull'attivit&agrave; lavorativa odierna svolta da un tirocinante presso un'azienda.
  * Un report ha un collegamento al registro di tirocinio, rappresentato con la variabile d'istanza registroTirocinio, una data 
  * d'inserimento, rappresentata con la variabile d'istanza dataInserimento, un file, rappresentato con la variabile d'istanza 
  * path, un tutor aziendale, rappresentato con la variabile d'istanza tutorAziendale, e una lista di stati, rappresentata con
