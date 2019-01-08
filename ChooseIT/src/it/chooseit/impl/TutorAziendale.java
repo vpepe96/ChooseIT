@@ -194,12 +194,12 @@ public class TutorAziendale implements TutorAziendaleDAO {
 			
 			int result = preparedStatement.executeUpdate();
 			
-			//se il tutor aziendale è stato cancellato...
+			//se il tutor aziendale &egrave; stato cancellato...
 			if(result == 1) {
 				//...cancella l'utente
 				UtenteDAO utenteDao = new Utente();
 				if(utenteDao.delete(email)) {
-					//se l'utente è stato cancellato return true
+					//se l'utente &egrave; stato cancellato return true
 					return true;
 				}else {
 					//altrimenti return false

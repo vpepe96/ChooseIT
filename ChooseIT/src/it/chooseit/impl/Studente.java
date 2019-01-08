@@ -169,12 +169,12 @@ public class Studente implements StudenteDAO {
 			
 			int result = preparedStatement.executeUpdate();
 			
-			//se lo studente è stato cancellato...
+			//se lo studente &egrave; stato cancellato...
 			if(result == 1) {
 				//...cancella l'utente
 				UtenteDAO utenteDao = new Utente();
 				if(utenteDao.delete(email)) {
-					//se l'utente è stato cancellato return true
+					//se l'utente &egrave; stato cancellato return true
 					return true;
 				}else {
 					//altrimenti return false

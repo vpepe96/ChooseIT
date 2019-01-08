@@ -182,12 +182,12 @@ public class TutorUniversitario implements TutorUniversitarioDAO {
 			
 			int result = preparedStatement.executeUpdate();
 			
-			//se il tutor universitario è stato cancellato...
+			//se il tutor universitario &egrave; stato cancellato...
 			if(result == 1) {
 				//...cancella l'utente
 				UtenteDAO utenteDao = new Utente();
 				if(utenteDao.delete(email)) {
-					//se l'utente è stato cancellato return true
+					//se l'utente &egrave; stato cancellato return true
 					return true;
 				}else {
 					//altrimenti return false

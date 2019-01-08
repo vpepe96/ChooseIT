@@ -45,7 +45,7 @@ public class StudenteSegreteriaPresidenteFilter implements Filter {
 		}
 		
 		//se sono studente OR segreteria OR presidente posso andare
-		//se non sono nè studente nè segreteria nè presidente allora dispatcher
+		//se non sono n&egrave; studente n&egrave; segreteria n&egrave; presidente allora dispatcher
 		if (!ruolo.trim().equals("studente") && !ruolo.trim().equals("segreteria")  && !ruolo.trim().equals("presidente")) {
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
 			request.setAttribute("nonAutorizzato", true);

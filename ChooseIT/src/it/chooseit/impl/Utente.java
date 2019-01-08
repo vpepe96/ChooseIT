@@ -78,10 +78,10 @@ public class Utente implements UtenteDAO {
 			String storedPassword = null;
 			boolean pwdOK = false;
 
-			// Se l'utente è iscritto al sito...
+			// Se l'utente &egrave; iscritto al sito...
 			if (rs.next()) {
 				storedPassword = rs.getString("pwd");
-			} else // ...altrimenti non è iscritto al sito
+			} else // ...altrimenti non &egrave; iscritto al sito
 				return null;
 
 			// Controllo sulla password inserita...

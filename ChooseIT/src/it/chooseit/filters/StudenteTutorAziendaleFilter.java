@@ -48,7 +48,7 @@ public class StudenteTutorAziendaleFilter implements Filter {
 		}
 		
 		//se sono studente OR tutorAziendale posso andare
-		//se non sono nè studente nè tutorAziendale allora dispatcher
+		//se non sono n&egrave; studente n&egrave; tutorAziendale allora dispatcher
 		if (!ruolo.trim().equals("studente") && !ruolo.trim().equals("tutorAziendale")) {
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
 			request.setAttribute("nonAutorizzato", true);

@@ -140,12 +140,12 @@ public class Segreteria implements SegreteriaDAO {
 			
 			int result = preparedStatement.executeUpdate();
 			
-			//se il segretario è stato cancellato...
+			//se il segretario &egrave; stato cancellato...
 			if(result == 1) {
 				//...cancella l'utente
 				UtenteDAO utenteDao = new Utente();
 				if(utenteDao.delete(key)) {
-					//se l'utente è stato cancellato return true
+					//se l'utente &egrave; stato cancellato return true
 					return true;
 				}else {
 					//altrimenti return false
