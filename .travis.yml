@@ -1,4 +1,9 @@
 language: java
+jdk:
+  - oraclejdk8
+  
+script: ant build
+
 notifications:
   email:
     - umberto.picarielloa@gmail.com
