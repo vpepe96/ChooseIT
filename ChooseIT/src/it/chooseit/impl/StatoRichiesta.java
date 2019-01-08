@@ -188,7 +188,7 @@ public class StatoRichiesta implements StatoRichiestaDAO{
 	}
 
 	/**
-	 * Restituisce lo stato più aggiornato di una richiesta di tirocinio
+	 * Restituisce lo stato pi&ugrave; aggiornato di una richiesta di tirocinio
 	 */
 	public StatoRichiestaBean getStatoRichiesta(RichiestaTirocinioBean richiestaTirocinio) throws SQLException {
 		Connection connection = null;

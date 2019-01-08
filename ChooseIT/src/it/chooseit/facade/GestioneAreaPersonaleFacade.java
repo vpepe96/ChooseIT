@@ -8,7 +8,7 @@ import it.chooseit.impl.Studente;
 import it.chooseit.impl.Utente;
 
 /**
- * Definisce i metodi per gestire le funzionalit&agrave; relative all’area personale.
+ * Definisce i metodi per gestire le funzionalit&agrave; relative all&rsquo;area personale.
  */
 public class GestioneAreaPersonaleFacade {
 	

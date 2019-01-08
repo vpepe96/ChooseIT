@@ -43,7 +43,7 @@ import it.chooseit.impl.TutorUniversitario;
 import it.chooseit.impl.Utente;
 
 /**
- * Definisce i metodi per gestire le funzionalit&agrave; relative all’account.
+ * Definisce i metodi per gestire le funzionalit&agrave; relative all&rsquo;account.
  */
 public class GestioneAccountFacade {
 	

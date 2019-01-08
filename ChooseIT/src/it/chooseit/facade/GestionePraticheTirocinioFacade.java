@@ -246,7 +246,7 @@ public class GestionePraticheTirocinioFacade {
 				//Ottengo la lista di tutte le richieste di tirocinio
 				ric = richiestaDao.retrieveAll(null);
 				
-				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato &egrave; quello di in convalida e la aggiungo alla lista altrimenti no
+				//Per ogni richiesta di tirocinio controllo se lo stato pi&ugrave; aggiornato &egrave; quello di in convalida e la aggiungo alla lista altrimenti no
 				for(RichiestaTirocinioBean r : ric) {
 					stat = statoRichiestaDao.getStatoRichiesta(r);
 					if(stat.getTipo().toString().equalsIgnoreCase("inconvalida"))
@@ -265,7 +265,7 @@ public class GestionePraticheTirocinioFacade {
 				//Ottengo la lista di tutte le richieste di tirocinio
 				Collection<RichiestaTirocinioBean> ric = richiestaDao.retrieveAll(null);
 				
-				//Per ogni richiesta di tirocinio controllo se lo stato più aggiornato &egrave; quello di nuovo o in validazione e la aggiungo alla lista altrimenti no
+				//Per ogni richiesta di tirocinio controllo se lo stato pi&ugrave; aggiornato &egrave; quello di nuovo o in validazione e la aggiungo alla lista altrimenti no
 				Iterator<?> it = ric.iterator();
 				while (it.hasNext()) {
 					richiestaBean = (RichiestaTirocinioBean) it.next();

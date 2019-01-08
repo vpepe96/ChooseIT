@@ -9,12 +9,12 @@ import it.chooseit.bean.StatoRichiestaBean;
 public interface StatoRichiestaDAO extends GenericDAO<StatoRichiestaBean, StatoRichiestaBean>{
 	
 	/**
-	 * Restituisce lo stato più recente di una richiesta di tirocinio
+	 * Restituisce lo stato pi&ugrave; recente di una richiesta di tirocinio
 	 * 
 	 * Pre: richiestaTirocinio != null
 	 * Post: result -> (s: StatoRichiestaBean | s.richiestaId == richiestaTirocinio.indentificativo)	
 	 * @param richiestaTirocinio richiesta di tirocinio di cui si desidera lo stato
-	 * @return stato più recente della richiesta di tirocinio
+	 * @return stato pi&ugrave; recente della richiesta di tirocinio
 	 * @throws SQLException
 	 */
 	public StatoRichiestaBean getStatoRichiesta(RichiestaTirocinioBean richiestaTirocinio) throws SQLException;
