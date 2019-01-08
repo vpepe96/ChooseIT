@@ -1,6 +1,6 @@
 language: java
 
-install: ant deps
+install: ant dependencies
 
 jdk:
   - oraclejdk8
