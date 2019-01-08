@@ -5,6 +5,8 @@ jdk:
   
 script: ant build
 
+default_text_charset: 'utf-8'
+
 notifications:
   email:
     - umberto.picarielloa@gmail.com
