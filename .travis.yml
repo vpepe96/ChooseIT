@@ -5,6 +5,9 @@ jdk:
   
 script: ant build
 
+before_script:
+- composer install --no-interaction
+
 addons:
     apt:
     packages:
