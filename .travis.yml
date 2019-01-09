@@ -2,7 +2,7 @@ language: java
 
 mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
-mvn test -B
+script: mvn test -B
 
 
 default_text_charset: 'utf-8'
