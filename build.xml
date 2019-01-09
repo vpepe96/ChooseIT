@@ -65,7 +65,7 @@
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src/it/chooseit"/>
+            <src path="src"/>
             <classpath refid="ChooseIT.classpath"/>
         </javac>
     </target>
