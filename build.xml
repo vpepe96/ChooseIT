@@ -55,22 +55,7 @@
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
-    </target>
-    
-    <target name = "javadoc">
-      <javadoc packagenames = "java.*" sourcepath = "${src.dir}" 
-         destdir = "doc" version = "true" windowtitle = "Fax Application">
-         
-         <doctitle><![CDATA[<h1> =  Fax Application  = </h1>]]>
-         </doctitle>
-
-         <bottom><![CDATA[Copyright © 2011. All Rights Reserved.]]>
-         </bottom>
-
-         <group title = "servlet" packages = "javax.servlet.*"/>
-      </javadoc>
-    </target>
-                            
+    </target>        
     <target name="clean">
         <delete dir="build/classes"/>
     </target>
