@@ -256,7 +256,7 @@ public class GestionePraticheTirocinioFacade {
 				e.printStackTrace();
 				System.out.println("Errore di reperimento dati della lista delle richieste di tirocinio per il presidente");
 				return null;
-			}
+			} 
 		}
 		else if (ruoloUtente.equalsIgnoreCase("Segreteria")) {
 			try {
