@@ -2,15 +2,9 @@ language: java
 
 jdk:
   - oraclejdk8
-  - oraclejdk9
-  - openjdk8
   
 script: ant build
 
-addons:
-    apt:
-    packages:
-    - oracle-java8-installer
 
 default_text_charset: 'utf-8'
 
