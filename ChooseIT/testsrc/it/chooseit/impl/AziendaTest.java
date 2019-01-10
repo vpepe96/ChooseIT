@@ -84,7 +84,7 @@ class AziendaTest {
 		bean.setSedeLegale("Firenze");
 		classUnderTest.update(bean);
 		bean = classUnderTest.retrieveByKey(ragioneSociale);
-		assertEquals("Firenze", bean.getSedeLegale());
+		assertEquals("Firee//aggiustami", bean.getSedeLegale());
 	}
 	
 	/**
