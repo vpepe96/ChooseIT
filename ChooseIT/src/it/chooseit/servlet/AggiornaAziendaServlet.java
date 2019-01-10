@@ -26,69 +26,69 @@ import it.chooseit.impl.Azienda;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 1, maxRequestSize = 1024 * 1024 * 1)
 public class AggiornaAziendaServlet extends HttpServlet{
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	/**
-     * @see HttpServlet#HttpServlet()
-     */
-	public AggiornaAziendaServlet() {
-		super();
-	}
-	
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		doPost(request, response);
-	}
-	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String ragioneSociale = request.getParameter("ragioneSociale");
-		AziendaDAO aziendaDao = new Azienda();
-		String sedeOperativa = request.getParameter("sedeOperativa");
-		String sedeLegale = request.getParameter("sedeLegale");
-		
-		// 1)CREA IL BEAN AZIENDA
-		AziendaBean aziendaBean = null;
-		try {
-			aziendaBean = aziendaDao.retrieveByKey(ragioneSociale);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		aziendaBean.setSedeOperativa(sedeOperativa);
-		aziendaBean.setSedeLegale(sedeLegale);
-		
-		// 1)OTTENGO IL PATH DOVE SALVARE
-		String filePath = GestioneModulisticaFacade.uploadProgettoFormativo(aziendaBean, getServletContext().getRealPath("//"));
+  /**
+   * @see HttpServlet#HttpServlet()
+   */
+  public AggiornaAziendaServlet() {
+    super();
+  }
 
-		boolean progettoFormativoOK = false;
+  /**
+   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+   */
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    doPost(request, response);
+  }
 
-		// 2)SALVO NEL PATH OTTENUTO
-		if (request.getPart("progettoFormativo") != null && request.getPart("progettoFormativo").getSize() > 0) {
-			if (filePath != null && !filePath.equals("")) {
-				Part part = request.getPart("progettoFormativo");
-				part.write(filePath);
-				progettoFormativoOK = true;
-				System.out.println("Salvato in " + filePath);
-				aziendaBean.setProgettoFormativo(filePath); //lo aggiorna solo se il file &egrave; presente altrimenti resta quello ottenuto con retrievebykey
-			} else {
-				// &egrave; andata male
-				System.out.println("Errore nel salvataggio del progetto formativo");
-			}
-		}	
-		
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+   */
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    String ragioneSociale = request.getParameter("ragioneSociale");
+    AziendaDAO aziendaDao = new Azienda();
+    String sedeOperativa = request.getParameter("sedeOperativa");
+    String sedeLegale = request.getParameter("sedeLegale");
 
-		GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
-		boolean aggiornaAziendaOK = gestore.aggiornaAzienda(aziendaBean);
-		request.getSession().setAttribute("aggiornaAziendaOK", aggiornaAziendaOK);
-		request.getSession().setAttribute("azienda", aziendaBean);
+    // 1)CREA IL BEAN AZIENDA
+    AziendaBean aziendaBean = null;
+    try {
+      aziendaBean = aziendaDao.retrieveByKey(ragioneSociale);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    aziendaBean.setSedeOperativa(sedeOperativa);
+    aziendaBean.setSedeLegale(sedeLegale);
 
-		String url = response.encodeRedirectURL("/DettaglioAzienda.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
-	}
-	
+    // 1)OTTENGO IL PATH DOVE SALVARE
+    String filePath = GestioneModulisticaFacade.uploadProgettoFormativo(aziendaBean, getServletContext().getRealPath("//"));
+
+    boolean progettoFormativoOK = false;
+
+    // 2)SALVO NEL PATH OTTENUTO
+    if (request.getPart("progettoFormativo") != null && request.getPart("progettoFormativo").getSize() > 0) {
+      if (filePath != null && !filePath.equals("")) {
+        Part part = request.getPart("progettoFormativo");
+        part.write(filePath);
+        progettoFormativoOK = true;
+        System.out.println("Salvato in " + filePath);
+        aziendaBean.setProgettoFormativo(filePath); //lo aggiorna solo se il file &egrave; presente altrimenti resta quello ottenuto con retrievebykey
+      } else {
+        // &egrave; andata male
+        System.out.println("Errore nel salvataggio del progetto formativo");
+      }
+    }	
+
+
+    GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
+    boolean aggiornaAziendaOK = gestore.aggiornaAzienda(aziendaBean);
+    request.getSession().setAttribute("aggiornaAziendaOK", aggiornaAziendaOK);
+    request.getSession().setAttribute("azienda", aziendaBean);
+
+    String url = response.encodeRedirectURL("/DettaglioAzienda.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+    dispatcher.forward(request, response);
+  }
+
 }

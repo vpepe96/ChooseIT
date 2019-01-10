@@ -12,12 +12,12 @@ import it.chooseit.bean.TutorAziendaleBean;
  * @author RocketStudios
  */
 public interface TutorAziendaleDAO extends GenericDAO<TutorAziendaleBean, String> {
-	
-	/**
-	 * Recupera la lista dei tutor aziendale associati ad un'azienda convenzionata
-	 * @param azienda azienda della quale si vogliono recuperare tutti i tutor aziendali associati.
-	 * @return una lista di tutor aziendali associati all'azienda.
-	 * @throws SQLException
-	 */
-	public Collection<TutorAziendaleBean> getTutorDiAzienda(AziendaBean azienda) throws SQLException;
+
+  /**
+   * Recupera la lista dei tutor aziendale associati ad un'azienda convenzionata
+   * @param azienda azienda della quale si vogliono recuperare tutti i tutor aziendali associati.
+   * @return una lista di tutor aziendali associati all'azienda.
+   * @throws SQLException
+   */
+  public Collection<TutorAziendaleBean> getTutorDiAzienda(AziendaBean azienda) throws SQLException;
 }

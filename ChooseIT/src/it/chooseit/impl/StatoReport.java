@@ -20,236 +20,236 @@ import it.chooseit.services.ReportKey;
 
 public class StatoReport implements StatoReportDAO {
 
-	@Override
-	public StatoReportBean retrieveByKey(StatoReportBean key) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+  @Override
+  public StatoReportBean retrieveByKey(StatoReportBean key) throws SQLException {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
-	@Override
-	public Collection<StatoReportBean> retrieveAll(String order) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ConvertEnum convert = new ConvertEnum();
-		
-		Collection<StatoReportBean> statiReports = new ArrayList<StatoReportBean>();
-		
-		String selectSQL = "SELECT * FROM stato_report";
-		
-		if(order != null && !order.equals("")) {
-			selectSQL += " ORDER BY " + order;
-		}
-		
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			
-			System.out.println("doRetrieveAll:" + preparedStatement.toString());
-			
-			ResultSet rs = preparedStatement.executeQuery();
-			RegistroTirocinio reg = new RegistroTirocinio();
-			Report rep = new Report();
-			
-			while(rs.next()) {
-				StatoReportBean bean = new StatoReportBean();
-				
-				bean.setDataStato(rs.getDate("data_stato"));
-				bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));
-				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("report_id_reg")));
-				bean.setReport(rep.retrieveByKey(new ReportKey(reg.retrieveByKey(rs.getInt("report_id_reg")), rs.getDate("report_data"))));
-				
-				statiReports.add(bean);
-			}
-		} finally {
-			try {
-				if(preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		
-		return statiReports;
-	}
+  @Override
+  public Collection<StatoReportBean> retrieveAll(String order) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ConvertEnum convert = new ConvertEnum();
 
-	@Override
-	public synchronized void insert(StatoReportBean statoReport) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
-		String insertSQL = "INSERT INTO stato_report(data_stato,tipo,report_id_reg,report_data) VALUES (?, ?, ?, ?)";
+    Collection<StatoReportBean> statiReports = new ArrayList<StatoReportBean>();
 
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(insertSQL);
-			
-			preparedStatement.setDate(1, statoReport.getDataStato());
-			preparedStatement.setString(2, statoReport.getTipo().toString());
-			preparedStatement.setInt(3, statoReport.getRegistroTirocinio().getIdentificativo());
-			preparedStatement.setDate(4, statoReport.getReport().getDataInserimento());
-					
-			System.out.println("doSave: "+ preparedStatement.toString());
-			preparedStatement.executeUpdate();
+    String selectSQL = "SELECT * FROM stato_report";
 
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		
-	}
+    if(order != null && !order.equals("")) {
+      selectSQL += " ORDER BY " + order;
+    }
 
-	@Override
-	public synchronized void update(StatoReportBean statoReport) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
-		String updateSQL = "UPDATE stato_report SET data_stato = ?, tipo = ?" + 
-						   "WHERE report_id_reg=? AND report_data=?";
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(selectSQL);
 
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			
-			preparedStatement = connection.prepareStatement(updateSQL);
-			
-			preparedStatement.setDate(1, statoReport.getDataStato());
-			preparedStatement.setString(2, statoReport.getTipo().toString());
-			preparedStatement.setInt(3, statoReport.getRegistroTirocinio().getIdentificativo());
-			preparedStatement.setDate(4, statoReport.getReport().getDataInserimento());
-			
-			System.out.println("doUpdate: "+ preparedStatement.toString());
-			preparedStatement.executeUpdate();
+      System.out.println("doRetrieveAll:" + preparedStatement.toString());
 
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		
-	}
+      ResultSet rs = preparedStatement.executeQuery();
+      RegistroTirocinio reg = new RegistroTirocinio();
+      Report rep = new Report();
 
-	@Override
-	public boolean delete(StatoReportBean statoReport) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+      while(rs.next()) {
+        StatoReportBean bean = new StatoReportBean();
 
-		int result = 0;
+        bean.setDataStato(rs.getDate("data_stato"));
+        bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));
+        bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("report_id_reg")));
+        bean.setReport(rep.retrieveByKey(new ReportKey(reg.retrieveByKey(rs.getInt("report_id_reg")), rs.getDate("report_data"))));
 
-		String deleteSQL = "DELETE FROM stato_report WHERE report_id_reg = ? AND report_data = ?";
+        statiReports.add(bean);
+      }
+    } finally {
+      try {
+        if(preparedStatement != null)
+          preparedStatement.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
 
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(deleteSQL);
-			
-			preparedStatement.setInt(1, statoReport.getRegistroTirocinio().getIdentificativo());
-			preparedStatement.setDate(2, statoReport.getReport().getDataInserimento());
+    return statiReports;
+  }
 
-			System.out.println("doDelete: "+ preparedStatement.toString());
-			result = preparedStatement.executeUpdate();
+  @Override
+  public synchronized void insert(StatoReportBean statoReport) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		return (result != 0);
-	}
+    String insertSQL = "INSERT INTO stato_report(data_stato,tipo,report_id_reg,report_data) VALUES (?, ?, ?, ?)";
 
-	@Override
-	public StatoReportBean getStatoReport(ReportBean report) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ConvertEnum convert = new ConvertEnum();
-		RegistroTirocinio reg = new RegistroTirocinio();
-		Report rep = new Report();
-		
-		StatoReportBean bean = new StatoReportBean(null, null, null, null);
-		
-		String selectSQL = "SELECT * \r\n" + 
-						   "FROM stato_report \r\n" + 
-						   "WHERE data_stato = " + 
-						   "(SELECT MAX(data_stato) FROM stato_report WHERE report_id_reg = ? AND report_data = ?)";
-		
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			
-			preparedStatement.setInt(1, report.getRegistroTirocinio().getIdentificativo());
-			preparedStatement.setDate(2, report.getDataInserimento());
-			
-			System.out.println("doRetrieveByKey:" + preparedStatement.toString());
-			
-			ResultSet rs = preparedStatement.executeQuery();
-			
-			while(rs.next()) {
-				bean.setDataStato(rs.getDate("data_stato"));
-				bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));
-				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("report_id_reg")));
-				bean.setReport(rep.retrieveByKey(new ReportKey(reg.retrieveByKey(rs.getInt("report_id_reg")), rs.getDate("report_data"))));
-			}
-		} finally {
-			try {
-				if(preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		return bean;
-	}
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(insertSQL);
 
-	@Override
-	public Collection<StatoReportBean> getStatiReport(ReportBean report) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ConvertEnum convert = new ConvertEnum();
-		
-		Collection<StatoReportBean> statiReport = new ArrayList<StatoReportBean>();
-		
-		String selectSQL = "SELECT * FROM stato_report WHERE report_id_reg = ? AND report_data = ?";
+      preparedStatement.setDate(1, statoReport.getDataStato());
+      preparedStatement.setString(2, statoReport.getTipo().toString());
+      preparedStatement.setInt(3, statoReport.getRegistroTirocinio().getIdentificativo());
+      preparedStatement.setDate(4, statoReport.getReport().getDataInserimento());
 
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-			
-			preparedStatement.setInt(1, report.getRegistroTirocinio().getIdentificativo());
-			preparedStatement.setDate(2, report.getDataInserimento());
-			
-			System.out.println("doRetrieveAll:" + preparedStatement.toString());
-			
-			ResultSet rs = preparedStatement.executeQuery();
-			RegistroTirocinio reg = new RegistroTirocinio();
-			Report rep = new Report();
-			
-			while(rs.next()) {
-				StatoReportBean bean = new StatoReportBean(null, null, null, null);
-				
-				bean.setDataStato(rs.getDate("data_stato"));
-				bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));
-				bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("report_id_reg")));
-				bean.setReport(rep.retrieveByKey(new ReportKey(reg.retrieveByKey(rs.getInt("report_id_reg")), rs.getDate("report_data"))));
-				
-				statiReport.add(bean);
-			}
-		} finally {
-			try {
-				if(preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
+      System.out.println("doSave: "+ preparedStatement.toString());
+      preparedStatement.executeUpdate();
 
-		return statiReport;
-	}
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+
+  }
+
+  @Override
+  public synchronized void update(StatoReportBean statoReport) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    String updateSQL = "UPDATE stato_report SET data_stato = ?, tipo = ?" + 
+        "WHERE report_id_reg=? AND report_data=?";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+
+      preparedStatement = connection.prepareStatement(updateSQL);
+
+      preparedStatement.setDate(1, statoReport.getDataStato());
+      preparedStatement.setString(2, statoReport.getTipo().toString());
+      preparedStatement.setInt(3, statoReport.getRegistroTirocinio().getIdentificativo());
+      preparedStatement.setDate(4, statoReport.getReport().getDataInserimento());
+
+      System.out.println("doUpdate: "+ preparedStatement.toString());
+      preparedStatement.executeUpdate();
+
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+
+  }
+
+  @Override
+  public boolean delete(StatoReportBean statoReport) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    int result = 0;
+
+    String deleteSQL = "DELETE FROM stato_report WHERE report_id_reg = ? AND report_data = ?";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(deleteSQL);
+
+      preparedStatement.setInt(1, statoReport.getRegistroTirocinio().getIdentificativo());
+      preparedStatement.setDate(2, statoReport.getReport().getDataInserimento());
+
+      System.out.println("doDelete: "+ preparedStatement.toString());
+      result = preparedStatement.executeUpdate();
+
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+    return (result != 0);
+  }
+
+  @Override
+  public StatoReportBean getStatoReport(ReportBean report) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ConvertEnum convert = new ConvertEnum();
+    RegistroTirocinio reg = new RegistroTirocinio();
+    Report rep = new Report();
+
+    StatoReportBean bean = new StatoReportBean(null, null, null, null);
+
+    String selectSQL = "SELECT * \r\n" + 
+        "FROM stato_report \r\n" + 
+        "WHERE data_stato = " + 
+        "(SELECT MAX(data_stato) FROM stato_report WHERE report_id_reg = ? AND report_data = ?)";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(selectSQL);
+
+      preparedStatement.setInt(1, report.getRegistroTirocinio().getIdentificativo());
+      preparedStatement.setDate(2, report.getDataInserimento());
+
+      System.out.println("doRetrieveByKey:" + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+
+      while(rs.next()) {
+        bean.setDataStato(rs.getDate("data_stato"));
+        bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));
+        bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("report_id_reg")));
+        bean.setReport(rep.retrieveByKey(new ReportKey(reg.retrieveByKey(rs.getInt("report_id_reg")), rs.getDate("report_data"))));
+      }
+    } finally {
+      try {
+        if(preparedStatement != null)
+          preparedStatement.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+    return bean;
+  }
+
+  @Override
+  public Collection<StatoReportBean> getStatiReport(ReportBean report) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ConvertEnum convert = new ConvertEnum();
+
+    Collection<StatoReportBean> statiReport = new ArrayList<StatoReportBean>();
+
+    String selectSQL = "SELECT * FROM stato_report WHERE report_id_reg = ? AND report_data = ?";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(selectSQL);
+
+      preparedStatement.setInt(1, report.getRegistroTirocinio().getIdentificativo());
+      preparedStatement.setDate(2, report.getDataInserimento());
+
+      System.out.println("doRetrieveAll:" + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+      RegistroTirocinio reg = new RegistroTirocinio();
+      Report rep = new Report();
+
+      while(rs.next()) {
+        StatoReportBean bean = new StatoReportBean(null, null, null, null);
+
+        bean.setDataStato(rs.getDate("data_stato"));
+        bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));
+        bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("report_id_reg")));
+        bean.setReport(rep.retrieveByKey(new ReportKey(reg.retrieveByKey(rs.getInt("report_id_reg")), rs.getDate("report_data"))));
+
+        statiReport.add(bean);
+      }
+    } finally {
+      try {
+        if(preparedStatement != null)
+          preparedStatement.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+
+    return statiReport;
+  }
 
 }

@@ -15,186 +15,186 @@ import it.chooseit.services.DriverManagerConnectionPool;
 
 public class Segreteria implements SegreteriaDAO {
 
-	@Override
-	public SegreteriaBean retrieveByKey(String key) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs = null;
-		
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
+  @Override
+  public SegreteriaBean retrieveByKey(String key) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet rs = null;
 
-			String sql = "select * from segreteria where email = ?;";
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
 
-			preparedStatement = connection.prepareStatement(sql);
+      String sql = "select * from segreteria where email = ?;";
 
-			preparedStatement.setString(1, key);
+      preparedStatement = connection.prepareStatement(sql);
 
-			rs = preparedStatement.executeQuery();
-			
-			if (rs.next()) {
-				SegreteriaBean bean = new SegreteriaBean();
-				bean.setEmail(rs.getString("email"));
-				
-				//cerca dati utente
-				UtenteDAO utenteDao = new Utente();
-				UtenteBean utente = utenteDao.retrieveByKey(key);
-				//setta dati utente
-				bean.setNome(utente.getNome());
-				bean.setCognome(utente.getCognome());
-				bean.setDataNascita(utente.getDataNascita());
-				bean.setIndirizzo(utente.getIndirizzo());
-				bean.setTelefono(utente.getTelefono());
-				bean.setFotoProfilo(utente.getFotoProfilo());
-				
-				return bean;
-			} else 
-				return null;
-		} finally {
-			try {
-				if (!connection.isClosed())
-					connection.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-	}
+      preparedStatement.setString(1, key);
 
-	@Override
-	public Collection<SegreteriaBean> retrieveAll(String order) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs = null;
-		Collection<SegreteriaBean> list = new ArrayList<>();
+      rs = preparedStatement.executeQuery();
 
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			String sql = null;
-			if(order == null || order.equals("")) {
-				sql = "select * from segreteria;";
-			}else {
-				sql = "select * from utente order by "+order+";";
-			}
+      if (rs.next()) {
+        SegreteriaBean bean = new SegreteriaBean();
+        bean.setEmail(rs.getString("email"));
 
-			preparedStatement = connection.prepareStatement(sql);
+        //cerca dati utente
+        UtenteDAO utenteDao = new Utente();
+        UtenteBean utente = utenteDao.retrieveByKey(key);
+        //setta dati utente
+        bean.setNome(utente.getNome());
+        bean.setCognome(utente.getCognome());
+        bean.setDataNascita(utente.getDataNascita());
+        bean.setIndirizzo(utente.getIndirizzo());
+        bean.setTelefono(utente.getTelefono());
+        bean.setFotoProfilo(utente.getFotoProfilo());
 
-			rs = preparedStatement.executeQuery();
+        return bean;
+      } else 
+        return null;
+    } finally {
+      try {
+        if (!connection.isClosed())
+          connection.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+  }
 
-			while (rs.next()) {
-				SegreteriaBean bean = new SegreteriaBean();
-				
-				String email = rs.getString("email");
-				
-				bean = retrieveByKey(email);
-				
-				list.add(bean);
-			}
+  @Override
+  public Collection<SegreteriaBean> retrieveAll(String order) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet rs = null;
+    Collection<SegreteriaBean> list = new ArrayList<>();
 
-			return list;
-		} finally {
-			try {
-				if (!connection.isClosed())
-					connection.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-	}
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      String sql = null;
+      if(order == null || order.equals("")) {
+        sql = "select * from segreteria;";
+      }else {
+        sql = "select * from utente order by "+order+";";
+      }
 
-	@Override
-	public void insert(SegreteriaBean object) throws SQLException {}
+      preparedStatement = connection.prepareStatement(sql);
 
-	@Override
-	public void update(SegreteriaBean object) throws SQLException {
-		Connection connection = null;
+      rs = preparedStatement.executeQuery();
 
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
+      while (rs.next()) {
+        SegreteriaBean bean = new SegreteriaBean();
 
-			UtenteDAO utenteDao = new Utente();
-			utenteDao.update(object);
-			
-		} finally {
-			try {
-				if (!connection.isClosed())
-					connection.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-	}
+        String email = rs.getString("email");
 
-	@Override
-	public boolean delete(String key) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+        bean = retrieveByKey(email);
 
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
-			
-			String sql = "delete from segreteria where email = ?;";
+        list.add(bean);
+      }
 
-			preparedStatement = connection.prepareStatement(sql);
+      return list;
+    } finally {
+      try {
+        if (!connection.isClosed())
+          connection.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+  }
 
-			preparedStatement.setString(1, key);
-			
-			int result = preparedStatement.executeUpdate();
-			
-			//se il segretario &egrave; stato cancellato...
-			if(result == 1) {
-				//...cancella l'utente
-				UtenteDAO utenteDao = new Utente();
-				if(utenteDao.delete(key)) {
-					//se l'utente &egrave; stato cancellato return true
-					return true;
-				}else {
-					//altrimenti return false
-					return false;
-				}
-			}else {
-				//...altrimenti cancellazione non avvenuta
-				return false;
-			}
+  @Override
+  public void insert(SegreteriaBean object) throws SQLException {}
 
-		} finally {
-			try {
-				if (!connection.isClosed())
-					connection.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-	}
+  @Override
+  public void update(SegreteriaBean object) throws SQLException {
+    Connection connection = null;
 
-	@Override
-	public void insert(SegreteriaBean utente, String pwd) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
 
-		try {
-			connection = DriverManagerConnectionPool.getConnection();
+      UtenteDAO utenteDao = new Utente();
+      utenteDao.update(object);
 
-			//inserimento dell'utente
-			UtenteDAO utenteDao = new Utente();
-			utenteDao.insert(utente, pwd);
-			
-			//inserimento segreteria
-			String sql = "insert into segreteria (email) values (?);";
-			
-			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, utente.getEmail());
-			
-			preparedStatement.executeUpdate();
+    } finally {
+      try {
+        if (!connection.isClosed())
+          connection.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+  }
 
-		} finally {
-			try {
-				if (!connection.isClosed())
-					connection.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-		
-	}
+  @Override
+  public boolean delete(String key) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+
+      String sql = "delete from segreteria where email = ?;";
+
+      preparedStatement = connection.prepareStatement(sql);
+
+      preparedStatement.setString(1, key);
+
+      int result = preparedStatement.executeUpdate();
+
+      //se il segretario &egrave; stato cancellato...
+      if(result == 1) {
+        //...cancella l'utente
+        UtenteDAO utenteDao = new Utente();
+        if(utenteDao.delete(key)) {
+          //se l'utente &egrave; stato cancellato return true
+          return true;
+        }else {
+          //altrimenti return false
+          return false;
+        }
+      }else {
+        //...altrimenti cancellazione non avvenuta
+        return false;
+      }
+
+    } finally {
+      try {
+        if (!connection.isClosed())
+          connection.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+  }
+
+  @Override
+  public void insert(SegreteriaBean utente, String pwd) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+
+      //inserimento dell'utente
+      UtenteDAO utenteDao = new Utente();
+      utenteDao.insert(utente, pwd);
+
+      //inserimento segreteria
+      String sql = "insert into segreteria (email) values (?);";
+
+      preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.setString(1, utente.getEmail());
+
+      preparedStatement.executeUpdate();
+
+    } finally {
+      try {
+        if (!connection.isClosed())
+          connection.close();
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+
+  }
 
 }

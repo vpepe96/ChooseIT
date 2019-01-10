@@ -9,12 +9,12 @@ import it.chooseit.services.ReportKey;
 
 public interface ReportDAO extends GenericDAO<ReportBean, ReportKey> {
 
-	public Collection<ReportBean> getReportFirmati(RegistroTirocinioBean registro) throws SQLException;
-	
-	public Collection<ReportBean> getReportNonFirmati(RegistroTirocinioBean registro) throws SQLException;
-	
-	public Collection<ReportBean> getReportRegistro(RegistroTirocinioBean registro) throws SQLException;
-	
+  public Collection<ReportBean> getReportFirmati(RegistroTirocinioBean registro) throws SQLException;
+
+  public Collection<ReportBean> getReportNonFirmati(RegistroTirocinioBean registro) throws SQLException;
+
+  public Collection<ReportBean> getReportRegistro(RegistroTirocinioBean registro) throws SQLException;
+
 }
 
 

@@ -17,42 +17,42 @@ import it.chooseit.impl.Azienda;
  */
 @WebServlet("/DettaglioAziendaServlet")
 public class DettaglioAziendaServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DettaglioAziendaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * @see HttpServlet#HttpServlet()
+   */
+  public DettaglioAziendaServlet() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
+
+  /**
+   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+   */
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+  }
+
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+   */
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    AziendaDAO aziendaDao = new Azienda();
+    AziendaBean azienda = null;
+    String aziendaID = (String) request.getParameter("id_azienda");
+
+    try {
+      azienda = aziendaDao.retrieveByKey(aziendaID);
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    request.getSession().setAttribute("azienda", azienda);
 
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AziendaDAO aziendaDao = new Azienda();
-		AziendaBean azienda = null;
-		String aziendaID = (String) request.getParameter("id_azienda");
-		
-		try {
-			azienda = aziendaDao.retrieveByKey(aziendaID);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		request.getSession().setAttribute("azienda", azienda);
-		
-		String url = response.encodeRedirectURL("DettaglioAzienda.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
-	}
+    String url = response.encodeRedirectURL("DettaglioAzienda.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+    dispatcher.forward(request, response);
+  }
 
 }

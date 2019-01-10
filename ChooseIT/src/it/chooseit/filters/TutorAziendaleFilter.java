@@ -16,52 +16,52 @@ import javax.servlet.http.HttpServletRequest;
  */
 @WebFilter("/TutorAziendaleFilter")
 public class TutorAziendaleFilter implements Filter {
-	
-	FilterConfig filterConfig;
-	
-    /**
-     * Default constructor. 
-     */
-    public TutorAziendaleFilter() {
-        // TODO Auto-generated constructor stub
+
+  FilterConfig filterConfig;
+
+  /**
+   * Default constructor. 
+   */
+  public TutorAziendaleFilter() {
+    // TODO Auto-generated constructor stub
+  }
+
+  /**
+   * @see Filter#destroy()
+   */
+  public void destroy() {
+    // TODO Auto-generated method stub
+  }
+
+  /**
+   * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+   */
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    //prendo l'attributo ruolo nella session
+    String ruolo = (String) ((HttpServletRequest) request).getSession().getAttribute("ruolo");
+
+    if (ruolo == null) {
+      ruolo = "guest";
+      ((HttpServletRequest) request).getSession().setAttribute("ruolo", ruolo);
     }
 
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+    //se sono tutorAziendale posso andare
+    //se non sono tutorAziendale allora dispatcher
+    if (!ruolo.trim().equals("tutorAziendale")) {
+      RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
+      request.setAttribute("nonAutorizzato", true);
+      dispatcher.forward(request, response);
+      return;
+    }
+    // pass the request along the filter chain
+    chain.doFilter(request, response);
+  }
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		//prendo l'attributo ruolo nella session
-		String ruolo = (String) ((HttpServletRequest) request).getSession().getAttribute("ruolo");
-		
-		if (ruolo == null) {
-			ruolo = "guest";
-			((HttpServletRequest) request).getSession().setAttribute("ruolo", ruolo);
-		}
-		
-		//se sono tutorAziendale posso andare
-		//se non sono tutorAziendale allora dispatcher
-		if (!ruolo.trim().equals("tutorAziendale")) {
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp");
-			request.setAttribute("nonAutorizzato", true);
-			dispatcher.forward(request, response);
-			return;
-		}
-		// pass the request along the filter chain
-		chain.doFilter(request, response);
-	}
-
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		filterConfig = fConfig;
-	}
+  /**
+   * @see Filter#init(FilterConfig)
+   */
+  public void init(FilterConfig fConfig) throws ServletException {
+    filterConfig = fConfig;
+  }
 
 }
