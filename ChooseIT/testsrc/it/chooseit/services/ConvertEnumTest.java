@@ -57,7 +57,6 @@ class ConvertEnumTest {
 		assertNotNull(tipo);
 	}
 	
-	
 	/**
 	 * Testa il metodo convertStatoRichiesta su un stato valido della richiesta di tirocinio.
 	 * Stato considerato "accettata".
