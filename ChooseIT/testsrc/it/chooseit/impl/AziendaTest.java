@@ -151,9 +151,10 @@ class AziendaTest {
 		bean.setSedeOperativa("Salerno");
 		bean.setProgettoFormativo("progetto-formativo");
 		classUnderTest.insert(bean);
-		AziendaBean result = classUnderTest.retrieveByKey("Metoda");
+		AziendaBean result = classUnderTest.retrieveByKey("KeyBiz");
 		assertNotNull(result);
-		assertEquals("Metoda", result.getRagioneSociale());
+		assertEquals("KeyBiz", result.getRagioneSociale());
+		classUnderTest.delete("KeyBiz");
 	}
 	
 	/**
