@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import it.chooseit.bean.StatoRichiestaBean;
 import it.chooseit.bean.StatoReportBean;
 import it.chooseit.bean.StatoTirocinioBean;
+import it.chooseit.services.ConvertEnum;
 
 class ConvertEnumTest {
 
@@ -23,7 +24,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoRichiestaNuova() throws NoSuchAlgorithmException, Exception{
 		String stato = "nuova";
-		StatoRichiestaBean.StatoRichiesta tipo = ConvertEnum.convertStatoRichiesta(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoRichiestaBean.StatoRichiesta tipo = convert.convertStatoRichiesta(stato);
 		assertNotNull(tipo);
 	}
 	
@@ -36,7 +38,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoRichiestaInValidazione() throws NoSuchAlgorithmException, Exception{
 		String stato = "invalidazione";
-		StatoRichiestaBean.StatoRichiesta tipo = ConvertEnum.convertStatoRichiesta(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoRichiestaBean.StatoRichiesta tipo = convert.convertStatoRichiesta(stato);
 		assertNotNull(tipo);
 	}
 	
@@ -49,7 +52,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoRichiestaInConvalida() throws NoSuchAlgorithmException, Exception{
 		String stato = "inconvalida";
-		StatoRichiestaBean.StatoRichiesta tipo = ConvertEnum.convertStatoRichiesta(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoRichiestaBean.StatoRichiesta tipo = convert.convertStatoRichiesta(stato);
 		assertNotNull(tipo);
 	}
 	
@@ -63,7 +67,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoRichiestaAccettata() throws NoSuchAlgorithmException, Exception{
 		String stato = "accettata";
-		StatoRichiestaBean.StatoRichiesta tipo = ConvertEnum.convertStatoRichiesta(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoRichiestaBean.StatoRichiesta tipo = convert.convertStatoRichiesta(stato);
 		assertNotNull(tipo);
 	}
 	
@@ -76,7 +81,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoRichiestaRifiutata() throws NoSuchAlgorithmException, Exception{
 		String stato = "rifiutata";
-		StatoRichiestaBean.StatoRichiesta tipo = ConvertEnum.convertStatoRichiesta(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoRichiestaBean.StatoRichiesta tipo = convert.convertStatoRichiesta(stato);
 		assertNotNull(tipo);
 	}
 	
@@ -88,7 +94,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoRichiestaInvalido() throws NoSuchAlgorithmException, Exception{
 		String stato = "statoNonValido";
-		StatoRichiestaBean.StatoRichiesta tipo = ConvertEnum.convertStatoRichiesta(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoRichiestaBean.StatoRichiesta tipo = convert.convertStatoRichiesta(stato);
 		assertNull(tipo);
 	}
 	
@@ -100,7 +107,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoRichiestaStringNuova() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.NUOVA);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.NUOVA);
 		assertNotNull(stato);
 	}
 	
@@ -112,7 +120,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoRichiestaStringInValidazione() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.INVALIDAZIONE);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.INVALIDAZIONE);
 		assertNotNull(stato);
 	}
 	
@@ -124,7 +133,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoRichiestaStringInConvalida() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.INCONVALIDA);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.INCONVALIDA);
 		assertNotNull(stato);
 	}
 	
@@ -136,7 +146,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoRichiestaStringAccettata() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.ACCETTATA);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.ACCETTATA);
 		assertNotNull(stato);
 	}
 	
@@ -148,7 +159,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoRichiestaStringRifiutata() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.RIFIUTATA);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoRichiestaString(StatoRichiestaBean.StatoRichiesta.RIFIUTATA);
 		assertNotNull(stato);
 	}
 	
@@ -163,7 +175,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoReportNuovo() throws NoSuchAlgorithmException, Exception{
 		String stato = "nuovo";
-		StatoReportBean.StatoReport tipo = ConvertEnum.convertStatoReport(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoReportBean.StatoReport tipo = convert.convertStatoReport(stato);
 		assertNotNull(tipo);
 	}
 	
@@ -176,7 +189,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoReportCompilato() throws NoSuchAlgorithmException, Exception{
 		String stato = "compilato";
-		StatoReportBean.StatoReport tipo = ConvertEnum.convertStatoReport(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoReportBean.StatoReport tipo = convert.convertStatoReport(stato);
 		assertNotNull(tipo);
 	}	
 	
@@ -189,7 +203,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoReportValidato() throws NoSuchAlgorithmException, Exception{
 		String stato = "validato";
-		StatoReportBean.StatoReport tipo = ConvertEnum.convertStatoReport(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoReportBean.StatoReport tipo = convert.convertStatoReport(stato);
 		assertNotNull(tipo);
 	}
 	
@@ -202,7 +217,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoReportRifiutato() throws NoSuchAlgorithmException, Exception{
 		String stato = "rifiutato";
-		StatoReportBean.StatoReport tipo = ConvertEnum.convertStatoReport(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoReportBean.StatoReport tipo = convert.convertStatoReport(stato);
 		assertNotNull(tipo);
 	}
 	
@@ -214,7 +230,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoReportInvalido() throws NoSuchAlgorithmException, Exception{
 		String stato = "statoNonValido";
-		StatoReportBean.StatoReport tipo = ConvertEnum.convertStatoReport(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoReportBean.StatoReport tipo = convert.convertStatoReport(stato);
 		assertNull(tipo);
 	}
 
@@ -226,7 +243,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoReportStringNuovo() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoReportString(StatoReportBean.StatoReport.NUOVO);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoReportString(StatoReportBean.StatoReport.NUOVO);
 		assertNotNull(stato);
 	}
 	
@@ -238,7 +256,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoReportStringCompilato() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoReportString(StatoReportBean.StatoReport.COMPILATO);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoReportString(StatoReportBean.StatoReport.COMPILATO);
 		assertNotNull(stato);
 	}
 	
@@ -250,7 +269,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoReportStringValidato() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoReportString(StatoReportBean.StatoReport.VALIDATO);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoReportString(StatoReportBean.StatoReport.VALIDATO);
 		assertNotNull(stato);
 	}
 	
@@ -262,7 +282,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoReportStringRifiutato() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoReportString(StatoReportBean.StatoReport.RIFIUTATO);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoReportString(StatoReportBean.StatoReport.RIFIUTATO);
 		assertNotNull(stato);
 	}
 
@@ -277,7 +298,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoTirocinioInCorso() throws NoSuchAlgorithmException, Exception{
 		String stato = "incorso";
-		StatoTirocinioBean.StatoTirocinio tipo = ConvertEnum.convertStatoTirocinio(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoTirocinioBean.StatoTirocinio tipo = convert.convertStatoTirocinio(stato);
 		assertNotNull(tipo);
 	}	
 	
@@ -290,7 +312,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoTirocinioTerminato() throws NoSuchAlgorithmException, Exception{
 		String stato = "terminato";
-		StatoTirocinioBean.StatoTirocinio tipo = ConvertEnum.convertStatoTirocinio(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoTirocinioBean.StatoTirocinio tipo = convert.convertStatoTirocinio(stato);
 		assertNotNull(tipo);
 	}	
 	
@@ -303,7 +326,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoTirocinioAnnullato() throws NoSuchAlgorithmException, Exception{
 		String stato = "annullato";
-		StatoTirocinioBean.StatoTirocinio tipo = ConvertEnum.convertStatoTirocinio(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoTirocinioBean.StatoTirocinio tipo = convert.convertStatoTirocinio(stato);
 		assertNotNull(tipo);
 	}	
 	
@@ -315,7 +339,8 @@ class ConvertEnumTest {
 	@Test
 	void testConvertStatoTirocinioInvalido() throws NoSuchAlgorithmException, Exception{
 		String stato = "statoNonValido";
-		StatoTirocinioBean.StatoTirocinio tipo = ConvertEnum.convertStatoTirocinio(stato);
+		ConvertEnum convert = new ConvertEnum();
+		StatoTirocinioBean.StatoTirocinio tipo = convert.convertStatoTirocinio(stato);
 		assertNull(tipo);
 	}
 	
@@ -327,7 +352,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoTirocinioStringInCorso() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoTirocinioString(StatoTirocinioBean.StatoTirocinio.INCORSO);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoTirocinioString(StatoTirocinioBean.StatoTirocinio.INCORSO);
 		assertNotNull(stato);
 	}
 	
@@ -339,7 +365,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoTirocinioStringTerminato() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoTirocinioString(StatoTirocinioBean.StatoTirocinio.TERMINATO);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoTirocinioString(StatoTirocinioBean.StatoTirocinio.TERMINATO);
 		assertNotNull(stato);
 	}
 	
@@ -351,7 +378,8 @@ class ConvertEnumTest {
 	 */
 	@Test
 	void testConvertStatoTirocinioStringAnnullato() throws NoSuchAlgorithmException, Exception{
-		String stato = ConvertEnum.convertStatoTirocinioString(StatoTirocinioBean.StatoTirocinio.ANNULLATO);
+		ConvertEnum convert = new ConvertEnum();
+		String stato = convert.convertStatoTirocinioString(StatoTirocinioBean.StatoTirocinio.ANNULLATO);
 		assertNotNull(stato);
 	}
 	
