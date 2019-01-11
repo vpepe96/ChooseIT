@@ -222,7 +222,7 @@ public class QuestionarioStudente implements QuestionarioStudenteDAO{
       connection = DriverManagerConnectionPool.getConnection();
 
       String sql = "select * from tutor_aziendale, registro_tirocinio, questionario_valutativo_studente where "
-          + "tutor_aziendale.email = ? and registro_tirocinio.tutor_aziendale_email = tutor_aziendale.email and"
+          + "tutor_aziendale.email = ? and registro_tirocinio.tutor_aziendale_email = tutor_aziendale.email and "
           + "questionario_valutativo_studente.registro_id = registro_tirocinio.identificativo;";
 
       preparedStatement = connection.prepareStatement(sql);

@@ -3,10 +3,9 @@ package it.chooseit.impl;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -242,5 +241,11 @@ class QuestionarioAziendaTest  {
 		ArrayList<QuestionarioAziendaBean> list = (ArrayList<QuestionarioAziendaBean>) classUnderTest.retrieveAll(null);
 		assertNotEquals(0, list.size());
 	}
+
+	
+ @AfterAll
+ static void tearDown() throws Exception {
+   classUnderTest.delete(id);
+ }
 
 }

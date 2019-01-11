@@ -2,16 +2,17 @@ package it.chooseit.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import it.chooseit.bean.PresidenteBean;
-import it.chooseit.bean.UtenteBean;
 
 class PresidenteTest {
 
@@ -26,9 +27,20 @@ class PresidenteTest {
 	@BeforeAll
 	static void setUp() throws Exception {
 		classUnderTest = new Presidente();
-		email = "fferrucci@unisa.it";
+		
+		email = "presidente@unisa.it";
+		
+		bean = new PresidenteBean();
+		bean.setEmail(email);
+		bean.setNome("presidente");
+		bean.setCognome("presidente");
+		bean.setDataNascita(new Date(System.currentTimeMillis()));
+		bean.setFotoProfilo("");
+		bean.setIndirizzo("via Roma");
+		bean.setTelefono("3365124458");
 		
 		assertNotNull(classUnderTest);
+		classUnderTest.insert(bean, "password");
 	}
 	
 	/**
@@ -37,8 +49,8 @@ class PresidenteTest {
 	@Test
 	void testRetrieveByKeyPresidenteInDB() throws Exception{
 		System.out.println("retrieveByKey");
-		bean = classUnderTest.retrieveByKey(email);
-		assertNotNull(bean);
+		PresidenteBean b = classUnderTest.retrieveByKey(email);
+		assertNotNull(b);
 		assertEquals(email, bean.getEmail());
 	}
 
@@ -49,8 +61,8 @@ class PresidenteTest {
 	@Test
 	void testRetrieveByKeyPresidenteNonInDB() throws Exception{
 		System.out.println("retriveByKey");
-		bean = classUnderTest.retrieveByKey("email@mail.com");
-		assertNull(bean);
+	 PresidenteBean b = classUnderTest.retrieveByKey("email@mail.com");
+		assertNull(b);
 	}
 	
 	
@@ -84,58 +96,28 @@ class PresidenteTest {
 	@Test
 	void testUpdatePresidenteInDB() throws Exception{
 		System.out.println("update");
+		
 		bean = classUnderTest.retrieveByKey(email);
 		bean.setNome("Marco");
 		classUnderTest.update(bean);
 		bean = classUnderTest.retrieveByKey(email);
 		assertEquals("Marco", bean.getNome());
 	}
-
-	
-	/**
-	 * Test del metodo update con utente presidente nel db e dati non completi.
-	 */
-	@Test
-	void testUpdatePresidenteInDBNonCompleto(){
-		System.out.println("update");
-		bean = new PresidenteBean();
-		bean.setNome("Marco");
-		bean.setEmail(email);
-		boolean exc = false;
-		try {
-			classUnderTest.update(bean);
-		} catch (SQLException e) {
-			exc = true;
-		}
-		assertTrue(exc);
-	}
 	
 	
 	/**
 	 * Test del metodo delete con un utente presidente presente nel db.
 	 * @throws SQLException 
+	 * @throws ParseException 
 	 */
 	@Test
-	void testDeletePresidenteInDB() throws SQLException {
+	void testDeletePresidenteInDB() throws SQLException, ParseException {
 		System.out.println("delete");
-		bean = new PresidenteBean();
-		bean.setNome("Marco");
-		bean.setEmail("prova@mail.com");
-		bean.setCognome("Prova");
-		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		java.sql.Date sqlDate = null;
-		try {
-			java.util.Date utilDate = format.parse("1997-04-16");
-			sqlDate = new java.sql.Date(utilDate.getTime());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		bean.setDataNascita(sqlDate);
-		bean.setIndirizzo("via Roma 61");
-		bean.setTelefono("3362541258");
-		classUnderTest.insert(bean,"pwd");
+		
 		boolean deleted = classUnderTest.delete(bean.getEmail());
 		assertTrue(deleted);
+		
+		classUnderTest.insert(bean, "password");
 	}
 
 	
@@ -143,22 +125,22 @@ class PresidenteTest {
 	/**
 	 * Test del metodo delete con un utente presidente non presente nel db.
 	 * @throws SQLException 
+	 * @throws ParseException 
 	 */
 	@Test
-	void testDeleteUtenteNonInDB() throws SQLException {
+	void testDeleteUtenteNonInDB() throws SQLException, ParseException {
 		System.out.println("delete");
+		
 		bean = new PresidenteBean();
 		bean.setNome("Marco");
 		bean.setEmail("prova@mail.com");
 		bean.setCognome("Prova");
 		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
 		java.sql.Date sqlDate = null;
-		try {
-			java.util.Date utilDate = format.parse("1997-04-16");
-			sqlDate = new java.sql.Date(utilDate.getTime());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+	
+		java.util.Date utilDate = format.parse("1997-04-16");
+		sqlDate = new java.sql.Date(utilDate.getTime());
+
 		bean.setDataNascita(sqlDate);
 		bean.setIndirizzo("via Roma 61");
 		bean.setTelefono("3362541258");
@@ -174,29 +156,13 @@ class PresidenteTest {
 	@Test
 	void testInsertPresidenteNonInDB() throws Exception{
 		System.out.println("insert");
-		bean = new PresidenteBean();
-		bean.setEmail("marika@gmail.com");
-		bean.setNome("Marika");
-		bean.setCognome("Cognome");
-		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		java.sql.Date sqlDate = null;
-		try {
-			java.util.Date utilDate = format.parse("1997-04-16");
-			sqlDate = new java.sql.Date(utilDate.getTime());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		bean.setDataNascita(sqlDate);
-		bean.setIndirizzo("via Scafati 67, 84018 SA");
-		bean.setTelefono("3335421658");
-		Utente utDao = new Utente();
-		classUnderTest.delete(bean.getEmail());
-		utDao.delete(bean.getEmail());
-		classUnderTest.insert(bean,"password");
-		UtenteBean result = classUnderTest.retrieveByKey("marika@gmail.com");
-		assertNotNull(result);
-		assertEquals("marika@gmail.com", result.getEmail());
-		classUnderTest.delete(bean.getEmail());
+	
+		classUnderTest.delete(email);
+		classUnderTest.insert(bean, "password");
+		PresidenteBean b = classUnderTest.retrieveByKey(email);
+		
+		assertNotNull(b);
+		assertEquals(email, b.getEmail());
 	}
 	
 	/**
@@ -206,10 +172,11 @@ class PresidenteTest {
 	@Test
 	void testInsertPresidenteGiaInDB() throws SQLException{
 		System.out.println("insert");
-		bean = classUnderTest.retrieveByKey(email);
+		
+		PresidenteBean b = classUnderTest.retrieveByKey(email);
 		boolean exc = false;
 		try {
-			classUnderTest.insert(bean,"password");
+			classUnderTest.insert(b,"password");
 		} catch (SQLException e) {
 			exc = true;
 		}
@@ -218,33 +185,30 @@ class PresidenteTest {
 	
 	/**
 	 * Test del metodo insert con dati sull'utente presidente non completi.
+	 * @throws Exception 
 	 */
 	@Test
-	void testInsertStudenteNonCompleto(){
+	void testInsertStudenteNonCompleto() throws Exception{
 		System.out.println("insert");
-		bean = new PresidenteBean();
-		bean.setEmail("marikapia@gmail.com");
-		bean.setNome("Marika");
-		bean.setCognome("Cognome");
-		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		java.sql.Date sqlDate = null;
-		try {
-			java.util.Date utilDate = format.parse("1997-04-16");
-			sqlDate = new java.sql.Date(utilDate.getTime());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		bean.setDataNascita(sqlDate);
-		bean.setIndirizzo("via Scafati 67, 84018 SA");
-		//manca telefono
+				
+		PresidenteBean b = classUnderTest.retrieveByKey(email);
+		classUnderTest.delete(email);
+		
+		b.setTelefono(null);
+		
 		boolean exc = false;
 		try {
-			classUnderTest.insert(bean,"password");
+			classUnderTest.insert(b,"password");
 		} catch (SQLException e) {
 			exc = true;
 		}
 		assertTrue(exc);
+		classUnderTest.insert(bean,"password");
 	}
-
-
+	
+ @AfterAll
+ static void tearDown() throws Exception {
+   classUnderTest.delete(email);
+ }
+ 
 }

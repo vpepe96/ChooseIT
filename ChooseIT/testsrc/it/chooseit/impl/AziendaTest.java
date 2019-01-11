@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.chooseit.bean.AziendaBean;
@@ -94,23 +92,6 @@ class AziendaTest {
     classUnderTest.insert(bean);
     AziendaBean b = classUnderTest.retrieveByKey(ragioneSociale);
     assertNotNull(b);
-  }
-
-  
-  /**
-   * Test del metodo insert con un'azienda già presente nel db.
-   */
-  @Test
-  void testInsertAziendaGiaInDB() {
-   System.out.println("insert");
-   
-   boolean exc = false;
-   try {
-    classUnderTest.insert(bean);
-   } catch (SQLException e) {
-    exc = true;
-   }
-   assertTrue(exc);
   }
   
   
