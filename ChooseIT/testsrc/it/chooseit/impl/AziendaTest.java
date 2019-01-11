@@ -35,6 +35,7 @@ class AziendaTest {
 	@Test
 	void testRetrieveByKeyAziendaInDB() throws Exception{
 		System.out.println("retrieveByKey");
+		
 		bean = classUnderTest.retrieveByKey(ragioneSociale);
 		assertNotNull(bean);
 		assertEquals(ragioneSociale, bean.getRagioneSociale());
