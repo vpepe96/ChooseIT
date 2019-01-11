@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,17 +19,11 @@ class AziendaTest {
   private static AziendaBean bean;
   private static String ragioneSociale;
   
-  @BeforeEach
-  void setUp() throws Exception {
+  @BeforeAll
+  static void setUp() throws Exception {
     classUnderTest = new Azienda();
- 
-    ArrayList<AziendaBean> list = (ArrayList<AziendaBean>) classUnderTest.retrieveAll(null);
-    int id = 0;
-    for (AziendaBean aziendaBean : list) {
-      id++;
-    }
     
-    ragioneSociale = "KeyBiz" + id;
+    ragioneSociale = "KeyBiz";
     bean = new AziendaBean(ragioneSociale, "", "via Napoli", "via Napoli", null, null);
     
     assertNotNull(classUnderTest, "La classe classUnderTest è null");
@@ -153,13 +150,18 @@ class AziendaTest {
   void testDeleteAziendaNonInDB() throws SQLException {
    System.out.println("delete");
    
-   bean = new AziendaBean();
-   bean.setRagioneSociale("Nextsoft");
-   bean.setSedeLegale("Firenze");
-   bean.setSedeOperativa("Padova");
-   bean.setProgettoFormativo(" ");
-   boolean deleted = classUnderTest.delete(bean.getRagioneSociale());
+   AziendaBean b = new AziendaBean();
+   b.setRagioneSociale(ragioneSociale+1);
+   b.setSedeLegale("Firenze");
+   b.setSedeOperativa("Padova");
+   b.setProgettoFormativo(" ");
+   boolean deleted = classUnderTest.delete(b.getRagioneSociale());
    assertFalse(deleted);
+  }
+  
+  @AfterAll
+  static void tearDown() throws Exception {
+    classUnderTest.delete(ragioneSociale);
   }
 
 }
