@@ -22,7 +22,7 @@ public class ConvertEnum {
    * @param stato stringa specificata
    * @return enum corrispondente alla stringa specificata
    */
-  public static StatoRichiesta convertStatoRichiesta(String stato) {
+  public StatoRichiesta convertStatoRichiesta(String stato) {
     StatoRichiesta tipo = null;
     String[] stati = {"NUOVA","INVALIDAZIONE","INCONVALIDA","ACCETTATA","RIFIUTATA"};
 
@@ -50,7 +50,7 @@ public class ConvertEnum {
    * @param stato variabile StatoRichiesta
    * @return valore String di stato
    */
-  public static String convertStatoRichiestaString(StatoRichiesta stato) {
+  public String convertStatoRichiestaString(StatoRichiesta stato) {
     String tipo = null;
     String[] stati = {"NUOVA","INVALIDAZIONE","INCONVALIDA","ACCETTATA","RIFIUTATA"};
 
@@ -80,7 +80,7 @@ public class ConvertEnum {
    * @param stato stringa specificata
    * @return enum corrispondente alla stringa specificata
    */
-  public static StatoReport convertStatoReport(String stato) {
+  public StatoReport convertStatoReport(String stato) {
     StatoReport tipo = null;
     String[] stati = {"NUOVO","COMPILATO","VALIDATO","RIFIUTATO"};
 
@@ -105,7 +105,7 @@ public class ConvertEnum {
    * @param stato variabile StatoReport
    * @return valore String di stato
    */
-  public static String convertStatoReportString(StatoReport stato) {
+  public String convertStatoReportString(StatoReport stato) {
     String tipo = null;
     String[] stati = {"NUOVO","COMPILATO","VALIDATO","RIFIUTATO"};
 
@@ -132,7 +132,7 @@ public class ConvertEnum {
    * @param stato stringa specificata
    * @return enum corrispondente alla stringa specificata
    */
-  public static StatoTirocinio convertStatoTirocinio(String stato) {
+  public StatoTirocinio convertStatoTirocinio(String stato) {
     StatoTirocinio tipo = null;
     String[] stati = {"INCORSO","ANNULLATO","TERMINATO"};
 
@@ -154,7 +154,7 @@ public class ConvertEnum {
    * @param stato variabile StatoTirocinio
    * @return valore String di stato
    */
-  public static String convertStatoTirocinioString(StatoTirocinio stato) {
+  public String convertStatoTirocinioString(StatoTirocinio stato) {
     String tipo = null;
     String[] stati = {"INCORSO","ANNULLATO","TERMINATO"};
 
@@ -172,6 +172,5 @@ public class ConvertEnum {
 
     return tipo.toLowerCase();
   }
-  
   
 }
