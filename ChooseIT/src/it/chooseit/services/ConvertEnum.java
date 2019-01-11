@@ -1,5 +1,9 @@
 package it.chooseit.services;
 
+import it.chooseit.bean.StatoRichiestaBean.StatoRichiesta;
+import it.chooseit.bean.StatoReportBean.StatoReport;
+import it.chooseit.bean.StatoTirocinioBean.StatoTirocinio;
+
 /**
  * La classe ConvertEnum &egrave; un servizio che si rende utile per convertire una stringa, indenpendemente dal suo formato, 
  * nella corrispettiva variabile enum quando si ha a che fare con gli stati delle richieste di tirocinio, dei report 
@@ -7,10 +11,6 @@ package it.chooseit.services;
  * 
  * @author RocketStudios
  */
-
-import it.chooseit.bean.StatoRichiestaBean.StatoRichiesta;
-import it.chooseit.bean.StatoReportBean.StatoReport;
-import it.chooseit.bean.StatoTirocinioBean.StatoTirocinio;
 
 public class ConvertEnum {
 
@@ -22,7 +22,7 @@ public class ConvertEnum {
    * @param stato stringa specificata
    * @return enum corrispondente alla stringa specificata
    */
-  public StatoRichiesta convertStatoRichiesta(String stato) {
+  public static StatoRichiesta convertStatoRichiesta(String stato) {
     StatoRichiesta tipo = null;
     String[] stati = {"NUOVA","INVALIDAZIONE","INCONVALIDA","ACCETTATA","RIFIUTATA"};
 
@@ -50,7 +50,7 @@ public class ConvertEnum {
    * @param stato variabile StatoRichiesta
    * @return valore String di stato
    */
-  public String convertStatoRichiestaString(StatoRichiesta stato) {
+  public static String convertStatoRichiestaString(StatoRichiesta stato) {
     String tipo = null;
     String[] stati = {"NUOVA","INVALIDAZIONE","INCONVALIDA","ACCETTATA","RIFIUTATA"};
 
@@ -80,7 +80,7 @@ public class ConvertEnum {
    * @param stato stringa specificata
    * @return enum corrispondente alla stringa specificata
    */
-  public StatoReport convertStatoReport(String stato) {
+  public static StatoReport convertStatoReport(String stato) {
     StatoReport tipo = null;
     String[] stati = {"NUOVO","COMPILATO","VALIDATO","RIFIUTATO"};
 
@@ -100,6 +100,31 @@ public class ConvertEnum {
   }
 
   /**
+   * Restituisce il valore String di una variabile enum StatoReport
+   * 
+   * @param stato variabile StatoReport
+   * @return valore String di stato
+   */
+  public static String convertStatoReportString(StatoReport stato) {
+    String tipo = null;
+    String[] stati = {"NUOVO","COMPILATO","VALIDATO","RIFIUTATO"};
+
+    if(stato.toString().equalsIgnoreCase(stati[0]))
+      tipo = stati[0];
+
+    else if(stato.toString().equalsIgnoreCase(stati[1]))
+      tipo = stati[1];
+
+    else if(stato.toString().equalsIgnoreCase(stati[2]))
+      tipo = stati[2];
+
+    else if(stato.toString().equalsIgnoreCase(stati[3]))
+      tipo = stati[3];
+
+    return tipo.toLowerCase();
+  }
+  
+  /**
    * Restituisce la variabile enum di StatoTirocinio che corrisponde ad una stringa specificata
    * Stati del tirocinio: public enum StatoTirocinio {INCORSO, ANNULLATO, TERMINATO}
    * 
@@ -107,7 +132,7 @@ public class ConvertEnum {
    * @param stato stringa specificata
    * @return enum corrispondente alla stringa specificata
    */
-  public StatoTirocinio convertStatoTirocinio(String stato) {
+  public static StatoTirocinio convertStatoTirocinio(String stato) {
     StatoTirocinio tipo = null;
     String[] stati = {"INCORSO","ANNULLATO","TERMINATO"};
 
@@ -123,4 +148,30 @@ public class ConvertEnum {
     return tipo;
   }
 
+  /**
+   * Restituisce il valore String di una variabile enum StatoTirocinio
+   * 
+   * @param stato variabile StatoTirocinio
+   * @return valore String di stato
+   */
+  public static String convertStatoTirocinioString(StatoTirocinio stato) {
+    String tipo = null;
+    String[] stati = {"INCORSO","ANNULLATO","TERMINATO"};
+
+    if(stato.toString().equalsIgnoreCase(stati[0]))
+      tipo = stati[0];
+
+    else if(stato.toString().equalsIgnoreCase(stati[1]))
+      tipo = stati[1];
+
+    else if(stato.toString().equalsIgnoreCase(stati[2]))
+      tipo = stati[2];
+
+    else if(stato.toString().equalsIgnoreCase(stati[3]))
+      tipo = stati[3];
+
+    return tipo.toLowerCase();
+  }
+  
+  
 }
