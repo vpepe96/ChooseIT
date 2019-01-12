@@ -28,7 +28,7 @@ class StatoRichiestaTest {
 	 * @throws Exception
 	 */
 	@BeforeAll
-	static void setUp() throws Exception {
+	static void setUp() throws Exception { 
 		classUnderTest = new StatoRichiesta();
 		
 		assertNotNull(classUnderTest);
