@@ -2,175 +2,259 @@ package it.chooseit.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import it.chooseit.bean.AziendaBean;
-import it.chooseit.bean.QuestionarioAziendaBean;
 import it.chooseit.bean.QuestionarioStudenteBean;
 import it.chooseit.bean.RegistroTirocinioBean;
+import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
+import it.chooseit.bean.TutorUniversitarioBean;
 
-class QuestionarioStudenteTest {
+class QuestionarioStudenteTest  {
 
-	void setUp() throws Exception {
-		   azienda = new QuestionarioStudenteBean();
-		   reg=new RegistroTirocinioBean();
-		   tutor=new TutorAziendaleBean();
+ private static QuestionarioStudente classUnderTest;
+ private static QuestionarioStudenteBean bean;
+ private static int ricId;
+ private static int id;
+ private static StudenteBean studente;
+ private static TutorAziendaleBean tutorAziendale;
+ 
+ private static int pdt1;
+ private static int pdt2;
+ private static int pdt3;
+ private static int pdt4;
+ private static int  t1;
+ private static int  t2;
+ private static int  t3;
+ private static int  t4;
+ private static int  su1;
+ private static int  su2;
+ private static int  su3;
+  
+ @BeforeAll
+	static void setUp() throws Exception {
+		   bean = new QuestionarioStudenteBean();
+		   classUnderTest = new QuestionarioStudente();
 		   
-		  
+		   pdt1 = 1;
+		   pdt2 = 3;
+		   pdt3 = 4;
+		   pdt4 = 5;
+		   t1 = 3;
+		   t2 = 5;
+		   t3 = 2;
+		   t4 = 1;
+		   su1 = 5;
+		   su2 = 3;
+		   su3 = 4;
 		   
+		   
+		   studente = new StudenteBean();
+		   studente.setEmail("a.bianchi@studenti.unisa.it");
+		   
+		   Date dataInizio = new Date(System.currentTimeMillis());
+		   
+		   tutorAziendale =  new TutorAziendaleBean();
+		   tutorAziendale.setEmail("vnovo@gmail.com");
+		   
+		   TutorUniversitarioBean tutorUniversitario = new TutorUniversitarioBean();
+		   tutorUniversitario.setEmail(null);
+		   
+		   AziendaBean azienda = new AziendaBean();
+		   azienda.setRagioneSociale("ITD Solutions");
+		   
+		   RichiestaTirocinioBean ric = new RichiestaTirocinioBean();
+		   ric.setAzienda(azienda);
+		   ric.setStudente(studente);
+		   ric.setProgettoFormativo("");
+		   ric.setDataRichiesta(new Date(System.currentTimeMillis()));
+		   RichiestaTirocinio ricDao = new RichiestaTirocinio();
+		   ricDao.insert(ric);
+		   
+		   ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) ricDao.retrieveAll(null);
+		   ricId = 0;
+		   for (RichiestaTirocinioBean richiestaTirocinioBean : richieste) {
+		     ricId++;
+		   }
+		   //ricId è l'identificativo dell'ultima richiesta appena inserita
+		   ric.setId(ricId);
+		   
+		   RegistroTirocinio regDao = new RegistroTirocinio();
+		   RegistroTirocinioBean reg = new RegistroTirocinioBean();
+		   reg.setStudente(studente);
+		   reg.setDataInizio(dataInizio);
+		   reg.setTutorAziendale(tutorAziendale);
+		   reg.setTutorUniversitario(tutorUniversitario);
+		   reg.setRichiestaTirocinio(ric);
+		   regDao.insert(reg);
+		   
+		   ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) regDao.retrieveAll(null);
+		   id = 0;
+		   for (RegistroTirocinioBean registroTirocinioBean : registri) {
+		     id++;
+		   }
+		   //in id c'è l'dentificativo dell'ultimo registro inserito
+		   reg.setIdentificativo(id);
+		   
+		   bean.setRegistroTirocinio(reg);
+		   classUnderTest.insert(bean);
 	}
 
+ /**
+  * Testa il metodo retrieveByKey con un questionario associato ad un registro
+  * presente nel db.
+  * @throws Exception
+  */
 	@Test
-	final void testRetrieveByKey() throws Exception {
+	final void testRetrieveByKeyQuestionarioInDB() throws Exception {
 		System.out.println("retrieveByKey");
-		azienda = az.retrieveByKey(id);
-		assertNotNull(azienda);
-		assertEquals(reg,azienda.getRegistroTirocinio() );
+		
+		QuestionarioStudenteBean b = classUnderTest.retrieveByKey(id);
+		
+		assertNotNull(b);
+		assertEquals(id, bean.getRegistroTirocinio().getIdentificativo());
 	}
 	
 	
+ /**
+  * Testa il metodo retrieveByKey con un questionario associato ad un registro
+  * non presente nel db.
+  * @throws Exception
+  */
+ @Test
+ final void testRetrieveByKeyQuestionarioNonInDB() throws Exception {
+  System.out.println("retrieveByKey");
+  
+  QuestionarioStudenteBean b = classUnderTest.retrieveByKey(100);
+  
+  assertNull(b);
+ }
+	
+	
 
+	/**
+	 * Testa il metodo insert con l'inserimento di un nuovo questionario
+	 * vuoto associato a un nuovo registro.
+	 * @throws Exception
+	 */
 	@Test
 	final void testInsert() throws Exception {
 		System.out.println("insert");
-		azienda = az.retrieveByKey(id);
-		boolean exc = false;
-		try {
-			az.insert(azienda);
-		} catch (SQLException e) {
-			exc = true;
-		}
-		assertTrue(exc);
+
+		classUnderTest.delete(id);
+		
+		classUnderTest.insert(bean);
+		
+		bean = classUnderTest.retrieveByKey(id);
+		assertNotNull(bean);
 	}
 
+	/**
+	 * Testa il metodo update con un questionario già presente nel db.
+	 * @throws Exception
+	 */
 	@Test
 	final void testUpdate() throws Exception {
-		azienda = az.retrieveByKey(id);
-		azienda.setT1(T1);
-		az.update(azienda);
-		azienda = az.retrieveByKey(id);
-		assertEquals(T1, azienda.getT1());
+		System.out.println("update");
+		
+		bean.setT1(t1);
+		bean.setT2(t2);
+		bean.setT3(t3);
+		bean.setT4(t4);
+		bean.setPdt1(pdt1);
+		bean.setPdt2(pdt2);
+		bean.setPdt3(pdt3);
+		bean.setPdt4(pdt4);
+		bean.setSu1(su1);
+		bean.setSu2(su2);
+		bean.setSu3(su3);
+		
+		classUnderTest.update(bean);
+		QuestionarioStudenteBean b = classUnderTest.retrieveByKey(id);
+		
+		assertNotNull(b);
+		assertEquals(t1, b.getT1());
 	}
 
+	/**
+	 * Testa il metodo delete con un questionario presente nel db.
+	 * @throws Exception
+	 */
 	@Test
 	final void testDelete() throws Exception {
 		System.out.println("delete");
-		azienda = new QuestionarioStudenteBean();
-		azienda.setPdt1(pdt1);
-		azienda.setPdt2(pdt2);
-		azienda.setPdt3(pdt3);
-		azienda.setPdt4(pdt4);
 		
-		azienda.setT1(T1);
-		azienda.setT2(T2);
-		azienda.setT3(T3);
-		azienda.setT4(T4);
+		boolean deleted = classUnderTest.delete(id);
+		assertTrue(deleted);
 		
-		azienda.setSu1(su1);
-		azienda.setSu2(su2);
-		azienda.setSu3(su3);
-		
-		
-		
-		boolean deleted = az.delete(id);
-		assertFalse(deleted);
+		classUnderTest.insert(bean);
 	}
 
+
+	/**
+	 * Testa il metodo getQuestionariPerStudente con uno studente presente nel db
+	 * e con almeno un questionario associato.
+	 */
 	@Test
-	final void testGetQuestionarioPerStudente() {
-		Collection<QuestionarioStudenteBean> questionario=new ArrayList<>(); 
-		
-	   
-		StudenteBean studenteA=new StudenteBean();
-	    studenteA.setCognome("Abcan");
-	    studenteA.setEmail("Mario@gmail.com");
-	        studenteA.setNome("Anna");
-	        StudenteBean studenteB=new StudenteBean();
-	        studenteB.setCognome("Abcan");
-	        studenteB.setEmail("Mario@gmail.com");
-	        studenteB.setNome("Anna");
-			RegistroTirocinioBean registroA=new RegistroTirocinioBean();
-			RegistroTirocinioBean registroB=new RegistroTirocinioBean();
-			registroA.setStudente(studenteA);
-			registroB.setStudente(studenteB);
-			QuestionarioStudenteBean questionarioA=new QuestionarioStudenteBean();
-			
-			questionarioA.setRegistroTirocinio(registroA);
-			questionarioA.setPdt1(pdt1);
-			questionarioA.setPdt2(pdt2);
-			questionarioA.setPdt3(pdt3);
-			questionarioA.setPdt4(pdt4);
-			
-			questionarioA.setT1(T1);
-			questionarioA.setT2(T2);
-			questionarioA.setT3(T3);
-			questionarioA.setT4(T4);
-			
-			questionarioA.setSu1(su1);
-			questionarioA.setSu2(su2);
-			questionarioA.setSu3(su3);
-			
-			QuestionarioStudenteBean questionarioB=new QuestionarioStudenteBean();
-			questionarioB.setRegistroTirocinio(registroB);
-			questionarioB.setPdt1(pdt1);
-			questionarioB.setPdt2(pdt2);
-			questionarioB.setPdt3(pdt3);
-			questionarioB.setPdt4(pdt4);
-			
-			questionarioB.setT1(T1);
-			questionarioB.setT2(T2);
-			questionarioB.setT3(T3);
-			questionarioB.setT4(T4);
-			
-			questionarioB.setSu1(su1);
-			questionarioB.setSu2(su2);
-			questionarioB.setSu3(su3);
-			
-			questionario.add(questionarioA);
-			questionario.add(questionarioB);
-		
-		
-	}
-
-	@Test
-	final void testRetrieveAll() throws Exception {
-		ArrayList<QuestionarioStudenteBean> list = (ArrayList<QuestionarioStudenteBean>) az.retrieveAll("registroTirocinio");
-		assertNotNull(list);
-	}
-
-	private static final int pdt1 = 1;
-	  private static final int pdt2 = 3;
-	  private static final int pdt3 = 4;
-	  private static final int pdt4 = 5;
-	 
-	  private static final int  T1 = 3;
-	  private static final int  T2 = 5;
-	  private static final int  T3 = 2;
-	  private static final int  T4 = 1;
+	final void testGetQuestionarioPerTutorAziendale() throws Exception{
+	  System.out.println("getQuestionariPerTutorAziendale");
 	  
-	  private static final int  su1 = 5;
-	  private static final int  su2 = 3;
-	  private static final int  su3 = 4;
-	  QuestionarioStudente az=new QuestionarioStudente();
-	  int id= reg.getIdentificativo();
-	
+	  ArrayList<QuestionarioStudenteBean> questionari = (ArrayList<QuestionarioStudenteBean>) classUnderTest.getQuestionarioPerTutorAziendale(tutorAziendale);
+	  assertNotEquals(0, questionari.size());
+	}
 
-	private static QuestionarioStudenteBean azienda;
-	private static RegistroTirocinioBean reg;
-	private static TutorAziendaleBean tutor;
 	
+	/**
+	 * Testa il metodo retrieveAll con un database in cui sono presenti almeno un
+	 * questionario.
+	 * @throws Exception
+	 */
+	@Test
+	final void testRetrieveAllSenzaOrder() throws Exception {
+		ArrayList<QuestionarioStudenteBean> list = (ArrayList<QuestionarioStudenteBean>) classUnderTest.retrieveAll(null);
+		assertNotEquals(0, list.size());
+	}
+
 	
+ /**
+  * Testa il metodo retrieveAll con un database in cui sono presenti almeno un
+  * questionario.
+  * @throws Exception
+  */
+ @Test
+ final void testRetrieveAllConOrder() throws Exception {
+  ArrayList<QuestionarioStudenteBean> list = (ArrayList<QuestionarioStudenteBean>) classUnderTest.retrieveAll("registro_id");
+  assertNotEquals(0, list.size());
+ }
+ 
+ @Test
+ final void testGetQuestionariNonCompilati() throws Exception {
+   bean.setT1(0);
+   bean.setT2(0);
+   bean.setT3(0);
+   bean.setT4(0);
+   bean.setPdt1(0);
+   bean.setPdt2(0);
+   bean.setPdt3(0);
+   bean.setPdt4(0);
+   bean.setSu1(0);
+   bean.setSu2(0);
+   bean.setSu3(0);
+   classUnderTest.update(bean);
+   ArrayList<QuestionarioStudenteBean> list = (ArrayList<QuestionarioStudenteBean>) classUnderTest.getQuestionariNonCompilati(tutorAziendale);
+   assertNotNull(list);
+ }
+	
+ @AfterAll
+ static void tearDown() throws Exception {
+   classUnderTest.delete(id);
+ }
+
 }
-
-
-	

@@ -2,13 +2,17 @@ package it.chooseit.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import it.chooseit.bean.AziendaBean;
 import it.chooseit.bean.RegistroTirocinioBean;
+import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
@@ -16,13 +20,62 @@ import it.chooseit.bean.TutorUniversitarioBean;
 class RegistroTirocinioTest {
 
 	private static RegistroTirocinio classUnderTest;
-	private static Integer key;
 	private static RegistroTirocinioBean bean;
+ private static int ricId;
+ private static int id;
+ private static StudenteBean studente;
+	private static TutorAziendaleBean tutorAziendale;
+	private static TutorUniversitarioBean tutorUniversitario;
 	
 	@BeforeAll
 	static void setUp() throws Exception {
 		classUnderTest = new RegistroTirocinio();
-		key = 1;
+		bean = new RegistroTirocinioBean();
+		
+  studente = new StudenteBean();
+  studente.setEmail("a.bianchi@studenti.unisa.it");
+  
+  Date dataInizio = new Date(System.currentTimeMillis());
+  
+  tutorAziendale =  new TutorAziendaleBean();
+  tutorAziendale.setEmail("vnovo@gmail.com");
+  
+  tutorUniversitario = new TutorUniversitarioBean();
+  tutorUniversitario.setEmail("luchini@unisa.it");
+  
+  AziendaBean azienda = new AziendaBean();
+  azienda.setRagioneSociale("ITD Solutions");
+  
+  RichiestaTirocinioBean ric = new RichiestaTirocinioBean();
+  ric.setAzienda(azienda);
+  ric.setStudente(studente);
+  ric.setProgettoFormativo("");
+  ric.setDataRichiesta(new Date(System.currentTimeMillis()));
+  RichiestaTirocinio ricDao = new RichiestaTirocinio();
+  ricDao.insert(ric);
+  
+  ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) ricDao.retrieveAll(null);
+  ricId = 0;
+  for (RichiestaTirocinioBean richiestaTirocinioBean : richieste) {
+    ricId++;
+  }
+  //ricId è l'identificativo dell'ultima richiesta appena inserita
+  ric.setId(ricId);
+  
+  bean.setStudente(studente);
+  bean.setDataInizio(dataInizio);
+  bean.setTutorAziendale(tutorAziendale);
+  bean.setTutorUniversitario(tutorUniversitario);
+  bean.setRichiestaTirocinio(ric);
+  classUnderTest.insert(bean);
+  
+  ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) classUnderTest.retrieveAll(null);
+  id = 0;
+  for (RegistroTirocinioBean registroTirocinioBean : registri) {
+    id++;
+  }
+  //in id c'è l'dentificativo dell'ultimo registro inserito
+  bean.setIdentificativo(id);
 	}
 
 	/**
@@ -32,9 +85,10 @@ class RegistroTirocinioTest {
 	@Test
 	void testRetrieveByKeyRegistroInDB() throws SQLException {
 		System.out.println("retrieveByKey");
-		bean = classUnderTest.retrieveByKey(key);
+		
+		bean = classUnderTest.retrieveByKey(id);
 		assertNotNull(bean);
-		assertEquals(key.intValue(), bean.getIdentificativo());
+		assertEquals(id, bean.getIdentificativo());
 	}
 
 	/**
@@ -44,8 +98,8 @@ class RegistroTirocinioTest {
 	@Test
 	void testRetrieveByKeyRegistroNonInDB() throws SQLException {
 		System.out.println("retrieveByKey");
-		bean = classUnderTest.retrieveByKey(100);
-		assertNull(bean);
+		RegistroTirocinioBean b = classUnderTest.retrieveByKey(100);
+		assertNull(b);
 	}
 
 	
@@ -80,12 +134,13 @@ class RegistroTirocinioTest {
 	@Test
 	void testUpdateRegistroInDB() throws Exception{
 		System.out.println("update");
-		bean = classUnderTest.retrieveByKey(key);
+		
+		bean = classUnderTest.retrieveByKey(id);
 		TutorUniversitarioBean tutor = new TutorUniversitarioBean();
 		tutor.setEmail("luchini@unisa.it");
 		bean.setTutorUniversitario(tutor);
 		classUnderTest.update(bean);
-		bean = classUnderTest.retrieveByKey(key);
+		bean = classUnderTest.retrieveByKey(id);
 		assertEquals("luchini@unisa.it", bean.getTutorUniversitario().getEmail());
 	}
 
@@ -98,8 +153,7 @@ class RegistroTirocinioTest {
 	@Test
 	void testGetRegistriDiStudente() throws SQLException {
 		System.out.println("getRegistriDiStudente");
-		StudenteBean studente = new StudenteBean();
-		studente.setEmail("a.bianchi@studenti.unisa.it");
+		
 		ArrayList<RegistroTirocinioBean> list = (ArrayList<RegistroTirocinioBean>) classUnderTest.getRegistriDiStudente(studente);
 		assertNotNull(list);
 	}
@@ -112,9 +166,8 @@ class RegistroTirocinioTest {
 	@Test
 	void testGetRegistriDiTutorAziendale() throws SQLException {
 		System.out.println("getRegistriDiTutorAziendale");
-		TutorAziendaleBean tutor = new TutorAziendaleBean();
-		tutor.setEmail("vnovo@gmail.com");
-		ArrayList<RegistroTirocinioBean> list = (ArrayList<RegistroTirocinioBean>) classUnderTest.getRegistriDiTutorAziendale(tutor);
+		
+		ArrayList<RegistroTirocinioBean> list = (ArrayList<RegistroTirocinioBean>) classUnderTest.getRegistriDiTutorAziendale(tutorAziendale);
 		assertNotNull(list);
 	}
 
@@ -127,9 +180,8 @@ class RegistroTirocinioTest {
 	@Test
 	void testGetRegistriDiTutorUniversitario() throws  SQLException{
 		System.out.println("getRegistriDiTutorAziendale");
-		TutorUniversitarioBean tutor = new TutorUniversitarioBean();
-		tutor.setEmail("luchini@unisa.it");
-		ArrayList<RegistroTirocinioBean> list = (ArrayList<RegistroTirocinioBean>) classUnderTest.getRegistriDiTutorUniversitario(tutor);
+		
+		ArrayList<RegistroTirocinioBean> list = (ArrayList<RegistroTirocinioBean>) classUnderTest.getRegistriDiTutorUniversitario(tutorUniversitario);
 		assertNotNull(list);
 	}
 	
