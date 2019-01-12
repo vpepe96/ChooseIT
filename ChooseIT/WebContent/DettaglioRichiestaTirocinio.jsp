@@ -415,9 +415,9 @@
 															enctype="multipart/form-data">
 															
 															<section>
-																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
-																	name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
-																	value="">
+																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> 
+																<input type="file" name="progettoFormativo" id="progettoFormativo" 
+																	value=""  accept=".pdf" onchange="controlla_estensione(document.getElementById('progettoFormativo').value);"  required>
 																</label>
 															</section>
 															
@@ -470,7 +470,7 @@
 															</section>
 																													
 															<section>
-																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; ">
+																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; " onclick="controllaProgettoFormativo();">
 														 			<span class="btn-label" style="margin-right: 5px; left: 0px;">
 														  			<i class="glyphicon glyphicon-check"></i>
 														 			</span>OK
@@ -504,7 +504,7 @@
 															</section>
 															
 															<section>
-																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; ">
+																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; " onclick="controllaProgettoFormativo();">
 														 			<span class="btn-label" style="margin-right: 5px; left: 0px;">
 														  			<i class="glyphicon glyphicon-check"></i>
 														 			</span>OK
@@ -680,9 +680,9 @@
 															enctype="multipart/form-data">
 															
 															<section>
-																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
-																	name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
-																	value="">
+																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> 
+																<input type="file" name="progettoFormativo" id="progettoFormativo" 
+																	value=""  accept=".pdf" onchange="controlla_estensione(document.getElementById('progettoFormativo').value);"  required>
 																</label>
 															</section>
 															
@@ -695,7 +695,7 @@
 															</section>
 															
 															<section>
-																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; ">
+																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; " onclick="controllaProgettoFormativo();">
 														 			<span class="btn-label" style="margin-right: 5px; left: 0px;">
 														  			<i class="glyphicon glyphicon-check"></i>
 														 			</span>OK
@@ -765,7 +765,21 @@
 		
 		</script>
 
-	<script>
+		<script type="text/javascript">
+		function controllaProgettoFormativo(){
+			var progettoFormativo = document.form_upload_pf.progettoFormativo.value;
+			
+			if(progettoFormativo == ""){
+				window.alert("Inserisci un file per il progetto formativo");
+				return;
+			}
+			else {
+				window.alert("Valutazione effettuata con successo");
+			}
+		}
+		</script>
+		
+		<script>
 		function get_estensione(path) {
 			posizione_punto = path.lastIndexOf(".");
 			lunghezza_stringa = path.length;
@@ -778,7 +792,7 @@
 				alert("Il file deve essere in formato pdf");
 			}
 		}
-	</script>
+		</script>
 
 	<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>

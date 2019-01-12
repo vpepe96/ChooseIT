@@ -199,27 +199,7 @@
 													<div class="padding-gutter">
 													
 														<div class="tab-content padding-top-10">
-															<script type="text/javascript">
-															function controllaRichieste(numRichiesteTot, numRichiesteAcc, numRichiesteRif, numRichiesteAlt){
-																
-																var alert;
-																
-																if(numRichiesteTot == 1 && numRichiesteAlt == 1){
-																	var alert = window.alert("Impossibile inviare la richiesta, una richiesta è ancora in attesa di completamento");
-																}
-																if(numRichiesteTot >= 2 && numRichiesteAcc == 2){
-																	var alert = window.alert("Impossibile inviare la richiesta, effettuato numero massimo di richieste consentite");
-																}
-																else if(numRichiesteTot >= 2 && numRichiesteAcc == 1 && numRichiesteRif == 0 && numRichiesteAlt == 1){
-																	var alert = window.alert("Impossibile inviare la richiesta, una richiesta è ancora in attesa di completamento");
-																}
-																else {
-																	var alert = window.alert("Richiesta inviata con successo");
-																}
-														
-																return alert;
-															}
-															</script>
+										
 															<div class="tab-pane fade in active" id="a1">
 																<%
 																	if(ruoloUtente.equals("studente")){
@@ -257,7 +237,7 @@
 																		String urlInviaRichiesta;
 																		if(numRichiesteTot == 1 && numRichiesteAlt == 1)
 																			urlInviaRichiesta = response.encodeURL("ListaRichiesteTirocinioServlet");
-																		if(numRichiesteTot >= 2 && numRichiesteAcc == 2)
+																		else if(numRichiesteTot >= 2 && numRichiesteAcc == 2)
 																			urlInviaRichiesta = response.encodeURL("ListaRichiesteTirocinioServlet");																		
 																		else if(numRichiesteTot >= 2 && numRichiesteAcc == 1 && numRichiesteRif == 0 && numRichiesteAlt == 1)
 																			urlInviaRichiesta = response.encodeURL("ListaRichiesteTirocinioServlet");
@@ -270,9 +250,9 @@
 																		action="<%=urlInviaRichiesta %>" class="smart-form client-form"
 																		enctype="multipart/form-data">
 																		<section>
-																			<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
-																				name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
-																				value="">
+																			<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i>
+																			<input type="file" name="progettoFormativo" id="progettoFormativo" 
+																	value=""  accept=".pdf" onchange="controlla_estensione(document.getElementById('progettoFormativo').value);"  required>
 																			</label>
 																		</section>
 																		
@@ -384,6 +364,45 @@
 				$("#form_modifica_azienda").fadeIn();
 		}
 		
+		</script>
+		
+		<script type="text/javascript">
+		function controllaRichieste(numRichiesteTot, numRichiesteAcc, numRichiesteRif, numRichiesteAlt){
+			var progettoFormativo = document.form_upload_pf.progettoFormativo.value;
+			
+			if(progettoFormativo == ""){
+				window.alert("Inserisci un file per il progetto formativo");
+				return;
+			}
+																
+			if(numRichiesteTot == 1 && numRichiesteAlt == 1){
+				window.alert("Impossibile inviare la richiesta, una richiesta è ancora in attesa di completamento");
+			}
+			else if(numRichiesteTot >= 2 && numRichiesteAcc == 2){
+				window.alert("Impossibile inviare la richiesta, effettuato numero massimo di richieste consentite");
+			}
+			else if(numRichiesteTot >= 2 && numRichiesteAcc == 1 && numRichiesteRif == 0 && numRichiesteAlt == 1){
+				window.alert("Impossibile inviare la richiesta, una richiesta è ancora in attesa di completamento");
+			}
+			else {
+				window.alert("Richiesta inviata con successo");
+			}
+		}
+		</script>
+		
+		<script>
+		function get_estensione(path) {
+			posizione_punto = path.lastIndexOf(".");
+			lunghezza_stringa = path.length;
+			estensione = path.substring(posizione_punto + 1, lunghezza_stringa);
+			return estensione;
+		}
+
+		function controlla_estensione(path) {
+			if (get_estensione(path) != "pdf") {
+				alert("Il file deve essere in formato pdf");
+			}
+		}
 		</script>
 
 		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
