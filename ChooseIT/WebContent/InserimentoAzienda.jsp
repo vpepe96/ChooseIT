@@ -118,20 +118,20 @@
 	
 										<section>
 											<label class="label">Nome</label> <label class="input">
-												<i class="icon-append fa fa-user"></i> <input type="text" minlength="5" required="required" pattern="^[A-Za-z\s]{3,20}" name="ragioneSociale" id="ragioneSociale" >
+												<i class="icon-append fa fa-user"></i> <input type="text" minlength="3" required="required" pattern="^[A-Za-z\s]{3,20}" name="ragioneSociale" id="ragioneSociale" >
 											</label>
 										</section>
 	
 	
 										<section>
 											<label class="label">Sede legale</label> <label class="input">
-												<i class="icon-append fa fa-user"></i> <input type="text" required="required" pattern="^[A-Za-z\s]{3,20}" name="sedeLegale" id="sedeLegale">
+												<i class="icon-append fa fa-user"></i> <input type="text" minlength="3" required="required" pattern="^[A-Za-z\s]{3,20}" name="sedeLegale" id="sedeLegale">
 											</label>
 										</section>
 
 										<section>
 											<label class="label">Sede operativa</label> <label class="input">
-												<i class="icon-append fa fa-user"></i> <input type="text" required="required" pattern="^[A-Za-z\s]{3,20}" name="sedeOperativa" id="sedeOperativa">
+												<i class="icon-append fa fa-user"></i> <input type="text" minlength="3" required="required" pattern="^[A-Za-z\s]{3,20}" name="sedeOperativa" id="sedeOperativa">
 											</label>
 										</section>
 	
