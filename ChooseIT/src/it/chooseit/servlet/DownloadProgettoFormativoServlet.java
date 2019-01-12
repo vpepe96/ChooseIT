@@ -64,21 +64,13 @@ public class DownloadProgettoFormativoServlet extends HttpServlet {
 
       inStream.close();
       outStream.close();   
+      request.getSession().setAttribute("progettoFormativoBoolean", true);
     }else{
       request.getSession().setAttribute("progettoFormativoBoolean", false);
       String url=response.encodeURL("/DettaglioAzienda.jsp");
       RequestDispatcher dispatcher = request.getRequestDispatcher(url);
       dispatcher.forward(request, response);
     }
-
-
-
-
-
-
-
-
-
 
   }
 

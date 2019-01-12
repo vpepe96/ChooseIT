@@ -208,7 +208,7 @@
 																		%>
 																		
 																		<form  id="form_modifica_profilo" name="form_download_pf" method="post" action="<%=DownloadPFUrl%>" class="smart-form client-form">
-																		<span> <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=richiesta.getAzienda().getProgettoFormativo() %>">
+																		<span> <input type="hidden" name="progetto_formativo" id="progetto_formativo" value="<%=richiesta.getProgettoFormativo() %>">
 																		<button type="submit" class="btn btn-primary">Download</button></span>
 																	</form>
 																	
@@ -470,7 +470,7 @@
 															</section>
 																													
 															<section>
-																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; " onclick="controllaProgettoFormativo();">
+																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; " onclick="controllaProgettoFormativo()">
 														 			<span class="btn-label" style="margin-right: 5px; left: 0px;">
 														  			<i class="glyphicon glyphicon-check"></i>
 														 			</span>OK
@@ -504,7 +504,7 @@
 															</section>
 															
 															<section>
-																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; " onclick="controllaProgettoFormativo();">
+																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; " onclick="controllaProgettoFormativo()">
 														 			<span class="btn-label" style="margin-right: 5px; left: 0px;">
 														  			<i class="glyphicon glyphicon-check"></i>
 														 			</span>OK
@@ -695,7 +695,7 @@
 															</section>
 															
 															<section>
-																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; " onclick="controllaProgettoFormativo();">
+																<button type="submit" name="submit" value="submit" class="btn btn-primary" style="width:70px; " onclick="controllaProgettoFormativo()">
 														 			<span class="btn-label" style="margin-right: 5px; left: 0px;">
 														  			<i class="glyphicon glyphicon-check"></i>
 														 			</span>OK
@@ -789,6 +789,7 @@
 
 		function controlla_estensione(path) {
 			if (get_estensione(path) != "pdf") {
+				document.getElementById("progettoFormativo").value = "";
 				alert("Il file deve essere in formato pdf");
 			}
 		}

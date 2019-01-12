@@ -374,7 +374,7 @@
 				window.alert("Inserisci un file per il progetto formativo");
 				return;
 			}
-																
+			
 			if(numRichiesteTot == 1 && numRichiesteAlt == 1){
 				window.alert("Impossibile inviare la richiesta, una richiesta è ancora in attesa di completamento");
 			}
@@ -400,6 +400,7 @@
 
 		function controlla_estensione(path) {
 			if (get_estensione(path) != "pdf") {
+				document.getElementById("progettoFormativo").value = "";
 				alert("Il file deve essere in formato pdf");
 			}
 		}

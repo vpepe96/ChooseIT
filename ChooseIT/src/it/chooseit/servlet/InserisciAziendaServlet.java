@@ -1,6 +1,8 @@
 package it.chooseit.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import it.chooseit.bean.AziendaBean;
+import it.chooseit.dao.AziendaDAO;
 import it.chooseit.facade.GestioneModulisticaFacade;
 import it.chooseit.facade.GestionePraticheTirocinioFacade;
+import it.chooseit.impl.Azienda;
 
 /**
  * Servlet implementation class InserisciAziendaServlet
@@ -81,6 +85,17 @@ public class InserisciAziendaServlet extends HttpServlet {
     GestionePraticheTirocinioFacade gestore = new GestionePraticheTirocinioFacade();
     boolean iserisciAziendaOK = gestore.inserisciAzienda(aziendaBean);
     request.getSession().setAttribute("iserisciAziendaOK", iserisciAziendaOK);
+    
+    AziendaDAO aziendaDao = new Azienda();
+    Collection<AziendaBean> aziende = null;
+	try {
+		aziende = aziendaDao.retrieveAll(null);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    
+    request.getSession().setAttribute("listaAziende", aziende);
 
     String url = response.encodeRedirectURL("ListaAziende.jsp");
     RequestDispatcher dispatcher = request.getRequestDispatcher(url);
