@@ -488,9 +488,10 @@
 															enctype="multipart/form-data">
 															
 															<section>
-																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> <input type="file"
-																	name="progettoFormativo" id="progettoFormativo" pattern="^[0-9]{10}$"
-																	value="">
+																<label class="label">Progetto formativo compilato:</label> <label class="input"><i class="icon-append fa fa-file-pdf-o"></i> 
+																<input type="file"
+																	name="progettoFormativo" id="progettoFormativo" 
+																	value=""  accept=".pdf" onchange="controlla_estensione(document.getElementById('progettoFormativo').value);"  required>
 																</label>
 															</section>
 															
@@ -764,7 +765,22 @@
 		
 		</script>
 
-		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+	<script>
+		function get_estensione(path) {
+			posizione_punto = path.lastIndexOf(".");
+			lunghezza_stringa = path.length;
+			estensione = path.substring(posizione_punto + 1, lunghezza_stringa);
+			return estensione;
+		}
+
+		function controlla_estensione(path) {
+			if (get_estensione(path) != "pdf") {
+				alert("Il file deve essere in formato pdf");
+			}
+		}
+	</script>
+
+	<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
 
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
