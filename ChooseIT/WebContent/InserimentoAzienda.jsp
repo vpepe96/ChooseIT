@@ -143,7 +143,7 @@
 	
 										<button type="submit" class="btn btn-primary">Aggiungi</button>
 									</form>					
-						
+						 
 							</div>
 							<!-- end widget content -->
 					
