@@ -29,7 +29,7 @@ public class StatoTirocinio implements StatoTirocinioDAO{
 
     Collection<StatoTirocinioBean> statiTirocini = new ArrayList<StatoTirocinioBean>();
 
-    String selectSQL = "SELECT * FROM stato_tirocini";
+    String selectSQL = "SELECT * FROM stato_tirocinio";
 
     if(order != null && !order.equals("")) {
       selectSQL += " ORDER BY " + order;
@@ -49,7 +49,7 @@ public class StatoTirocinio implements StatoTirocinioDAO{
 
         bean.setDataStato(rs.getDate("data_stato"));
         bean.setTipo(convert.convertStatoTirocinio(rs.getString("tipo")));
-        bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("richiesta_id")));
+        bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("registro_id")));
 
         statiTirocini.add(bean);
       }
