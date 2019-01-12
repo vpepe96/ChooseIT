@@ -118,26 +118,26 @@
 	
 										<section>
 											<label class="label">Nome</label> <label class="input">
-												<i class="icon-append fa fa-user"></i> <input type="text" name="ragioneSociale" id="ragioneSociale">
+												<i class="icon-append fa fa-user"></i> <input type="text" minlength="5" required="required" pattern="^[A-Za-z\s]{3,20}" name="ragioneSociale" id="ragioneSociale" >
 											</label>
 										</section>
 	
 	
 										<section>
 											<label class="label">Sede legale</label> <label class="input">
-												<i class="icon-append fa fa-user"></i> <input type="text" name="sedeLegale" id="sedeLegale">
+												<i class="icon-append fa fa-user"></i> <input type="text" required="required" pattern="^[A-Za-z\s]{3,20}" name="sedeLegale" id="sedeLegale">
 											</label>
 										</section>
 
 										<section>
 											<label class="label">Sede operativa</label> <label class="input">
-												<i class="icon-append fa fa-user"></i> <input type="text" name="sedeOperativa" id="sedeOperativa">
+												<i class="icon-append fa fa-user"></i> <input type="text" required="required" pattern="^[A-Za-z\s]{3,20}" name="sedeOperativa" id="sedeOperativa">
 											</label>
 										</section>
 	
 										<section>
 											<label class="label">Progetto formativo</label> <label class="input"> <i class="fa">
-												</i> <input type="file" name="progettoFormativo" id="progettoFormativo" accept=".pdf">
+												</i> <input type="file" name="progettoFormativo" required="required" id="progettoFormativo" accept=".pdf" onchange="controlla_estensione(document.getElementById('progettoFormativo').value);">
 											</label>
 										</section>
 	
@@ -215,9 +215,23 @@
 
 		<!-- PAGE RELATED PLUGIN(S) -->
 		<script src="js/plugin/jquery-form/jquery-form.min.js"></script>
-		
 
-		<script>
+	<script>
+		function get_estensione(path) {
+			posizione_punto = path.lastIndexOf(".");
+			lunghezza_stringa = path.length;
+			estensione = path.substring(posizione_punto + 1, lunghezza_stringa);
+			return estensione;
+		}
+		function controlla_estensione(path) {
+			if (get_estensione(path) != "pdf") {
+				document.getElementById("progettoFormativo").value = "";
+				alert("Il file deve essere in formato pdf");
+			}
+		}
+	</script>
+
+	<script>
 		
 		// DO NOT REMOVE : GLOBAL FUNCTIONS!
 		
