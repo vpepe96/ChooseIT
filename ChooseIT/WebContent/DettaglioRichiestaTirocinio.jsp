@@ -499,7 +499,7 @@
 																<label class="label">Valuta la richiesta:</label>
 																<select class="form-control" id="scelta" name="scelta">
 																	<option value="rifiutata">Rifiuta</option>
-																	<option value="inConvalida">In Convalida</option>
+																	<option value="inConvalida">In Convalida</option> 
 																</select>
 															</section>
 															
