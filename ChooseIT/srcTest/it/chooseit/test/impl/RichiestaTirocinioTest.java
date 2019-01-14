@@ -1,4 +1,4 @@
-package it.chooseit.impl;
+package it.chooseit.test.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +17,7 @@ import it.chooseit.bean.StatoRichiestaBean.StatoRichiesta;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
+import it.chooseit.impl.RichiestaTirocinio;
 import it.chooseit.services.ConvertEnum;
 
 class RichiestaTirocinioTest {

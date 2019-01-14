@@ -1,4 +1,4 @@
-package it.chooseit.impl;
+package it.chooseit.test.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,6 +15,8 @@ import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StatoRichiestaBean;
 import it.chooseit.bean.StudenteBean;
+import it.chooseit.impl.RichiestaTirocinio;
+import it.chooseit.impl.StatoRichiesta;
 
 class StatoRichiestaTest {
 	

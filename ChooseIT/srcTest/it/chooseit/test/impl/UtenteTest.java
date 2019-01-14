@@ -1,4 +1,4 @@
-package it.chooseit.impl;
+package it.chooseit.test.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.bean.UtenteBean;
+import it.chooseit.impl.Utente;
 
-class TutorUniversitarioTest {
+class UtenteTest {
 
-	private static TutorUniversitario classUnderTest;
-	private static TutorUniversitarioBean bean;
+	private static Utente classUnderTest;
+	private static UtenteBean bean;
 	private static String email;
 	
 	/**
@@ -25,64 +25,76 @@ class TutorUniversitarioTest {
 	 */
 	@BeforeAll
 	static void setUp() throws Exception {
-		classUnderTest = new TutorUniversitario();
-		email = "mpoletto@unisa.it";
+		classUnderTest = new Utente();
+		email = "a.bianchi@studenti.unisa.it";
 		
 		assertNotNull(classUnderTest);
 	}
 
 	/**
-	 * Testa il metodo retrieveByKey con un utente di tipo tutorUniversitario presente nel db.
+	 * Testa il metodo retrieveByKey con un utente presente nel db.
 	 */
 	@Test
-	void testRetrieveByKeyTutorUniversitarioInDB() throws Exception{
+	void testRetrieveByKeyUtenteInDB() throws Exception{
 		System.out.println("retrieveByKey");
 		bean = classUnderTest.retrieveByKey(email);
 		assertNotNull(bean);
 		assertEquals(email, bean.getEmail());
 	}
-
+	
 	/**
-	 * Testa il metodo retrieveByKey con un utente di tipo tutorUniversitario non presente nel db.
+	 * Testa il metodo retrieveByKey con un utente non presente nel db.
 	 * @throws Exception
 	 */
 	@Test
-	void testRetrieveByKeyTutorUniversitarioNonInDB() throws Exception{
+	void testRetrieveByKeyUtenteNonInDB() throws Exception{
 		System.out.println("retriveByKey");
 		bean = classUnderTest.retrieveByKey("email@mail.com");
 		assertNull(bean);
 	}
-	
-	/**
-	 * Test del metodo retrieveAll senza order.
-	 * @throws SQLException 
-	 */
-	@Test
-	void testRetrieveAllSenzaOrder() throws SQLException {
-		System.out.println("retrieveAll");
-		ArrayList<TutorUniversitarioBean> list = (ArrayList<TutorUniversitarioBean>) classUnderTest.retrieveAll(null);
-		assertNotNull(list);
-	}
 
 	/**
-	 * Test del metodo retrieveAll con order.
-	 * @throws SQLException 
-	 */
-	@Test
-	void testRetrieveAllConOrder() throws SQLException {
-		System.out.println("retrieveAll");
-		ArrayList<TutorUniversitarioBean> list = (ArrayList<TutorUniversitarioBean>) classUnderTest.retrieveAll("email");
-		assertNotNull(list);
-	}
-
-	/**
-	 * Test del metodo insert con un utente tutorUniversitario non presente nel db.
+	 * Test del metodo checkLogin con un utente presente nel db e pwd corretta.
 	 * @throws Exception
 	 */
 	@Test
-	void testInsertTutorUniversitarioNonInDB() throws Exception{
+	void testCheckLoginUtenteInDBPwdOk() throws Exception{
+		System.out.println("checkLogin");
+		bean = classUnderTest.checkLogin(email, "bianchi");
+		assertNotNull(bean);
+		assertEquals(email, bean.getEmail());
+	}
+	
+	/**
+	 * Test del metodo checkLogin con un utente presente nel db e pwd errata.
+	 * @throws Exception
+	 */
+	@Test
+	void testCheckLoginUtenteInDBPwdNonOk() throws Exception{
+		System.out.println("checkLogin");
+		bean = classUnderTest.checkLogin(email, "neri");
+		assertNull(bean);
+	}
+	
+	/**
+	 * Test del metodo checkLogin con un utente non presente nel db.
+	 * @throws Exception
+	 */
+	@Test
+	void testCheckLoginUtenteNonInDB() throws Exception{
+		System.out.println("checkLogin");
+		bean = classUnderTest.checkLogin("prova@mail.com", "bianchi");
+		assertNull(bean);
+	}
+	
+	/**
+	 * Test del metodo insert con un utente non presente nel db.
+	 * @throws Exception
+	 */
+	@Test
+	void testInsertUtenteNonInDB() throws Exception{
 		System.out.println("insert");
-		bean = new TutorUniversitarioBean();
+		bean = new UtenteBean();
 		bean.setEmail("marika@gmail.com");
 		bean.setNome("Marika");
 		bean.setCognome("Cognome");
@@ -97,43 +109,23 @@ class TutorUniversitarioTest {
 		bean.setDataNascita(sqlDate);
 		bean.setIndirizzo("via Scafati 67, 84018 SA");
 		bean.setTelefono("3335421658");
-		Utente utDao = new Utente();
-		utDao.delete(bean.getEmail());
 		classUnderTest.delete(bean.getEmail());
 		classUnderTest.insert(bean,"password");
 		UtenteBean result = classUnderTest.retrieveByKey("marika@gmail.com");
 		assertNotNull(result);
 		assertEquals("marika@gmail.com", result.getEmail());
-		classUnderTest.delete(bean.getEmail());
 	}
-	
+
 	/**
-	 * Test del metodo insert con un utente tutorUniversitario già presente nel db.
-	 * @throws SQLException 
+	 * Test del metodo insert con un utente già presente nel db.
 	 */
 	@Test
-	void testInsertPresidenteGiaInDB() throws SQLException{
+	void testInsertUtenteGiaInDB(){
 		System.out.println("insert");
-		bean = classUnderTest.retrieveByKey(email);
-		boolean exc = false;
-		try {
-			classUnderTest.insert(bean,"password");
-		} catch (SQLException e) {
-			exc = true;
-		}
-		assertTrue(exc);
-	}
-	
-	/**
-	 * Test del metodo insert con dati sull'utente tutorUniversitario non completi.
-	 */
-	@Test
-	void testInsertTutorUniversitarioNonCompleto(){
-		System.out.println("insert");
-		bean = new TutorUniversitarioBean();
-		bean.setEmail("marikapia@gmail.com");
-		bean.setNome("Marika");
-		bean.setCognome("Cognome");
+		bean = new UtenteBean();
+		bean.setEmail(email);
+		bean.setNome("Andrea");
+		bean.setCognome("Bianchi");
 		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
 		java.sql.Date sqlDate = null;
 		try {
@@ -143,8 +135,8 @@ class TutorUniversitarioTest {
 			e.printStackTrace();
 		}
 		bean.setDataNascita(sqlDate);
-		bean.setIndirizzo("via Scafati 67, 84018 SA");
-		//manca telefono
+		bean.setIndirizzo("via Roma 67");
+		bean.setTelefono("3335421658");
 		boolean exc = false;
 		try {
 			classUnderTest.insert(bean,"password");
@@ -153,13 +145,35 @@ class TutorUniversitarioTest {
 		}
 		assertTrue(exc);
 	}
-
+	
 	/**
-	 * Test del metodo update con utente tutorUniversitario nel db e dati completi.
+	 * Test del metodo insert con dati sull'utente non completi.
+	 */
+	@Test
+	void testInsertUtenteNonCompleto(){
+		System.out.println("insert");
+		bean = new UtenteBean();
+		bean.setEmail("marikapia@gmail.com");
+		bean.setNome("Marika");
+		bean.setCognome("Cognome");
+		// manca data
+		bean.setIndirizzo("via Scafati 67, 84018 SA");
+		bean.setTelefono("3335421658");
+		boolean exc = false;
+		try {
+			classUnderTest.insert(bean,"password");
+		} catch (SQLException e) {
+			exc = true;
+		}
+		assertTrue(exc);
+	}
+	
+	/**
+	 * Test del metodo update con utente nel db e dati completi.
 	 * @throws Exception
 	 */
 	@Test
-	void testUpdateTutorUniversitarioInDB() throws Exception{
+	void testUpdateUtenteInDB() throws Exception{
 		System.out.println("update");
 		bean = classUnderTest.retrieveByKey(email);
 		bean.setNome("Marco");
@@ -170,12 +184,12 @@ class TutorUniversitarioTest {
 
 	
 	/**
-	 * Test del metodo update con utente tutorUniversitario nel db e dati non completi.
+	 * Test del metodo update con utente nel db e dati non completi.
 	 */
 	@Test
-	void testUpdateTutorUniversitarioInDBNonCompleto(){
+	void testUpdateUtenteInDBNonCompleto(){
 		System.out.println("update");
-		bean = new TutorUniversitarioBean();
+		bean = new UtenteBean();
 		bean.setNome("Marco");
 		bean.setEmail(email);
 		boolean exc = false;
@@ -187,14 +201,16 @@ class TutorUniversitarioTest {
 		assertTrue(exc);
 	}
 
+
+	
 	/**
-	 * Test del metodo delete con un utente tutorUniversitario presente nel db.
+	 * Test del metodo delete con un utente presente nel db.
 	 * @throws SQLException 
 	 */
 	@Test
-	void testDeletePresidenteInDB() throws SQLException {
+	void testDeleteUtenteInDB() throws SQLException {
 		System.out.println("delete");
-		bean = new TutorUniversitarioBean();
+		bean = new UtenteBean();
 		bean.setNome("Marco");
 		bean.setEmail("prova@mail.com");
 		bean.setCognome("Prova");
@@ -217,13 +233,13 @@ class TutorUniversitarioTest {
 	
 	
 	/**
-	 * Test del metodo delete con un utente tutorUniversitario non presente nel db.
+	 * Test del metodo delete con un utente non presente nel db.
 	 * @throws SQLException 
 	 */
 	@Test
 	void testDeleteUtenteNonInDB() throws SQLException {
 		System.out.println("delete");
-		bean = new TutorUniversitarioBean();
+		bean = new UtenteBean();
 		bean.setNome("Marco");
 		bean.setEmail("prova@mail.com");
 		bean.setCognome("Prova");
@@ -241,5 +257,28 @@ class TutorUniversitarioTest {
 		boolean deleted = classUnderTest.delete(bean.getEmail());
 		assertFalse(deleted);
 	}
+	
+	
+	/**
+	 * Test del metodo retrieveAll senza order.
+	 * @throws SQLException 
+	 */
+	@Test
+	void testRetrieveAllSenzaOrder() throws SQLException {
+		System.out.println("retrieveAll");
+		ArrayList<UtenteBean> list = (ArrayList<UtenteBean>) classUnderTest.retrieveAll(null);
+		assertNotNull(list);
+	}
 
+	/**
+	 * Test del metodo retrieveAll con order.
+	 * @throws SQLException 
+	 */
+	@Test
+	void testRetrieveAllConOrder() throws SQLException {
+		System.out.println("retrieveAll");
+		ArrayList<UtenteBean> list = (ArrayList<UtenteBean>) classUnderTest.retrieveAll("nome");
+		assertNotNull(list);
+	}
+	
 }

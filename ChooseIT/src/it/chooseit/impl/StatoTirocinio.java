@@ -159,11 +159,10 @@ public class StatoTirocinio implements StatoTirocinioDAO{
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ConvertEnum convert = new ConvertEnum();
-    RegistroTirocinio reg = new RegistroTirocinio();
 
     StatoTirocinioBean bean = new StatoTirocinioBean(null, null, null);
 
-    String selectSQL = "SELECT * FROM stato_tirocinio WHERE data_stato in (SELECT MAX(data_stato) FROM stato_tirocinio WHERE registro_id = ?);";
+    String selectSQL = "SELECT * FROM stato_tirocinio WHERE registro_id = ?;";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -178,7 +177,7 @@ public class StatoTirocinio implements StatoTirocinioDAO{
       while(rs.next()) {
         bean.setDataStato(rs.getDate("data_stato"));
         bean.setTipo(convert.convertStatoTirocinio(rs.getString("tipo")));
-        bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("registro_id")));
+        bean.setRegistroTirocinio(registroTirocinio);
       }
     } finally {
       try {

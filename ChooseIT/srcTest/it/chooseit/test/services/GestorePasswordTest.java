@@ -1,4 +1,4 @@
-package it.chooseit.services;
+package it.chooseit.test.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,6 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 import org.junit.jupiter.api.Test;
+
+import it.chooseit.services.GestorePassword;
 
 class GestorePasswordTest {
 

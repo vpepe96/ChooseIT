@@ -1,4 +1,4 @@
-package it.chooseit.impl;
+package it.chooseit.test.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,50 +10,50 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import it.chooseit.bean.AziendaBean;
-import it.chooseit.bean.QuestionarioAziendaBean;
+import it.chooseit.bean.QuestionarioStudenteBean;
 import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
+import it.chooseit.impl.QuestionarioStudente;
+import it.chooseit.impl.RegistroTirocinio;
+import it.chooseit.impl.RichiestaTirocinio;
 
-class QuestionarioAziendaTest  {
+class QuestionarioStudenteTest  {
 
- private static QuestionarioAzienda classUnderTest;
- private static QuestionarioAziendaBean bean;
+ private static QuestionarioStudente classUnderTest;
+ private static QuestionarioStudenteBean bean;
  private static int ricId;
  private static int id;
  private static StudenteBean studente;
+ private static TutorAziendaleBean tutorAziendale;
  
  private static int pdt1;
  private static int pdt2;
  private static int pdt3;
  private static int pdt4;
- private static int pdt5;
- private static int  eo1;
- private static int  eo2;
- private static int  eo3;
- private static int  eo4;
- private static int  eo5;
+ private static int  t1;
+ private static int  t2;
+ private static int  t3;
+ private static int  t4;
  private static int  su1;
  private static int  su2;
  private static int  su3;
   
  @BeforeAll
 	static void setUp() throws Exception {
-		   bean = new QuestionarioAziendaBean();
-		   classUnderTest = new QuestionarioAzienda();
+		   bean = new QuestionarioStudenteBean();
+		   classUnderTest = new QuestionarioStudente();
 		   
 		   pdt1 = 1;
 		   pdt2 = 3;
 		   pdt3 = 4;
 		   pdt4 = 5;
-		   pdt5 = 2;
-		   eo1 = 3;
-		   eo2 = 5;
-		   eo3 = 2;
-		   eo4 = 1;
-		   eo5 = 4;
+		   t1 = 3;
+		   t2 = 5;
+		   t3 = 2;
+		   t4 = 1;
 		   su1 = 5;
 		   su2 = 3;
 		   su3 = 4;
@@ -64,8 +64,8 @@ class QuestionarioAziendaTest  {
 		   
 		   Date dataInizio = new Date(System.currentTimeMillis());
 		   
-		   TutorAziendaleBean tutorAziendale =  new TutorAziendaleBean();
-		   tutorAziendale.setEmail(null);
+		   tutorAziendale =  new TutorAziendaleBean();
+		   tutorAziendale.setEmail("vnovo@gmail.com");
 		   
 		   TutorUniversitarioBean tutorUniversitario = new TutorUniversitarioBean();
 		   tutorUniversitario.setEmail(null);
@@ -119,7 +119,7 @@ class QuestionarioAziendaTest  {
 	final void testRetrieveByKeyQuestionarioInDB() throws Exception {
 		System.out.println("retrieveByKey");
 		
-		QuestionarioAziendaBean b = classUnderTest.retrieveByKey(id);
+		QuestionarioStudenteBean b = classUnderTest.retrieveByKey(id);
 		
 		assertNotNull(b);
 		assertEquals(id, bean.getRegistroTirocinio().getIdentificativo());
@@ -135,7 +135,7 @@ class QuestionarioAziendaTest  {
  final void testRetrieveByKeyQuestionarioNonInDB() throws Exception {
   System.out.println("retrieveByKey");
   
-  QuestionarioAziendaBean b = classUnderTest.retrieveByKey(100);
+  QuestionarioStudenteBean b = classUnderTest.retrieveByKey(100);
   
   assertNull(b);
  }
@@ -167,25 +167,23 @@ class QuestionarioAziendaTest  {
 	final void testUpdate() throws Exception {
 		System.out.println("update");
 		
-		bean.setEo1(eo1);
-		bean.setEo2(eo2);
-		bean.setEo3(eo3);
-		bean.setEo4(eo4);
-		bean.setEo5(eo5);
+		bean.setT1(t1);
+		bean.setT2(t2);
+		bean.setT3(t3);
+		bean.setT4(t4);
 		bean.setPdt1(pdt1);
 		bean.setPdt2(pdt2);
 		bean.setPdt3(pdt3);
 		bean.setPdt4(pdt4);
-		bean.setPdt5(pdt5);
 		bean.setSu1(su1);
 		bean.setSu2(su2);
 		bean.setSu3(su3);
 		
 		classUnderTest.update(bean);
-		QuestionarioAziendaBean b = classUnderTest.retrieveByKey(id);
+		QuestionarioStudenteBean b = classUnderTest.retrieveByKey(id);
 		
 		assertNotNull(b);
-		assertEquals(eo1, b.getEo1());
+		assertEquals(t1, b.getT1());
 	}
 
 	/**
@@ -208,25 +206,10 @@ class QuestionarioAziendaTest  {
 	 * e con almeno un questionario associato.
 	 */
 	@Test
-	final void testGetQuestionarioPerStudente() throws Exception{
-	  System.out.println("getQuestionarioPerStudente");
-		
-	  bean.setEo1(0);
-	  bean.setEo2(0);
-	  bean.setEo3(0);
-	  bean.setEo4(0);
-	  bean.setEo5(0);
-	  bean.setPdt1(0);
-	  bean.setPdt2(0);
-	  bean.setPdt3(0);
-	  bean.setPdt4(0);
-	  bean.setPdt5(0);
-	  bean.setSu1(0);
-	  bean.setSu2(0);
-	  bean.setSu3(0);
-	  classUnderTest.update(bean);
+	final void testGetQuestionarioPerTutorAziendale() throws Exception{
+	  System.out.println("getQuestionariPerTutorAziendale");
 	  
-	  ArrayList<QuestionarioAziendaBean> questionari = (ArrayList<QuestionarioAziendaBean>) classUnderTest.getQuestionarioPerStudente(studente);
+	  ArrayList<QuestionarioStudenteBean> questionari = (ArrayList<QuestionarioStudenteBean>) classUnderTest.getQuestionarioPerTutorAziendale(tutorAziendale);
 	  assertNotEquals(0, questionari.size());
 	}
 
@@ -237,11 +220,40 @@ class QuestionarioAziendaTest  {
 	 * @throws Exception
 	 */
 	@Test
-	final void testRetrieveAll() throws Exception {
-		ArrayList<QuestionarioAziendaBean> list = (ArrayList<QuestionarioAziendaBean>) classUnderTest.retrieveAll(null);
+	final void testRetrieveAllSenzaOrder() throws Exception {
+		ArrayList<QuestionarioStudenteBean> list = (ArrayList<QuestionarioStudenteBean>) classUnderTest.retrieveAll(null);
 		assertNotEquals(0, list.size());
 	}
 
+	
+ /**
+  * Testa il metodo retrieveAll con un database in cui sono presenti almeno un
+  * questionario.
+  * @throws Exception
+  */
+ @Test
+ final void testRetrieveAllConOrder() throws Exception {
+  ArrayList<QuestionarioStudenteBean> list = (ArrayList<QuestionarioStudenteBean>) classUnderTest.retrieveAll("registro_id");
+  assertNotEquals(0, list.size());
+ }
+ 
+ @Test
+ final void testGetQuestionariNonCompilati() throws Exception {
+   bean.setT1(0);
+   bean.setT2(0);
+   bean.setT3(0);
+   bean.setT4(0);
+   bean.setPdt1(0);
+   bean.setPdt2(0);
+   bean.setPdt3(0);
+   bean.setPdt4(0);
+   bean.setSu1(0);
+   bean.setSu2(0);
+   bean.setSu3(0);
+   classUnderTest.update(bean);
+   ArrayList<QuestionarioStudenteBean> list = (ArrayList<QuestionarioStudenteBean>) classUnderTest.getQuestionariNonCompilati(tutorAziendale);
+   assertNotNull(list);
+ }
 	
  @AfterAll
  static void tearDown() throws Exception {

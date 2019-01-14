@@ -1,4 +1,4 @@
-package it.chooseit.impl;
+package it.chooseit.test.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,6 +16,8 @@ import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.TutorUniversitarioBean;
+import it.chooseit.impl.RegistroTirocinio;
+import it.chooseit.impl.RichiestaTirocinio;
 
 class RegistroTirocinioTest {
 

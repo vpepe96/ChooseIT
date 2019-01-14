@@ -1,4 +1,4 @@
-package it.chooseit.impl;
+package it.chooseit.test.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import it.chooseit.bean.AziendaBean;
 import it.chooseit.bean.TutorAziendaleBean;
 import it.chooseit.bean.UtenteBean;
+import it.chooseit.impl.TutorAziendale;
+import it.chooseit.impl.Utente;
 
 class TutorAziendaleTest {
 
