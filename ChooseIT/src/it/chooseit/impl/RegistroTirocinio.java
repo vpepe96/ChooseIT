@@ -213,6 +213,13 @@ public class RegistroTirocinio implements RegistroTirocinioDAO {
       int result = preparedStatement.executeUpdate();
 
       if(result == 1) {
+        ArrayList<RegistroTirocinioBean> list = (ArrayList<RegistroTirocinioBean>) retrieveAll("identificativo");
+        int id = 0;
+        for (RegistroTirocinioBean registroTirocinioBean : list) {
+          id = registroTirocinioBean.getIdentificativo();
+        }
+        id++;
+        sql = "alter table registro_tirocinio auto_increment = "+id+";";
         return true;
       }else {
         return false;

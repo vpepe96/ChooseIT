@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import it.chooseit.bean.AziendaBean;
+import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;
@@ -245,6 +246,13 @@ public class RichiestaTirocinio implements RichiestaTirocinioDAO{
 
       System.out.println("doDelete: "+ preparedStatement.toString());
       result = preparedStatement.executeUpdate();
+      ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) retrieveAll("id");
+      int id = 0;
+      for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
+        id = richiestaTirocinioBean.getId();
+      }
+      id++;
+      deleteSQL ="alter table richiesta_tirocinio auto_increment = "+key.intValue()+";";
 
     } finally {
       try {

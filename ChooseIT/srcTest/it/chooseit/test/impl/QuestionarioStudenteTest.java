@@ -81,12 +81,13 @@ class QuestionarioStudenteTest  {
 		   RichiestaTirocinio ricDao = new RichiestaTirocinio();
 		   ricDao.insert(ric);
 		   
-		   ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) ricDao.retrieveAll(null);
+		   ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) ricDao.retrieveAll("id");
 		   ricId = 0;
 		   for (RichiestaTirocinioBean richiestaTirocinioBean : richieste) {
-		     ricId++;
+		     ricId = richiestaTirocinioBean.getId();
 		   }
 		   //ricId è l'identificativo dell'ultima richiesta appena inserita
+		  
 		   ric.setId(ricId);
 		   
 		   RegistroTirocinio regDao = new RegistroTirocinio();
@@ -98,10 +99,10 @@ class QuestionarioStudenteTest  {
 		   reg.setRichiestaTirocinio(ric);
 		   regDao.insert(reg);
 		   
-		   ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) regDao.retrieveAll(null);
+		   ArrayList<RegistroTirocinioBean> registri = (ArrayList<RegistroTirocinioBean>) regDao.retrieveAll("identificativo");
 		   id = 0;
 		   for (RegistroTirocinioBean registroTirocinioBean : registri) {
-		     id++;
+		     id = registroTirocinioBean.getIdentificativo();
 		   }
 		   //in id c'è l'dentificativo dell'ultimo registro inserito
 		   reg.setIdentificativo(id);

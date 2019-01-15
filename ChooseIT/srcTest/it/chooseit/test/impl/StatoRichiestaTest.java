@@ -32,7 +32,7 @@ class StatoRichiestaTest {
 	@BeforeAll
 	static void setUp() throws Exception { 
 		classUnderTest = new StatoRichiesta();
-		
+		classSupport = new RichiestaTirocinio();
 		assertNotNull(classUnderTest);
 	}
 
@@ -69,8 +69,9 @@ class StatoRichiestaTest {
 		
 		//creazione di una nuova richiesta di tirocinio
 		StudenteBean studente = new StudenteBean();
+		studente.setEmail("a.bianchi@studenti.unisa.it");
 		AziendaBean azienda = new AziendaBean();
-		RegistroTirocinioBean registro = new RegistroTirocinioBean();
+		azienda.setRagioneSociale("Allinit");
 		
 		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
 		java.sql.Date sqlDate = null;
@@ -81,8 +82,19 @@ class StatoRichiestaTest {
 			e.printStackTrace();
 		}
 
-		richiesta = new RichiestaTirocinioBean(6, studente, sqlDate, azienda, "...", registro, null, null, null);
+		richiesta = new RichiestaTirocinioBean();
+		richiesta.setStudente(studente);
+		richiesta.setAzienda(azienda);
+		richiesta.setDataRichiesta(sqlDate);
+		richiesta.setProgettoFormativo("");
 		classSupport.insert(richiesta);
+
+  ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classSupport.retrieveAll("id");
+  int id = 0;
+  for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
+    id = richiestaTirocinioBean.getId();
+  }
+  richiesta.setId(id);
 		
 		StatoRichiestaBean.StatoRichiesta tipo = StatoRichiestaBean.StatoRichiesta.NUOVA;
 		
@@ -92,7 +104,10 @@ class StatoRichiestaTest {
 
 		classUnderTest.insert(statoRichiesta);
 		
-		assertEquals(statoRichiesta, richiesta.getStatoRichiesta(tipo));
+		classUnderTest.delete(statoRichiesta);
+
+		
+		classSupport.delete(richiesta.getId());
 	}
 
 	/**
@@ -100,29 +115,49 @@ class StatoRichiestaTest {
 	 */
 	@Test
 	void testDelete() throws Exception, ParseException{
-		statoRichiesta = new StatoRichiestaBean();
-		
-		richiesta = new RichiestaTirocinioBean();
-		richiesta.setId(6);
-		
-		StudenteBean studente = new StudenteBean();
-		richiesta.setStudente(studente);
-		AziendaBean azienda = new AziendaBean();
-		richiesta.setAzienda(azienda);
-		richiesta.setTutorAziendale(null);
-		richiesta.setTutorUniversitario(null);
-		richiesta.setProgettoFormativo("..");
-		richiesta.setDataRichiesta(new Date(System.currentTimeMillis()));
-		RegistroTirocinioBean registro = new RegistroTirocinioBean();
-		richiesta.setRegistroTirocinio(registro);
-		richiesta.setStatiRichiesta(null);
-		
-		classSupport.insert(richiesta);
-	
-		boolean ok = classUnderTest.delete(statoRichiesta);
-		assertEquals(true, ok);
-		
-		classSupport.delete(6);
+	  statoRichiesta = new StatoRichiestaBean();
+	  
+	  //creazione di una nuova richiesta di tirocinio
+	  StudenteBean studente = new StudenteBean();
+	  studente.setEmail("a.bianchi@studenti.unisa.it");
+	  AziendaBean azienda = new AziendaBean();
+	  azienda.setRagioneSociale("Allinit");
+	  
+	  SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
+	  java.sql.Date sqlDate = null;
+	  try {
+	   java.util.Date utilDate = format.parse("1997-04-16");
+	   sqlDate = new java.sql.Date(utilDate.getTime());
+	  } catch (ParseException e) {
+	   e.printStackTrace();
+	  }
+
+	  richiesta = new RichiestaTirocinioBean();
+	  richiesta.setStudente(studente);
+	  richiesta.setAzienda(azienda);
+	  richiesta.setDataRichiesta(sqlDate);
+	  richiesta.setProgettoFormativo("");
+	  classSupport.insert(richiesta);
+	  
+	  ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classSupport.retrieveAll("id");
+	  int id = 0;
+	  for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
+	    id = richiestaTirocinioBean.getId();
+	  }
+	  richiesta.setId(id);
+	  
+	  StatoRichiestaBean.StatoRichiesta tipo = StatoRichiestaBean.StatoRichiesta.NUOVA;
+	  
+	  statoRichiesta.setTipo(tipo);
+	  statoRichiesta.setRichiestaId(richiesta);
+	  statoRichiesta.setDataStato(sqlDate);
+
+	  classUnderTest.insert(statoRichiesta);
+	  
+	  boolean ok = classUnderTest.delete(statoRichiesta);
+	  assertTrue(ok);
+	  
+	  classSupport.delete(richiesta.getId());
 	}
 	
 
@@ -131,27 +166,51 @@ class StatoRichiestaTest {
 	 */
 	@Test
 	void testGetStatoRichiesta() throws Exception {
-		statoRichiesta = new StatoRichiestaBean();
-		
-		richiesta = new RichiestaTirocinioBean();
-		richiesta.setId(6);
-		
-		StudenteBean studente = new StudenteBean();
-		richiesta.setStudente(studente);
-		AziendaBean azienda = new AziendaBean();
-		richiesta.setAzienda(azienda);
-		richiesta.setTutorAziendale(null);
-		richiesta.setTutorUniversitario(null);
-		richiesta.setProgettoFormativo("..");
-		richiesta.setDataRichiesta(new Date(System.currentTimeMillis()));
-		RegistroTirocinioBean registro = new RegistroTirocinioBean();
-		richiesta.setRegistroTirocinio(registro);
-		richiesta.setStatiRichiesta(null);
-		
-		classSupport.insert(richiesta);
-	
-		assertEquals(statoRichiesta, classUnderTest.getStatoRichiesta(richiesta));
-		classSupport.delete(6);
+   statoRichiesta = new StatoRichiestaBean();
+   
+   //creazione di una nuova richiesta di tirocinio
+   StudenteBean studente = new StudenteBean();
+   studente.setEmail("a.bianchi@studenti.unisa.it");
+   AziendaBean azienda = new AziendaBean();
+   azienda.setRagioneSociale("Allinit");
+   
+   SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
+   java.sql.Date sqlDate = null;
+   try {
+    java.util.Date utilDate = format.parse("1997-04-16");
+    sqlDate = new java.sql.Date(utilDate.getTime());
+   } catch (ParseException e) {
+    e.printStackTrace();
+   }
+
+   richiesta = new RichiestaTirocinioBean();
+   richiesta.setStudente(studente);
+   richiesta.setAzienda(azienda);
+   richiesta.setDataRichiesta(sqlDate);
+   richiesta.setProgettoFormativo("");
+   classSupport.insert(richiesta);
+   
+   ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classSupport.retrieveAll("id");
+   int id = 0;
+   for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
+     id = richiestaTirocinioBean.getId();
+   }
+   richiesta.setId(id);
+   
+   StatoRichiestaBean.StatoRichiesta tipo = StatoRichiestaBean.StatoRichiesta.NUOVA;
+   
+   statoRichiesta.setTipo(tipo);
+   statoRichiesta.setRichiestaId(richiesta);
+   statoRichiesta.setDataStato(sqlDate);
+
+   classUnderTest.insert(statoRichiesta);
+      
+  StatoRichiestaBean stato = classUnderTest.getStatoRichiesta(richiesta);
+ 
+  assertEquals(StatoRichiestaBean.StatoRichiesta.NUOVA,stato.getTipo());
+  boolean ok = classUnderTest.delete(statoRichiesta);
+  assertTrue(ok);
+  classSupport.delete(richiesta.getId());
 	}
 
 	/**
@@ -159,30 +218,51 @@ class StatoRichiestaTest {
 	 */
 	@Test
 	void testGetStatiRichiesta() throws Exception {
-		statoRichiesta = new StatoRichiestaBean();
-		
-		richiesta = new RichiestaTirocinioBean();
-		richiesta.setId(6);
-		
-		StudenteBean studente = new StudenteBean();
-		richiesta.setStudente(studente);
-		AziendaBean azienda = new AziendaBean();
-		richiesta.setAzienda(azienda);
-		richiesta.setTutorAziendale(null);
-		richiesta.setTutorUniversitario(null);
-		richiesta.setProgettoFormativo("..");
-		richiesta.setDataRichiesta(new Date(System.currentTimeMillis()));
-		RegistroTirocinioBean registro = new RegistroTirocinioBean();
-		richiesta.setRegistroTirocinio(registro);
-		richiesta.setStatoRichiesta(new Date(System.currentTimeMillis()), statoRichiesta);
-		
-		classSupport.insert(richiesta);
-		
-		ArrayList<StatoRichiestaBean> list = (ArrayList<StatoRichiestaBean>) classUnderTest.getStatiRichiesta(richiesta);
+   statoRichiesta = new StatoRichiestaBean();
+   
+   //creazione di una nuova richiesta di tirocinio
+   StudenteBean studente = new StudenteBean();
+   studente.setEmail("a.bianchi@studenti.unisa.it");
+   AziendaBean azienda = new AziendaBean();
+   azienda.setRagioneSociale("Allinit");
+   
+   SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
+   java.sql.Date sqlDate = null;
+   try {
+    java.util.Date utilDate = format.parse("1997-04-16");
+    sqlDate = new java.sql.Date(utilDate.getTime());
+   } catch (ParseException e) {
+    e.printStackTrace();
+   }
+
+   richiesta = new RichiestaTirocinioBean();
+   richiesta.setStudente(studente);
+   richiesta.setAzienda(azienda);
+   richiesta.setDataRichiesta(sqlDate);
+   richiesta.setProgettoFormativo("");
+   classSupport.insert(richiesta);
+   
+   ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classSupport.retrieveAll("id");
+   int id = 0;
+   for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
+     id = richiestaTirocinioBean.getId();
+   }
+   richiesta.setId(id);
+   
+   StatoRichiestaBean.StatoRichiesta tipo = StatoRichiestaBean.StatoRichiesta.NUOVA;
+   
+   statoRichiesta.setTipo(tipo);
+   statoRichiesta.setRichiestaId(richiesta);
+   statoRichiesta.setDataStato(sqlDate);
+
+   classUnderTest.insert(statoRichiesta);
+   
+		ArrayList<StatoRichiestaBean> stati = (ArrayList<StatoRichiestaBean>) classUnderTest.getStatiRichiesta(richiesta);
 	
-		assertEquals(1,list.size());
-		
-		classSupport.delete(6);
+		assertEquals(1,stati.size());
+		boolean ok = classUnderTest.delete(statoRichiesta);
+  assertTrue(ok);
+		classSupport.delete(richiesta.getId());
 	}
 
 }

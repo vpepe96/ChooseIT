@@ -63,12 +63,12 @@ class RichiestaTirocinioTest {
 		bean.setDataRichiesta(new Date(System.currentTimeMillis()));
 		classUnderTest.insert(bean);
 		
-		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll(null);
+		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll("id");
 		assertNotEquals(0, list.size());
 		
 		Integer id = 0;
 		for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
-			id++;
+			id=richiestaTirocinioBean.getId();
 		}
 		System.out.println(id);
 		classUnderTest.delete(id);
@@ -99,7 +99,7 @@ class RichiestaTirocinioTest {
 		
 		Integer id = 0;
 		for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
-			id++;
+			id=richiestaTirocinioBean.getId();
 		}
 		System.out.println(id);
 		classUnderTest.delete(id);
@@ -133,12 +133,12 @@ class RichiestaTirocinioTest {
 		
 		assertTrue(ok);
 		
-		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll(null);
+		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll("id");
 		assertNotEquals(0, list.size());
 		
 		Integer id = 0;
 		for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
-			id++;
+			id=richiestaTirocinioBean.getId();
 		}
 		System.out.println(id);
 		classUnderTest.delete(id);
@@ -164,12 +164,12 @@ class RichiestaTirocinioTest {
 		
 		classUnderTest.insert(bean);
 		
-		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll(null);
+		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll("id");
 		assertNotEquals(0, list.size());
 		
 		Integer id = 0;
 		for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
-			id++;
+			id=richiestaTirocinioBean.getId();
 		}
 		System.out.println(id);
 		bean.setId(id);
@@ -215,12 +215,12 @@ class RichiestaTirocinioTest {
 		
 		classUnderTest.insert(bean);
 		
-		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll(null);
+		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll("id");
 		assertNotEquals(0, list.size());
 		
 		Integer id = 0;
 		for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
-			id++;
+			id=richiestaTirocinioBean.getId();
 		}
 		System.out.println(id);
 		boolean ok = false;
@@ -255,12 +255,12 @@ class RichiestaTirocinioTest {
 			
 		classUnderTest.insert(bean);
 		
-		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll(null);
+		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll("id");
 		assertNotEquals(0, list.size());
 		
 		Integer id = 0;
 		for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
-			id++;
+			id=richiestaTirocinioBean.getId();
 		}
 		System.out.println(id);
 		list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.getRichiestePerAzienda(azienda);
@@ -307,12 +307,12 @@ class RichiestaTirocinioTest {
 		
 		classUnderTest.insert(bean);
 		
-		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll(null);
+		ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) classUnderTest.retrieveAll("id");
 		assertNotEquals(0, list.size());
 		
 		Integer id = 0;
 		for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
-			id++;
+			id=richiestaTirocinioBean.getId();
 		}
 		System.out.println(id);
 		
