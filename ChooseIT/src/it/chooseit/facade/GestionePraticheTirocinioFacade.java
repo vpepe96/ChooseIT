@@ -495,7 +495,7 @@ public class GestionePraticheTirocinioFacade {
       //Conto quanti registri di tirocinio ci sono
       ArrayList<RegistroTirocinioBean> list = null;
       try {
-    	  list = (ArrayList<RegistroTirocinioBean>) registroTirocinioDao.retrieveAll("id");
+    	  list = (ArrayList<RegistroTirocinioBean>) registroTirocinioDao.retrieveAll("identificativo");
       } catch (SQLException e) {
     	  // TODO Auto-generated catch block
     	  e.printStackTrace();

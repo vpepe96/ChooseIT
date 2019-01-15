@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="it.chooseit.bean.StatoTirocinioBean"%>
 <%@page import="it.chooseit.bean.StatoReportBean"%>
 <%@page import="it.chooseit.bean.TutorUniversitarioBean"%>
@@ -270,14 +271,37 @@
 										<%
 											}
 											if(stato.getTipo().equals(StatoTirocinioBean.StatoTirocinio.INCORSO)){
+											  ReportBean ultimoReport = null;
+											  for(ReportBean x : reports){
+											   	ultimoReport = x;
+											  }
+											  if(ultimoReport != null){
+											    StatoReportBean ultimoStato = statoImpl.getStatoReport(ultimoReport);
+											    if(ultimoStato.getTipo().equals(StatoReportBean.StatoReport.VALIDATO) && ultimoReport.getDataInserimento().getTime() == System.currentTimeMillis()){
+											      %>
+											      <tr>
+													<td><form action="ValutaReportServlet?action=upload" method="post" enctype="multipart/form-data">
+														<input type="file" required="required" name="fileReport" size="50" accept="application/pdf">
+														<input type="submit" value="Invia Report">
+													</form>
+												</td>
+											</tr>	      
+											      <% 
+											    }
+											  }else{
+											    %>
+											    	<tr>
+													<td><form action="ValutaReportServlet?action=upload" method="post" enctype="multipart/form-data">
+														<input type="file" required="required" name="fileReport" size="50" accept="application/pdf">
+														<input type="submit" value="Invia Report">
+													</form>
+												</td>
+											</tr>	   
+											    
+											    <%
+											  }
 										%>
-										<tr>
-										<td><form action="ValutaReportServlet?action=upload" method="post" enctype="multipart/form-data">
-													<input type="file" required="required" name="fileReport" size="50" accept="application/pdf">
-													<input type="submit" value="Invia Report">
-												</form>
-											</td>
-										</tr>
+										
 										<%} %>
 									</table>
 								</div>
