@@ -7,12 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.chooseit.bean.AziendaBean;
 import it.chooseit.bean.RichiestaTirocinioBean;
-import it.chooseit.bean.StatoRichiestaBean;
 import it.chooseit.bean.StatoRichiestaBean.StatoRichiesta;
 import it.chooseit.bean.StudenteBean;
 import it.chooseit.bean.TutorAziendaleBean;

@@ -2,7 +2,6 @@ package it.chooseit.test.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import it.chooseit.bean.AziendaBean;
-import it.chooseit.bean.RegistroTirocinioBean;
 import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StatoRichiestaBean;
 import it.chooseit.bean.StudenteBean;
