@@ -216,7 +216,9 @@ public class StatoReport implements StatoReportDAO {
 
     Collection<StatoReportBean> statiReport = new ArrayList<StatoReportBean>();
 
-    String selectSQL = "SELECT * FROM stato_report WHERE report_id_reg = ? AND report_data = ?";
+    String selectSQL = "select stato_report.data_stato, stato_report.tipo, stato_report.report_id_reg, stato_report.report_data\r\n" + 
+    		"from report JOIN stato_report ON report.registro_id = stato_report.report_id_reg \r\n" + 
+    		"where report.registro_id = ? and report.data_inserimento = ? and report.data_inserimento = stato_report.report_data\r\n";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -237,7 +239,7 @@ public class StatoReport implements StatoReportDAO {
         bean.setDataStato(rs.getDate("data_stato"));
         bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));
         bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("report_id_reg")));
-        bean.setReport(rep.retrieveByKey(new ReportKey(reg.retrieveByKey(rs.getInt("report_id_reg")), rs.getDate("report_data"))));
+        bean.setReport(report);
 
         statiReport.add(bean);
       }
