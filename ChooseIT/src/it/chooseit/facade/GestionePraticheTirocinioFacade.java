@@ -327,10 +327,13 @@ public class GestionePraticheTirocinioFacade {
       richiesta.setRegistroTirocinio(null);
       //Inserisco la richiesta di tirocinio
       richiestaTirocinioDao.insert(richiesta);
-      //Prelevo tutte le richieste
-      ArrayList<RichiestaTirocinioBean> richieste = (ArrayList<RichiestaTirocinioBean>) richiestaTirocinioDao.retrieveAll("id");
-      int id = richieste.size();
-      System.out.println("IDENTIFICATIVO DA SETTARE PER RICHIESTAS"+id);
+      //Calcolo identificativo della richiesta
+      ArrayList<RichiestaTirocinioBean> list = (ArrayList<RichiestaTirocinioBean>) richiestaTirocinioDao.retrieveAll("id");
+      int id = 0;
+      for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
+        id = richiestaTirocinioBean.getId();
+      }
+      id++;
       richiesta.setId(id);
       //Creo un nuovo stato per la richiesta effettuata impostandolo a "nuova"
       statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("nuova"), richiesta);
