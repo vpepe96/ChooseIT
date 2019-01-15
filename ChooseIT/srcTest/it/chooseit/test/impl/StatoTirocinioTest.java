@@ -4,26 +4,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import it.chooseit.bean.RegistroTirocinioBean;
-import it.chooseit.bean.RichiestaTirocinioBean;
 import it.chooseit.bean.StatoTirocinioBean;
-import it.chooseit.bean.StudenteBean;
-import it.chooseit.bean.TutorAziendaleBean;
-import it.chooseit.bean.TutorUniversitarioBean;
 import it.chooseit.impl.RegistroTirocinio;
 import it.chooseit.impl.StatoTirocinio;
 
 class StatoTirocinioTest {
 	
 	private static StatoTirocinio classUnderTest;
-	private static RegistroTirocinio classSupport;
+	private static RegistroTirocinio classSupportRegistro;
 	
 	/**
 	 * Setta classUnderTest e bean prima del testRetrieveByKey
@@ -32,8 +27,10 @@ class StatoTirocinioTest {
 	@BeforeAll
 	static void setUp() throws Exception {
 		classUnderTest = new StatoTirocinio();
+		classSupportRegistro = new RegistroTirocinio();
 		
 		assertNotNull(classUnderTest);
+		assertNotNull(classSupportRegistro);
 	}
 
 	/**
@@ -43,13 +40,8 @@ class StatoTirocinioTest {
 	@Test
 	void testRetrieveAllConOrder() throws SQLException {
 		System.out.println("retrieveAll | input --> order");
-		try {
 		ArrayList<StatoTirocinioBean> list = (ArrayList<StatoTirocinioBean>) classUnderTest.retrieveAll("data_stato");
 		assertNotNull(list);
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	/**
 	 * Test del metodo retrieveAll senza parametro order
@@ -68,32 +60,22 @@ class StatoTirocinioTest {
 	 */
 	@Test
 	void testInsert() throws Exception {
-		System.out.println("insert | input --> statoTirocinio non presente in DB");
-		StatoTirocinioBean statoTirocinio = new StatoTirocinioBean();
+		System.out.println("insert");
+		RegistroTirocinioBean registro = classSupportRegistro.retrieveByKey(1);
 		
-		//creazione di una nuova richiesta di tirocinio
-		RegistroTirocinioBean registro = new RegistroTirocinioBean();
+		StatoTirocinioBean stato = new StatoTirocinioBean(registro, new Date(System.currentTimeMillis()), StatoTirocinioBean.StatoTirocinio.ANNULLATO);
 		
-		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		java.sql.Date sqlDate = null;
+		boolean insertOk = false; 
 		try {
-			java.util.Date utilDate = format.parse("1997-04-16");
-			sqlDate = new java.sql.Date(utilDate.getTime());
-		} catch (ParseException e) {
+			classUnderTest.insert(stato);
+			insertOk = true;
+		}catch(SQLException e) {
+			insertOk = false;
 			e.printStackTrace();
 		}
 		
-		StatoTirocinioBean.StatoTirocinio tipo = StatoTirocinioBean.StatoTirocinio.INCORSO;
-		
-		statoTirocinio.setTipo(tipo);
-		statoTirocinio.setRegistroTirocinio(registro);
-		statoTirocinio.setDataStato(sqlDate);
-		
-		registro.setStatoTirocinio(new Date(System.currentTimeMillis()), statoTirocinio);
-
-		classSupport.insert(registro);
-		
-		assertEquals(statoTirocinio, registro.getStatoTirocinio(tipo));
+		assertTrue(insertOk);
+		classUnderTest.delete(stato);
 	}
 
 	/**
@@ -101,26 +83,26 @@ class StatoTirocinioTest {
 	 */
 	@Test
 	void testDelete() throws Exception {
-		StatoTirocinioBean statoTirocinio = new StatoTirocinioBean();
+		RegistroTirocinioBean registro = classSupportRegistro.retrieveByKey(1);
+
+		StatoTirocinioBean stato = new StatoTirocinioBean(registro, new Date(System.currentTimeMillis()), StatoTirocinioBean.StatoTirocinio.ANNULLATO);
+
+		try {
+			classUnderTest.insert(stato);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
-		RegistroTirocinioBean registro = new RegistroTirocinioBean();
-		registro.setIdentificativo(9);
-		
-		StudenteBean studente = new StudenteBean();
-		registro.setStudente(studente);
-		TutorAziendaleBean tutorAzienda = new TutorAziendaleBean();
-		registro.setTutorAziendale(tutorAzienda);
-		TutorUniversitarioBean tutorUni = new TutorUniversitarioBean();
-		registro.setTutorUniversitario(tutorUni);
-		RichiestaTirocinioBean richiesta = new RichiestaTirocinioBean();
-		registro.setRichiestaTirocinio(richiesta);
-		
-		registro.setStatoTirocinio(new Date(System.currentTimeMillis()), statoTirocinio);
-		
-		classSupport.insert(registro);
-	
-		boolean ok = classUnderTest.delete(statoTirocinio);
-		assertEquals(true, ok);
+		boolean deleteOk = false; 
+		try {
+			classUnderTest.delete(stato);
+			deleteOk = true;
+		}catch(SQLException e) {
+			deleteOk = false;
+			e.printStackTrace();
+		}
+
+		assertTrue(deleteOk);
 	}
 
 	/**
@@ -129,25 +111,13 @@ class StatoTirocinioTest {
 	 */
 	@Test
 	void testGetStatoTirocinio() throws Exception {
-		StatoTirocinioBean statoTirocinio = new StatoTirocinioBean();
+		System.out.println("getStatoTirocinio | input --> statoTirocinio non presente in DB");
 		
-		RegistroTirocinioBean registro = new RegistroTirocinioBean();
-		registro.setIdentificativo(9);
+		RegistroTirocinioBean registro = classSupportRegistro.retrieveByKey(1);
 		
-		StudenteBean studente = new StudenteBean();
-		registro.setStudente(studente);
-		TutorAziendaleBean tutorAzienda = new TutorAziendaleBean();
-		registro.setTutorAziendale(tutorAzienda);
-		TutorUniversitarioBean tutorUni = new TutorUniversitarioBean();
-		registro.setTutorUniversitario(tutorUni);
-		RichiestaTirocinioBean richiesta = new RichiestaTirocinioBean();
-		registro.setRichiestaTirocinio(richiesta);
-		
-		registro.setStatoTirocinio(new Date(System.currentTimeMillis()), statoTirocinio);
-		
-		classSupport.insert(registro);
-	
-		assertEquals(statoTirocinio, registro.getStatoTirocinio(null));
+		StatoTirocinioBean stato = classUnderTest.getStatoTirocinio(registro);
+
+		assertEquals(stato.getTipo().toString().toLowerCase(), "terminato");
 	}
 
 	/**
@@ -156,29 +126,12 @@ class StatoTirocinioTest {
 	 */
 	@Test
 	void testGetStatiTirocinio() throws SQLException {
-		StatoTirocinioBean statoTirocinio = new StatoTirocinioBean();
+		System.out.println("getStatoTirocinio | input --> statoTirocinio non presente in DB");
 		
-		RegistroTirocinioBean registro = new RegistroTirocinioBean();
-		registro.setIdentificativo(9);
-		
-		StudenteBean studente = new StudenteBean();
-		registro.setStudente(studente);
-		TutorAziendaleBean tutorAzienda = new TutorAziendaleBean();
-		registro.setTutorAziendale(tutorAzienda);
-		TutorUniversitarioBean tutorUni = new TutorUniversitarioBean();
-		registro.setTutorUniversitario(tutorUni);
-		RichiestaTirocinioBean richiesta = new RichiestaTirocinioBean();
-		registro.setRichiestaTirocinio(richiesta);
-		
-		registro.setStatoTirocinio(new Date(System.currentTimeMillis()), statoTirocinio);
-		
-		classSupport.insert(registro);
-		
-		ArrayList<StatoTirocinioBean> list = (ArrayList<StatoTirocinioBean>) classUnderTest.getStatiTirocinio(registro);
+		RegistroTirocinioBean registro = classSupportRegistro.retrieveByKey(1);
+		Collection<StatoTirocinioBean> stati = classUnderTest.getStatiTirocinio(registro);
 	
-		assertEquals(1,list.size());
-		
-		classSupport.delete(6);
+		assertEquals(2, stati.size());
 	}
-
+	
 }

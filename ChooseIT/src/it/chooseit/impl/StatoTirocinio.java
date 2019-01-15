@@ -129,17 +129,19 @@ public class StatoTirocinio implements StatoTirocinioDAO{
   public boolean delete(StatoTirocinioBean statoTirocinio) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-
+    ConvertEnum convert = new ConvertEnum();
+    
     int result = 0;
 
-    String deleteSQL = "DELETE FROM stato_tirocinio WHERE registro_id= ?";
+    String deleteSQL = "DELETE FROM stato_tirocinio WHERE registro_id= ? AND stato_tirocinio.tipo = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(deleteSQL);
 
       preparedStatement.setInt(1, statoTirocinio.getRegistroTirocinio().getIdentificativo());
-
+      preparedStatement.setString(2, convert.convertStatoTirocinioString(statoTirocinio.getTipo()));
+      
       System.out.println("doDelete: "+ preparedStatement.toString());
       result = preparedStatement.executeUpdate();
 
