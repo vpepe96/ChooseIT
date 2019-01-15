@@ -61,8 +61,8 @@ class StatoReportTest {
 		RegistroTirocinioBean registro = new RegistroTirocinioBean();
 		registro.setIdentificativo(3);
 		beanRepo.setRegistroTirocinio(registro);
-		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		Date data = new Date(format.parse("2019-11-10").getTime());
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date data = new Date(format.parse("10/11/2019").getTime());
 		Date dataRepo = new Date(data.getTime());
 		beanRepo.setDataInserimento(dataRepo);
 		beanRepo.setPath("");
@@ -102,8 +102,8 @@ class StatoReportTest {
 		RegistroTirocinioBean registro = new RegistroTirocinioBean();
 		registro.setIdentificativo(3);
 		beanRepo.setRegistroTirocinio(registro);
-		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		Date data = new Date(format.parse("2020-11-10").getTime());
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date data = new Date(format.parse("10/11/2020").getTime());
 		Date dataRepo = new Date(data.getTime());
 		beanRepo.setDataInserimento(dataRepo);
 		beanRepo.setPath("");
@@ -135,8 +135,8 @@ class StatoReportTest {
 		RegistroTirocinioBean registro = new RegistroTirocinioBean();
 		registro.setIdentificativo(3);
 		beanRepo.setRegistroTirocinio(registro);
-		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		Date data = new Date(format.parse("2011-01-10").getTime());
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date data = new Date(format.parse("10/01/2011").getTime());
 		Date dataRepo = new Date(data.getTime());
 		beanRepo.setDataInserimento(dataRepo);
 		beanRepo.setPath("");
@@ -174,10 +174,10 @@ class StatoReportTest {
 		System.out.println("getStatReport | input --> statoReport non presente in DB");
 		
 		RegistroTirocinioBean registro = classSupportRegistro.retrieveByKey(1);
-		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		Date data = new Date(format.parse("2012-11-10").getTime());		
-		System.out.println("DATA DI MOCC A MAMMT"+data);
-		ReportKey key = new ReportKey(registro, data);
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date data = new Date(format.parse("10/11/2012").getTime());
+		Date dataRepo = new Date(data.getTime());
+		ReportKey key = new ReportKey(registro, dataRepo);
 		ReportBean report = classSupportReport.retrieveByKey(key);
 		Collection<StatoReportBean> stati = classUnderTest.getStatiReport(report);
 	
