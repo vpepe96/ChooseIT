@@ -296,19 +296,19 @@
 		
 											<section>
 												<label class="label">Nome</label> <label class="input">
-													<i class="icon-append fa fa-user"></i> <input type="text" name="ragioneSociale" id="ragioneSociale" value="<%=azienda.getRagioneSociale()%>">
+													<i class="icon-append fa fa-user"></i> <input type="text" name="ragioneSociale" id="ragioneSociale" value="<%=azienda.getRagioneSociale()%>" readonly>
 												</label>
 											</section>
 		
 											<section>
 												<label class="label">Sede legale</label> <label class="input">
-													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeLegale" id="sedeLegale" required="required" pattern="^[A-Za-z0-9,()\s]{3,60} value="<%=azienda.getSedeLegale() %>">
+													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeLegale" id="sedeLegale" required="required" pattern="^[A-Za-z0-9,()\s]{3,60}" value="<%=azienda.getSedeLegale() %>">
 												</label>
 											</section>
 	
 											<section>
 												<label class="label">Sede operativa</label> <label class="input">
-													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeOperativa" id="sedeOperativa" required="required" pattern="^[A-Za-z0-9,()\s]{3,60} value="<%=azienda.getSedeOperativa() %>">
+													<i class="icon-append fa fa-user"></i> <input type="text" name="sedeOperativa" id="sedeOperativa" required="required" pattern="^[A-Za-z0-9,()\s]{3,60}" value="<%=azienda.getSedeOperativa() %>">
 												</label>
 											</section>
 		

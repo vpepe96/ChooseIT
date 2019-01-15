@@ -330,7 +330,6 @@ public class GestionePraticheTirocinioFacade {
       for (RichiestaTirocinioBean richiestaTirocinioBean : list) {
         id = richiestaTirocinioBean.getId();
       }
-      id++;
       richiesta.setId(id);
       //Creo un nuovo stato per la richiesta effettuata impostandolo a "nuova"
       statoRic = new StatoRichiestaBean(dataStato, convert.convertStatoRichiesta("nuova"), richiesta);
