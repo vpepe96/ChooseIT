@@ -136,10 +136,10 @@ public class StatoReport implements StatoReportDAO {
 
   @Override
   public boolean delete(StatoReportBean statoReport) throws SQLException {
+	  ConvertEnum convert= new ConvertEnum();
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    ConvertEnum convert = new ConvertEnum();
-    
+
     int result = 0;
 
     String deleteSQL = "DELETE FROM stato_report WHERE report_id_reg = ? AND stato_report.tipo = ?";
@@ -171,16 +171,21 @@ public class StatoReport implements StatoReportDAO {
     PreparedStatement preparedStatement = null;
     ConvertEnum convert = new ConvertEnum();
     RegistroTirocinio reg = new RegistroTirocinio();
+    Report rep = new Report();
 
     StatoReportBean bean = new StatoReportBean(null, null, null, null);
 
-    String selectSQL = "SELECT * FROM stato_report WHERE report_id_reg = ? ";
+    String selectSQL = "SELECT * \r\n" + 
+        "FROM stato_report \r\n" + 
+        "WHERE data_stato = " + 
+        "(SELECT MAX(data_stato) FROM stato_report WHERE report_id_reg = ? AND report_data = ?)";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(selectSQL);
 
       preparedStatement.setInt(1, report.getRegistroTirocinio().getIdentificativo());
+      preparedStatement.setDate(2, report.getDataInserimento());
 
       System.out.println("doRetrieveByKey:" + preparedStatement.toString());
 
@@ -190,7 +195,7 @@ public class StatoReport implements StatoReportDAO {
         bean.setDataStato(rs.getDate("data_stato"));
         bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));
         bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("report_id_reg")));
-        bean.setReport(report);
+        bean.setReport(rep.retrieveByKey(new ReportKey(reg.retrieveByKey(rs.getInt("report_id_reg")), rs.getDate("report_data"))));
       }
     } finally {
       try {
@@ -211,25 +216,28 @@ public class StatoReport implements StatoReportDAO {
 
     Collection<StatoReportBean> statiReport = new ArrayList<StatoReportBean>();
 
-    String selectSQL = "SELECT * FROM stato_report WHERE report_id_reg = ? ";
+    String selectSQL = "SELECT * FROM stato_report WHERE report_id_reg = ? AND report_data = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(selectSQL);
 
       preparedStatement.setInt(1, report.getRegistroTirocinio().getIdentificativo());
+      preparedStatement.setDate(2, report.getDataInserimento());
 
       System.out.println("doRetrieveAll:" + preparedStatement.toString());
 
       ResultSet rs = preparedStatement.executeQuery();
       RegistroTirocinio reg = new RegistroTirocinio();
+      Report rep = new Report();
+
       while(rs.next()) {
         StatoReportBean bean = new StatoReportBean(null, null, null, null);
 
         bean.setDataStato(rs.getDate("data_stato"));
         bean.setTipo(convert.convertStatoReport(rs.getString("tipo")));
         bean.setRegistroTirocinio(reg.retrieveByKey(rs.getInt("report_id_reg")));
-        bean.setReport(report);
+        bean.setReport(rep.retrieveByKey(new ReportKey(reg.retrieveByKey(rs.getInt("report_id_reg")), rs.getDate("report_data"))));
 
         statiReport.add(bean);
       }
