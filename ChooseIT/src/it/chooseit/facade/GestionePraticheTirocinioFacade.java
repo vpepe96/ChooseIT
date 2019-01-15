@@ -234,7 +234,6 @@ public class GestionePraticheTirocinioFacade {
     RichiestaTirocinioDAO richiestaDao = new RichiestaTirocinio();
     StudenteDAO studenteDao = new Studente();
     StatoRichiestaDAO statoRichiestaDao = new StatoRichiesta();
-    ConvertEnum convert = new ConvertEnum();
 
     //Se l'utente loggato &egrave; il presidente allora visualizzo la lista delle richieste di tirocinio in convalida
     //Altrimenti se l'utente loggato &egrave; la segreteria allora visualizzo la lista delle richieste di tirocinio nuove e in validazione
@@ -274,8 +273,6 @@ public class GestionePraticheTirocinioFacade {
             richieste.add(richiestaBean);
           }
         }
-
-
       } catch (SQLException e) {
         e.printStackTrace();
         System.out.println("Errore di reperimento dati della lista delle richieste di tirocinio per la segreteria");
@@ -497,8 +494,18 @@ public class GestionePraticheTirocinioFacade {
       statoTirocinioBean = new StatoTirocinioBean(richiesta.getRegistroTirocinio(), dataStato, convert.convertStatoTirocinio("incorso"));
       statiTirocinio.add(statoTirocinioBean);
       //Conto quanti registri di tirocinio ci sono
-      int numRegistri = getNumRegistri();
-
+      ArrayList<RegistroTirocinioBean> list = null;
+      try {
+    	  list = (ArrayList<RegistroTirocinioBean>) registroTirocinioDao.retrieveAll("id");
+      } catch (SQLException e) {
+    	  // TODO Auto-generated catch block
+    	  e.printStackTrace();
+      }
+      int id = 0;
+      for (RegistroTirocinioBean bean : list) {
+        id = bean.getIdentificativo();
+      }
+      id++;
       //DAO per i questionari
       QuestionarioStudenteDAO qSDao = new QuestionarioStudente();
       QuestionarioAziendaDAO qADao = new QuestionarioAzienda();
@@ -507,7 +514,7 @@ public class GestionePraticheTirocinioFacade {
         //inserisco il nuovo stato della richiesta
         statoRichiestaDao.insert(statoRichiestaBean);
         //Creo il registro di tirocinio
-        registroTirocinioBean = new RegistroTirocinioBean(++numRegistri, dataStato, richiesta.getStudente(), richiesta.getTutorAziendale(), richiesta.getTutorUniversitario(), richiesta, null, statiTirocinio, null, null);
+        registroTirocinioBean = new RegistroTirocinioBean(id, dataStato, richiesta.getStudente(), richiesta.getTutorAziendale(), richiesta.getTutorUniversitario(), richiesta, null, statiTirocinio, null, null);
         //Setto il registro di tirocinio collegato alla richiesta
         richiesta.setRegistroTirocinio(registroTirocinioBean);
         //Inserisco il registro di tirocinio
@@ -547,29 +554,6 @@ public class GestionePraticheTirocinioFacade {
     }
 
     return true;
-  }
-
-  /**
-   * Restituisce il numero di registri di tirocinio esistenti
-   * 
-   * @return numero registri tirocinio
-   */
-  private int getNumRegistri() {
-    RegistroTirocinioDAO registroTirocinioDao = new RegistroTirocinio();
-    ArrayList<RegistroTirocinioBean> registriTirocinio = null;
-    int numRegistri = 0;
-
-    try {
-      registriTirocinio = (ArrayList<RegistroTirocinioBean>) registroTirocinioDao.retrieveAll("identificativo");
-    } catch (SQLException e) {
-      e.printStackTrace();
-      System.out.println("Errore nel reperimento dei registri di tirocinio");
-    }
-
-    for(RegistroTirocinioBean r: registriTirocinio)
-      numRegistri++;
-
-    return numRegistri;
   }
 
   /**
