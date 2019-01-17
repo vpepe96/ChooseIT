@@ -1,7 +1,7 @@
 package it.chooseit.facade;
 
 /**
- * 
+ * Definisce i metodi per gestire le funzionalit&agrave; relative alle pratiche di tirocinio.
  */
 import java.sql.Date;
 import java.sql.SQLException;
