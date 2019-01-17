@@ -45,7 +45,7 @@ import it.chooseit.services.ConvertEnum;
 public class GestionePraticheTirocinioFacade {
 
   /**
-   * Restituisce la lista delle aziende convenzionate
+   * Restituisce la lista delle aziende convenzionate.
    * 
    * @return lista delle aziende
    */
@@ -81,7 +81,7 @@ public class GestionePraticheTirocinioFacade {
   }
 
   /**
-   * Inserisce un'azienda specificata
+   * Inserisce un'azienda specificata.
    * 
    * @param azienda nuova azienda da inserire
    * @return un valore vero o falso a seconda del risultato dell'inserimento
@@ -113,7 +113,7 @@ public class GestionePraticheTirocinioFacade {
   }
 
   /**
-   * Aggiorna i dati di un'azienda specificata
+   * Aggiorna i dati di un'azienda specificata.
    * 
    * @param azienda azienda con i campi aggiornati
    * @return un valore vero o falso a seconda del risultato dell'aggiornamento
@@ -146,7 +146,7 @@ public class GestionePraticheTirocinioFacade {
   }
 
   /**
-   * Restituisce la lista degli studenti a seconda del tipo di utente loggato
+   * Restituisce la lista degli studenti a seconda del tipo di utente loggato.
    * 
    * @param ruoloUtente indica il tipo di utente loggato
    * @param email email dell'utente loggato
@@ -223,7 +223,7 @@ public class GestionePraticheTirocinioFacade {
   }
 
   /**
-   * Restituisce la lista delle richieste di tirocinio a seconda dell'utente loggato
+   * Restituisce la lista delle richieste di tirocinio a seconda dell'utente loggato.
    * 
    * @param ruoloUtente tipo di utente loggato
    * @param email email dell'utente loggato
@@ -303,7 +303,7 @@ public class GestionePraticheTirocinioFacade {
   }
 
   /**
-   * Invia una richiesta di tirocinio
+   * Invia una richiesta di tirocinio.
    * 
    * @param richiesta richiesta di tirocinio da inviare
    * @param email email dell'utente che invia la richiesta
@@ -353,7 +353,7 @@ public class GestionePraticheTirocinioFacade {
   }
 
   /**
-   * Effettua la valutazione iniziale della richiesta di tirocinio 
+   * Effettua la valutazione iniziale della richiesta di tirocinio.
    * 
    * @param richiesta richiesta di tirocinio di cui effettua la valutazione iniziale
    * @param tutorAziendale tutor aziendale selezionato per il tirocinio
@@ -419,7 +419,7 @@ public class GestionePraticheTirocinioFacade {
   }
 
   /**
-   * Permette di effettuare la valutazione finale della richiesta di tirocinio
+   * Permette di effettuare la valutazione finale della richiesta di tirocinio.
    * 
    * @param richiesta richiesta di cui effettuare la valutazione finale
    * @param scelta scelta effettuata nella valutazione finale
@@ -469,7 +469,7 @@ public class GestionePraticheTirocinioFacade {
   }
 
   /**
-   * Permette di convalidare la richiesta di tirocinio
+   * Permette di convalidare la richiesta di tirocinio.
    * 
    * @param richiesta richiesta di tirocinio da convalidare
    * @param scelta esito della convalida della richiesta di tirocinio
@@ -557,6 +557,7 @@ public class GestionePraticheTirocinioFacade {
 
   /**
    * Aggiunge lo stato terminato al registro di tirocinio.
+   * 
    * @param bean il registro di tirocinio da terminare
    */
   public void terminaTirocinio(RegistroTirocinioBean bean) {
